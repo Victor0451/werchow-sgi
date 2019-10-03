@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
-import FormAcciones from "./FormAcciones";
+
+import { connect } from "react-redux";
+import { getGestionCaso } from "../../actions/campanasActions";
 
 let prev = 0;
 //let next = 0;
 let last = 0;
 //let first = 0;
 
-export default class ListadoGestionCaso extends Component {
+class ListadoCasosTrabajados extends Component {
   constructor() {
     super();
     this.state = {
       listado: [],
+      gestion: {},
       currentPage: 1,
       todosPerPage: 10,
       caso: {}
@@ -53,27 +56,20 @@ export default class ListadoGestionCaso extends Component {
   };
 
   selcaso = index => {
-    const { listado } = this.props;
-    const caso = listado[index];
-    this.setState({
-      caso: caso
-    });
+    this.props.getGestionCaso(index);
+
+    setTimeout(() => {
+      const { getcaso } = this.props;
+
+      this.setState({
+        gestion: getcaso[0]
+      });
+    }, 100);
   };
 
   render() {
-    let { currentPage, todosPerPage, caso } = this.state;
-    let {
-      listado,
-      fechaaccionRef,
-      fechaaccionnuevaRef,
-      obsRef,
-      nuevaaccionRef,
-      contratoRef,
-      obtenerDatos,
-      handleChange,
-      accion,
-      idcasoRef
-    } = this.props;
+    let { listado } = this.props;
+    let { currentPage, todosPerPage, gestion } = this.state;
 
     if (!listado) return <h1>Nada</h1>;
 
@@ -94,10 +90,7 @@ export default class ListadoGestionCaso extends Component {
     return (
       <React.Fragment>
         <hr />
-        <div className="alert alert-danger text-center text-dark">
-          <strong>DEUDA:</strong> {""}
-          {""}${this.deuda(listado)}
-        </div>
+
         <div className="row container mt-4 ">
           <div className="col-md-12 ">
             <ul>
@@ -136,12 +129,12 @@ export default class ListadoGestionCaso extends Component {
                       <td>
                         <Link
                           to={"#"}
-                          className="btn btn-primary"
+                          className="btn btn-secondary"
                           data-toggle="modal"
-                          data-target=".bd-example-modal-lg"
-                          onClick={() => this.selcaso(index)}
+                          data-target=".bd-example-modal2-lg"
+                          onClick={() => this.selcaso(titular.idcaso)}
                         >
-                          Acciones
+                          Informacion
                         </Link>
                       </td>
                     </tr>
@@ -224,7 +217,7 @@ export default class ListadoGestionCaso extends Component {
         </div>
 
         <div
-          className="modal fade bd-example-modal-lg"
+          className="modal fade bd-example-modal2-lg"
           role="dialog"
           aria-labelledby="myLargeModalLabel"
           aria-hidden="true"
@@ -233,7 +226,7 @@ export default class ListadoGestionCaso extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLongTitle">
-                  Registrar Accion
+                  Gestion del Caso
                 </h5>
                 <button
                   type="button"
@@ -245,18 +238,44 @@ export default class ListadoGestionCaso extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <FormAcciones
-                  caso={caso}
-                  fechaaccionRef={fechaaccionRef}
-                  fechaaccionnuevaRef={fechaaccionnuevaRef}
-                  obsRef={obsRef}
-                  nuevaaccionRef={nuevaaccionRef}
-                  contratoRef={contratoRef}
-                  obtenerDatos={obtenerDatos}
-                  handleChange={handleChange}
-                  accion={accion}
-                  idcasoRef={idcasoRef}
-                />
+                {!gestion ? (
+                  <div className="alert alert-primary mt-4">
+                    EL socio no posee gestiones realizadas
+                  </div>
+                ) : (
+                  <table className="table table-striped table-sm table-responsive border">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th scope="col">CONTRATO</th>
+                        <th scope="col">ACCION</th>
+                        <th scope="col">FECHA ACCION</th>
+                        <th scope="col">NUEVA ACCION</th>
+                        <th scope="col">FECHA NUEVA ACCION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{gestion.contrato}</td>
+                        <td>{gestion.accion}</td>
+                        <td>{gestion.fechaaccion}</td>
+                        <td>{gestion.nuevaaccion}</td>
+                        <td>{gestion.fechanuevaaccion}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )}
+
+                <hr />
+
+                <div className="form-group col-md-12">
+                  <label>Observaciones</label>
+                  <textarea
+                    className="form-control"
+                    rows="3"
+                    defaultValue={gestion.observacion}
+                    readOnly
+                  />
+                </div>
               </div>
               <div className="modal-footer">
                 <button
@@ -264,14 +283,7 @@ export default class ListadoGestionCaso extends Component {
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
-                  Cancelar
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={obtenerDatos}
-                >
-                  Registrar
+                  Cerrar
                 </button>
               </div>
             </div>
@@ -281,3 +293,16 @@ export default class ListadoGestionCaso extends Component {
     );
   }
 }
+//state
+const mapStateToProps = state => ({
+  getcaso: state.campanas.getcaso,
+  auth: state.auth,
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    getGestionCaso
+  }
+)(ListadoCasosTrabajados);

@@ -3,28 +3,28 @@ import TareaSelect from "react-select";
 import { acciones, nueavaaccion } from "../layouts/Arrays/arrays";
 
 export default class FormAcciones extends Component {
-  fechaaccionRef = React.createRef();
-  fechaaccionnuevaRef = React.createRef();
-
-  state = {
-    caso: {},
-    accion: "",
-    fechaaccion: ""
-  };
-
-  handleChange = (value, state) => {
-    this.setState({ [state]: value.value });
-  };
   render() {
     let tmp = new Date(Date.now());
     let year = tmp.getFullYear();
     let month = tmp.getMonth();
     let day = tmp.getDate();
-    let fecha = tmp.toISOString().split("T")[0];
-    let fecha1 = new Date(year, month, day + 1).toISOString().split("T")[0];
+    let hr = tmp.getHours();
+    let mm = tmp.getMinutes();
+    //let fecha = tmp.toISOString(day, month, year, hr, mm).split("GMT")[0];
+    let fecha = `${day}/${month}/${year} ${hr}:${mm}`;
+    let fecha1 = `${day + 1}/${month}/${year} ${hr}:${mm}`;
 
-    const { accion } = this.state;
-    const { caso } = this.props;
+    const {
+      caso,
+      fechaaccionRef,
+      fechaaccionnuevaRef,
+      obsRef,
+      nuevaaccionRef,
+      handleChange,
+      accion,
+      contratoRef,
+      idcasoRef
+    } = this.props;
 
     return (
       <div className="container">
@@ -34,77 +34,172 @@ export default class FormAcciones extends Component {
           </h3>
           <form className="mt-4 border">
             <div className="row">
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> Legajo: </u>
-                </strong>
-                {caso.contrato}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Legajo: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.contrato}
+                  ref={contratoRef}
+                  readOnly
+                />
+              </div>
 
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> Apellido: </u>
-                </strong>
-                {caso.apellido}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Caso N°: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.idcaso}
+                  ref={idcasoRef}
+                  readOnly
+                />
+              </div>
 
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> Nombre: </u>
-                </strong>
-                {caso.nombre}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Apellido: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.apellido}
+                  readOnly
+                />
+              </div>
 
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> Telefono: </u>
-                </strong>
-                {caso.telefono}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Nombre: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.nombre}
+                  readOnly
+                />
+              </div>
 
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> Movil: </u>
-                </strong>
-                {caso.movil}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Telefono: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.telefono}
+                  readOnly
+                />
+              </div>
 
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> DOMICILIO: </u>
-                </strong>
-                {caso.calle} - N° {caso.nro_calle}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Celular: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.movil}
+                  readOnly
+                />
+              </div>
 
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> Barrio: </u>
-                </strong>
-                {caso.barrio}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Domicilio: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.calle}
+                  readOnly
+                />
+              </div>
 
-              <label className="form-group col-md-6">
-                <strong>
-                  {" "}
-                  <u> Localidad: </u>
-                </strong>
-                {caso.localidad}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> N°: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.nro_calle}
+                  readOnly
+                />
+              </div>
 
-              <label className="container form-group col-md-8 mt-4 text-center alert alert-danger">
-                <strong>
-                  {" "}
-                  <u> Deuda: </u>
-                </strong>
-                {caso.montoadeudado}
-              </label>
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Barrio: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.barrio}
+                  readOnly
+                />
+              </div>
+
+              <div className="form-group col-md-6">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Localidad: </u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue={caso.localidad}
+                  readOnly
+                />
+              </div>
+
+              <div className="container form-group col-md-8 mt-4 text-center alert alert-danger rounded-pill">
+                <label>
+                  <strong>
+                    {" "}
+                    <u> Deuda: {""}</u>
+                  </strong>
+                </label>
+                <input
+                  type="text"
+                  className="mr-2 alert alert-danger border-0"
+                  defaultValue={caso.montoadeudado}
+                  readOnly
+                ></input>
+              </div>
             </div>
           </form>
         </div>
@@ -121,7 +216,7 @@ export default class FormAcciones extends Component {
               <TareaSelect
                 options={acciones}
                 placeholder={"Elige una accion"}
-                onChange={value => this.handleChange(value, "accion")}
+                onChange={value => handleChange(value, "accion")}
               />
             </div>
 
@@ -132,17 +227,17 @@ export default class FormAcciones extends Component {
                 </strong>
               </label>
               <input
-                type="date"
+                type="text"
                 className="form-control"
                 defaultValue={fecha}
-                ref={this.fechaaccionRef}
+                ref={fechaaccionRef}
                 readOnly
               />
             </div>
 
             <div className="form-group col-md-12">
               <label>Observaciones</label>
-              <textarea className="form-control" rows="3" />
+              <textarea className="form-control" rows="3" ref={obsRef} />
             </div>
           </div>
         </div>
@@ -159,16 +254,23 @@ export default class FormAcciones extends Component {
             </h3>
             <label className="form-group col-md-12 mt-4">
               <strong>
-                <u>Nueva Accion:</u> VERIFICAR DATOS Y LLAMAR DE NUEVO
+                <label>Nueva Accion</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  defaultValue="VERIFICAR DATOS Y LLAMAR DE NUEVO"
+                  ref={nuevaaccionRef}
+                  readOnly
+                />
               </strong>
             </label>
             <div className="form-group col-md-12">
               <label>Fecha de Accion</label>
               <input
-                type="date"
+                type="text"
                 className="form-control"
                 defaultValue={fecha1}
-                //ref={this.fechaaccionRef}
+                ref={fechaaccionnuevaRef}
                 readOnly
               />
             </div>
@@ -184,7 +286,7 @@ export default class FormAcciones extends Component {
                 <TareaSelect
                   options={nueavaaccion}
                   placeholder={"Elige una accion"}
-                  //onChange={value => this.handleChange(value, "accion")}
+                  onChange={value => handleChange(value, "nuevaaccion")}
                 />
               </div>
               <div className="form-group col-md-6">
@@ -193,14 +295,41 @@ export default class FormAcciones extends Component {
                   type="date"
                   className="form-control"
                   defaultValue={fecha}
-                  ref={this.fechaaccionnuevaRef}
+                  ref={fechaaccionnuevaRef}
                 />
               </div>
             </div>
           </div>
-        ) : (
-          ""
-        )}
+        ) : accion === 8 || accion === 9 ? (
+          <div className="jumbotron">
+            <h3>
+              <u>Nueva Accion</u>
+            </h3>
+            <div className="row">
+              <label className="form-group col-md-12 mt-4">
+                <strong>
+                  <label>Nueva Accion</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    defaultValue="SE CIERRA EL CASO"
+                    ref={nuevaaccionRef}
+                    readOnly
+                  />
+                </strong>
+              </label>
+            </div>
+            <div className="form-group col-md-12">
+              <label>Fecha de Accion</label>
+              <input
+                type="text"
+                className="form-control"
+                defaultValue={fecha}
+                ref={fechaaccionnuevaRef}
+              />
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }

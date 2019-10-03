@@ -20,19 +20,16 @@ class EstadoSocio extends Component {
     AtPalpala: [],
     AtPerico: [],
     AtSanPedro: [],
-    AtCasaCentral: [],
+    AtCasaCentralGG: [],
+    AtCasaCentralMG: [],
     spinner: true
   };
-
-  componentDidMount() {
-    this.atDelMes();
-  }
 
   atDelMes = () => {
     let newDate = new Date();
     let date = newDate.getDate();
 
-    if (date >= 15) {
+    if (date) {
       this.props.atW();
 
       setTimeout(() => {
@@ -57,12 +54,21 @@ class EstadoSocio extends Component {
             return atw.SUCURSAL === "W";
           });
 
+          let AtCCmitad = Math.floor(AtCasaCentral.length / 2);
+
+          let AtCasaCentralGG = AtCasaCentral.slice(0, AtCCmitad);
+
+          let AtCasaCentralMG = AtCasaCentral.slice(
+            AtCCmitad,
+            AtCasaCentral.length
+          );
+
           this.setState({
-            AtCasaCentral: AtCasaCentral,
+            AtCasaCentralGG: AtCasaCentralGG,
+            AtCasaCentralMG: AtCasaCentralMG,
             AtPalpala: AtPalpala,
             AtPerico: AtPerico,
-            AtSanPedro: AtSanPedro,
-            spinner: false
+            AtSanPedro: AtSanPedro
           });
         }
       }, 1000);
@@ -80,11 +86,15 @@ class EstadoSocio extends Component {
         const caso = {
           idcampana: idcamp,
           fechacampana: fecha,
+          mes: array[i].MES,
+          ano: array[i].ANO,
           sucursal: array[i].SUCURSAL,
           contrato: array[i].CONTRATO,
           apellido: array[i].APELLIDOS,
           nombre: array[i].NOMBRES,
           dni: array[i].NRO_DOC,
+          telefono: array[i].TELEFONO,
+          movil: array[i].MOVIL,
           calle: array[i].CALLE,
           nro_calle: array[i].NRO_CALLE,
           barrio: array[i].BARRIO,
@@ -96,24 +106,36 @@ class EstadoSocio extends Component {
         };
 
         this.props.crearCampAT(caso);
-        this.componentDidMount();
+        toastr.success("Se asignaron los casos con exito", "Atencion");
       }
     }
   };
 
   render() {
     const {
-      AtCasaCentral,
+      AtCasaCentralMG,
+      AtCasaCentralGG,
       AtPalpala,
       AtPerico,
-      AtSanPedro,
-      spinner
+      AtSanPedro
     } = this.state;
-
-    if (spinner === true) return <Spinner />;
 
     return (
       <div className="container mt-4">
+        <div className="jumbotron row">
+          <div className="col-md-6">
+            <h2>Buscar Cartera Atrasada</h2>
+          </div>
+          <div className="col-md-6">
+            <button
+              className="btn btn-secondary btn-block"
+              onClick={this.atDelMes}
+            >
+              Buscar
+            </button>
+          </div>
+        </div>
+
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
             <a
@@ -127,7 +149,8 @@ class EstadoSocio extends Component {
             >
               Atrasados {""}
               <span className="badge badge-pill badge-dark text-white">
-                {AtCasaCentral.length +
+                {AtCasaCentralMG.length +
+                  AtCasaCentralGG.length +
                   AtPalpala.length +
                   AtPerico.length +
                   AtSanPedro.length}
@@ -166,30 +189,80 @@ class EstadoSocio extends Component {
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
-            {!AtCasaCentral ? (
-              <Spinner />
+            {AtCasaCentralMG.length === 0 ? (
+              <div className=" border mt-4 p-2">
+                <h3>
+                  Atrasados Casa Central Magia Galian{" "}
+                  <span className="badge badge-pill badge-dark text-white">
+                    {AtCasaCentralMG.length}
+                  </span>
+                </h3>
+                <Spinner />
+              </div>
             ) : (
               <div className="mt-4">
                 <div className="d-flex justify-content-between">
                   <h3>
-                    Atrasados Casa Central{" "}
+                    Atrasados Casa Central Magia Galian{" "}
                     <span className="badge badge-pill badge-dark text-white">
-                      {AtCasaCentral.length}
+                      {AtCasaCentralMG.length}
                     </span>
                   </h3>
                   <button
                     className="btn btn-primary"
-                    onClick={() => this.crearCampana(AtCasaCentral, 12)}
+                    onClick={() => this.crearCampana(AtCasaCentralMG, 11)}
                   >
                     Crear Campaña
                   </button>
                 </div>
-                <AtW listado={AtCasaCentral} />
+                <AtW listado={AtCasaCentralMG} />
               </div>
             )}
+
             <hr />
-            {!AtPalpala ? (
-              <Spinner />
+
+            {AtCasaCentralGG.length === 0 ? (
+              <div className="border mt-4 p-2">
+                <h3>
+                  Atrasados Casa Central Gisela Gimenez{" "}
+                  <span className="badge badge-pill badge-dark text-white">
+                    {AtCasaCentralMG.length}
+                  </span>
+                </h3>
+                <Spinner />
+              </div>
+            ) : (
+              <div className="mt-4">
+                <div className="d-flex justify-content-between">
+                  <h3>
+                    Atrasados Casa Central Gisela Gimenez{" "}
+                    <span className="badge badge-pill badge-dark text-white">
+                      {AtCasaCentralGG.length}
+                    </span>
+                  </h3>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => this.crearCampana(AtCasaCentralGG, 12)}
+                  >
+                    Crear Campaña
+                  </button>
+                </div>
+                <AtW listado={AtCasaCentralGG} />
+              </div>
+            )}
+
+            <hr />
+
+            {AtPalpala.length === 0 ? (
+              <div className="border mt-4 p-2">
+                <h3>
+                  Atrasados Palpala{" "}
+                  <span className="badge badge-pill badge-dark text-white">
+                    {AtPalpala.length}
+                  </span>
+                </h3>
+                <Spinner />
+              </div>
             ) : (
               <div className="mt-4">
                 <div className="d-flex justify-content-between">
@@ -210,8 +283,16 @@ class EstadoSocio extends Component {
               </div>
             )}
             <hr />
-            {!AtPerico ? (
-              <Spinner />
+            {AtPerico.length === 0 ? (
+              <div className="border mt-4 p-2">
+                <h3>
+                  Atrasados Perico{" "}
+                  <span className="badge badge-pill badge-dark text-white">
+                    {AtPerico.length}
+                  </span>
+                </h3>
+                <Spinner />
+              </div>
             ) : (
               <div className="mt-4">
                 <div className="d-flex justify-content-between">
@@ -234,8 +315,16 @@ class EstadoSocio extends Component {
             )}
 
             <hr />
-            {!AtSanPedro ? (
-              <Spinner />
+            {AtSanPedro.length === 0 ? (
+              <div className="border mt-4 p-2 mb-4">
+                <h3>
+                  Atrasados San Pedro{" "}
+                  <span className="badge badge-pill badge-dark text-white">
+                    {AtSanPedro.length}
+                  </span>
+                </h3>
+                <Spinner />
+              </div>
             ) : (
               <div className="mt-4">
                 <div className="d-flex justify-content-between">

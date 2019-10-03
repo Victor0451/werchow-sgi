@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 
@@ -72,7 +71,8 @@ export default class Listado extends Component {
       <React.Fragment>
         <hr />
         <div className="alert alert-danger text-center text-dark">
-          <strong>DEUDA:</strong> {""}{""}${this.deuda(listado)}
+          <strong>DEUDA:</strong> {""}
+          {""}${this.deuda(listado)}
         </div>
         <div className="row container mt-4 ">
           <div className="col-md-12 ">
@@ -90,6 +90,8 @@ export default class Listado extends Component {
                     <th scope="col">BARRIO</th>
                     <th scope="col">LOCALIDAD</th>
                     <th scope="col">CUOTA</th>
+                    <th scope="col">MES</th>
+                    <th scope="col">AÑO</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -105,6 +107,8 @@ export default class Listado extends Component {
                       <td>{titular.BARRIO}</td>
                       <td>{titular.LOCALIDAD}</td>
                       <td>$ {titular.IMPORTE}</td>
+                      <td>{titular.MES}</td>
+                      <td>{titular.ANO}</td>
                     </tr>
                   ))}
                 </tbody>
