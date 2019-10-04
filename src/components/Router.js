@@ -31,7 +31,7 @@ export default class Router extends Component {
               <Route exact path={"/campanacaso"} component={CampanaCaso} />
               <Route
                 exact
-                path={"/gestioncaso/Atrasados/:id"}
+                path={"/gestioncaso/Atrasados"}
                 component={GestionAt}
               />
             </Switch>

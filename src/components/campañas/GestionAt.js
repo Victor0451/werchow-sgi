@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import ListadoGestionCaso from "./ListadoGestionCaso";
-import ListadoCasosTrabajados from "./ListadoCasosTrabajados";
+
+import ListadoGestionCaso from "../layouts/Table/Table";
+import ListadoCasosTrabajados from "../layouts/Table/Table2";
 
 import { connect } from "react-redux";
 import {
@@ -13,6 +14,7 @@ import {
   getRecuperacion,
   getDeuda
 } from "../../actions/campanasActions";
+
 
 class GestionAt extends Component {
   fechaaccionRef = React.createRef();
@@ -180,18 +182,20 @@ class GestionAt extends Component {
                 No Tienes Casos Asignados
               </div>
             ) : (
-              <ListadoGestionCaso
-                listado={campop}
-                fechaaccionRef={this.fechaaccionRef}
-                fechaaccionnuevaRef={this.fechaaccionnuevaRef}
-                obsRef={this.obsRef}
-                nuevaaccionRef={this.nuevaaccionRef}
-                contratoRef={this.contratoRef}
-                obtenerDatos={this.obtenerDatos}
-                handleChange={this.handleChange}
-                accion={this.state.accion}
-                idcasoRef={this.idcasoRef}
-              />
+              <div className="mt-4">
+                <ListadoGestionCaso
+                  data={campop}
+                  fechaaccionRef={this.fechaaccionRef}
+                  fechaaccionnuevaRef={this.fechaaccionnuevaRef}
+                  obsRef={this.obsRef}
+                  nuevaaccionRef={this.nuevaaccionRef}
+                  contratoRef={this.contratoRef}
+                  obtenerDatos={this.obtenerDatos}
+                  handleChange={this.handleChange}
+                  accion={this.state.accion}
+                  idcasoRef={this.idcasoRef}
+                />
+              </div>
             )}
           </div>
           <div
@@ -206,7 +210,7 @@ class GestionAt extends Component {
               </div>
             ) : (
               <ListadoCasosTrabajados
-                listado={campoptrab}
+                data={campoptrab}
                 selcaso={this.selcaso}
                 gestion={gestion}
               />

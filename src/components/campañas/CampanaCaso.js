@@ -7,7 +7,6 @@ class CampanaCaso extends Component {
   };
 
   render() {
-    const operador = "ggimenez";
     return (
       <div className="container">
         <h1>Gestion de Campañas</h1>
@@ -64,7 +63,7 @@ class CampanaCaso extends Component {
                     <h5 className="card-title">Listado de casos:</h5>
                     <Link
                       className="btn btn-primary"
-                      to={`/gestioncaso/Atrasados/${operador}`}
+                      to={`/gestioncaso/Atrasados`}
                     >
                       Abrir Campaña
                     </Link>
