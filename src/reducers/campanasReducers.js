@@ -8,7 +8,8 @@ import {
   CERRAR_CASO,
   GET_GESTION_CASO,
   GET_RECUPERACION,
-  GET_DEUDA
+  GET_DEUDA,
+  BUSCAR_CASO
 } from "../actions/types";
 
 const initialState = {
@@ -57,7 +58,13 @@ export default function(state = initialState, action) {
         getrec: action.payload
       };
 
-      case GET_DEUDA:
+    case BUSCAR_CASO:
+      return {
+        ...state,
+        buscaso: action.payload
+      };
+
+    case GET_DEUDA:
       return {
         ...state,
         getdeuda: action.payload

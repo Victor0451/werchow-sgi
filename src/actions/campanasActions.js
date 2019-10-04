@@ -9,10 +9,12 @@ import {
   CERRAR_CASO,
   GET_GESTION_CASO,
   GET_RECUPERACION,
-  GET_DEUDA
+  GET_DEUDA,
+  BUSCAR_CASO
 } from "./types";
 
 import axios from "axios";
+//import toastr from "../utils/toastr";
 
 export const atW = () => async dispatch => {
   const respuesta = await axios.get(
@@ -22,6 +24,22 @@ export const atW = () => async dispatch => {
     type: AT_W,
     payload: respuesta.data
   });
+};
+
+export const buscarCaso = id => async dispatch => {
+  await axios
+    .get(`http://190.231.32.232:5002/api/sgi/campanas/buscarcaso/${id}`)
+
+    .then(res =>
+      dispatch({
+        type: BUSCAR_CASO,
+        payload: res.data
+      })
+    )
+
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 export const crearCampAT = caso => async dispatch => {
@@ -104,25 +122,23 @@ export const getGestionCaso = id => async dispatch => {
     type: GET_GESTION_CASO,
     payload: respuesta.data
   });
-}
-  export const getRecuperacion = id => async dispatch => {
-    const respuesta = await axios.get(
-      `http://190.231.32.232:5002/api/sgi/campanas/recuperacion/${id}`
-    );
-    dispatch({
-      type: GET_RECUPERACION,
-      payload: respuesta.data
-    });
+};
+export const getRecuperacion = id => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/recuperacion/${id}`
+  );
+  dispatch({
+    type: GET_RECUPERACION,
+    payload: respuesta.data
+  });
+};
 
-  } 
-
-  export const getDeuda = id => async dispatch => {
-    const respuesta = await axios.get(
-      `http://190.231.32.232:5002/api/sgi/campanas/deuda/${id}`
-    );
-    dispatch({
-      type: GET_DEUDA,
-      payload: respuesta.data
-    });
-
-  } 
+export const getDeuda = id => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/deuda/${id}`
+  );
+  dispatch({
+    type: GET_DEUDA,
+    payload: respuesta.data
+  });
+};

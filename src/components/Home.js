@@ -1,70 +1,130 @@
 import React, { Component } from "react";
-import Table from "./layouts/Table/Table";
+import toastr from "../utils/toastr";
 
 import { connect } from "react-redux";
-import {
-  campanaOperador,
-  gestionCaso,
-  updateAccion,
-  campanaOperadorTrab,
-  cerrarCaso,
-  getGestionCaso,
-  getRecuperacion,
-  getDeuda
-} from "../actions/campanasActions";
+import { buscarCaso } from "../actions/campanasActions";
 
 class Home extends Component {
   state = {
-    campop: [],
-    campoptrab: [],
-    caso: {},
-    accion: "",
-    gestion: {},
-    getrec: {},
-    getdeuda: {},
-    nuevaaccion: ""
+    contrato: "",
+    buscaso: {}
   };
 
-  componentDidMount() {
-    const { user } = this.props.auth;
+  leerDatos = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
-    let id = user.usuario;
+  buscarTitular = e => {
+    e.preventDefault();
 
-    this.props.campanaOperador(id);
-    this.props.campanaOperadorTrab(id);
-    this.props.getRecuperacion(id);
-    this.props.getDeuda(id);
+    const { contrato } = this.state;
 
-    setTimeout(() => {
-      const { campop, campoptrab, getrec, getdeuda } = this.props;
+    if (contrato === "") {
+      toastr.warning("Debes ingresar un numero de socio", "ATENCION");
+    } else {
+      if (contrato) {
+        this.props.buscarCaso(contrato);
 
-      this.setState({
-        campop: campop[0],
-        campoptrab: campoptrab[0],
-        getrec: getrec[0][0],
-        getdeuda: getdeuda[0][0]
-      });
-    }, 300);
-  }
+        setTimeout(() => {
+          const { buscaso } = this.props;
+
+          if (buscaso) {
+            this.setState({
+              buscaso: buscaso
+            });
+
+            toastr.success(
+              "El numero de socio ingresado esta en campaña",
+              "ATENCION"
+            );
+
+            document.getElementById("alert").hidden = false;
+          }
+          if (!buscaso) {
+            toastr.warning(
+              "El numero de socio ingresado no existe",
+              "ATENCION"
+            );
+            document.getElementById("alert").hidden = true;
+          }
+        }, 80);
+      }
+    }
+  };
 
   render() {
-    const { campop } = this.state;
+    const { buscaso } = this.state;
     return (
-      <div>
-        <h1>HOME</h1>
+      <div className="form-style-8">
+        <h2>Buscar Socio</h2>
 
-        <Table data={campop} />
+        <form className="border p-2" onSubmit={this.buscarTitular}>
+          <div className="row">
+            <div className="col-md-6">
+              <p className="has-dynamic-label">
+                <input
+                  type="text"
+                  className=""
+                  id="dynamic-label-input"
+                  name="contrato"
+                  onChange={this.leerDatos}
+                  placeholder="Ingresar N° de Socio"
+                />
+                <label>N° de Socio</label>
+              </p>
+            </div>
+
+            <div className="col-md-6">
+              <button className="btn btn-primary  btn-block mt-4">
+                Buscar
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div className="text-center mt-4" id="alert" hidden>
+          <hr />
+          <div className=" alert alert-success mt-4">
+            {buscaso.idcampana === 1
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de MARIA GALIAN`
+              : buscaso.idcampana === 2
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de GISELA GIMENEZ`
+              : buscaso.idcampana === 3
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de MARISA CARRIZO`
+              : buscaso.idcampana === 4
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de VANESA GOROSITO`
+              : buscaso.idcampana === 5
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de SILVIA JUAREZ`
+              : buscaso.idcampana === 6
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de MARIA GALIAN`
+              : buscaso.idcampana === 7
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de GISELA GIMENEZ`
+              : buscaso.idcampana === 8
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de MARISA CARRIZO`
+              : buscaso.idcampana === 9
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de VANESA GOROSITO`
+              : buscaso.idcampana === 10
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de SILVIA JUAREZ`
+              : buscaso.idcampana === 11
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de MARIA GALIAN`
+              : buscaso.idcampana === 12
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de GISELA GIMENEZ`
+              : buscaso.idcampana === 13
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de MARISA CARRIZO`
+              : buscaso.idcampana === 14
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de VANESA GOROSITO`
+              : buscaso.idcampana === 15
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de SILVIA JUAREZ`
+              : ""}
+          </div>
+        </div>
       </div>
     );
   }
 }
 //state
 const mapStateToProps = state => ({
-  campop: state.campanas.campop,
-  campoptrab: state.campanas.campoptrab,
-  getcaso: state.campanas.getcaso,
-  getrec: state.campanas.getrec,
-  getdeuda: state.campanas.getdeuda,
+  buscaso: state.campanas.buscaso,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
@@ -72,13 +132,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    campanaOperador,
-    gestionCaso,
-    updateAccion,
-    campanaOperadorTrab,
-    cerrarCaso,
-    getGestionCaso,
-    getRecuperacion,
-    getDeuda
+    buscarCaso
   }
 )(Home);
