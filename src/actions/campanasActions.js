@@ -10,7 +10,8 @@ import {
   GET_GESTION_CASO,
   GET_RECUPERACION,
   GET_DEUDA,
-  BUSCAR_CASO
+  BUSCAR_CASO,
+  REC_W
 } from "./types";
 
 import axios from "axios";
@@ -22,6 +23,16 @@ export const atW = () => async dispatch => {
   );
   dispatch({
     type: AT_W,
+    payload: respuesta.data
+  });
+};
+
+export const RecW = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/recW`
+  );
+  dispatch({
+    type: REC_W,
     payload: respuesta.data
   });
 };
@@ -76,6 +87,26 @@ export const campanaOperador = operador => async dispatch => {
 export const campanaOperadorTrab = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrab/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_TRAB,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorRec = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorrec/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorTrabRec = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabrec/${operador}`
   );
   dispatch({
     type: CAMPANA_OPERADOR_TRAB,

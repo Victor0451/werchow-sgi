@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./layouts/Navbar";
-import EstadoSocio from "./campañas/EstadoSocio";
+import EstadoSocio from "./campañas/estadoSocio/EstadoSocio";
 import CampanaCaso from "./campañas/CampanaCaso";
-import GestionAt from "./campañas/GestionAt";
+import GestionAt from "./campañas/atrasados/GestionAt";
 import Home from "./Home";
 import Login from "./auth/Login";
 import { USER_LOGEDED } from "../actions/types";
 
 import store from "../store";
 import { Provider } from "react-redux";
+import GestionRec from "./campañas/recuperaciones/GestionRec";
 
 const token = sessionStorage.getItem("token");
 
@@ -33,6 +34,11 @@ export default class Router extends Component {
                 exact
                 path={"/gestioncaso/Atrasados"}
                 component={GestionAt}
+              />
+              <Route
+                exact
+                path={"/gestioncaso/Recuperacion"}
+                component={GestionRec}
               />
             </Switch>
           ) : (

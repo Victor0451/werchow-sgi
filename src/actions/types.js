@@ -15,6 +15,7 @@ export const MOSTRAR_OPERADOR = "MOSTRAR_OPERADOR";
 
 // ATRASADOS
 export const AT_W = "AT_W";
+export const REC_W = "REC_W";
 export const AT_M = "AT_M";
 export const BUSCAR_CASO = "BUSCAR_CASO";
 export const CREAR_CAMP_AT = "CREAR_CAMP_AT";

@@ -9,7 +9,8 @@ import {
   GET_GESTION_CASO,
   GET_RECUPERACION,
   GET_DEUDA,
-  BUSCAR_CASO
+  BUSCAR_CASO,
+  REC_W
 } from "../actions/types";
 
 const initialState = {
@@ -22,6 +23,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         atw: action.payload
+      };
+    case REC_W:
+      return {
+        ...state,
+        recw: action.payload
       };
     case ESTADO_CAMP:
       return {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import ListadoGestionCaso from "../layouts/Table/Table";
-import ListadoCasosTrabajados from "../layouts/Table/Table2";
+import ListadoGestionCaso from "../../layouts/Table/Table";
+import ListadoCasosTrabajados from "../../layouts/Table/Table2";
 
 import { connect } from "react-redux";
 import {
@@ -13,7 +13,7 @@ import {
   getGestionCaso,
   getRecuperacion,
   getDeuda
-} from "../../actions/campanasActions";
+} from "../../../actions/campanasActions";
 
 
 class GestionAt extends Component {
