@@ -5,17 +5,17 @@ import ListadoCasosTrabajados from "../../layouts/Table/Table2";
 
 import { connect } from "react-redux";
 import {
-  campanaOperadorRec,
+  campanaOperadorBlan,
   gestionCaso,
   updateAccion,
-  campanaOperadorTrabRec,
+  campanaOperadorTrabBlan,
   cerrarCaso,
   getGestionCaso,
   getRecuperacion,
   getDeuda
 } from "../../../actions/campanasActions";
 
-class GestionRec extends Component {
+class GestionBlan extends Component {
   fechaaccionRef = React.createRef();
   fechaaccionnuevaRef = React.createRef();
   obsRef = React.createRef();
@@ -43,14 +43,14 @@ class GestionRec extends Component {
 
     let id = user.usuario;
 
-    this.props.campanaOperadorRec(id);
-    this.props.campanaOperadorTrabRec(id);
+    this.props.campanaOperadorBlan(id);
+    this.props.campanaOperadorTrabBlan(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
 
     setTimeout(() => {
       const { campop, campoptrab, getrec, getdeuda } = this.props;
-      console.log(this.props);
+
       this.setState({
         campop: campop[0],
         campoptrab: campoptrab[0],
@@ -126,7 +126,7 @@ class GestionRec extends Component {
     let mes;
     return (
       <div className="container">
-        <h1 className="mt-4 mb-4"> Gestion Campaña de Recuperaciones {mes}</h1>
+        <h1 className="mt-4 mb-4"> Gestion Campaña de Blanqueos {mes}</h1>
 
         <ul className="nav nav-tabs" id="myTab" role="tablist">
           <li className="nav-item">
@@ -252,13 +252,13 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    campanaOperadorRec,
+    campanaOperadorBlan,
     gestionCaso,
     updateAccion,
-    campanaOperadorTrabRec,
+    campanaOperadorTrabBlan,
     cerrarCaso,
     getGestionCaso,
     getRecuperacion,
     getDeuda
   }
-)(GestionRec);
+)(GestionBlan);

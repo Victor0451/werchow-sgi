@@ -11,7 +11,9 @@ import {
   GET_RECUPERACION,
   GET_DEUDA,
   BUSCAR_CASO,
-  REC_W
+  REC_W,
+  REIN_W,
+  BLANQUEO_W
 } from "./types";
 
 import axios from "axios";
@@ -33,6 +35,27 @@ export const RecW = () => async dispatch => {
   );
   dispatch({
     type: REC_W,
+    payload: respuesta.data
+  });
+};
+
+
+export const ReinW = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/reinW`
+  );
+  dispatch({
+    type: REIN_W,
+    payload: respuesta.data
+  });
+};
+
+export const BlanW = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/blanW`
+  );
+  dispatch({
+    type: BLANQUEO_W,
     payload: respuesta.data
   });
 };
@@ -107,6 +130,46 @@ export const campanaOperadorRec = operador => async dispatch => {
 export const campanaOperadorTrabRec = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabrec/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_TRAB,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorRein = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorrein/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorTrabRein = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabrein/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_TRAB,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorBlan = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorblan/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorTrabBlan = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabblan/${operador}`
   );
   dispatch({
     type: CAMPANA_OPERADOR_TRAB,

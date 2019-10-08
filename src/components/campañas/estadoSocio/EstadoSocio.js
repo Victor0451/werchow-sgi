@@ -7,6 +7,14 @@ import RecCC from "./werchow/recCC";
 import RecPal from "./werchow/recPal";
 import RecPer from "./werchow/recPer";
 import RecSP from "./werchow/recSP";
+import ReinCC from "./werchow/reinCC";
+import ReinPal from "./werchow/reinPal";
+import ReinPer from "./werchow/reinPer";
+import ReinSP from "./werchow/reinSP";
+import BlanqueoCC from "./werchow/blanqueoCC";
+import BlanqueoPal from "./werchow/blanqueoPal";
+import BlanqueoPer from "./werchow/blanqueoPer";
+import BlanqueoSP from "./werchow/blanqueoSP";
 
 import toastr from "../../../utils/toastr";
 
@@ -15,6 +23,8 @@ import { connect } from "react-redux";
 import {
   atW,
   RecW,
+  ReinW,
+  BlanW,
   verificarEstadoCamp,
   crearCampAT
 } from "../../../actions/campanasActions";
@@ -31,7 +41,17 @@ class EstadoSocio extends Component {
     RecCasaCentralMG: [],
     RecPalpala: [],
     RecPerico: [],
-    RecSanPedro: []
+    RecSanPedro: [],
+    ReinCasaCentralGG: [],
+    ReinCasaCentralMG: [],
+    ReinPalpala: [],
+    ReinPerico: [],
+    ReinSanPedro: [],
+    BlanCasaCentralGG: [],
+    BlanCasaCentralMG: [],
+    BlanPalpala: [],
+    BlanPerico: [],
+    BlanSanPedro: []
   };
 
   atDelMes = () => {
@@ -134,6 +154,106 @@ class EstadoSocio extends Component {
     }
   };
 
+  reinDelMes = () => {
+    let newDate = new Date();
+    let date = newDate.getDate();
+
+    if (date) {
+      this.props.ReinW();
+
+      setTimeout(() => {
+        const { reinw } = this.props;
+        console.log(this.props);
+        if (reinw) {
+          let reincidente = reinw[0];
+
+          let ReinPerico = reincidente.filter(reinw => {
+            return reinw.SUCURSAL === "R";
+          });
+
+          let ReinPalpala = reincidente.filter(reinw => {
+            return reinw.SUCURSAL === "L";
+          });
+
+          let ReinSanPedro = reincidente.filter(reinw => {
+            return reinw.SUCURSAL === "P";
+          });
+
+          let ReinCasaCentral = reincidente.filter(reinw => {
+            return reinw.SUCURSAL === "W";
+          });
+
+          let ReinCCmitad = Math.floor(ReinCasaCentral.length / 2);
+
+          let ReinCasaCentralGG = ReinCasaCentral.slice(0, ReinCCmitad);
+
+          let ReinCasaCentralMG = ReinCasaCentral.slice(
+            ReinCCmitad,
+            ReinCasaCentral.length
+          );
+
+          this.setState({
+            ReinCasaCentralGG: ReinCasaCentralGG,
+            ReinCasaCentralMG: ReinCasaCentralMG,
+            ReinPalpala: ReinPalpala,
+            ReinPerico: ReinPerico,
+            ReinSanPedro: ReinSanPedro
+          });
+        }
+      }, 1000);
+    }
+  };
+
+  blanDelMes = () => {
+    let newDate = new Date();
+    let date = newDate.getDate();
+
+    if (date) {
+      this.props.BlanW();
+
+      setTimeout(() => {
+        const { blanw } = this.props;
+        console.log(this.props);
+        if (blanw) {
+          let blanqueo = blanw[0];
+
+          let BlanPerico = blanqueo.filter(blanw => {
+            return blanw.SUCURSAL === "R";
+          });
+
+          let BlanPalpala = blanqueo.filter(blanw => {
+            return blanw.SUCURSAL === "L";
+          });
+
+          let BlanSanPedro = blanqueo.filter(blanw => {
+            return blanw.SUCURSAL === "P";
+          });
+
+          let BlanCasaCentral = blanqueo.filter(blanw => {
+            return blanw.SUCURSAL === "W";
+          });
+
+          let BlanCCmitad = Math.floor(BlanCasaCentral.length / 2);
+
+          let BlanCasaCentralGG = BlanCasaCentral.slice(0, BlanCCmitad);
+
+          let BlanCasaCentralMG = BlanCasaCentral.slice(
+            BlanCCmitad,
+            BlanCasaCentral.length
+          );
+
+          this.setState({
+            BlanCasaCentralGG: BlanCasaCentralGG,
+            BlanCasaCentralMG: BlanCasaCentralMG,
+            BlanPalpala: BlanPalpala,
+            BlanPerico: BlanPerico,
+            BlanSanPedro: BlanSanPedro
+          });
+        }
+      }, 1000);
+    }
+  };
+
   crearCampana = (array, idcamp) => {
     let tmp = new Date(Date.now());
     let fecha = tmp.toISOString().split("T")[0];
@@ -181,7 +301,17 @@ class EstadoSocio extends Component {
       RecCasaCentralMG,
       RecPalpala,
       RecPerico,
-      RecSanPedro
+      RecSanPedro,
+      ReinCasaCentralGG,
+      ReinCasaCentralMG,
+      ReinPalpala,
+      ReinPerico,
+      ReinSanPedro,
+      BlanCasaCentralGG,
+      BlanCasaCentralMG,
+      BlanPalpala,
+      BlanPerico,
+      BlanSanPedro
     } = this.state;
 
     return (
@@ -233,7 +363,33 @@ class EstadoSocio extends Component {
               aria-controls="nav-contact"
               aria-selected="false"
             >
-              OTRO
+              Reincidentes {""}
+              <span className="badge badge-pill badge-dark text-white">
+                {ReinCasaCentralMG.length +
+                  ReinCasaCentralGG.length +
+                  ReinPalpala.length +
+                  ReinPerico.length +
+                  ReinSanPedro.length}
+              </span>
+            </a>
+
+            <a
+              className="nav-item nav-link"
+              id="nav-blanqueo-tab"
+              data-toggle="tab"
+              href="#nav-blanqueo"
+              role="tab"
+              aria-controls="nav-blanqueo"
+              aria-selected="false"
+            >
+              Blanqueo {""}
+              <span className="badge badge-pill badge-dark text-white">
+                {BlanCasaCentralMG.length +
+                  BlanCasaCentralGG.length +
+                  BlanPalpala.length +
+                  BlanPerico.length +
+                  BlanSanPedro.length}
+              </span>
             </a>
           </div>
         </nav>
@@ -322,7 +478,89 @@ class EstadoSocio extends Component {
             role="tabpanel"
             aria-labelledby="nav-contact-tab"
           >
-            ...s
+            <div className="jumbotron row mt-4">
+              <div className="col-md-6">
+                <h2>Buscar Cartera Morosa</h2>
+              </div>
+              <div className="col-md-6">
+                <button
+                  className="btn btn-secondary btn-block"
+                  onClick={this.reinDelMes}
+                >
+                  Buscar
+                </button>
+              </div>
+            </div>
+
+            <ReinCC
+              ReinCasaCentralGG={ReinCasaCentralGG}
+              ReinCasaCentralMG={ReinCasaCentralMG}
+              crearCampana={this.crearCampana}
+            />
+
+            <hr />
+
+            <ReinPal
+              ReinPalpala={ReinPalpala}
+              crearCampana={this.crearCampana}
+            />
+
+            <hr />
+
+            <ReinPer ReinPerico={ReinPerico} crearCampana={this.crearCampana} />
+
+            <hr />
+            <ReinSP
+              ReinSanPedro={ReinSanPedro}
+              crearCampana={this.crearCampana}
+            />
+          </div>
+
+          <div
+            className="tab-pane fade"
+            id="nav-blanqueo"
+            role="tabpanel"
+            aria-labelledby="nav-blanqueo-tab"
+          >
+            <div className="jumbotron row mt-4">
+              <div className="col-md-6">
+                <h2>Buscar Cartera para Blanqueo</h2>
+              </div>
+              <div className="col-md-6">
+                <button
+                  className="btn btn-secondary btn-block"
+                  onClick={this.blanDelMes}
+                >
+                  Buscar
+                </button>
+              </div>
+            </div>
+
+            <BlanqueoCC
+              BlanCasaCentralGG={BlanCasaCentralGG}
+              BlanCasaCentralMG={BlanCasaCentralMG}
+              crearCampana={this.crearCampana}
+            />
+
+            <hr />
+
+            <BlanqueoPal
+              BlanPalpala={BlanPalpala}
+              crearCampana={this.crearCampana}
+            />
+
+            <hr />
+
+            <BlanqueoPer
+              BlanPerico={BlanPerico}
+              crearCampana={this.crearCampana}
+            />
+
+            <hr />
+            <BlanqueoSP
+              BlanSanPedro={BlanSanPedro}
+              crearCampana={this.crearCampana}
+            />
           </div>
         </div>
       </div>
@@ -333,10 +571,12 @@ class EstadoSocio extends Component {
 const mapStateToProps = state => ({
   atw: state.campanas.atw,
   recw: state.campanas.recw,
+  reinw: state.campanas.reinw,
+  blanw: state.campanas.blanw,
   estado: state.campanas.estado
 });
 
 export default connect(
   mapStateToProps,
-  { atW, RecW, verificarEstadoCamp, crearCampAT }
+  { atW, RecW, ReinW, BlanW, verificarEstadoCamp, crearCampAT }
 )(EstadoSocio);

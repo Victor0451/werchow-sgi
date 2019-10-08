@@ -11,6 +11,9 @@ import { USER_LOGEDED } from "../actions/types";
 import store from "../store";
 import { Provider } from "react-redux";
 import GestionRec from "./campañas/recuperaciones/GestionRec";
+import GestionRein from "./campañas/reincidencia/GestionRein";
+import GestionBlan from "./campañas/blanqueo/GestionBlan";
+
 
 const token = sessionStorage.getItem("token");
 
@@ -39,6 +42,16 @@ export default class Router extends Component {
                 exact
                 path={"/gestioncaso/Recuperacion"}
                 component={GestionRec}
+              />
+              <Route
+                exact
+                path={"/gestioncaso/Reincidencia"}
+                component={GestionRein}
+              />
+                <Route
+                exact
+                path={"/gestioncaso/Blanqueo"}
+                component={GestionBlan}
               />
             </Switch>
           ) : (
