@@ -8,7 +8,7 @@ import "react-table/react-table.css";
 import { connect } from "react-redux";
 import { getGestionCaso } from "../../../actions/campanasActions";
 
-class Table2 extends React.Component {
+class Table3 extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -148,4 +148,4 @@ export default connect(
   {
     getGestionCaso
   }
-)(Table2);
+)(Table3);

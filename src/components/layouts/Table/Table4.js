@@ -1,16 +1,14 @@
 import React from "react";
 import matchSorter from "match-sorter";
 import { Link } from "react-router-dom";
-import Notificacion from "../../campañas/Notificacion";
+import FormAcciones from "../../campañas/FormAcciones";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-
 import { connect } from "react-redux";
 import { getGestionCaso } from "../../../actions/campanasActions";
-
-class Table2 extends React.Component {
+class Table4 extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -47,10 +45,20 @@ class Table2 extends React.Component {
   };
 
   render() {
-    const { data } = this.props;
-
-    const { gestion, caso } = this.state;
-
+    const {
+      data,
+      fechaaccionRef,
+      fechaaccionnuevaRef,
+      obsRef,
+      nuevaaccionRef,
+      contratoRef,
+      obtenerDatos,
+      handleChange,
+      accion,
+      idcasoRef
+    } = this.props;
+    const { caso, gestion } = this.state;
+   
     return (
       <div className="container">
         <ReactTable
@@ -158,7 +166,7 @@ class Table2 extends React.Component {
                         to={"#"}
                         className="btn btn-primary"
                         data-toggle="modal"
-                        data-target=".bd-example-modal-lg5"
+                        data-target=".bd-example-modal-lg2"
                         onClick={() => this.selcaso(row.index)}
                       >
                         Acciones
@@ -174,7 +182,7 @@ class Table2 extends React.Component {
         />
 
         <div
-          className="modal fade bd-example-modal-lg5"
+          className="modal fade bd-example-modal-lg2"
           role="dialog"
           aria-labelledby="myLargeModalLabel"
           aria-hidden="true"
@@ -183,7 +191,7 @@ class Table2 extends React.Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLongTitle">
-                  Gestion del Caso
+                  Registrar Accion
                 </h5>
                 <button
                   type="button"
@@ -195,92 +203,34 @@ class Table2 extends React.Component {
                 </button>
               </div>
               <div className="modal-body">
-                {!gestion ? (
-                  <div className="alert alert-primary mt-4">
-                    EL socio no posee gestiones realizadas
-                  </div>
-                ) : (
-                  <div>
-                    <table className="table table-striped table-sm table-responsive border">
-                      <thead className="thead-dark">
-                        <tr>
-                          <th scope="col">CONTRATO</th>
-                          <th scope="col">ACCION</th>
-                          <th scope="col">FECHA ACCION</th>
-                          <th scope="col">NUEVA ACCION</th>
-                          <th scope="col">FECHA NUEVA ACCION</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>{gestion.contrato}</td>
-                          <td>{gestion.accion}</td>
-                          <td>{gestion.fechaaccion}</td>
-                          <td>{gestion.nuevaaccion}</td>
-                          <td>{gestion.fechanuevaaccion}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                    <hr />
-                  </div>
-                )}
-                <div className="form-group col-md-12">
-                  <label>Observaciones</label>
-                  <textarea
-                    className="form-control"
-                    rows="3"
-                    defaultValue={gestion.observacion}
-                    readOnly
-                  />
-                </div>
+                <FormAcciones
+                  gestion={gestion}
+                  caso={caso}
+                  fechaaccionRef={fechaaccionRef}
+                  fechaaccionnuevaRef={fechaaccionnuevaRef}
+                  obsRef={obsRef}
+                  nuevaaccionRef={nuevaaccionRef}
+                  contratoRef={contratoRef}
+                  obtenerDatos={obtenerDatos}
+                  handleChange={handleChange}
+                  accion={accion}
+                  idcasoRef={idcasoRef}
+                />
               </div>
-
-              <hr />
-
-              <div className="d-flex justify-content-center mb-4">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-toggle="modal"
-                  data-target=".bd-example-modal3-xl"
-                >
-                  Generar Notificacion
-                </button>
-              </div>
-              <div
-                className="modal fade bd-example-modal3-xl"
-                role="dialog"
-                aria-labelledby="myExtraLargeModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog modal-xl ">
-                  <div className="modal-content p-2">
-                    <div className="modal-header">
-                      <h5 className="modal-title">Notificacion</h5>
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      <Notificacion caso={caso} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <div className="modal-footer">
                 <button
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
-                  Cerrar
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={obtenerDatos}
+                >
+                  Registrar
                 </button>
               </div>
             </div>
@@ -302,4 +252,4 @@ export default connect(
   {
     getGestionCaso
   }
-)(Table2);
+)(Table4);

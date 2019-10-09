@@ -12,7 +12,8 @@ import {
   BUSCAR_CASO,
   REC_W,
   REIN_W,
-  BLANQUEO_W
+  BLANQUEO_W,
+  CAMPANA_OPERADOR_NOTI
 } from "../actions/types";
 
 const initialState = {
@@ -57,6 +58,12 @@ export default function(state = initialState, action) {
         ...state,
         campoptrab: action.payload
       };
+
+      case CAMPANA_OPERADOR_NOTI:
+        return {
+          ...state,
+          campopnoti: action.payload
+        };
 
     case CREAR_CAMP_AT:
       return {

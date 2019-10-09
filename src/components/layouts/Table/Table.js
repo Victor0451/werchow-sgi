@@ -1,7 +1,7 @@
 import React from "react";
 import matchSorter from "match-sorter";
 import { Link } from "react-router-dom";
-import FormAcciones from "../../campañas/FormAcciones";
+import FormAccionesNuevas from "../../campañas/FormAccionesNuevas";
 
 // Import React Table
 import ReactTable from "react-table";
@@ -192,7 +192,7 @@ export default class Table extends React.Component {
                 </button>
               </div>
               <div className="modal-body">
-                <FormAcciones
+                <FormAccionesNuevas
                   caso={caso}
                   fechaaccionRef={fechaaccionRef}
                   fechaaccionnuevaRef={fechaaccionnuevaRef}

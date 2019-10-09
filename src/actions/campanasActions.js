@@ -13,7 +13,8 @@ import {
   BUSCAR_CASO,
   REC_W,
   REIN_W,
-  BLANQUEO_W
+  BLANQUEO_W,
+  CAMPANA_OPERADOR_NOTI
 } from "./types";
 
 import axios from "axios";
@@ -38,7 +39,6 @@ export const RecW = () => async dispatch => {
     payload: respuesta.data
   });
 };
-
 
 export const ReinW = () => async dispatch => {
   const respuesta = await axios.get(
@@ -173,6 +173,46 @@ export const campanaOperadorTrabBlan = operador => async dispatch => {
   );
   dispatch({
     type: CAMPANA_OPERADOR_TRAB,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorNotiRein = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadornotirein/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_NOTI,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorNotiRec = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadornotirec/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_NOTI,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorNotiAt = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadornotiat/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_NOTI,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorNotiBlan = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadornotiblan/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_NOTI,
     payload: respuesta.data
   });
 };

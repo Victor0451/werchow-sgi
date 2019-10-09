@@ -52,7 +52,7 @@ class Login extends Component {
     return (
       <div className="container">
         <div className="d-flex justify-content-center h-100">
-          <div className="card mt-4">
+          <div className="card text-white bg-secondary mt-4">
             {this.state.msg ? (
               <div className="alert alert-danger">{this.state.msg}</div>
             ) : null}

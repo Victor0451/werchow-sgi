@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 
 import ListadoGestionCaso from "../../layouts/Table/Table";
-import ListadoCasosTrabajados from "../../layouts/Table/Table2";
+import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
+import ListadoCasosTrabajados from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
 import {
   campanaOperadorRec,
+  campanaOperadorNotiRec,
   gestionCaso,
   updateAccion,
   campanaOperadorTrabRec,
@@ -26,6 +28,7 @@ class GestionRec extends Component {
   state = {
     campop: [],
     campoptrab: [],
+    campopnoti: [],
     caso: {},
     accion: "",
     gestion: {},
@@ -45,15 +48,17 @@ class GestionRec extends Component {
 
     this.props.campanaOperadorRec(id);
     this.props.campanaOperadorTrabRec(id);
+    this.props.campanaOperadorNotiRec(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
 
     setTimeout(() => {
-      const { campop, campoptrab, getrec, getdeuda } = this.props;
-      console.log(this.props);
+      const { campop, campoptrab, getrec, getdeuda, campopnoti } = this.props;
+
       this.setState({
         campop: campop[0],
         campoptrab: campoptrab[0],
+        campopnoti: campopnoti[0],
         getrec: getrec[0][0],
         getdeuda: getdeuda[0][0]
       });
@@ -92,14 +97,28 @@ class GestionRec extends Component {
       datos.nuevaaccion = "SOCIO DE NIEGA A PAGAR, SE CIERRA EL CASO";
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
-      this.props.gestionCaso(datos);
     }
     if (datos.accion === 9) {
       datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
       let id = datos.idcaso;
       console.log(id);
       this.props.cerrarCaso(id);
-      this.props.gestionCaso(datos);
+    }
+    if (datos.accion === 10) {
+      datos.nuevaaccion = "SOCIO SERA NOTIFICADO, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 13) {
+      datos.nuevaaccion =
+        "SOCIO PASARA AL ESTADO DE CARTERA ROJA, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 14) {
+      datos.nuevaaccion = "SOCIO FALLECIDO, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
     }
 
     this.props.gestionCaso(datos);
@@ -121,60 +140,57 @@ class GestionRec extends Component {
   };
 
   render() {
-    const { campop, campoptrab, gestion, getrec, getdeuda } = this.state;
+    const { campop, campoptrab, gestion, campopnoti } = this.state;
 
     let mes;
     return (
       <div className="container">
         <h1 className="mt-4 mb-4"> Gestion Campaña de Recuperaciones {mes}</h1>
 
-        <ul className="nav nav-tabs" id="myTab" role="tablist">
-          <li className="nav-item">
+        <nav>
+          <div className="nav nav-tabs" id="nav-tab" role="tablist">
             <a
-              className="nav-link active"
-              id="home-tab"
+              className="nav-item nav-link active"
+              id="nav-home-tab"
               data-toggle="tab"
-              href="#home"
+              href="#nav-home"
               role="tab"
-              aria-controls="home"
+              aria-controls="nav-home"
               aria-selected="true"
             >
               Listado de Casos
             </a>
-          </li>
-          <li className="nav-item">
             <a
-              className="nav-link"
-              id="profile-tab"
+              className="nav-item nav-link"
+              id="nav-profile-tab"
               data-toggle="tab"
-              href="#profile"
+              href="#nav-profile"
               role="tab"
-              aria-controls="profile"
+              aria-controls="nav-profile"
               aria-selected="false"
             >
               Casos Trabajados
             </a>
-          </li>
-          <li className="nav-item">
             <a
-              className="nav-link"
-              id="resumen-tab"
+              className="nav-item nav-link"
+              id="nav-contact-tab"
               data-toggle="tab"
-              href="#resumen"
+              href="#nav-contact"
               role="tab"
-              aria-controls="resumen"
+              aria-controls="nav-contact"
               aria-selected="false"
             >
-              Resumen
+              Casos Notificados
             </a>
-          </li>
-        </ul>
-        <div className="tab-content" id="myTabContent">
+          </div>
+        </nav>
+
+        <div className="tab-content" id="nav-tabContent">
           <div
             className="tab-pane fade show active"
-            id="home"
+            id="nav-home"
             role="tabpanel"
-            aria-labelledby="home-tab"
+            aria-labelledby="nav-home-tab"
           >
             {campop.length === 0 ? (
               <div className="alert alert-primary mt-4">
@@ -199,9 +215,9 @@ class GestionRec extends Component {
           </div>
           <div
             className="tab-pane fade"
-            id="profile"
+            id="nav-profile"
             role="tabpanel"
-            aria-labelledby="profile-tab"
+            aria-labelledby="nav-profile-tab"
           >
             {campoptrab.length === 0 ? (
               <div className="alert alert-primary mt-4">
@@ -217,21 +233,22 @@ class GestionRec extends Component {
           </div>
 
           <div
-            className="tab-pane fade show active"
-            id="resumen"
+            className="tab-pane fade"
+            id="nav-contact"
             role="tabpanel"
-            aria-labelledby="resumen-tab"
+            aria-labelledby="nav-contact-tab"
           >
-            {/* <div>
-              <h3 className="mt-4">Resumen de la Gestion</h3>
-              <div className="mt-4 alert alert-success text-center text-dark">
-                <strong>MONTO RECUPERADO: {getrec.recuperacion} </strong> {""}
+            {campopnoti.length === 0 ? (
+              <div className="alert alert-primary mt-4">
+                No Tienes Casos Notificados
               </div>
-              <div className="mt-4 alert alert-danger text-center text-dark">
-                <strong>MONTO ADEUDADO: {getdeuda.deuda} </strong> {""}
-              </div>
-              <hr />
-            </div> */}
+            ) : (
+              <ListadoGestionCasoNoti
+                data={campopnoti}
+                selcaso={this.selcaso}
+                gestion={gestion}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -242,6 +259,7 @@ class GestionRec extends Component {
 const mapStateToProps = state => ({
   campop: state.campanas.campop,
   campoptrab: state.campanas.campoptrab,
+  campopnoti: state.campanas.campopnoti,
   getcaso: state.campanas.getcaso,
   getrec: state.campanas.getrec,
   getdeuda: state.campanas.getdeuda,
@@ -253,6 +271,7 @@ export default connect(
   mapStateToProps,
   {
     campanaOperadorRec,
+    campanaOperadorNotiRec,
     gestionCaso,
     updateAccion,
     campanaOperadorTrabRec,

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mostrarOperador, edit } from "../../actions/authActions";
 
-class Register extends Component {
+class Edit extends Component {
   nombreRef = React.createRef();
   apellidoRef = React.createRef();
   contrasenaRef = React.createRef();
@@ -265,4 +265,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { mostrarOperador, edit }
-)(Register);
+)(Edit);

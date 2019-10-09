@@ -62,7 +62,7 @@ class Register extends Component {
       <div>
         <div className="container">
           <div className="d-flex justify-content-center h-100">
-            <div className="card mt-4 col-md-12">
+            <div className="card text-white bg-secondary mt-4 col-md-12">
               {this.state.msg ? (
                 <div className="alert alert-danger">{this.state.msg}</div>
               ) : null}

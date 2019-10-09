@@ -115,6 +115,16 @@ class Home extends Component {
               ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de VANESA GOROSITO`
               : buscaso.idcampana === 15
               ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de SILVIA JUAREZ`
+              : buscaso.idcampana === 16
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de MARIA GALIAN`
+              : buscaso.idcampana === 17
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de GISELA GIMENEZ`
+              : buscaso.idcampana === 18
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de MARISA CARRIZO`
+              : buscaso.idcampana === 19
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de VANESA GOROSITO`
+              : buscaso.idcampana === 20
+              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de SILVIA JUAREZ`
               : ""}
           </div>
         </div>

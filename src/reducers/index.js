@@ -5,6 +5,7 @@ import campanasReducers from "./campanasReducers";
 
 export default combineReducers({
   auth: authReducers,
+  operadores: authReducers,
   error: errorReducers,
   campanas: campanasReducers
 });
