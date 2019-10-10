@@ -13,7 +13,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const EDITAR_OPERADOR = "EDITAR_OPERADOR";
 export const MOSTRAR_OPERADOR = "MOSTRAR_OPERADOR";
 
-// ATRASADOS
+// CAMPAÑAS
 export const AT_W = "AT_W";
 export const BLANQUEO_W = "BLANQUEO_W";
 export const REC_W = "REC_W";
@@ -31,3 +31,16 @@ export const CERRAR_CASO = "CERRAR_CASO";
 export const GET_GESTION_CASO = "GET_GESTION_CASO";
 export const GET_RECUPERACION = "GET_RECUPERACION";
 export const GET_DEUDA = "GET_DEUDA";
+
+//ESTADISTICAS
+export const LLAMADAS_INCONCLUSAS = "LLAMADAS_INCONCLUSAS";
+export const COMPROMISO_PAGO = "COMPROMISO_PAGO";
+export const NO_PAGA = "NO_PAGA";
+export const CUOTA_DIA = "CUOTA_DIA";
+export const NOTIFICACION = "NOTIFICACION";
+export const CARTERA_ROJA = "CARTERA_ROJA";
+export const SOCIO_FALLECIDO = "SOCIO_FALLECIDO";
+export const CASOS_ABIERTOS = "CASOS_ABIERTOS";
+export const CASOS_CERRADOS = "CASOS_CERRADOS";
+export const CASOS_SIN_ACCION = "CASOS_SIN_ACCION";
+export const CASOS_CON_ACCION = "CASOS_CON_ACCION";

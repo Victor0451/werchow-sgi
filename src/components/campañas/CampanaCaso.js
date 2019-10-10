@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 //redux
 import { connect } from "react-redux";
 import { atW, RecW, ReinW, BlanW } from "../../actions/campanasActions";
+import Estadistica from "./estadistica/Estadistica";
 
 class CampanaCaso extends Component {
   state = {
@@ -13,9 +14,7 @@ class CampanaCaso extends Component {
     blanw: {}
   };
 
- 
   render() {
-    
     return (
       <div className="container">
         <h1>Gestion de Campañas</h1>
@@ -97,7 +96,7 @@ class CampanaCaso extends Component {
 
               <div className="col-md-6 mt-4">
                 <div className="card bg-light mb-3">
-                  <div className="card-header">Reincidentes</div>
+                  <div className="card-header">REINCIDENTES</div>
                   <div className="card-body">
                     <h5 className="card-title">Listado de casos</h5>
                     <Link
@@ -112,7 +111,7 @@ class CampanaCaso extends Component {
 
               <div className="col-md-6 mt-4">
                 <div className="card bg-light mb-3">
-                  <div className="card-header">Blanqueos</div>
+                  <div className="card-header">BLANQUEOS</div>
                   <div className="card-body">
                     <h5 className="card-title">Listado de casos:</h5>
                     <Link
@@ -132,7 +131,7 @@ class CampanaCaso extends Component {
             role="tabpanel"
             aria-labelledby="nav-profile-tab"
           >
-            ...
+            EN PROCESO...
           </div>
           <div
             className="tab-pane fade"
@@ -140,7 +139,7 @@ class CampanaCaso extends Component {
             role="tabpanel"
             aria-labelledby="nav-contact-tab"
           >
-            ...
+            <Estadistica />
           </div>
         </div>
       </div>
