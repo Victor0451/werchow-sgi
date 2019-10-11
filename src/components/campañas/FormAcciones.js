@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import TareaSelect from "react-select";
-import {
-  acciones,
-  nueavaaccion,
-  accionesrecordatorio
-} from "../layouts/Arrays/arrays";
+import { acciones, nueavaaccion } from "../layouts/Arrays/arrays";
 import Notificacion from "./Notificacion";
 
 import { connect } from "react-redux";
@@ -31,8 +27,7 @@ class FormAcciones extends Component {
       handleChange,
       accion,
       contratoRef,
-      idcasoRef,
-      
+      idcasoRef
     } = this.props;
 
     return (
@@ -260,13 +255,11 @@ class FormAcciones extends Component {
                 <div className="form-group col-md-6">
                   <label>Acciones</label>
 
-                 
-                    <TareaSelect
-                      options={acciones}
-                      placeholder={"Elige una accion"}
-                      onChange={value => handleChange(value, "accion")}
-                    />
-                 
+                  <TareaSelect
+                    options={acciones}
+                    placeholder={"Elige una accion"}
+                    onChange={value => handleChange(value, "accion")}
+                  />
                 </div>
 
                 <div className="form-group col-md-6">

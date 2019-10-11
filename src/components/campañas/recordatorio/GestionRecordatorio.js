@@ -84,6 +84,39 @@ class GestionRecordatorio extends Component {
       datos.nuevaaccion = this.nuevaaccionRef.current.value;
     }
     if (datos.accion === 7) {
+      datos.nuevaaccion = this.state.nuevaaccion;
+
+      if (datos.nuevaaccion === 11) datos.nuevaaccion = "SE ENVIA COBRADOR";
+
+      if (datos.nuevaaccion === 12) datos.nuevaaccion = "PASA POR OFICINA";
+    }
+    if (datos.accion === 8) {
+      datos.nuevaaccion = "SOCIO DE NIEGA A PAGAR, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 9) {
+      datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 10) {
+      datos.nuevaaccion = "SOCIO SERA NOTIFICADO, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 13) {
+      datos.nuevaaccion =
+        "SOCIO PASARA AL ESTADO DE CARTERA ROJA, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 14) {
+      datos.nuevaaccion = "SOCIO FALLECIDO, SE CIERRA EL CASO";
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 15) {
       datos.nuevaaccion = "RECORDATORIO DE PAGO AL SOCIO QUE AUN ESTA AL DIA";
       let id = datos.idcaso;
       this.props.cerrarCaso(id);

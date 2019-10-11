@@ -16,16 +16,6 @@ export const acciones = [
 
 ];
 
-export const accionesrecordatorio = [
-  { value: 1, label: "NO CONTESTA" },
-  { value: 2, label: "OCUPADO" },
-  { value: 3, label: "NO SE ENCUENTRA" },
-  { value: 4, label: "NUMERO EQUIVOCADO" },
-  { value: 5, label: "FUERA DE SERVICIO" },
-  { value: 6, label: "NO VIVE AHI" },  
-  { value: 7, label: "RECORDATORIO DE PAGO" }
-
-];
 
 export const nueavaaccion = [
   { value: 11, label: "SE ENVIA COBRADOR" },
