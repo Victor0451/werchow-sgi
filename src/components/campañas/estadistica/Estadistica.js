@@ -166,7 +166,7 @@ class Estadistica extends Component {
               </div>
 
               <div className="col-md-6 border mt-2">
-                <h2 className="mb-4">Casos Abiertos vs Cerrados</h2>
+                <h2 className="mb-4">Casos Trabajados vs Sin Trabajar</h2>
                 <Barras
                   casosconaccion={casosconaccion}
                   casossinaccion={casossinaccion}

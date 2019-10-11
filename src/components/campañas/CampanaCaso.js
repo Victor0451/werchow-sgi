@@ -123,6 +123,24 @@ class CampanaCaso extends Component {
                   </div>
                 </div>
               </div>
+
+              <div className="col-md-6 mt-4">
+                <div className="card bg-light mb-3">
+                  <div className="card-header">RECORDATORIOS DE PAGOS</div>
+                  <div className="card-body">
+                    <h5 className="card-title">
+                      Campaña de recordatorio para pago de cuota al socio que
+                      esta al dia
+                    </h5>
+                    <Link
+                      className="btn btn-primary"
+                      to={`/gestioncaso/Recordatorio`}
+                    >
+                      Abrir Campaña
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div

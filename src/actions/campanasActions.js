@@ -147,6 +147,16 @@ export const campanaOperadorRein = operador => async dispatch => {
   });
 };
 
+export const campanaOperadorRecordatorio = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorrecordatorio/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
 export const campanaOperadorTrabRein = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabrein/${operador}`
@@ -170,6 +180,16 @@ export const campanaOperadorBlan = operador => async dispatch => {
 export const campanaOperadorTrabBlan = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabblan/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_TRAB,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorTrabRecordatorio = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabrecordatorio/${operador}`
   );
   dispatch({
     type: CAMPANA_OPERADOR_TRAB,

@@ -16,6 +16,7 @@ import Notificacion from "./campañas/Notificacion";
 
 import store from "../store";
 import { Provider } from "react-redux";
+import GestionRecordatorio from "./campañas/recordatorio/GestionRecordatorio";
 
 const token = sessionStorage.getItem("token");
 
@@ -32,15 +33,12 @@ export default class Router extends Component {
 
           {token ? (
             <Switch>
-
               <Route exact path={"/"} component={Home} />
-              
-              
+
               {/* AUTH */}
               <Route exact path={"/register"} component={Register} />
               <Route exact path={"/edit"} component={Edit} />
-              
-              
+
               {/* CAMPAÑAS */}
               <Route exact path={"/estadosocio"} component={EstadoSocio} />
               <Route exact path={"/campanacaso"} component={CampanaCaso} />
@@ -63,7 +61,13 @@ export default class Router extends Component {
                 exact
                 path={"/gestioncaso/Blanqueo"}
                 component={GestionBlan}
-              />{" "}
+              />
+              <Route
+                exact
+                path={"/gestioncaso/Recordatorio"}
+                component={GestionRecordatorio}
+              />
+
               <Route exact path={"/notificacion"} component={Notificacion} />
             </Switch>
           ) : (

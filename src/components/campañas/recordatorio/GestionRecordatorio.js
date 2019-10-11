@@ -1,23 +1,22 @@
 import React, { Component } from "react";
 
 import ListadoGestionCaso from "../../layouts/Table/Table";
-import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
+//import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
 import ListadoCasosAbiertos from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
 import {
-  campanaOperador,
-  campanaOperadorNotiAt,
+  campanaOperadorRecordatorio,
   gestionCaso,
   updateAccion,
-  campanaOperadorTrab,
+  campanaOperadorTrabRecordatorio,
   cerrarCaso,
   getGestionCaso,
   getRecuperacion,
   getDeuda
 } from "../../../actions/campanasActions";
 
-class GestionAt extends Component {
+class GestionRecordatorio extends Component {
   fechaaccionRef = React.createRef();
   fechaaccionnuevaRef = React.createRef();
   obsRef = React.createRef();
@@ -46,19 +45,17 @@ class GestionAt extends Component {
 
     let id = user.usuario;
 
-    this.props.campanaOperador(id);
-    this.props.campanaOperadorTrab(id);
+    this.props.campanaOperadorRecordatorio(id);
+    this.props.campanaOperadorTrabRecordatorio(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
-    this.props.campanaOperadorNotiAt(id);
 
     setTimeout(() => {
-      const { campop, campoptrab, getrec, getdeuda, campopnoti } = this.props;
+      const { campop, campoptrab, getrec, getdeuda } = this.props;
 
       this.setState({
         campop: campop[0],
         campoptrab: campoptrab[0],
-        campopnoti: campopnoti[0],
         getrec: getrec[0][0],
         getdeuda: getdeuda[0][0]
       });
@@ -87,39 +84,10 @@ class GestionAt extends Component {
       datos.nuevaaccion = this.nuevaaccionRef.current.value;
     }
     if (datos.accion === 7) {
-      datos.nuevaaccion = this.state.nuevaaccion;
-
-      if (datos.nuevaaccion === 11) datos.nuevaaccion = "SE ENVIA COBRADOR";
-
-      if (datos.nuevaaccion === 12) datos.nuevaaccion = "PASA POR OFICINA";
-    }
-    if (datos.accion === 8) {
-      datos.nuevaaccion = "SOCIO DE NIEGA A PAGAR, SE CIERRA EL CASO";
+      datos.nuevaaccion = "RECORDATORIO DE PAGO AL SOCIO QUE AUN ESTA AL DIA";
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
-    if (datos.accion === 9) {
-      datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
-      let id = datos.idcaso;
-      this.props.cerrarCaso(id);
-    }
-    if (datos.accion === 10) {
-      datos.nuevaaccion = "SOCIO SERA NOTIFICADO, SE CIERRA EL CASO";
-      let id = datos.idcaso;
-      this.props.cerrarCaso(id);
-    }
-    if (datos.accion === 13) {
-      datos.nuevaaccion =
-        "SOCIO PASARA AL ESTADO DE CARTERA ROJA, SE CIERRA EL CASO";
-      let id = datos.idcaso;
-      this.props.cerrarCaso(id);
-    }
-    if (datos.accion === 14) {
-      datos.nuevaaccion = "SOCIO FALLECIDO, SE CIERRA EL CASO";
-      let id = datos.idcaso;
-      this.props.cerrarCaso(id);
-    }
-    
 
     this.props.gestionCaso(datos);
 
@@ -141,12 +109,12 @@ class GestionAt extends Component {
   };
 
   render() {
-    const { campop, campoptrab, gestion, campopnoti } = this.state;
+    const { campop, campoptrab, gestion } = this.state;
 
     let mes;
     return (
       <div className="container">
-        <h1 className="mt-4 mb-4"> Gestion Campaña de Atrasados {mes}</h1>
+        <h1 className="mt-4 mb-4"> Gestion Campaña de Recordatorios {mes}</h1>
 
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -172,7 +140,7 @@ class GestionAt extends Component {
             >
               Casos Trabajados
             </a>
-            <a
+            {/* <a
               className="nav-item nav-link"
               id="nav-contact-tab"
               data-toggle="tab"
@@ -182,7 +150,7 @@ class GestionAt extends Component {
               aria-selected="false"
             >
               Casos Cerrados
-            </a>
+            </a> */}
           </div>
         </nav>
         <div className="tab-content" id="nav-tabContent">
@@ -231,7 +199,7 @@ class GestionAt extends Component {
               />
             )}
           </div>
-          <div
+          {/* <div
             className="tab-pane fade"
             id="nav-contact"
             role="tabpanel"
@@ -248,7 +216,7 @@ class GestionAt extends Component {
                 gestion={gestion}
               />
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -269,14 +237,13 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    campanaOperador,
-    campanaOperadorNotiAt,
+    campanaOperadorRecordatorio,
     gestionCaso,
     updateAccion,
-    campanaOperadorTrab,
+    campanaOperadorTrabRecordatorio,
     cerrarCaso,
     getGestionCaso,
     getRecuperacion,
     getDeuda
   }
-)(GestionAt);
+)(GestionRecordatorio);
