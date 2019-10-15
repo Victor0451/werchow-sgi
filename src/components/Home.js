@@ -54,78 +54,139 @@ class Home extends Component {
 
   render() {
     const { buscaso } = this.state;
+    const { user } = this.props.auth;
+
     return (
-      <div className="form-style-8">
-        <h2>Buscar Socio</h2>
+      <div className="">
+        {user.usuario === "ggimenez" ||
+        user.usuario === "mgalian" ||
+        user.usuario === "vgorosito" ||
+        user.usuario === "mcarrizo" ||
+        user.usuario === "sjuarez" ? (
+          <div className="form-style-8">
+            <h2>NOVEDADES</h2>
+            <div className="row">
 
-        <form className="border p-2" onSubmit={this.buscarTitular}>
-          <div className="row">
-            <div className="col-md-6">
-              <p className="has-dynamic-label">
-                <input
-                  type="text"
-                  className=""
-                  id="dynamic-label-input"
-                  name="contrato"
-                  onChange={this.leerDatos}
-                  placeholder="Ingresar N° de Socio"
-                />
-                <label>N° de Socio</label>
-              </p>
             </div>
-
-            <div className="col-md-6">
-              <button className="btn btn-primary  btn-block mt-4">
-                Buscar
-              </button>
+            <div className="alert alert-info mt-4 mb-4 text-center border-dark">
+              ESTAN DISPONIBLES LAS CAMPAÑAS DE MUTUAL
             </div>
           </div>
-        </form>
+        ) : null}
 
-        <div className="text-center mt-4" id="alert" hidden>
-          <hr />
-          <div className=" alert alert-success mt-4">
-            {buscaso.idcampana === 1
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de MARIA GALIAN`
-              : buscaso.idcampana === 2
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de GISELA GIMENEZ`
-              : buscaso.idcampana === 3
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de MARISA CARRIZO`
-              : buscaso.idcampana === 4
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de VANESA GOROSITO`
-              : buscaso.idcampana === 5
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION de SILVIA JUAREZ`
-              : buscaso.idcampana === 6
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de MARIA GALIAN`
-              : buscaso.idcampana === 7
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de GISELA GIMENEZ`
-              : buscaso.idcampana === 8
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de MARISA CARRIZO`
-              : buscaso.idcampana === 9
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de VANESA GOROSITO`
-              : buscaso.idcampana === 10
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES de SILVIA JUAREZ`
-              : buscaso.idcampana === 11
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de MARIA GALIAN`
-              : buscaso.idcampana === 12
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de GISELA GIMENEZ`
-              : buscaso.idcampana === 13
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de MARISA CARRIZO`
-              : buscaso.idcampana === 14
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de VANESA GOROSITO`
-              : buscaso.idcampana === 15
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS de SILVIA JUAREZ`
-              : buscaso.idcampana === 16
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de MARIA GALIAN`
-              : buscaso.idcampana === 17
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de GISELA GIMENEZ`
-              : buscaso.idcampana === 18
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de MARISA CARRIZO`
-              : buscaso.idcampana === 19
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de VANESA GOROSITO`
-              : buscaso.idcampana === 20
-              ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO de SILVIA JUAREZ`
-              : ""}
+        <div className="form-style-8">
+          <h2>Buscar Socio</h2>
+          <form className=" border p-2" onSubmit={this.buscarTitular}>
+            <div className="row">
+              <div className="col-md-6">
+                <p className="has-dynamic-label">
+                  <input
+                    type="text"
+                    className=""
+                    id="dynamic-label-input"
+                    name="contrato"
+                    onChange={this.leerDatos}
+                    placeholder="Ingresar N° de Socio"
+                  />
+                  <label>N° de Socio</label>
+                </p>
+              </div>
+
+              <div className="col-md-6">
+                <button className="btn btn-primary  btn-block mt-4">
+                  Buscar
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div className="text-center mt-4" id="alert" hidden>
+            <hr />
+            <div className=" alert alert-success mt-4">
+              {buscaso.idcampana === 1
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION WERCHOW de MARIA GALIAN`
+                : buscaso.idcampana === 2
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION WERCHOW de GISELA GIMENEZ`
+                : buscaso.idcampana === 3
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION WERCHOW de MARISA CARRIZO`
+                : buscaso.idcampana === 4
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION WERCHOW de VANESA GOROSITO`
+                : buscaso.idcampana === 5
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION WERCHOW de SILVIA JUAREZ`
+                : buscaso.idcampana === 6
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES WERCHOW de MARIA GALIAN`
+                : buscaso.idcampana === 7
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES WERCHOW de GISELA GIMENEZ`
+                : buscaso.idcampana === 8
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES WERCHOW de MARISA CARRIZO`
+                : buscaso.idcampana === 9
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES WERCHOW de VANESA GOROSITO`
+                : buscaso.idcampana === 10
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES WERCHOW de SILVIA JUAREZ`
+                : buscaso.idcampana === 11
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de MARIA GALIAN`
+                : buscaso.idcampana === 12
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de GISELA GIMENEZ`
+                : buscaso.idcampana === 13
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de MARISA CARRIZO`
+                : buscaso.idcampana === 14
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de VANESA GOROSITO`
+                : buscaso.idcampana === 15
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de SILVIA JUAREZ`
+                : buscaso.idcampana === 16
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO WERCHOW de MARIA GALIAN`
+                : buscaso.idcampana === 17
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO WERCHOW de GISELA GIMENEZ`
+                : buscaso.idcampana === 18
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO WERCHOW de MARISA CARRIZO`
+                : buscaso.idcampana === 19
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO WERCHOW de VANESA GOROSITO`
+                : buscaso.idcampana === 20
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO WERCHOW de SILVIA JUAREZ`
+                : buscaso.idcampana === 21
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION WERCHOW de ALEJANDRA TEJERINA`
+                : buscaso.idcampana === 28
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de MARIA GALIAN`
+                : buscaso.idcampana === 29
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de GISELA GIMENEZ`
+                : buscaso.idcampana === 30
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de MARISA CARRIZO`
+                : buscaso.idcampana === 31
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de VANESA GOROSITO`
+                : buscaso.idcampana === 32
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de SILVIA JUAREZ`
+                : buscaso.idcampana === 33
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION MUTUAL de MARIA GALIAN`
+                : buscaso.idcampana === 34
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION MUTUAL de GISELA GIMENEZ`
+                : buscaso.idcampana === 35
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION MUTUAL de MARISA CARRIZO`
+                : buscaso.idcampana === 36
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION MUTUAL de VANESA GOROSITO`
+                : buscaso.idcampana === 37
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION MUTUAL de SILVIA JUAREZ`
+                : buscaso.idcampana === 38
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES MUTUAL de MARIA GALIAN`
+                : buscaso.idcampana === 39
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES MUTUAL de GISELA GIMENEZ`
+                : buscaso.idcampana === 40
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES MUTUAL de MARISA CARRIZO`
+                : buscaso.idcampana === 41
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES MUTUAL de VANESA GOROSITO`
+                : buscaso.idcampana === 42
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de REINCIDENTES MUTUAL de SILVIA JUAREZ`
+                : buscaso.idcampana === 43
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEOS MUTUAL de MARIA GALIAN`
+                : buscaso.idcampana === 44
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEOS MUTUAL de GISELA GIMENEZ`
+                : buscaso.idcampana === 45
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEOS MUTUAL de MARISA CARRIZO`
+                : buscaso.idcampana === 46
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEOS MUTUAL de VANESA GOROSITO`
+                : buscaso.idcampana === 47
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEOS MUTUAL de SILVIA JUAREZ`
+                : ""}
+            </div>
           </div>
         </div>
       </div>

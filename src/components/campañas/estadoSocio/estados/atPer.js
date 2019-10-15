@@ -4,7 +4,7 @@ import AtR from "../../../layouts/Table/Table3";
 
 export default class AtPer extends Component {
   render() {
-    const { AtPerico, crearCampana } = this.props;
+    const { AtPerico, crearCampana, flag } = this.props;
     return (
       <div>
         {AtPerico.length === 0 ? (
@@ -27,12 +27,21 @@ export default class AtPer extends Component {
                   {AtPerico.length}
                 </span>
               </h3>
-              <button
-                className="btn btn-primary"
-                onClick={() => crearCampana(AtPerico, 14)}
-              >
-                Crear Campaña
-              </button>
+              {flag === 1 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtPerico, 14)}
+                >
+                  Crear Campaña Werchow
+                </button>
+              ) : flag === 2 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtPerico, 31)}
+                >
+                  Crear Campaña Mutual
+                </button>
+              ) : null}
             </div>
             <AtR data={AtPerico} />
           </div>

@@ -16,11 +16,9 @@ class CampanaCaso extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Gestion de Campañas</h1>
-
+      <div className="container mb-4">
         <nav>
-          <div className="nav nav-tabs" id="nav-tab" role="tablist">
+          <div className="nav nav-tabs mt-4" id="nav-tab" role="tablist">
             <a
               className="nav-item nav-link active"
               id="nav-home-tab"
@@ -63,6 +61,7 @@ class CampanaCaso extends Component {
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
+            <h1 className="mt-4 mb-4 text-center"><u>GESTION DE CAMPAÑAS WERCHOW</u></h1>
             <div className="row">
               <div className="col-md-6 mt-4">
                 <div className="card bg-light mb-3">
@@ -149,7 +148,68 @@ class CampanaCaso extends Component {
             role="tabpanel"
             aria-labelledby="nav-profile-tab"
           >
-            EN PROCESO...
+            <h1 className="mt-4 mb-4 text-center"><u>GESTION DE CAMPAÑAS MUTUAL</u></h1>
+            <div className="row">
+              <div className="col-md-6 mt-4">
+                <div className="card bg-light mb-3">
+                  <div className="card-header">ATRASADOS</div>
+                  <div className="card-body">
+                    <h5 className="card-title">Listado de casos:</h5>
+                    <Link
+                      className="btn btn-primary"
+                      to={`/gestioncaso/AtrasadosM`}
+                    >
+                      Abrir Campaña
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-6 mt-4">
+                <div className="card bg-light mb-3">
+                  <div className="card-header">RECUPERACIONES</div>
+                  <div className="card-body">
+                    <h5 className="card-title">Listado de casos</h5>
+                    <Link
+                      className="btn btn-primary"
+                      to={`/gestioncaso/RecuperacionM`}
+                    >
+                      Abrir Campaña
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-6 mt-4">
+                <div className="card bg-light mb-3">
+                  <div className="card-header">REINCIDENTES</div>
+                  <div className="card-body">
+                    <h5 className="card-title">Listado de casos</h5>
+                    <Link
+                      className="btn btn-primary"
+                      to={`/gestioncaso/ReincidenciaM`}
+                    >
+                      Abrir Campaña
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-6 mt-4">
+                <div className="card bg-light mb-3">
+                  <div className="card-header">BLANQUEOS</div>
+                  <div className="card-body">
+                    <h5 className="card-title">Listado de casos:</h5>
+                    <Link
+                      className="btn btn-primary"
+                      to={`/gestioncaso/BlanqueoM`}
+                    >
+                      Abrir Campaña
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div
             className="tab-pane fade"

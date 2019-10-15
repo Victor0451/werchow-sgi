@@ -14,11 +14,10 @@ export const EDITAR_OPERADOR = "EDITAR_OPERADOR";
 export const MOSTRAR_OPERADOR = "MOSTRAR_OPERADOR";
 
 // CAMPAÑAS
-export const AT_W = "AT_W";
-export const BLANQUEO_W = "BLANQUEO_W";
-export const REC_W = "REC_W";
-export const REIN_W = "REIN_W";
-export const AT_M = "AT_M";
+export const AT = "AT";
+export const BLANQUEO = "BLANQUEO";
+export const REC = "REC";
+export const REIN = "REIN";
 export const BUSCAR_CASO = "BUSCAR_CASO";
 export const CREAR_CAMP_AT = "CREAR_CAMP_AT";
 export const ESTADO_CAMP = "ESTADO_CAMP";

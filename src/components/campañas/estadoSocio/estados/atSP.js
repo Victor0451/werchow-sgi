@@ -4,7 +4,7 @@ import AtP from "../../../layouts/Table/Table3";
 
 export default class AtSP extends Component {
   render() {
-    const { AtSanPedro, crearCampana } = this.props;
+    const { AtSanPedro, crearCampana, flag } = this.props;
     return (
       <div>
         {AtSanPedro.length === 0 ? (
@@ -26,12 +26,21 @@ export default class AtSP extends Component {
                   {AtSanPedro.length}
                 </span>
               </h3>
-              <button
-                className="btn btn-primary"
-                onClick={() => crearCampana(AtSanPedro, 15)}
-              >
-                Crear Campaña
-              </button>
+              {flag === 1 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtSanPedro, 15)}
+                >
+                  Crear Campaña Werchow
+                </button>
+              ) : flag === 2 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtSanPedro, 32)}
+                >
+                  Crear Campaña Mutual
+                </button>
+              ) : null}
             </div>
             <AtP data={AtSanPedro} />
           </div>

@@ -12,12 +12,11 @@ export const acciones = [
   { value: 13, label: "CARTERA ROJA" },
   { value: 14, label: "SOCIO FALLECIDO" },
   { value: 15, label: "RECORDATORIO DE PAGO" }
-
-
 ];
-
 
 export const nueavaaccion = [
   { value: 11, label: "SE ENVIA COBRADOR" },
-  { value: 12, label: "PASA POR OFICINA" }
+  { value: 12, label: "PASA POR OFICINA" },
+  { value: 16, label: "DEBITO" },
+  { value: 17, label: "CREDITO" }
 ];

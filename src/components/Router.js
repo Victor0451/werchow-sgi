@@ -17,6 +17,11 @@ import Notificacion from "./campañas/Notificacion";
 import store from "../store";
 import { Provider } from "react-redux";
 import GestionRecordatorio from "./campañas/recordatorio/GestionRecordatorio";
+import EstadoSocioM from "./campañas/estadoSocio/EstadoSocioM";
+import GestionAtM from "./campañas/atrasados/GestionAtM";
+import GestionRecM from "./campañas/recuperaciones/GestionRecM";
+import GestionReinM from "./campañas/reincidencia/GestionReinM";
+import GestionBlanM from "./campañas/blanqueo/GestionBlanM";
 
 const token = sessionStorage.getItem("token");
 
@@ -34,13 +39,13 @@ export default class Router extends Component {
           {token ? (
             <Switch>
               <Route exact path={"/"} component={Home} />
-
               {/* AUTH */}
               <Route exact path={"/register"} component={Register} />
               <Route exact path={"/edit"} component={Edit} />
-
+              {/* ARMADO DE CAMPAÑAS */}
+              <Route exact path={"/estadosocioW"} component={EstadoSocio} />
+              <Route exact path={"/estadosocioM"} component={EstadoSocioM} />
               {/* CAMPAÑAS */}
-              <Route exact path={"/estadosocio"} component={EstadoSocio} />
               <Route exact path={"/campanacaso"} component={CampanaCaso} />
               <Route
                 exact
@@ -49,13 +54,28 @@ export default class Router extends Component {
               />
               <Route
                 exact
+                path={"/gestioncaso/AtrasadosM"}
+                component={GestionAtM}
+              />
+              <Route
+                exact
                 path={"/gestioncaso/Recuperacion"}
                 component={GestionRec}
               />
               <Route
                 exact
+                path={"/gestioncaso/RecuperacionM"}
+                component={GestionRecM}
+              />
+              <Route
+                exact
                 path={"/gestioncaso/Reincidencia"}
                 component={GestionRein}
+              />{" "}
+              <Route
+                exact
+                path={"/gestioncaso/ReincidenciaM"}
+                component={GestionReinM}
               />
               <Route
                 exact
@@ -64,10 +84,14 @@ export default class Router extends Component {
               />
               <Route
                 exact
+                path={"/gestioncaso/BlanqueoM"}
+                component={GestionBlanM}
+              />
+              <Route
+                exact
                 path={"/gestioncaso/Recordatorio"}
                 component={GestionRecordatorio}
               />
-
               <Route exact path={"/notificacion"} component={Notificacion} />
             </Switch>
           ) : (

@@ -1,5 +1,5 @@
 import {
-  AT_W,
+  AT,
   CREAR_CAMP_AT,
   ESTADO_CAMP,
   CAMPANA_OPERADOR,
@@ -11,9 +11,9 @@ import {
   GET_RECUPERACION,
   GET_DEUDA,
   BUSCAR_CASO,
-  REC_W,
-  REIN_W,
-  BLANQUEO_W,
+  REC,
+  REIN,
+  BLANQUEO,
   CAMPANA_OPERADOR_NOTI
 } from "./types";
 
@@ -25,7 +25,7 @@ export const atW = () => async dispatch => {
     `http://190.231.32.232:5002/api/sgi/campanas/atW`
   );
   dispatch({
-    type: AT_W,
+    type: AT,
     payload: respuesta.data
   });
 };
@@ -35,7 +35,7 @@ export const RecW = () => async dispatch => {
     `http://190.231.32.232:5002/api/sgi/campanas/recW`
   );
   dispatch({
-    type: REC_W,
+    type: REC,
     payload: respuesta.data
   });
 };
@@ -45,7 +45,7 @@ export const ReinW = () => async dispatch => {
     `http://190.231.32.232:5002/api/sgi/campanas/reinW`
   );
   dispatch({
-    type: REIN_W,
+    type: REIN,
     payload: respuesta.data
   });
 };
@@ -55,7 +55,7 @@ export const BlanW = () => async dispatch => {
     `http://190.231.32.232:5002/api/sgi/campanas/blanW`
   );
   dispatch({
-    type: BLANQUEO_W,
+    type: BLANQUEO,
     payload: respuesta.data
   });
 };

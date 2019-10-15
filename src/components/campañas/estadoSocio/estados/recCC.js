@@ -4,13 +4,18 @@ import RcW from "../../../layouts/Table/Table3";
 
 export default class RecCC extends Component {
   render() {
-    const { RecCasaCentralGG, RecCasaCentralMG, crearCampana } = this.props;
+    const {
+      RecCasaCentralGG,
+      RecCasaCentralMG,
+      crearCampana,
+      flag
+    } = this.props;
     return (
       <div>
         {RecCasaCentralMG.length === 0 ? (
           <div className=" border mt-4 p-2">
             <h3>
-             1001 Casa Central Magia Galian{" "}
+              1001 Casa Central Magia Galian{" "}
               <span className="badge badge-pill badge-dark text-white">
                 {RecCasaCentralMG.length}
               </span>
@@ -26,12 +31,21 @@ export default class RecCC extends Component {
                   {RecCasaCentralMG.length}
                 </span>
               </h3>
-              <button
-                className="btn btn-primary"
-                onClick={() => crearCampana(RecCasaCentralMG, 1)}
-              >
-                Crear Campaña
-              </button>
+              {flag === 1 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(RecCasaCentralMG, 1)}
+                >
+                  Crear Campaña Werchow
+                </button>
+              ) : flag === 2 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(RecCasaCentralMG, 33)}
+                >
+                  Crear Campaña Mutual
+                </button>
+              ) : null}
             </div>
             <RcW data={RecCasaCentralMG} />
           </div>
@@ -53,17 +67,26 @@ export default class RecCC extends Component {
           <div className="mt-4">
             <div className="d-flex justify-content-between">
               <h3>
-               1001 Casa Central Gisela Gimenez{" "}
+                1001 Casa Central Gisela Gimenez{" "}
                 <span className="badge badge-pill badge-dark text-white">
                   {RecCasaCentralGG.length}
                 </span>
               </h3>
-              <button
-                className="btn btn-primary"
-                onClick={() => crearCampana(RecCasaCentralGG, 2)}
-              >
-                Crear Campaña
-              </button>
+              {flag === 1 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(RecCasaCentralGG, 2)}
+                >
+                  Crear Campaña Werchow
+                </button>
+              ) : flag === 2 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(RecCasaCentralGG, 34)}
+                >
+                  Crear Campaña Mutual
+                </button>
+              ) : null}
             </div>
             <RcW data={RecCasaCentralGG} />
           </div>

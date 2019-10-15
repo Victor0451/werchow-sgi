@@ -4,7 +4,8 @@ import AtW from "../../../layouts/Table/Table3";
 
 export default class AtCC extends Component {
   render() {
-    const { AtCasaCentralMG, AtCasaCentralGG, crearCampana } = this.props;
+    const { AtCasaCentralMG, AtCasaCentralGG, crearCampana, flag } = this.props;
+
     return (
       <div>
         {AtCasaCentralMG.length === 0 ? (
@@ -26,12 +27,21 @@ export default class AtCC extends Component {
                   {AtCasaCentralMG.length}
                 </span>
               </h3>
-              <button
-                className="btn btn-primary"
-                onClick={() => crearCampana(AtCasaCentralMG, 11)}
-              >
-                Crear Campaña
-              </button>
+              {flag === 1 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtCasaCentralMG, 11)}
+                >
+                  Crear Campaña Werchow
+                </button>
+              ) : flag === 2 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtCasaCentralMG, 28)}
+                >
+                  Crear Campaña Mutual
+                </button>
+              ) : null}
             </div>
             <AtW data={AtCasaCentralMG} />
           </div>
@@ -58,12 +68,21 @@ export default class AtCC extends Component {
                   {AtCasaCentralGG.length}
                 </span>
               </h3>
-              <button
-                className="btn btn-primary"
-                onClick={() => crearCampana(AtCasaCentralGG, 12)}
-              >
-                Crear Campaña
-              </button>
+              {flag === 1 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtCasaCentralGG, 12)}
+                >
+                  Crear Campaña Werchow
+                </button>
+              ) : flag === 2 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(AtCasaCentralGG, 29)}
+                >
+                  Crear Campaña Mutual
+                </button>
+              ) : null}
             </div>
             <AtW data={AtCasaCentralGG} />
           </div>

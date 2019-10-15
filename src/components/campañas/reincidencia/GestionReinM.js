@@ -5,22 +5,22 @@ import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
 import ListadoCasosTrabajados from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
-
 import {
   gestionCaso,
   updateAccion,
   cerrarCaso,
   getGestionCaso,
   getRecuperacion,
-  getDeuda,
-  campanaOperadorRec,
-  campanaOperadorNotiRec,
-  campanaOperadorTrabRec
+  getDeuda
 } from "../../../actions/campanasActions";
 
+import {
+  campanaOperadorRein,
+  campanaOperadorTrabRein,
+  campanaOperadorNotiRein
+} from "../../../actions/campanasMActions";
 
-
-class GestionRec extends Component {
+class GestionRein extends Component {
   fechaaccionRef = React.createRef();
   fechaaccionnuevaRef = React.createRef();
   obsRef = React.createRef();
@@ -49,11 +49,11 @@ class GestionRec extends Component {
 
     let id = user.usuario;
 
-    this.props.campanaOperadorRec(id);
-    this.props.campanaOperadorTrabRec(id);
-    this.props.campanaOperadorNotiRec(id);
+    this.props.campanaOperadorRein(id);
+    this.props.campanaOperadorTrabRein(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
+    this.props.campanaOperadorNotiRein(id);
 
     setTimeout(() => {
       const { campop, campoptrab, getrec, getdeuda, campopnoti } = this.props;
@@ -148,7 +148,7 @@ class GestionRec extends Component {
     let mes;
     return (
       <div className="container">
-        <h1 className="mt-4 mb-4"> Gestion Campaña de Recuperaciones {mes}</h1>
+        <h1 className="mt-4 mb-4"> Gestion Campaña de Reincidentes {mes}</h1>
 
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -216,6 +216,7 @@ class GestionRec extends Component {
               </div>
             )}
           </div>
+
           <div
             className="tab-pane fade"
             id="nav-profile"
@@ -273,14 +274,14 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    campanaOperadorRec,
-    campanaOperadorNotiRec,
+    campanaOperadorRein,
     gestionCaso,
     updateAccion,
-    campanaOperadorTrabRec,
+    campanaOperadorTrabRein,
+    campanaOperadorNotiRein,
     cerrarCaso,
     getGestionCaso,
     getRecuperacion,
     getDeuda
   }
-)(GestionRec);
+)(GestionRein);

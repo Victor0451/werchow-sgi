@@ -1,5 +1,5 @@
 import {
-  AT_W,
+  AT,
   CREAR_CAMP_AT,
   ESTADO_CAMP,
   CAMPANA_OPERADOR,
@@ -10,10 +10,11 @@ import {
   GET_RECUPERACION,
   GET_DEUDA,
   BUSCAR_CASO,
-  REC_W,
-  REIN_W,
-  BLANQUEO_W,
-  CAMPANA_OPERADOR_NOTI
+  REC,
+  REIN,
+  BLANQUEO,
+  CAMPANA_OPERADOR_NOTI,
+  
 } from "../actions/types";
 
 const initialState = {
@@ -22,26 +23,27 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case AT_W:
+    case AT:
       return {
         ...state,
-        atw: action.payload
+        at: action.payload
       };
-      case BLANQUEO_W:
-        return {
-          ...state,
-          blanw: action.payload
-        };
-    case REC_W:
+    
+    case BLANQUEO:
       return {
         ...state,
-        recw: action.payload
+        blan: action.payload
       };
-      case REIN_W:
-        return {
-          ...state,
-          reinw: action.payload
-        };
+    case REC:
+      return {
+        ...state,
+        rec: action.payload
+      };
+    case REIN:
+      return {
+        ...state,
+        rein: action.payload
+      };
     case ESTADO_CAMP:
       return {
         ...state,
@@ -59,11 +61,11 @@ export default function(state = initialState, action) {
         campoptrab: action.payload
       };
 
-      case CAMPANA_OPERADOR_NOTI:
-        return {
-          ...state,
-          campopnoti: action.payload
-        };
+    case CAMPANA_OPERADOR_NOTI:
+      return {
+        ...state,
+        campopnoti: action.payload
+      };
 
     case CREAR_CAMP_AT:
       return {

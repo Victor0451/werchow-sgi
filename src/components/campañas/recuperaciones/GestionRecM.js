@@ -5,20 +5,20 @@ import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
 import ListadoCasosTrabajados from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
-
 import {
   gestionCaso,
   updateAccion,
   cerrarCaso,
   getGestionCaso,
   getRecuperacion,
-  getDeuda,
+  getDeuda
+} from "../../../actions/campanasActions";
+
+import {
   campanaOperadorRec,
   campanaOperadorNotiRec,
   campanaOperadorTrabRec
-} from "../../../actions/campanasActions";
-
-
+} from "../../../actions/campanasMActions";
 
 class GestionRec extends Component {
   fechaaccionRef = React.createRef();

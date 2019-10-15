@@ -5,22 +5,22 @@ import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
 import ListadoCasosTrabajados from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
-
 import {
   gestionCaso,
-  updateAccion,
+  updateAccion, 
   cerrarCaso,
   getGestionCaso,
   getRecuperacion,
-  getDeuda,
-  campanaOperadorRec,
-  campanaOperadorNotiRec,
-  campanaOperadorTrabRec
+  getDeuda
 } from "../../../actions/campanasActions";
 
+import {
+  campanaOperadorBlan,
+  campanaOperadorNotiBlan,
+  campanaOperadorTrabBlan,
+} from "../../../actions/campanasMActions";
 
-
-class GestionRec extends Component {
+class GestionBlan extends Component {
   fechaaccionRef = React.createRef();
   fechaaccionnuevaRef = React.createRef();
   obsRef = React.createRef();
@@ -49,9 +49,9 @@ class GestionRec extends Component {
 
     let id = user.usuario;
 
-    this.props.campanaOperadorRec(id);
-    this.props.campanaOperadorTrabRec(id);
-    this.props.campanaOperadorNotiRec(id);
+    this.props.campanaOperadorBlan(id);
+    this.props.campanaOperadorTrabBlan(id);
+    this.props.campanaOperadorNotiBlan(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
 
@@ -104,7 +104,7 @@ class GestionRec extends Component {
     if (datos.accion === 9) {
       datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
       let id = datos.idcaso;
-      console.log(id);
+
       this.props.cerrarCaso(id);
     }
     if (datos.accion === 10) {
@@ -148,7 +148,7 @@ class GestionRec extends Component {
     let mes;
     return (
       <div className="container">
-        <h1 className="mt-4 mb-4"> Gestion Campaña de Recuperaciones {mes}</h1>
+        <h1 className="mt-4 mb-4"> Gestion Campaña de Blanqueos {mes}</h1>
 
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -273,14 +273,14 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    campanaOperadorRec,
-    campanaOperadorNotiRec,
+    campanaOperadorBlan,
+    campanaOperadorNotiBlan,
     gestionCaso,
     updateAccion,
-    campanaOperadorTrabRec,
+    campanaOperadorTrabBlan,
     cerrarCaso,
     getGestionCaso,
     getRecuperacion,
     getDeuda
   }
-)(GestionRec);
+)(GestionBlan);

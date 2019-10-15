@@ -20,14 +20,13 @@ import toastr from "../../../utils/toastr";
 
 //redux
 import { connect } from "react-redux";
+import { atM, RecM, ReinM, BlanM } from "../../../actions/campanasMActions";
+
 import {
-  atW,
-  RecW,
-  ReinW,
-  BlanW,
   verificarEstadoCamp,
   crearCampAT
 } from "../../../actions/campanasActions";
+
 import AtSP from "./estados/atSP";
 
 class EstadoSocio extends Component {
@@ -59,28 +58,29 @@ class EstadoSocio extends Component {
     let date = newDate.getDate();
 
     if (date) {
-      this.props.atW();
+      this.props.atM();
 
       setTimeout(() => {
-        const { atw } = this.props;
+        const { at } = this.props;
+        console.log(this.props);
 
-        if (atw) {
-          let atrasados = atw[0];
+        if (at) {
+          let atrasados = at[0];
 
-          let AtPerico = atrasados.filter(atw => {
-            return atw.SUCURSAL === "R";
+          let AtPerico = atrasados.filter(at => {
+            return at.SUCURSAL === "R";
           });
 
-          let AtPalpala = atrasados.filter(atw => {
-            return atw.SUCURSAL === "L";
+          let AtPalpala = atrasados.filter(at => {
+            return at.SUCURSAL === "L";
           });
 
-          let AtSanPedro = atrasados.filter(atw => {
-            return atw.SUCURSAL === "P";
+          let AtSanPedro = atrasados.filter(at => {
+            return at.SUCURSAL === "P";
           });
 
-          let AtCasaCentral = atrasados.filter(atw => {
-            return atw.SUCURSAL === "W";
+          let AtCasaCentral = atrasados.filter(at => {
+            return at.SUCURSAL === "W";
           });
 
           let AtCCmitad = Math.floor(AtCasaCentral.length / 2);
@@ -109,28 +109,28 @@ class EstadoSocio extends Component {
     let date = newDate.getDate();
 
     if (date) {
-      this.props.RecW();
+      this.props.RecM();
 
       setTimeout(() => {
-        const { recw } = this.props;
+        const { rec } = this.props;
         console.log(this.props);
-        if (recw) {
-          let recuperacion = recw[0];
+        if (rec) {
+          let recuperacion = rec[0];
 
-          let RecPerico = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "R";
+          let RecPerico = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "R";
           });
 
-          let RecPalpala = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "L";
+          let RecPalpala = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "L";
           });
 
-          let RecSanPedro = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "P";
+          let RecSanPedro = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "P";
           });
 
-          let RecCasaCentral = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "W";
+          let RecCasaCentral = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "W";
           });
 
           let RecCCmitad = Math.floor(RecCasaCentral.length / 2);
@@ -159,28 +159,28 @@ class EstadoSocio extends Component {
     let date = newDate.getDate();
 
     if (date) {
-      this.props.ReinW();
+      this.props.ReinM();
 
       setTimeout(() => {
-        const { reinw } = this.props;
+        const { rein } = this.props;
         console.log(this.props);
-        if (reinw) {
-          let reincidente = reinw[0];
+        if (rein) {
+          let reincidente = rein[0];
 
-          let ReinPerico = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "R";
+          let ReinPerico = reincidente.filter(rein => {
+            return rein.SUCURSAL === "R";
           });
 
-          let ReinPalpala = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "L";
+          let ReinPalpala = reincidente.filter(rein => {
+            return rein.SUCURSAL === "L";
           });
 
-          let ReinSanPedro = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "P";
+          let ReinSanPedro = reincidente.filter(rein => {
+            return rein.SUCURSAL === "P";
           });
 
-          let ReinCasaCentral = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "W";
+          let ReinCasaCentral = reincidente.filter(rein => {
+            return rein.SUCURSAL === "W";
           });
 
           let ReinCCmitad = Math.floor(ReinCasaCentral.length / 2);
@@ -209,28 +209,28 @@ class EstadoSocio extends Component {
     let date = newDate.getDate();
 
     if (date) {
-      this.props.BlanW();
+      this.props.BlanM();
 
       setTimeout(() => {
-        const { blanw } = this.props;
+        const { blan } = this.props;
         console.log(this.props);
-        if (blanw) {
-          let blanqueo = blanw[0];
+        if (blan) {
+          let blanqueo = blan[0];
 
-          let BlanPerico = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "R";
+          let BlanPerico = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "R";
           });
 
-          let BlanPalpala = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "L";
+          let BlanPalpala = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "L";
           });
 
-          let BlanSanPedro = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "P";
+          let BlanSanPedro = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "P";
           });
 
-          let BlanCasaCentral = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "W";
+          let BlanCasaCentral = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "W";
           });
 
           let BlanCCmitad = Math.floor(BlanCasaCentral.length / 2);
@@ -313,12 +313,13 @@ class EstadoSocio extends Component {
       BlanPerico,
       BlanSanPedro
     } = this.state;
-    let flag = 1;
+    let flag = 2;
     return (
       <div className="container mt-4">
         <h1 className="mt-4 mb-4 text-center">
-          <u>Estado Socio Werchow</u>
+          <u>Estado Socio Mutual</u>
         </h1>
+
         <nav>
           <div className="nav nav-tabs mt-4" id="nav-tab" role="tablist">
             <a
@@ -428,14 +429,26 @@ class EstadoSocio extends Component {
 
             <hr />
 
-            <AtPal AtPalpala={AtPalpala} crearCampana={this.crearCampana} />
+            <AtPal
+              AtPalpala={AtPalpala}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
 
-            <AtPer AtPerico={AtPerico} crearCampana={this.crearCampana} />
+            <AtPer
+              AtPerico={AtPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
-            <AtSP AtSanPedro={AtSanPedro} crearCampana={this.crearCampana} />
+            <AtSP
+              AtSanPedro={AtSanPedro}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
           </div>
 
           {/* RECUPERACIONES */}
@@ -463,18 +476,31 @@ class EstadoSocio extends Component {
               RecCasaCentralGG={RecCasaCentralGG}
               RecCasaCentralMG={RecCasaCentralMG}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
 
-            <RecPal RecPalpala={RecPalpala} crearCampana={this.crearCampana} />
+            <RecPal
+              RecPalpala={RecPalpala}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
 
-            <RecPer RecPerico={RecPerico} crearCampana={this.crearCampana} />
+            <RecPer
+              RecPerico={RecPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
-            <RecSP RecSanPedro={RecSanPedro} crearCampana={this.crearCampana} />
+            <RecSP
+              RecSanPedro={RecSanPedro}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
           </div>
           <div
             className="tab-pane fade"
@@ -500,6 +526,7 @@ class EstadoSocio extends Component {
               ReinCasaCentralGG={ReinCasaCentralGG}
               ReinCasaCentralMG={ReinCasaCentralMG}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
@@ -507,16 +534,22 @@ class EstadoSocio extends Component {
             <ReinPal
               ReinPalpala={ReinPalpala}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
 
-            <ReinPer ReinPerico={ReinPerico} crearCampana={this.crearCampana} />
+            <ReinPer
+              ReinPerico={ReinPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
             <ReinSP
               ReinSanPedro={ReinSanPedro}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
           </div>
 
@@ -544,6 +577,7 @@ class EstadoSocio extends Component {
               BlanCasaCentralGG={BlanCasaCentralGG}
               BlanCasaCentralMG={BlanCasaCentralMG}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
@@ -551,6 +585,7 @@ class EstadoSocio extends Component {
             <BlanqueoPal
               BlanPalpala={BlanPalpala}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
@@ -558,12 +593,14 @@ class EstadoSocio extends Component {
             <BlanqueoPer
               BlanPerico={BlanPerico}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
             <BlanqueoSP
               BlanSanPedro={BlanSanPedro}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
           </div>
         </div>
@@ -573,14 +610,14 @@ class EstadoSocio extends Component {
 }
 //state
 const mapStateToProps = state => ({
-  atw: state.campanas.atw,
-  recw: state.campanas.recw,
-  reinw: state.campanas.reinw,
-  blanw: state.campanas.blanw,
+  at: state.campanas.at,
+  rec: state.campanas.rec,
+  rein: state.campanas.rein,
+  blan: state.campanas.blan,
   estado: state.campanas.estado
 });
 
 export default connect(
   mapStateToProps,
-  { atW, RecW, ReinW, BlanW, verificarEstadoCamp, crearCampAT }
+  { atM, RecM, ReinM, BlanM, verificarEstadoCamp, crearCampAT }
 )(EstadoSocio);

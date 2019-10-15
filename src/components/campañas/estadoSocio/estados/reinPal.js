@@ -4,13 +4,13 @@ import RcL from "../../../layouts/Table/Table3";
 
 export default class RecPal extends Component {
   render() {
-    const { ReinPalpala, crearCampana } = this.props;
+    const { ReinPalpala, crearCampana, flag } = this.props;
     return (
       <div>
         {ReinPalpala.length === 0 ? (
           <div className="border mt-4 p-2">
             <h3>
-              1001 Palpala{" "}
+              Reincidentes Palpala{" "}
               <span className="badge badge-pill badge-dark text-white">
                 {ReinPalpala.length}
               </span>
@@ -21,17 +21,26 @@ export default class RecPal extends Component {
           <div className="mt-4">
             <div className="d-flex justify-content-between">
               <h3>
-                Atrasados Palpala{" "}
+                Reincidentes Palpala{" "}
                 <span className="badge badge-pill badge-dark text-white">
                   {ReinPalpala.length}
                 </span>
               </h3>
-              <button
-                className="btn btn-primary"
-                onClick={() => crearCampana(ReinPalpala, 8)}
-              >
-                Crear Campaña
-              </button>
+              {flag === 1 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(ReinPalpala, 8)}
+                >
+                  Crear Campaña Werchow
+                </button>
+              ) : flag === 2 ? (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => crearCampana(ReinPalpala, 40)}
+                >
+                  Crear Campaña Mutual
+                </button>
+              ) : null}
             </div>
             <RcL data={ReinPalpala} />
           </div>

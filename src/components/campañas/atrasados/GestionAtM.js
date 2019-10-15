@@ -2,10 +2,9 @@ import React, { Component } from "react";
 
 import ListadoGestionCaso from "../../layouts/Table/Table";
 import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
-import ListadoCasosTrabajados from "../../layouts/Table/Table4";
+import ListadoCasosAbiertos from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
-
 import {
   gestionCaso,
   updateAccion,
@@ -13,14 +12,16 @@ import {
   getGestionCaso,
   getRecuperacion,
   getDeuda,
-  campanaOperadorRec,
-  campanaOperadorNotiRec,
-  campanaOperadorTrabRec
+  
 } from "../../../actions/campanasActions";
 
+import {
+  campanaOperadorNotiAt,
+  campanaOperador,
+  campanaOperadorTrab
+} from "../../../actions/campanasMActions";
 
-
-class GestionRec extends Component {
+class GestionAtM extends Component {
   fechaaccionRef = React.createRef();
   fechaaccionnuevaRef = React.createRef();
   obsRef = React.createRef();
@@ -49,11 +50,11 @@ class GestionRec extends Component {
 
     let id = user.usuario;
 
-    this.props.campanaOperadorRec(id);
-    this.props.campanaOperadorTrabRec(id);
-    this.props.campanaOperadorNotiRec(id);
+    this.props.campanaOperador(id);
+    this.props.campanaOperadorTrab(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
+    this.props.campanaOperadorNotiAt(id);
 
     setTimeout(() => {
       const { campop, campoptrab, getrec, getdeuda, campopnoti } = this.props;
@@ -104,7 +105,6 @@ class GestionRec extends Component {
     if (datos.accion === 9) {
       datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
       let id = datos.idcaso;
-      console.log(id);
       this.props.cerrarCaso(id);
     }
     if (datos.accion === 10) {
@@ -133,6 +133,7 @@ class GestionRec extends Component {
       window.location.reload();
     }, 100);
   };
+
   deuda = array => {
     let importe = array.reduce(
       (sum, value) =>
@@ -148,7 +149,7 @@ class GestionRec extends Component {
     let mes;
     return (
       <div className="container">
-        <h1 className="mt-4 mb-4"> Gestion Campaña de Recuperaciones {mes}</h1>
+        <h1 className="mt-4 mb-4"> Gestion Campaña de Atrasados {mes}</h1>
 
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -183,11 +184,10 @@ class GestionRec extends Component {
               aria-controls="nav-contact"
               aria-selected="false"
             >
-              Casos Notificados
+              Casos Cerrados
             </a>
           </div>
         </nav>
-
         <div className="tab-content" id="nav-tabContent">
           <div
             className="tab-pane fade show active"
@@ -227,14 +227,13 @@ class GestionRec extends Component {
                 No Tienes Casos Trabajados
               </div>
             ) : (
-              <ListadoCasosTrabajados
+              <ListadoCasosAbiertos
                 data={campoptrab}
                 selcaso={this.selcaso}
                 gestion={gestion}
               />
             )}
           </div>
-
           <div
             className="tab-pane fade"
             id="nav-contact"
@@ -273,14 +272,14 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    campanaOperadorRec,
-    campanaOperadorNotiRec,
+    campanaOperador,
+    campanaOperadorNotiAt,
     gestionCaso,
     updateAccion,
-    campanaOperadorTrabRec,
+    campanaOperadorTrab,
     cerrarCaso,
     getGestionCaso,
     getRecuperacion,
     getDeuda
   }
-)(GestionRec);
+)(GestionAtM);

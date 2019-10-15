@@ -25,10 +25,37 @@ class Navbar extends Component {
 
             {isAuthenticated && user.perfil === 1 ? (
               <ul className="navbar-nav ">
-                <li className="nav-item ">
-                  <Link to="/estadosocio" className="nav-link">
-                    Estado Socio
+                <li className="nav-item dropdown">
+                  <Link
+                    to=""
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Estado Socio{" "}
                   </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link
+                      to="/estadosocioW"
+                      className="dropdown-item text-dark"
+                    >
+                      Werchow
+                    </Link>
+
+                    <hr />
+
+                    <Link
+                      to="/estadosocioM"
+                      className="dropdown-item text-dark"
+                    >
+                      Mutual
+                    </Link>
+                  </div>
                 </li>
                 <li className="nav-item dropdown">
                   <Link
