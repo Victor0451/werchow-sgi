@@ -62,25 +62,25 @@ class EstadoSocio extends Component {
       this.props.atW();
 
       setTimeout(() => {
-        const { atw } = this.props;
+        const { at } = this.props;
+console.log(this.props)
+        if (at) {
+          let atrasados = at[0];
 
-        if (atw) {
-          let atrasados = atw[0];
-
-          let AtPerico = atrasados.filter(atw => {
-            return atw.SUCURSAL === "R";
+          let AtPerico = atrasados.filter(at => {
+            return at.SUCURSAL === "R";
           });
 
-          let AtPalpala = atrasados.filter(atw => {
-            return atw.SUCURSAL === "L";
+          let AtPalpala = atrasados.filter(at => {
+            return at.SUCURSAL === "L";
           });
 
-          let AtSanPedro = atrasados.filter(atw => {
-            return atw.SUCURSAL === "P";
+          let AtSanPedro = atrasados.filter(at => {
+            return at.SUCURSAL === "P";
           });
 
-          let AtCasaCentral = atrasados.filter(atw => {
-            return atw.SUCURSAL === "W";
+          let AtCasaCentral = atrasados.filter(at => {
+            return at.SUCURSAL === "W";
           });
 
           let AtCCmitad = Math.floor(AtCasaCentral.length / 2);
@@ -573,10 +573,10 @@ class EstadoSocio extends Component {
 }
 //state
 const mapStateToProps = state => ({
-  atw: state.campanas.atw,
-  recw: state.campanas.recw,
-  reinw: state.campanas.reinw,
-  blanw: state.campanas.blanw,
+  at: state.campanas.at,
+  rec: state.campanas.rec,
+  rein: state.campanas.rein,
+  blan: state.campanas.blan,
   estado: state.campanas.estado
 });
 

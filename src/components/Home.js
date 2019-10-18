@@ -3,6 +3,7 @@ import toastr from "../utils/toastr";
 
 import { connect } from "react-redux";
 import { buscarCaso } from "../actions/campanasActions";
+import Noticias from "./noticias/Noticias";
 
 class Home extends Component {
   state = {
@@ -62,14 +63,13 @@ class Home extends Component {
         user.usuario === "mgalian" ||
         user.usuario === "vgorosito" ||
         user.usuario === "mcarrizo" ||
+        user.usuario === "vlongo" ||
         user.usuario === "sjuarez" ? (
-          <div className="form-style-8">
-            <h2>NOVEDADES</h2>
+          <div className="container  d-flex justify-content-center">
             <div className="row">
-
-            </div>
-            <div className="alert alert-info mt-4 mb-4 text-center border-dark">
-              ESTAN DISPONIBLES LAS CAMPAÑAS DE MUTUAL
+              <div className=" mt-4 mb-4 ">
+                <Noticias />
+              </div>
             </div>
           </div>
         ) : null}

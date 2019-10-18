@@ -100,9 +100,9 @@ class Estadistica extends Component {
     return (
       <div className="container  mt-4">
         <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <div className="nav nav-tabs" id="nav-tab" role="tablist">
             <a
-              class="nav-item nav-link active"
+              className="nav-item nav-link active"
               id="nav-werchow-tab"
               data-toggle="tab"
               href="#nav-werchow"
@@ -113,7 +113,7 @@ class Estadistica extends Component {
               Werchow
             </a>
             <a
-              class="nav-item nav-link"
+              className="nav-item nav-link"
               id="nav-mutual-tab"
               data-toggle="tab"
               href="#nav-mutual"
@@ -124,7 +124,7 @@ class Estadistica extends Component {
               Mutual
             </a>
             {/* <a
-              class="nav-item nav-link"
+              className="nav-item nav-link"
               id="nav-algo-tab"
               data-toggle="tab"
               href="#nav-algo"
@@ -136,9 +136,9 @@ class Estadistica extends Component {
             </a> */}
           </div>
         </nav>
-        <div class="tab-content" id="nav-tabContent">
+        <div className="tab-content" id="nav-tabContent">
           <div
-            class="tab-pane fade show active"
+            className="tab-pane fade show active"
             id="nav-werchow"
             role="tabpanel"
             aria-labelledby="nav-werchow-tab"
@@ -175,7 +175,7 @@ class Estadistica extends Component {
             </div>
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="nav-mutual"
             role="tabpanel"
             aria-labelledby="nav-mutual-tab"
@@ -183,7 +183,7 @@ class Estadistica extends Component {
             En Proceso...
           </div>
           {/* <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="nav-algo"
             role="tabpanel"
             aria-labelledby="nav-algo-tab"

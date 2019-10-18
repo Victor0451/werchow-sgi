@@ -3,11 +3,13 @@ import authReducers from "./authReducers";
 import errorReducers from "./errorReducers";
 import campanasReducers from "./campanasReducers";
 import estadisticaReducers from "./estadisticaReducers";
+import noticiaReducers from "./noticiaReducers";
 
 export default combineReducers({
   auth: authReducers,
   operadores: authReducers,
   error: errorReducers,
   campanas: campanasReducers,
-  estadistica: estadisticaReducers
+  estadistica: estadisticaReducers,
+  noticia: noticiaReducers
 });

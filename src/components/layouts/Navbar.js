@@ -66,6 +66,26 @@ class Navbar extends Component {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
+                    Noticias{" "}
+                  </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link to="/noticia" className="dropdown-item text-dark">
+                      Ingresar Noticia
+                    </Link>
+                  </div>
+                </li>
+                <li className="nav-item dropdown">
+                  <Link
+                    to=""
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Usuarios{" "}
                   </Link>
                   <div

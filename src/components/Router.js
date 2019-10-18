@@ -12,7 +12,6 @@ import { USER_LOGEDED } from "../actions/types";
 import GestionRec from "./campañas/recuperaciones/GestionRec";
 import GestionRein from "./campañas/reincidencia/GestionRein";
 import GestionBlan from "./campañas/blanqueo/GestionBlan";
-import Notificacion from "./campañas/Notificacion";
 
 import store from "../store";
 import { Provider } from "react-redux";
@@ -22,6 +21,7 @@ import GestionAtM from "./campañas/atrasados/GestionAtM";
 import GestionRecM from "./campañas/recuperaciones/GestionRecM";
 import GestionReinM from "./campañas/reincidencia/GestionReinM";
 import GestionBlanM from "./campañas/blanqueo/GestionBlanM";
+import NuevaNoticia from "./noticias/NuevaNoticia";
 
 const token = sessionStorage.getItem("token");
 
@@ -92,7 +92,7 @@ export default class Router extends Component {
                 path={"/gestioncaso/Recordatorio"}
                 component={GestionRecordatorio}
               />
-              <Route exact path={"/notificacion"} component={Notificacion} />
+              <Route exact path={"/noticia"} component={NuevaNoticia} />
             </Switch>
           ) : (
             <Switch>
