@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
     case NUEVA_NOTICIA:
       return {
         ...state,
-        noticia: [...state.noticia, action.payload]
+        noticia:  action.payload
       };
 
     default:

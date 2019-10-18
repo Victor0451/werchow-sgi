@@ -15,12 +15,17 @@ class NuevaNoticia extends Component {
 
   crearNoticia = e => {
     e.preventDefault();
+
+    let tmp = new Date(Date.now());
+    let fecha = moment(tmp).format("YYYY-MM-DD HH:mm:ss");
+
     const noti = {
-      fecha: this.fechaRef.current.value,
+      fecha: fecha,
       noticia: this.noticiaRef.current.value,
       operador: this.operadorRef.current.value
     };
 
+    console.log(noti);
     this.props.nuevaNoticia(noti);
 
     e.target.reset();
@@ -76,7 +81,7 @@ class NuevaNoticia extends Component {
 }
 //state
 const mapStateToProps = state => ({
-  noticia: state.noticia.noticia,
+  
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });

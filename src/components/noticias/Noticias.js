@@ -11,6 +11,10 @@ class Noticias extends Component {
 
   render() {
     const { noticia } = this.props;
+    console.log(noticia)
+
+    if (!noticia) return null
+
     let fecha = moment(noticia.fecha).format("DD-MM-YYYY HH:mm:ss");
 
     return (
