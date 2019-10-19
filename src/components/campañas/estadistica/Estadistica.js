@@ -15,9 +15,9 @@ import {
   casosConAccion,
   casosSinAccion
 } from "../../../actions/estadisticaActions";
-import BarrasAcostadas from "./graficos/BarrasAcostadas";
-import Torta from "./graficos/Torta";
-import Barras from "./graficos/Barras";
+import BarrasAcostadas from "./graficos/werchow/BarrasAcostadas";
+import Torta from "./graficos/werchow/Torta";
+import Barras from "./graficos/werchow/Barras";
 
 class Estadistica extends Component {
   state = {

@@ -158,7 +158,7 @@ class Table2 extends React.Component {
                         to={"#"}
                         className="btn btn-primary"
                         data-toggle="modal"
-                        data-target=".bd-example-modal-lg5"
+                        data-target=".bd-example-modal-lg12"
                         onClick={() => this.selcaso(row.index)}
                       >
                         Acciones
@@ -174,7 +174,7 @@ class Table2 extends React.Component {
         />
 
         <div
-          className="modal fade bd-example-modal-lg5"
+          className="modal fade bd-example-modal-lg12"
           role="dialog"
           aria-labelledby="myLargeModalLabel"
           aria-hidden="true"

@@ -97,33 +97,28 @@ class GestionBlan extends Component {
       datos.nuevaaccion = "SOCIO DE NIEGA A PAGAR, SE CIERRA EL CASO";
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
-      
     }
     if (datos.accion === 9) {
       datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
       let id = datos.idcaso;
- 
+
       this.props.cerrarCaso(id);
-      
     }
     if (datos.accion === 10) {
       datos.nuevaaccion = "SOCIO SERA NOTIFICADO, SE CIERRA EL CASO";
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
-      
     }
     if (datos.accion === 13) {
       datos.nuevaaccion =
         "SOCIO PASARA AL ESTADO DE CARTERA ROJA, SE CIERRA EL CASO";
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
-      
     }
     if (datos.accion === 14) {
       datos.nuevaaccion = "SOCIO FALLECIDO, SE CIERRA EL CASO";
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
-      
     }
 
     this.props.gestionCaso(datos);

@@ -32,16 +32,18 @@ class Table4 extends React.Component {
 
     let id = caso.idcaso;
 
-    this.props.getGestionCaso(id);
+    console.log(id);
 
-    setTimeout(() => {
-      const { getcaso } = this.props;
+    // this.props.getGestionCaso(id);
 
-      this.setState({
-        caso: caso,
-        gestion: getcaso[0]
-      });
-    }, 100);
+    // setTimeout(() => {
+    //   const { getcaso } = this.props;
+    //   console.log(getcaso);
+    //   this.setState({
+    //     caso: caso,
+    //     gestion: getcaso[0]
+    //   });
+    // }, 100);
   };
 
   render() {
@@ -58,7 +60,7 @@ class Table4 extends React.Component {
       idcasoRef
     } = this.props;
     const { caso, gestion } = this.state;
-   
+
     return (
       <div className="container">
         <ReactTable
@@ -165,8 +167,8 @@ class Table4 extends React.Component {
                       <Link
                         to={"#"}
                         className="btn btn-primary"
-                        data-toggle="modal"
-                        data-target=".bd-example-modal-lg2"
+                        // data-toggle="modal"
+                        // data-target=".bd-example-modal-lg2"
                         onClick={() => this.selcaso(row.index)}
                       >
                         Acciones

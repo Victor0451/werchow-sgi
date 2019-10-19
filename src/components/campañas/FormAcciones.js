@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TareaSelect from "react-select";
 import { acciones, nueavaaccion } from "../layouts/Arrays/arrays";
+import moment from "moment";
 import Notificacion from "./Notificacion";
 
 import { connect } from "react-redux";
@@ -8,14 +9,8 @@ import { getGestionCaso } from "../../actions/campanasActions";
 class FormAcciones extends Component {
   render() {
     let tmp = new Date(Date.now());
-    let year = tmp.getFullYear();
-    let month = tmp.getMonth() + 1;
-    let day = tmp.getDate();
-    let hr = tmp.getHours();
-    let mm = tmp.getMinutes();
-    //let fecha = tmp.toISOString(day, month, year, hr, mm).split("GMT")[0];
-    let fecha = `${day}/${month}/${year} ${hr}:${mm}`;
-    let fecha1 = `${day + 1}/${month}/${year} ${hr}:${mm}`;
+    let fecha = moment(tmp).format("YYYY-MM-DD HH:mm:ss");
+    let fecha1 = moment(tmp).format("YYYY-MM-DD HH:mm:ss");
 
     const {
       gestion,

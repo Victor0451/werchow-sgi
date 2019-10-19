@@ -29,7 +29,7 @@ class Noticias extends Component {
         </h3>
         <button
           type="button"
-          class="close"
+          className="close"
           data-dismiss="alert"
           aria-label="Close"
         >
