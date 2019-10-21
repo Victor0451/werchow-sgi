@@ -417,8 +417,6 @@ class FormAcciones extends Component {
                   </div>
                 </div>
               </div>
-            ) : accion === 15 ? (
-              <div>sldñfkjlkdsjf</div>
             ) : null}
           </div>
         ) : null}

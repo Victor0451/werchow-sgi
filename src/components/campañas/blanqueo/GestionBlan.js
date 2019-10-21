@@ -158,16 +158,16 @@ class GestionBlan extends Component {
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
-   
+    console.log(datos);
 
     this.props.gestionCaso(datos);
 
     let id = datos.idcaso;
     this.props.updateAccion(id);
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 100);
   };
 
   deuda = array => {
@@ -245,10 +245,10 @@ class GestionBlan extends Component {
                   obsRef={this.obsRef}
                   nuevaaccionRef={this.nuevaaccionRef}
                   contratoRef={this.contratoRef}
+                  idcasoRef={this.idcasoRef}
                   obtenerDatos={this.obtenerDatos}
                   handleChange={this.handleChange}
                   accion={this.state.accion}
-                  idcasoRef={this.idcasoRef}
                 />
               </div>
             )}
@@ -270,6 +270,13 @@ class GestionBlan extends Component {
                 gestion={gestion}
                 handleChange={this.handleChange}
                 accion={this.state.accion}
+                obtenerDatos={this.obtenerDatos}
+                fechaaccionRef={this.fechaaccionRef}
+                fechaaccionnuevaRef={this.fechaaccionnuevaRef}
+                obsRef={this.obsRef}
+                nuevaaccionRef={this.nuevaaccionRef}
+                contratoRef={this.contratoRef}
+                idcasoRef={this.idcasoRef}
               />
             )}
           </div>

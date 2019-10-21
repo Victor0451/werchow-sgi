@@ -161,8 +161,8 @@ class GestionRein extends Component {
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
-   
 
+    
     this.props.gestionCaso(datos);
 
     let id = datos.idcaso;
@@ -274,6 +274,13 @@ class GestionRein extends Component {
                 gestion={gestion}
                 handleChange={this.handleChange}
                 accion={this.state.accion}
+                obtenerDatos={this.obtenerDatos}
+                fechaaccionRef={this.fechaaccionRef}
+                fechaaccionnuevaRef={this.fechaaccionnuevaRef}
+                obsRef={this.obsRef}
+                nuevaaccionRef={this.nuevaaccionRef}
+                contratoRef={this.contratoRef}
+                idcasoRef={this.idcasoRef}
               />
             )}
           </div>

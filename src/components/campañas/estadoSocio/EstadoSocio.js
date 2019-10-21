@@ -63,7 +63,7 @@ class EstadoSocio extends Component {
 
       setTimeout(() => {
         const { at } = this.props;
-console.log(this.props)
+        console.log(this.props);
         if (at) {
           let atrasados = at[0];
 
@@ -428,14 +428,26 @@ console.log(this.props)
 
             <hr />
 
-            <AtPal AtPalpala={AtPalpala} crearCampana={this.crearCampana} />
+            <AtPal
+              AtPalpala={AtPalpala}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
 
-            <AtPer AtPerico={AtPerico} crearCampana={this.crearCampana} />
+            <AtPer
+              AtPerico={AtPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
-            <AtSP AtSanPedro={AtSanPedro} crearCampana={this.crearCampana} />
+            <AtSP
+              AtSanPedro={AtSanPedro}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
           </div>
 
           {/* RECUPERACIONES */}
@@ -463,18 +475,31 @@ console.log(this.props)
               RecCasaCentralGG={RecCasaCentralGG}
               RecCasaCentralMG={RecCasaCentralMG}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
 
-            <RecPal RecPalpala={RecPalpala} crearCampana={this.crearCampana} />
+            <RecPal
+              RecPalpala={RecPalpala}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
 
-            <RecPer RecPerico={RecPerico} crearCampana={this.crearCampana} />
+            <RecPer
+              RecPerico={RecPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
-            <RecSP RecSanPedro={RecSanPedro} crearCampana={this.crearCampana} />
+            <RecSP
+              RecSanPedro={RecSanPedro}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
           </div>
           <div
             className="tab-pane fade"
@@ -500,6 +525,7 @@ console.log(this.props)
               ReinCasaCentralGG={ReinCasaCentralGG}
               ReinCasaCentralMG={ReinCasaCentralMG}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
@@ -507,16 +533,22 @@ console.log(this.props)
             <ReinPal
               ReinPalpala={ReinPalpala}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
 
-            <ReinPer ReinPerico={ReinPerico} crearCampana={this.crearCampana} />
+            <ReinPer
+              ReinPerico={ReinPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
 
             <hr />
             <ReinSP
               ReinSanPedro={ReinSanPedro}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
           </div>
 
@@ -544,6 +576,7 @@ console.log(this.props)
               BlanCasaCentralGG={BlanCasaCentralGG}
               BlanCasaCentralMG={BlanCasaCentralMG}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
@@ -551,6 +584,7 @@ console.log(this.props)
             <BlanqueoPal
               BlanPalpala={BlanPalpala}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
@@ -558,12 +592,14 @@ console.log(this.props)
             <BlanqueoPer
               BlanPerico={BlanPerico}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
 
             <hr />
             <BlanqueoSP
               BlanSanPedro={BlanSanPedro}
               crearCampana={this.crearCampana}
+              flag={flag}
             />
           </div>
         </div>

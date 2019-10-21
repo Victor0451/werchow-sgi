@@ -266,6 +266,13 @@ class GestionRecordatorio extends Component {
                 gestion={gestion}
                 handleChange={this.handleChange}
                 accion={this.state.accion}
+                obtenerDatos={this.obtenerDatos}
+                fechaaccionRef={this.fechaaccionRef}
+                fechaaccionnuevaRef={this.fechaaccionnuevaRef}
+                obsRef={this.obsRef}
+                nuevaaccionRef={this.nuevaaccionRef}
+                contratoRef={this.contratoRef}
+                idcasoRef={this.idcasoRef}
               />
             )}
           </div>
