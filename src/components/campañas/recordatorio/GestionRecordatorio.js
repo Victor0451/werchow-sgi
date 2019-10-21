@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import ListadoGestionCaso from "../../layouts/Table/Table";
 //import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
-import ListadoCasosAbiertos from "../../layouts/Table/Table4";
+import ListadoCasosTrabajados from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
 import {
@@ -141,8 +141,21 @@ class GestionRecordatorio extends Component {
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
+    if (datos.accion === 18) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL COMPROMISO DE PAGO SE CONCRETO CORRECTAMENTE";
 
-    console.log(datos);
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 19) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL INCUMPLIMIENTO EN EL COMPROMISO DE PAGO";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+   
 
     this.props.gestionCaso(datos);
 
@@ -247,10 +260,12 @@ class GestionRecordatorio extends Component {
                 No Tienes Casos Trabajados
               </div>
             ) : (
-              <ListadoCasosAbiertos
+              <ListadoCasosTrabajados
                 data={campoptrab}
                 selcaso={this.selcaso}
                 gestion={gestion}
+                handleChange={this.handleChange}
+                accion={this.state.accion}
               />
             )}
           </div>

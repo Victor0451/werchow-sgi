@@ -11,7 +11,9 @@ export const acciones = [
   { value: 10, label: "NOTIFICAR" },
   { value: 13, label: "CARTERA ROJA" },
   { value: 14, label: "SOCIO FALLECIDO" },
-  { value: 15, label: "RECORDATORIO DE PAGO" }
+  { value: 15, label: "RECORDATORIO DE PAGO" },
+  { value: 18, label: "COMP. PAGO EFECTIVO" },
+  { value: 19, label: "COMP. PAGO NO EFECTIVO" }
 ];
 
 export const nueavaaccion = [

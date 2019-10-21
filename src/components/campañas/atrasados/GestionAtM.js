@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import ListadoGestionCaso from "../../layouts/Table/Table";
 import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
-import ListadoCasosAbiertos from "../../layouts/Table/Table4";
+import ListadoCasosTrabajados from "../../layouts/Table/Table4";
 
 import { connect } from "react-redux";
 import {
@@ -11,8 +11,7 @@ import {
   cerrarCaso,
   getGestionCaso,
   getRecuperacion,
-  getDeuda,
-  
+  getDeuda
 } from "../../../actions/campanasActions";
 
 import {
@@ -74,21 +73,31 @@ class GestionAtM extends Component {
 
     const { user } = this.props.auth;
 
+    let tmp = new Date(Date.now());
+    let year = tmp.getFullYear();
+    let month = tmp.getMonth() + 1;
+    let day = tmp.getDate();
+    let hr = tmp.getHours();
+    let mm = tmp.getMinutes();
+
+    let fecha = `${day}/${month}/${year} ${hr}:${mm}`;
+
     let nuevaaccion = "";
 
     const datos = {
       operador: user.usuario,
       idcaso: this.idcasoRef.current.value,
       accion: this.state.accion,
+      fechanuevaaccion: "",
       nuevaaccion,
       fechaaccion: this.fechaaccionRef.current.value,
-      fechanuevaaccion: this.fechaaccionnuevaRef.current.value,
       observacion: this.obsRef.current.value,
       contrato: this.contratoRef.current.value
     };
 
     if (datos.accion >= 1 && this.state.accion <= 6) {
       datos.nuevaaccion = this.nuevaaccionRef.current.value;
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
     }
     if (datos.accion === 7) {
       datos.nuevaaccion = this.state.nuevaaccion;
@@ -96,33 +105,63 @@ class GestionAtM extends Component {
       if (datos.nuevaaccion === 11) datos.nuevaaccion = "SE ENVIA COBRADOR";
 
       if (datos.nuevaaccion === 12) datos.nuevaaccion = "PASA POR OFICINA";
+
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
     }
+
     if (datos.accion === 8) {
       datos.nuevaaccion = "SOCIO DE NIEGA A PAGAR, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
     if (datos.accion === 9) {
       datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
     if (datos.accion === 10) {
       datos.nuevaaccion = "SOCIO SERA NOTIFICADO, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
     if (datos.accion === 13) {
       datos.nuevaaccion =
         "SOCIO PASARA AL ESTADO DE CARTERA ROJA, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = fecha;
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
     if (datos.accion === 14) {
       datos.nuevaaccion = "SOCIO FALLECIDO, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = fecha;
       let id = datos.idcaso;
       this.props.cerrarCaso(id);
     }
+    if (datos.accion === 15) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "RECORDATORIO DE PAGO AL SOCIO QUE AUN ESTA AL DIA";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 18) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL COMPROMISO DE PAGO SE CONCRETO CORRECTAMENTE";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 19) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL INCUMPLIMIENTO EN EL COMPROMISO DE PAGO";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+   
 
     this.props.gestionCaso(datos);
 
@@ -227,10 +266,12 @@ class GestionAtM extends Component {
                 No Tienes Casos Trabajados
               </div>
             ) : (
-              <ListadoCasosAbiertos
+              <ListadoCasosTrabajados
                 data={campoptrab}
                 selcaso={this.selcaso}
                 gestion={gestion}
+                handleChange={this.handleChange}
+                accion={this.state.accion}
               />
             )}
           </div>

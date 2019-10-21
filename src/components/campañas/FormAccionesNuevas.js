@@ -22,7 +22,7 @@ class FormAccionesNuevas extends Component {
       handleChange,
       accion,
       contratoRef,
-      idcasoRef
+      idcasoRef    
     } = this.props;
 
     return (
