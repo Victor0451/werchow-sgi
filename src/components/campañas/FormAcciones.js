@@ -240,7 +240,8 @@ class FormAcciones extends Component {
         gestion.accion === 3 ||
         gestion.accion === 4 ||
         gestion.accion === 5 ||
-        gestion.accion === 6 ? (
+        gestion.accion === 6 ||
+        gestion.accion === 7 ? (
           <div>
             <div className="jumbotron">
               <h3>
