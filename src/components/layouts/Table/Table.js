@@ -1,19 +1,136 @@
 import React from "react";
 import matchSorter from "match-sorter";
 import { Link } from "react-router-dom";
-import FormAccionesNuevas from "../../campañas/FormAccionesNuevas";
+import FormAcciones from "../../campañas/FormAcciones";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-export default class Table extends React.Component {
+import { connect } from "react-redux";
+import {
+  gestionCaso,
+  updateAccion,
+  cerrarCaso
+} from "../../../actions/campanasActions";
+
+class Table extends React.Component {
+  fechaaccionRef = React.createRef();
+  fechaaccionnuevaRef = React.createRef();
+  obsRef = React.createRef();
+  nuevaaccionRef = React.createRef();
+  contratoRef = React.createRef();
+  idcasoRef = React.createRef();
+
   constructor() {
     super();
     this.state = {
       caso: {}
     };
   }
+
+  obtenerDatos = e => {
+    e.preventDefault();
+
+    const { user } = this.props.auth;
+    const { accion } = this.props;
+
+    let tmp = new Date();
+
+    let fecha = tmp.toISOString();
+
+    let nuevaaccion = "";
+    let fechanuevaaccion = "";
+
+    const datos = {
+      operador: user.usuario,
+      idcaso: this.idcasoRef.current.value,
+      accion: accion,
+      fechanuevaaccion,
+      nuevaaccion,
+      fechaaccion: fecha,
+      observacion: this.obsRef.current.value,
+      contrato: this.contratoRef.current.value
+    };
+
+    if (datos.accion >= 1 && datos.accion <= 6) {
+      datos.nuevaaccion = "VERIFICAR LOS DATOS Y LLAMAR DE NUEVO";
+      datos.fechanuevaaccion = fecha;
+    }
+    if (datos.accion === 7) {
+      datos.nuevaaccion = this.state.nuevaaccion;
+
+      if (datos.nuevaaccion === 11) datos.nuevaaccion = "SE ENVIA COBRADOR";
+
+      if (datos.nuevaaccion === 12) datos.nuevaaccion = "PASA POR OFICINA";
+
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+    }
+
+    if (datos.accion === 8) {
+      datos.nuevaaccion = "SOCIO DE NIEGA A PAGAR, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 9) {
+      datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 10) {
+      datos.nuevaaccion = "SOCIO SERA NOTIFICADO, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 13) {
+      datos.nuevaaccion =
+        "SOCIO PASARA AL ESTADO DE CARTERA ROJA, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = fecha;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 14) {
+      datos.nuevaaccion = "SOCIO FALLECIDO, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = fecha;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 15) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "RECORDATORIO DE PAGO AL SOCIO QUE AUN ESTA AL DIA";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 18) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL COMPROMISO DE PAGO SE CONCRETO CORRECTAMENTE";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 19) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL INCUMPLIMIENTO EN EL COMPROMISO DE PAGO";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+
+    this.props.gestionCaso(datos);
+
+    let id = datos.idcaso;
+    this.props.updateAccion(id);
+
+    console.log(datos);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  };
 
   deuda = array => {
     let importe = array.reduce(
@@ -33,18 +150,7 @@ export default class Table extends React.Component {
   };
 
   render() {
-    const {
-      data,
-      fechaaccionRef,
-      fechaaccionnuevaRef,
-      obsRef,
-      nuevaaccionRef,
-      contratoRef,
-      obtenerDatos,
-      handleChange,
-      accion,
-      idcasoRef
-    } = this.props;
+    const { data, handleChange, accion } = this.props;
 
     const { caso } = this.state;
 
@@ -155,7 +261,7 @@ export default class Table extends React.Component {
                         to={"#"}
                         className="btn btn-primary"
                         data-toggle="modal"
-                        data-target=".bd-example-modal-lg"
+                        data-target=".bd-example-modal-lgfmn"
                         onClick={() => this.selcaso(row.index)}
                       >
                         Acciones
@@ -171,7 +277,7 @@ export default class Table extends React.Component {
         />
 
         <div
-          className="modal fade bd-example-modal-lg"
+          className="modal fade bd-example-modal-lgfmn"
           role="dialog"
           aria-labelledby="myLargeModalLabel"
           aria-hidden="true"
@@ -192,17 +298,16 @@ export default class Table extends React.Component {
                 </button>
               </div>
               <div className="modal-body">
-                <FormAccionesNuevas
+                <FormAcciones
                   caso={caso}
-                  fechaaccionRef={fechaaccionRef}
-                  fechaaccionnuevaRef={fechaaccionnuevaRef}
-                  obsRef={obsRef}
-                  nuevaaccionRef={nuevaaccionRef}
-                  contratoRef={contratoRef}
-                  obtenerDatos={obtenerDatos}
+                  fechaaccionRef={this.fechaaccionRef}
+                  fechaaccionnuevaRef={this.fechaaccionnuevaRef}
+                  obsRef={this.obsRef}
+                  nuevaaccionRef={this.nuevaaccionRef}
+                  contratoRef={this.contratoRef}
                   handleChange={handleChange}
                   accion={accion}
-                  idcasoRef={idcasoRef}
+                  idcasoRef={this.idcasoRef}
                 />
               </div>
               <div className="modal-footer">
@@ -216,7 +321,7 @@ export default class Table extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={obtenerDatos}
+                  onClick={this.obtenerDatos}
                 >
                   Registrar
                 </button>
@@ -228,3 +333,13 @@ export default class Table extends React.Component {
     );
   }
 }
+//state
+const mapStateToProps = state => ({
+  auth: state.auth,
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { gestionCaso, updateAccion, cerrarCaso }
+)(Table);

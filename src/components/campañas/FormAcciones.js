@@ -235,13 +235,7 @@ class FormAcciones extends Component {
         )}
 
         <hr />
-        {gestion.accion === 1 ||
-        gestion.accion === 2 ||
-        gestion.accion === 3 ||
-        gestion.accion === 4 ||
-        gestion.accion === 5 ||
-        gestion.accion === 6 ||
-        gestion.accion === 7 ? (
+      
           <div>
             <div className="jumbotron">
               <h3>
@@ -420,7 +414,7 @@ class FormAcciones extends Component {
               </div>
             ) : null}
           </div>
-        ) : null}
+       
       </div>
     );
   }

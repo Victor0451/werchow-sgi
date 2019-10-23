@@ -7,8 +7,20 @@ import FormAcciones from "../../campañas/FormAcciones";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import { connect } from "react-redux";
-import { getGestionCaso } from "../../../actions/campanasActions";
+import {
+  gestionCaso,
+  updateAccion,
+  cerrarCaso,
+  getGestionCaso
+} from "../../../actions/campanasActions";
 class Table4 extends React.Component {
+  fechaaccionRef = React.createRef();
+  fechaaccionnuevaRef = React.createRef();
+  obsRef = React.createRef();
+  nuevaaccionRef = React.createRef();
+  contratoRef = React.createRef();
+  idcasoRef = React.createRef();
+
   constructor() {
     super();
     this.state = {
@@ -16,6 +28,108 @@ class Table4 extends React.Component {
       gestion: {}
     };
   }
+
+  obtenerDatos = e => {
+    e.preventDefault();
+
+    const { user } = this.props.auth;
+    const { accion } = this.props;
+
+    let tmp = new Date();
+
+    let fecha = tmp.toISOString();
+
+    let nuevaaccion = "";
+
+    const datos = {
+      operador: user.usuario,
+      idcaso: this.idcasoRef.current.value,
+      accion: accion,
+      fechanuevaaccion: "",
+      nuevaaccion,
+      fechaaccion: this.fechaaccionRef.current.value,
+      observacion: this.obsRef.current.value,
+      contrato: this.contratoRef.current.value
+    };
+
+    console.log(datos);
+
+    if (datos.accion >= 1 && datos.accion <= 6) {
+      datos.nuevaaccion = "VERIFICAR LOS DATOS Y LLAMAR DE NUEVO";
+      datos.fechanuevaaccion = fecha;
+    }
+    if (datos.accion === 7) {
+      datos.nuevaaccion = this.state.nuevaaccion;
+
+      if (datos.nuevaaccion === 11) datos.nuevaaccion = "SE ENVIA COBRADOR";
+
+      if (datos.nuevaaccion === 12) datos.nuevaaccion = "PASA POR OFICINA";
+
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+    }
+
+    if (datos.accion === 8) {
+      datos.nuevaaccion = "SOCIO DE NIEGA A PAGAR, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 9) {
+      datos.nuevaaccion = "SOCIO ESTA AL DIA CON SUS PAGOS, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 10) {
+      datos.nuevaaccion = "SOCIO SERA NOTIFICADO, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 13) {
+      datos.nuevaaccion =
+        "SOCIO PASARA AL ESTADO DE CARTERA ROJA, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = fecha;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 14) {
+      datos.nuevaaccion = "SOCIO FALLECIDO, SE CIERRA EL CASO";
+      datos.fechanuevaaccion = fecha;
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 15) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "RECORDATORIO DE PAGO AL SOCIO QUE AUN ESTA AL DIA";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 18) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL COMPROMISO DE PAGO SE CONCRETO CORRECTAMENTE";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+    if (datos.accion === 19) {
+      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = "EL INCUMPLIMIENTO EN EL COMPROMISO DE PAGO";
+
+      let id = datos.idcaso;
+      this.props.cerrarCaso(id);
+    }
+
+    this.props.gestionCaso(datos);
+
+    let id = datos.idcaso;
+    this.props.updateAccion(id);
+
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 100);
+  };
 
   deuda = array => {
     let importe = array.reduce(
@@ -29,6 +143,9 @@ class Table4 extends React.Component {
   selcaso = index => {
     const { data } = this.props;
     const caso = data[index];
+    this.setState({
+      caso: caso
+    });
 
     let id = caso.idcaso;
 
@@ -45,18 +162,7 @@ class Table4 extends React.Component {
   };
 
   render() {
-    const {
-      data,
-      fechaaccionRef,
-      fechaaccionnuevaRef,
-      obsRef,
-      nuevaaccionRef,
-      contratoRef,
-      obtenerDatos,
-      handleChange,
-      accion,
-      idcasoRef
-    } = this.props;
+    const { data, handleChange, accion } = this.props;
     const { caso, gestion } = this.state;
 
     return (
@@ -206,15 +312,14 @@ class Table4 extends React.Component {
                 <FormAcciones
                   gestion={gestion}
                   caso={caso}
-                  fechaaccionRef={fechaaccionRef}
-                  fechaaccionnuevaRef={fechaaccionnuevaRef}
-                  obsRef={obsRef}
-                  nuevaaccionRef={nuevaaccionRef}
-                  contratoRef={contratoRef}
-                  obtenerDatos={obtenerDatos}
+                  fechaaccionRef={this.fechaaccionRef}
+                  fechaaccionnuevaRef={this.fechaaccionnuevaRef}
+                  obsRef={this.obsRef}
+                  nuevaaccionRef={this.nuevaaccionRef}
+                  contratoRef={this.contratoRef}
                   handleChange={handleChange}
                   accion={accion}
-                  idcasoRef={idcasoRef}
+                  idcasoRef={this.idcasoRef}
                 />
               </div>
               <div className="modal-footer">
@@ -228,7 +333,7 @@ class Table4 extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={obtenerDatos}
+                  onClick={this.obtenerDatos}
                 >
                   Registrar
                 </button>
@@ -250,6 +355,9 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getGestionCaso
+    getGestionCaso,
+    gestionCaso,
+    updateAccion,
+    cerrarCaso
   }
 )(Table4);
