@@ -28,7 +28,7 @@ class Home extends Component {
 
         setTimeout(() => {
           const { buscaso } = this.props;
-
+          console.log(this.props);
           if (buscaso) {
             this.setState({
               buscaso: buscaso
@@ -65,7 +65,6 @@ class Home extends Component {
         user.usuario === "mcarrizo" ||
         user.usuario === "vlongo" ||
         user.usuario === "sjuarez" ? (
-          
           <div className="container  d-flex justify-content-center">
             <div className="row">
               <div className=" mt-4 mb-4 ">
@@ -73,7 +72,6 @@ class Home extends Component {
               </div>
             </div>
           </div>
-          
         ) : null}
 
         <div className="form-style-8">

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import ListadoGestionCaso from "../../layouts/Table/Table";
 import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
 import ListadoCasosTrabajados from "../../layouts/Table/Table4";
+// import ArchCamp from "../../layouts/Table/Table5";
 
 import { connect } from "react-redux";
 
@@ -15,7 +16,8 @@ import {
   getDeuda,
   campanaOperadorRec,
   campanaOperadorNotiRec,
-  campanaOperadorTrabRec
+  campanaOperadorTrabRec,
+  campanaArchivoRec
 } from "../../../actions/campanasActions";
 
 class GestionRec extends Component {
@@ -30,6 +32,7 @@ class GestionRec extends Component {
     campop: [],
     campoptrab: [],
     campopnoti: [],
+    campophist: {},
     caso: {},
     accion: "",
     gestion: {},
@@ -50,16 +53,25 @@ class GestionRec extends Component {
     this.props.campanaOperadorRec(id);
     this.props.campanaOperadorTrabRec(id);
     this.props.campanaOperadorNotiRec(id);
+    this.props.campanaArchivoRec(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
 
     setTimeout(() => {
-      const { campop, campoptrab, getrec, getdeuda, campopnoti } = this.props;
+      const {
+        campop,
+        campoptrab,
+        getrec,
+        getdeuda,
+        campopnoti,
+        campophist
+      } = this.props;
 
       this.setState({
         campop: campop[0],
         campoptrab: campoptrab[0],
         campopnoti: campopnoti[0],
+        campophist: campophist[0],
         getrec: getrec[0][0],
         getdeuda: getdeuda[0][0]
       });
@@ -118,6 +130,17 @@ class GestionRec extends Component {
             >
               Casos Notificados
             </a>
+            {/* <a
+              className="nav-item nav-link"
+              id="nav-archivo-tab"
+              data-toggle="tab"
+              href="#nav-archivo"
+              role="tab"
+              aria-controls="nav-archivo"
+              aria-selected="false"
+            >
+              Archivo de Campaña
+            </a> */}
           </div>
         </nav>
 
@@ -193,6 +216,19 @@ class GestionRec extends Component {
               />
             )}
           </div>
+          {/* <div
+            className="tab-pane fade"
+            id="nav-archivo"
+            role="tabpanel"
+            aria-labelledby="nav-archivo-tab"
+          >
+            {!campophist ? (
+              <div className="alert alert-primary mt-4">
+                No Tienes Casos Notificados
+              </div>
+            ) : //<ArchCamp data={campophist} />
+            null}
+          </div> */}
         </div>
       </div>
     );
@@ -203,6 +239,7 @@ const mapStateToProps = state => ({
   campop: state.campanas.campop,
   campoptrab: state.campanas.campoptrab,
   campopnoti: state.campanas.campopnoti,
+  campophist: state.campanas.campophist,
   getcaso: state.campanas.getcaso,
   getrec: state.campanas.getrec,
   getdeuda: state.campanas.getdeuda,
@@ -218,6 +255,7 @@ export default connect(
     gestionCaso,
     updateAccion,
     campanaOperadorTrabRec,
+    campanaArchivoRec,
     cerrarCaso,
     getGestionCaso,
     getRecuperacion,

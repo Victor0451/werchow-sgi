@@ -12,9 +12,6 @@ import { USER_LOGEDED } from "../actions/types";
 import GestionRec from "./campañas/recuperaciones/GestionRec";
 import GestionRein from "./campañas/reincidencia/GestionRein";
 import GestionBlan from "./campañas/blanqueo/GestionBlan";
-
-import store from "../store";
-import { Provider } from "react-redux";
 import GestionRecordatorio from "./campañas/recordatorio/GestionRecordatorio";
 import EstadoSocioM from "./campañas/estadoSocio/EstadoSocioM";
 import GestionAtM from "./campañas/atrasados/GestionAtM";
@@ -22,6 +19,10 @@ import GestionRecM from "./campañas/recuperaciones/GestionRecM";
 import GestionReinM from "./campañas/reincidencia/GestionReinM";
 import GestionBlanM from "./campañas/blanqueo/GestionBlanM";
 import NuevaNoticia from "./noticias/NuevaNoticia";
+import Mora from "./mora/werchow/Mora";
+
+import store from "../store";
+import { Provider } from "react-redux";
 
 const token = sessionStorage.getItem("token");
 
@@ -93,6 +94,8 @@ export default class Router extends Component {
                 component={GestionRecordatorio}
               />
               <Route exact path={"/noticia"} component={NuevaNoticia} />
+              {/* MORA */}
+              <Route exact path={"/mora/werchow"} component={Mora} />
             </Switch>
           ) : (
             <Switch>

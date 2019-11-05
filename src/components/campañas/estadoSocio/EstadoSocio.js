@@ -35,6 +35,7 @@ class EstadoSocio extends Component {
     AtPalpala: [],
     AtPerico: [],
     AtSanPedro: [],
+    AtCasaCentralAT: [],
     AtCasaCentralGG: [],
     AtCasaCentralMG: [],
     RecCasaCentralGG: [],
@@ -83,18 +84,20 @@ class EstadoSocio extends Component {
             return at.SUCURSAL === "W";
           });
 
-          let AtCCmitad = Math.floor(AtCasaCentral.length / 2);
+          // let AtCCmitad = Math.floor(AtCasaCentral.length / 2);
 
-          let AtCasaCentralGG = AtCasaCentral.slice(0, AtCCmitad);
+          // let AtCasaCentralGG = AtCasaCentral.slice(0, AtCCmitad);
 
-          let AtCasaCentralMG = AtCasaCentral.slice(
-            AtCCmitad,
-            AtCasaCentral.length
-          );
+          // let AtCasaCentralMG = AtCasaCentral.slice(
+          //   AtCCmitad,
+          //   AtCasaCentral.length
+          // );
 
           this.setState({
-            AtCasaCentralGG: AtCasaCentralGG,
-            AtCasaCentralMG: AtCasaCentralMG,
+            // AtCasaCentralGG: AtCasaCentralGG,
+            // AtCasaCentralMG: AtCasaCentralMG,
+
+            AtCasaCentralAT: AtCasaCentral,
             AtPalpala: AtPalpala,
             AtPerico: AtPerico,
             AtSanPedro: AtSanPedro
@@ -112,25 +115,25 @@ class EstadoSocio extends Component {
       this.props.RecW();
 
       setTimeout(() => {
-        const { recw } = this.props;
+        const { rec } = this.props;
         console.log(this.props);
-        if (recw) {
-          let recuperacion = recw[0];
+        if (rec) {
+          let recuperacion = rec[0];
 
-          let RecPerico = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "R";
+          let RecPerico = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "R";
           });
 
-          let RecPalpala = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "L";
+          let RecPalpala = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "L";
           });
 
-          let RecSanPedro = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "P";
+          let RecSanPedro = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "P";
           });
 
-          let RecCasaCentral = recuperacion.filter(recw => {
-            return recw.SUCURSAL === "W";
+          let RecCasaCentral = recuperacion.filter(rec => {
+            return rec.SUCURSAL === "W";
           });
 
           let RecCCmitad = Math.floor(RecCasaCentral.length / 2);
@@ -162,25 +165,25 @@ class EstadoSocio extends Component {
       this.props.ReinW();
 
       setTimeout(() => {
-        const { reinw } = this.props;
+        const { rein } = this.props;
         console.log(this.props);
-        if (reinw) {
-          let reincidente = reinw[0];
+        if (rein) {
+          let reincidente = rein[0];
 
-          let ReinPerico = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "R";
+          let ReinPerico = reincidente.filter(rein => {
+            return rein.SUCURSAL === "R";
           });
 
-          let ReinPalpala = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "L";
+          let ReinPalpala = reincidente.filter(rein => {
+            return rein.SUCURSAL === "L";
           });
 
-          let ReinSanPedro = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "P";
+          let ReinSanPedro = reincidente.filter(rein => {
+            return rein.SUCURSAL === "P";
           });
 
-          let ReinCasaCentral = reincidente.filter(reinw => {
-            return reinw.SUCURSAL === "W";
+          let ReinCasaCentral = reincidente.filter(rein => {
+            return rein.SUCURSAL === "W";
           });
 
           let ReinCCmitad = Math.floor(ReinCasaCentral.length / 2);
@@ -212,25 +215,25 @@ class EstadoSocio extends Component {
       this.props.BlanW();
 
       setTimeout(() => {
-        const { blanw } = this.props;
+        const { blan } = this.props;
         console.log(this.props);
-        if (blanw) {
-          let blanqueo = blanw[0];
+        if (blan) {
+          let blanqueo = blan[0];
 
-          let BlanPerico = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "R";
+          let BlanPerico = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "R";
           });
 
-          let BlanPalpala = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "L";
+          let BlanPalpala = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "L";
           });
 
-          let BlanSanPedro = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "P";
+          let BlanSanPedro = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "P";
           });
 
-          let BlanCasaCentral = blanqueo.filter(blanw => {
-            return blanw.SUCURSAL === "W";
+          let BlanCasaCentral = blanqueo.filter(blan => {
+            return blan.SUCURSAL === "W";
           });
 
           let BlanCCmitad = Math.floor(BlanCasaCentral.length / 2);
@@ -292,6 +295,7 @@ class EstadoSocio extends Component {
 
   render() {
     const {
+      AtCasaCentralAT,
       AtCasaCentralMG,
       AtCasaCentralGG,
       AtPalpala,
@@ -421,6 +425,7 @@ class EstadoSocio extends Component {
 
             <AtCC
               flag={flag}
+              AtCasaCentralAT={AtCasaCentralAT}
               AtCasaCentralMG={AtCasaCentralMG}
               AtCasaCentralGG={AtCasaCentralGG}
               crearCampana={this.crearCampana}

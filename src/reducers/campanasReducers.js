@@ -14,7 +14,7 @@ import {
   REIN,
   BLANQUEO,
   CAMPANA_OPERADOR_NOTI,
-  
+  CAMPANA_OPERADOR_HIST
 } from "../actions/types";
 
 const initialState = {
@@ -28,7 +28,7 @@ export default function(state = initialState, action) {
         ...state,
         at: action.payload
       };
-    
+
     case BLANQUEO:
       return {
         ...state,
@@ -65,6 +65,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         campopnoti: action.payload
+      };
+
+    case CAMPANA_OPERADOR_HIST:
+      return {
+        ...state,
+        campophist: action.payload
       };
 
     case CREAR_CAMP_AT:

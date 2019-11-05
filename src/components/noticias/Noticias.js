@@ -15,7 +15,7 @@ class Noticias extends Component {
 
     if (!noticia) return null
 
-    let fecha = moment(noticia.fecha).format("DD-MM-YYYY HH:mm:ss");
+    let fecha = moment.utc(noticia.fecha).format("DD/MM/YYYY HH:mm:ss");
 
     return (
       <div

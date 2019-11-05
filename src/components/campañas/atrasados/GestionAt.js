@@ -3,11 +3,13 @@ import React, { Component } from "react";
 import ListadoGestionCaso from "../../layouts/Table/Table";
 import ListadoGestionCasoNoti from "../../layouts/Table/Table2";
 import ListadoCasosTrabajados from "../../layouts/Table/Table4";
+// import ArchCamp from "../../layouts/Table/Table5";
 
 import { connect } from "react-redux";
 import {
   campanaOperador,
   campanaOperadorNotiAt,
+  campanaArchivo,
   gestionCaso,
   updateAccion,
   campanaOperadorTrab,
@@ -18,12 +20,11 @@ import {
 } from "../../../actions/campanasActions";
 
 class GestionAt extends Component {
-
-
   state = {
     campop: [],
     campoptrab: [],
     campopnoti: [],
+    campophist: {},
     caso: {},
     accion: "",
     gestion: {},
@@ -43,24 +44,31 @@ class GestionAt extends Component {
 
     this.props.campanaOperador(id);
     this.props.campanaOperadorTrab(id);
+    this.props.campanaArchivo(id);
     this.props.getRecuperacion(id);
     this.props.getDeuda(id);
     this.props.campanaOperadorNotiAt(id);
 
     setTimeout(() => {
-      const { campop, campoptrab, getrec, getdeuda, campopnoti } = this.props;
+      const {
+        campop,
+        campoptrab,
+        getrec,
+        getdeuda,
+        campopnoti,
+        campophist
+      } = this.props;
 
       this.setState({
         campop: campop[0],
         campoptrab: campoptrab[0],
         campopnoti: campopnoti[0],
+        campophist: campophist[0],
         getrec: getrec[0][0],
         getdeuda: getdeuda[0][0]
       });
     }, 300);
   }
-
-  
 
   deuda = array => {
     let importe = array.reduce(
@@ -112,8 +120,19 @@ class GestionAt extends Component {
               aria-controls="nav-contact"
               aria-selected="false"
             >
-              Casos Cerrados
+              Casos Notificados
             </a>
+            {/* <a
+              className="nav-item nav-link"
+              id="nav-archivo-tab"
+              data-toggle="tab"
+              href="#nav-archivo"
+              role="tab"
+              aria-controls="nav-archivo"
+              aria-selected="false"
+            >
+              Archivo de Campaña
+            </a> */}
           </div>
         </nav>
         <div className="tab-content" id="nav-tabContent">
@@ -131,11 +150,9 @@ class GestionAt extends Component {
               <div className="mt-4">
                 <ListadoGestionCaso
                   data={campop}
-               
                   obtenerDatos={this.obtenerDatos}
                   handleChange={this.handleChange}
                   accion={this.state.accion}
-                 
                 />
               </div>
             )}
@@ -185,6 +202,22 @@ class GestionAt extends Component {
               />
             )}
           </div>
+          {/* <div
+            className="tab-pane fade"
+            id="nav-archivo"
+            role="tabpanel"
+            aria-labelledby="nav-archivo-tab"
+          >
+            {!campophist ? (
+              <div className="alert alert-primary mt-4">
+                No Tienes Casos Notificados
+              </div>
+            ) : (
+
+             <ArchCamp data={campophist} />
+             
+            )}
+          </div> */}
         </div>
       </div>
     );
@@ -195,6 +228,7 @@ const mapStateToProps = state => ({
   campop: state.campanas.campop,
   campoptrab: state.campanas.campoptrab,
   campopnoti: state.campanas.campopnoti,
+  campophist: state.campanas.campophist,
   getcaso: state.campanas.getcaso,
   getrec: state.campanas.getrec,
   getdeuda: state.campanas.getdeuda,
@@ -207,6 +241,7 @@ export default connect(
   {
     campanaOperador,
     campanaOperadorNotiAt,
+    campanaArchivo,
     gestionCaso,
     updateAccion,
     campanaOperadorTrab,

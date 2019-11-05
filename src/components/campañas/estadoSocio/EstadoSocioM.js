@@ -36,6 +36,7 @@ class EstadoSocio extends Component {
     AtSanPedro: [],
     AtCasaCentralGG: [],
     AtCasaCentralMG: [],
+    AtCasaCentralAT: [],
     RecCasaCentralGG: [],
     RecCasaCentralMG: [],
     RecPalpala: [],
@@ -294,6 +295,7 @@ class EstadoSocio extends Component {
     const {
       AtCasaCentralMG,
       AtCasaCentralGG,
+      AtCasaCentralAT,
       AtPalpala,
       AtPerico,
       AtSanPedro,
@@ -424,6 +426,7 @@ class EstadoSocio extends Component {
               flag={flag}
               AtCasaCentralMG={AtCasaCentralMG}
               AtCasaCentralGG={AtCasaCentralGG}
+              AtCasaCentralAT={AtCasaCentralAT}
               crearCampana={this.crearCampana}
             />
 

@@ -4,6 +4,7 @@ import errorReducers from "./errorReducers";
 import campanasReducers from "./campanasReducers";
 import estadisticaReducers from "./estadisticaReducers";
 import noticiaReducers from "./noticiaReducers";
+import moraReducers from './moraReducers'
 
 export default combineReducers({
   auth: authReducers,
@@ -11,5 +12,6 @@ export default combineReducers({
   error: errorReducers,
   campanas: campanasReducers,
   estadistica: estadisticaReducers,
-  noticia: noticiaReducers
+  noticia: noticiaReducers,
+  mora: moraReducers
 });

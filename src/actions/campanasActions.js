@@ -14,7 +14,8 @@ import {
   REC,
   REIN,
   BLANQUEO,
-  CAMPANA_OPERADOR_NOTI
+  CAMPANA_OPERADOR_NOTI,
+  CAMPANA_OPERADOR_HIST
 } from "./types";
 
 import axios from "axios";
@@ -117,6 +118,16 @@ export const campanaOperadorTrab = operador => async dispatch => {
   });
 };
 
+export const campanaArchivo = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorhist/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_HIST,
+    payload: respuesta.data
+  });
+};
+
 export const campanaOperadorRec = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorrec/${operador}`
@@ -133,6 +144,16 @@ export const campanaOperadorTrabRec = operador => async dispatch => {
   );
   dispatch({
     type: CAMPANA_OPERADOR_TRAB,
+    payload: respuesta.data
+  });
+};
+
+export const campanaArchivoRec = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorhistrec/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_HIST,
     payload: respuesta.data
   });
 };

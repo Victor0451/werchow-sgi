@@ -34,6 +34,35 @@ class Navbar extends Component {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
+                    Mora{" "}
+                  </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link
+                      to="/mora/werchow"
+                      className="dropdown-item text-dark"
+                    >
+                      Werchow
+                    </Link>
+
+                    <hr />
+
+                    <Link to="/mora/mutual" className="dropdown-item text-dark">
+                      Mutual
+                    </Link>
+                  </div>
+                </li>
+                <li className="nav-item dropdown">
+                  <Link
+                    to=""
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Estado Socio{" "}
                   </Link>
                   <div
@@ -46,9 +75,7 @@ class Navbar extends Component {
                     >
                       Werchow
                     </Link>
-
                     <hr />
-
                     <Link
                       to="/estadosocioM"
                       className="dropdown-item text-dark"
