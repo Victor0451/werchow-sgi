@@ -3,6 +3,8 @@ import werchowlogo from "../../img/logo.png";
 
 export default class Notificacion extends Component {
   imprimir = () => {
+   
+
     let contenido = document.getElementById("solicitud").innerHTML;
     let contenidoOrg = document.body.innerHTML;
 

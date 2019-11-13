@@ -1,4 +1,9 @@
-import { MCOBRADORES, MOFICINA, MTARJETA, MPOLICA } from "../actions/types";
+import {
+  MCOBRADORES,
+  MOFICINA,
+  MTARJETA, 
+  MBANCONV
+} from "../actions/types";
 
 const initialState = {
   mora: []
@@ -18,16 +23,18 @@ export default function(state = initialState, action) {
         mcobradores: action.payload
       };
 
+     
     case MTARJETA:
       return {
         ...state,
         mtarjeta: action.payload
       };
+   
 
-    case MPOLICA:
+    case MBANCONV:
       return {
         ...state,
-        mpolicia: action.payload
+        mbanconv: action.payload
       };
 
     default:

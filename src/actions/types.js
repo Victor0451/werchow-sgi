@@ -49,9 +49,8 @@ export const CASOS_CON_ACCION = "CASOS_CON_ACCION";
 export const NUEVA_NOTICIA = "NUEVA_NOTICIA";
 export const MOSTRAR_NOTICIA = "MOSTRAR_NOTICIA";
 
-
 //MORA
 export const MCOBRADORES = "MCOBRADORES";
 export const MOFICINA = "MOFICINA";
 export const MTARJETA = "MTARJETA";
-export const MPOLICA = "MPOLICA";
+export const MBANCONV = "MBANCONV";

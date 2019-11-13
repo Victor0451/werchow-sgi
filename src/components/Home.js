@@ -28,7 +28,7 @@ class Home extends Component {
 
         setTimeout(() => {
           const { buscaso } = this.props;
-          console.log(this.props);
+         
           if (buscaso) {
             this.setState({
               buscaso: buscaso
@@ -56,6 +56,7 @@ class Home extends Component {
   render() {
     const { buscaso } = this.state;
     const { user } = this.props.auth;
+    console.log(buscaso)
 
     return (
       <div className="">

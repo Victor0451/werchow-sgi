@@ -17,11 +17,13 @@ class Navbar extends Component {
           id="navbarColor02"
         >
           <ul className="navbar-nav ">
-            <li className="nav-item ">
-              <Link to="/campanacaso" className="nav-link">
-                Campañas
-              </Link>
-            </li>
+            {isAuthenticated && user.perfil === 2 ? (
+              <li className="nav-item ">
+                <Link to="/campanacaso" className="nav-link">
+                  Campañas
+                </Link>
+              </li>
+            ) : null}
 
             {isAuthenticated && user.perfil === 1 ? (
               <ul className="navbar-nav ">
@@ -131,9 +133,59 @@ class Navbar extends Component {
                   </div>
                 </li>
               </ul>
-            ) : (
-              ""
-            )}
+            ) : isAuthenticated && user.perfil === 3 ? (
+              <ul className="navbar-nav ">
+                <li className="nav-item dropdown">
+                  <Link
+                    to=""
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Mora{" "}
+                  </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link
+                      to="/mora/werchow"
+                      className="dropdown-item text-dark"
+                    >
+                      Werchow
+                    </Link>
+
+                    <hr />
+
+                    <Link to="/mora/mutual" className="dropdown-item text-dark">
+                      Mutual
+                    </Link>
+                  </div>
+                </li>
+                <li className="nav-item dropdown">
+                  <Link
+                    to=""
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Noticias{" "}
+                  </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link to="/noticia" className="dropdown-item text-dark">
+                      Ingresar Noticia
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            ) : null}
           </ul>
         </div>
 

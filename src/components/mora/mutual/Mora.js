@@ -2,22 +2,15 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import {
-  mOficina,
-  mCobradores,
-  mTarjeta,
-  mBanConv
-} from "../../../actions/moraActions";
+import { mOficina, mCobradores, mTarjeta } from "../../../actions/moraMActions";
 
 import Moficina from "./Moficina";
 import Mcobradores from "./Mcobradores";
 import Mbanco from "./Mbanco";
-import Mpolicia from "./Mpolicia";
 
 class Mora extends Component {
   state = {
     mcobradores: "",
-    mcobradoresp: "",
     moficina: "",
     mtarjeta: ""
   };
@@ -25,16 +18,14 @@ class Mora extends Component {
     this.props.mCobradores();
     this.props.mOficina();
     this.props.mTarjeta();
-    this.props.mBanConv();
 
     setTimeout(() => {
-      const { mcobradores, moficina, mtarjeta, mbanconv } = this.props;
+      const { mcobradores, moficina, mtarjeta } = this.props;
 
       this.setState({
         mcobradores: mcobradores,
         moficina: moficina,
-        mtarjeta: mtarjeta,
-        mbanconv: mbanconv
+        mtarjeta: mtarjeta
       });
     }, 300);
   }
@@ -127,11 +118,10 @@ class Mora extends Component {
   };
 
   render() {
-    const { mcobradores, moficina, mtarjeta, mbanconv } = this.state;
+    const { mcobradores, moficina, mtarjeta } = this.state;
 
     let coof = mcobradores.concat(moficina);
-    let tarpol = mtarjeta.concat(mbanconv);
-    let totalgral = coof.concat(tarpol);
+    let totalgral = coof.concat(mtarjeta);
 
     return (
       <div className="containes ">
@@ -164,19 +154,6 @@ class Mora extends Component {
 
           <Mbanco
             mtarjeta={mtarjeta}
-            mbanconv={mbanconv}
-            totalmora={this.totalmora}
-            totalfichas={this.totalfichas}
-            totalmorarec={this.totalmorarec}
-            totalfichasrec={this.totalfichasrec}
-            efectividad={this.efectividad}
-            efecparcial={this.efecparcial}
-          />
-
-          <hr />
-
-          <Mpolicia
-            mbanconv={mbanconv}
             totalmora={this.totalmora}
             totalfichas={this.totalfichas}
             totalmorarec={this.totalmorarec}
@@ -233,8 +210,8 @@ class Mora extends Component {
 const mapStateToProps = state => ({
   moficina: state.mora.moficina,
   mcobradores: state.mora.mcobradores,
-  mcobradoresp: state.mora.mcobradoresp,
   mtarjeta: state.mora.mtarjeta,
+  mpolicia: state.mora.mpolicia,
   mbanconv: state.mora.mbanconv,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
@@ -245,7 +222,6 @@ export default connect(
   {
     mOficina,
     mCobradores,
-    mTarjeta,
-    mBanConv
+    mTarjeta
   }
 )(Mora);

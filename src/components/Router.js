@@ -20,6 +20,7 @@ import GestionReinM from "./campañas/reincidencia/GestionReinM";
 import GestionBlanM from "./campañas/blanqueo/GestionBlanM";
 import NuevaNoticia from "./noticias/NuevaNoticia";
 import Mora from "./mora/werchow/Mora";
+import Moram from "./mora/mutual/Mora";
 
 import store from "../store";
 import { Provider } from "react-redux";
@@ -96,6 +97,7 @@ export default class Router extends Component {
               <Route exact path={"/noticia"} component={NuevaNoticia} />
               {/* MORA */}
               <Route exact path={"/mora/werchow"} component={Mora} />
+              <Route exact path={"/mora/mutual"} component={Moram} />
             </Switch>
           ) : (
             <Switch>

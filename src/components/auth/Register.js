@@ -118,7 +118,14 @@ class Register extends Component {
                         >
                           <option value="Default">Perfil</option>
                           <option value="1">Admin</option>
-                          <option value="2">Ventas</option>
+                          <option value="2">Recuperador</option>
+                          <option value="3">Auditor</option>
+                          <option value="4">Encargado</option>
+                          <option value="5">Rendicion</option>
+                          <option value="6">Asesor</option>
+
+
+
                         </select>
                       </div>
                     </div>

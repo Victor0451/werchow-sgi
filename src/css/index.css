@@ -12,6 +12,18 @@ code {
     monospace;
 }
 
+/* WERCHOW LOGO */
+.werchowlogo {
+  width: 150px;
+  height: 25px;
+}
+
+/* WERCHOW LOGO */
+.mutuallogo {
+  width: 175px;
+  height: 50px;
+}
+
 /* FORMS */
 
 .form-style-8 {
@@ -174,7 +186,6 @@ code {
   align-content: center;
 }
 
-
 .social_icon span {
   font-size: 60px;
   margin-left: 10px;
@@ -185,7 +196,6 @@ code {
   color: white;
   cursor: pointer;
 }
-
 
 .social_icon {
   position: absolute;

@@ -32,6 +32,8 @@ class Table extends React.Component {
   obtenerDatos = e => {
     e.preventDefault();
 
+    console.log("sdf");
+
     const { user } = this.props.auth;
     const { accion } = this.props;
 
