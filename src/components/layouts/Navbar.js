@@ -204,6 +204,35 @@ class Navbar extends Component {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
+                    Efectividad de Cobranza{" "}
+                  </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link
+                      to="/cobranza/werchow"
+                      className="dropdown-item text-dark"
+                    >
+                      Werchow
+                    </Link>
+
+                    <hr />
+
+                    <Link to="/mora/mutual" className="dropdown-item text-dark">
+                      Mutual
+                    </Link>
+                  </div>
+                </li>
+                <li className="nav-item dropdown">
+                  <Link
+                    to=""
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Noticias{" "}
                   </Link>
                   <div
