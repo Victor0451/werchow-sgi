@@ -125,7 +125,7 @@ class Mora extends Component {
 
     return (
       <div className="containes ">
-        <h1 className="mb-4 text-center">Mora Werchow</h1>
+        <h1 className="mb-4 text-center">Mora Mutual</h1>
         <div id="moraw">
           <hr />
           <Mcobradores

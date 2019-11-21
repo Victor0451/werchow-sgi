@@ -56,6 +56,37 @@ class Navbar extends Component {
                     </Link>
                   </div>
                 </li>
+
+                <li className="nav-item dropdown">
+                  <Link
+                    to=""
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Efectividad de Cobranza{" "}
+                  </Link>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <Link
+                      to="/cobranza/werchow"
+                      className="dropdown-item text-dark"
+                    >
+                      Werchow
+                    </Link>
+
+                    <hr />
+
+                    <Link to="/mora/mutual" className="dropdown-item text-dark">
+                      Mutual
+                    </Link>
+                  </div>
+                </li>
+
                 <li className="nav-item dropdown">
                   <Link
                     to=""
@@ -238,7 +269,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(Navbar);
+export default connect(mapStateToProps, null)(Navbar);

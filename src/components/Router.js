@@ -24,6 +24,7 @@ import Moram from "./mora/mutual/Mora";
 
 import store from "../store";
 import { Provider } from "react-redux";
+import Werchow from "./cobranza/Werchow";
 
 const token = sessionStorage.getItem("token");
 
@@ -98,6 +99,8 @@ export default class Router extends Component {
               {/* MORA */}
               <Route exact path={"/mora/werchow"} component={Mora} />
               <Route exact path={"/mora/mutual"} component={Moram} />
+              {/* COBRANZA */}
+              <Route exact path={"/cobranza/werchow/"} component={Werchow} />
             </Switch>
           ) : (
             <Switch>
