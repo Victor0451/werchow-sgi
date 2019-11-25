@@ -81,7 +81,10 @@ class Navbar extends Component {
 
                     <hr />
 
-                    <Link to="/mora/mutual" className="dropdown-item text-dark">
+                    <Link
+                      to="/cobranza/mutual"
+                      className="dropdown-item text-dark"
+                    >
                       Mutual
                     </Link>
                   </div>
@@ -219,7 +222,10 @@ class Navbar extends Component {
 
                     <hr />
 
-                    <Link to="/mora/mutual" className="dropdown-item text-dark">
+                    <Link
+                      to="/cobranza/mutual"
+                      className="dropdown-item text-dark"
+                    >
                       Mutual
                     </Link>
                   </div>

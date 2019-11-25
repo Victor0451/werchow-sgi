@@ -120,41 +120,82 @@ export default class Moficina extends Component {
               </div>
             ) : flag === 60 ? (
               <div>
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">{eoficina[3].zona}</div>
-                  <div className="col-3">PERICO</div>
-                  <div className="col-2">$ {eoficina[3].cobranza}</div>
-                  <div className="col-1">{eoficina[3].fichas}</div>
-                  <div className="col-2">$ {eoficinacob[3].cobranza}</div>
-                  <div className="col-1">{eoficinacob[3].fichas}</div>
-                  <div className="col-2">
-                    {" "}
-                    {efecparcial(eoficina, eoficinacob, 3)}%{" "}
-                  </div>
-                </div>
+                {!eoficinacob[3] ? (
+                  <div>
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">{eoficina[3].zona}</div>
+                      <div className="col-3">PERICO</div>
+                      <div className="col-2">$ {eoficina[3].cobranza}</div>
+                      <div className="col-1">{eoficina[3].fichas}</div>
+                      <div className="col-2">$ 0</div>
+                      <div className="col-1">0</div>
+                      <div className="col-2"> 0% </div>
+                    </div>
 
-                <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
-                  <div className="col-4">
-                    {" "}
-                    <strong>TOTAL</strong>
-                  </div>
+                    <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
+                      <div className="col-4">
+                        {" "}
+                        <strong>TOTAL</strong>
+                      </div>
 
-                  <div className="col-2">
-                    <strong>$ {eoficina[3].cobranza}</strong>
+                      <div className="col-2">
+                        <strong>$ {eoficina[3].cobranza}</strong>
+                      </div>
+                      <div className="col-1">
+                        <strong>{eoficina[3].fichas}</strong>
+                      </div>
+                      <div className="col-2">
+                        <strong>$ 0</strong>
+                      </div>
+                      <div className="col-1">
+                        <strong> 0</strong>
+                      </div>
+                      <div className="col-2">
+                        <strong>0%</strong>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-1">
-                    <strong>{eoficina[3].fichas}</strong>
+                ) : (
+                  <div>
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">{eoficina[3].zona}</div>
+                      <div className="col-3">PERICO</div>
+                      <div className="col-2">$ {eoficina[3].cobranza}</div>
+                      <div className="col-1">{eoficina[3].fichas}</div>
+                      <div className="col-2">$ {eoficinacob[3].cobranza}</div>
+                      <div className="col-1">{eoficinacob[3].fichas}</div>
+                      <div className="col-2">
+                        {" "}
+                        {efecparcial(eoficina, eoficinacob, 3)}%{" "}
+                      </div>
+                    </div>
+
+                    <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
+                      <div className="col-4">
+                        {" "}
+                        <strong>TOTAL</strong>
+                      </div>
+
+                      <div className="col-2">
+                        <strong>$ {eoficina[3].cobranza}</strong>
+                      </div>
+                      <div className="col-1">
+                        <strong>{eoficina[3].fichas}</strong>
+                      </div>
+                      <div className="col-2">
+                        <strong>$ {eoficinacob[3].cobranza}</strong>
+                      </div>
+                      <div className="col-1">
+                        <strong> {eoficinacob[3].fichas} </strong>
+                      </div>
+                      <div className="col-2">
+                        <strong>
+                          {efecparcial(eoficina, eoficinacob, 3)}%
+                        </strong>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-2">
-                    <strong>$ {eoficinacob[3].cobranza}</strong>
-                  </div>
-                  <div className="col-1">
-                    <strong> {eoficinacob[3].fichas} </strong>
-                  </div>
-                  <div className="col-2">
-                    <strong>{efecparcial(eoficina, eoficinacob, 3)}%</strong>
-                  </div>
-                </div>
+                )}
               </div>
             ) : flag === 1 ? (
               <div>

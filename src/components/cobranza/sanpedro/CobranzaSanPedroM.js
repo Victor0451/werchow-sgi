@@ -7,65 +7,63 @@ import {
   eCobradoresTotal,
   eOficinaCobrado,
   eOficinaTotal,
-  eTarjetaCobradoperico,
-  eTarjetaTotalperico
-} from "../../../actions/efectividadActions";
+  eTarjetaCobradosanpedro,
+  eTarjetaTotalsanpedro
+} from "../../../actions/efectividadMActions";
 
-import Eoficina from "../Eoficina";
-import Ecobradores from "../Ecobradores";
-import Ebanco from "../Ebanco";
+import Eoficina from "../EoficinaM";
+import Ecobradores from "../EcobradoresM";
+import Ebanco from "../EbancoM";
 
 import {
   total,
   total1index,
   total1indexfichas,
-  total2indexfichas,
   totalfichas,
   totalcobrado,
   totalfichascob,
   efecparcial,
-  total2index,
   efectividad2,
   imprimir,
   efectividad
 } from "../funciones";
 
-class CobranzaPerico extends Component {
+class CobranzaSanPedro extends Component {
   state = {
     eoficina: "",
     eoficinacob: "",
     ecobradores: "",
     ecobradorescob: "",
-    etarjetar: "",
-    etarjetacobr: ""
+    etarjetap: "",
+    etarjetacobp: ""
   };
   componentDidMount() {
     this.props.eCobradoresCobrado();
     this.props.eCobradoresTotal();
     this.props.eOficinaCobrado();
     this.props.eOficinaTotal();
-    this.props.eTarjetaCobradoperico();
-    this.props.eTarjetaTotalperico();
+    this.props.eTarjetaCobradosanpedro();
+    this.props.eTarjetaTotalsanpedro();
 
     setTimeout(() => {
       const {
-        eoficina,
-        eoficinacob,
-        ecobradores,
-        ecobradorescob,
-        etarjetar,
-        etarjetacobr
+        eoficinam,
+        eoficinacobm,
+        ecobradoresm,
+        ecobradorescobm,
+        etarjetapm,
+        etarjetacobpm
       } = this.props;
 
       this.setState({
-        eoficina: eoficina,
-        eoficinacob: eoficinacob,
-        ecobradores: ecobradores,
-        ecobradorescob: ecobradorescob,
-        etarjetar: etarjetar,
-        etarjetacobr: etarjetacobr
+        eoficina: eoficinam,
+        eoficinacob: eoficinacobm,
+        ecobradores: ecobradoresm,
+        ecobradorescob: ecobradorescobm,
+        etarjetap: etarjetapm,
+        etarjetacobp: etarjetacobpm
       });
-    }, 300);
+    }, 400);
   }
 
   render() {
@@ -74,26 +72,27 @@ class CobranzaPerico extends Component {
       eoficinacob,
       ecobradores,
       ecobradorescob,
-      etarjetar,
-      etarjetacobr
+      etarjetap,
+      etarjetacobp
     } = this.state;
 
     let acobrar =
-      total2index(ecobradores, 0, 13) +
-      total(etarjetar) +
-      total1index(eoficina, 2);
+      total1index(ecobradores, 0) + total(etarjetap) + total1index(eoficina, 2);
 
     let cobrado =
-      total2index(ecobradorescob, 0, 13) +
-      total(etarjetacobr) +
+      total1index(ecobradorescob, 0) +
+      total(etarjetacobp) +
       total1index(eoficinacob, 2);
 
     let efectividadt = (cobrado * 100) / acobrar;
-    let flag = 5;
+    let flag = 60;
+
     return (
       <div className="containes ">
-        <div id="r">
-          <h1 className="mb-4 text-center">Efectividad de Cobranza Perico</h1>
+        <div id="sp">
+          <h1 className="mb-4 text-center">
+            Efectividad de Cobranza San Pedro
+          </h1>
 
           <hr />
           <Ecobradores
@@ -125,8 +124,9 @@ class CobranzaPerico extends Component {
           <hr />
 
           <Ebanco
-            etarjeta={etarjetar}
-            etarjetacob={etarjetacobr}
+            flag={flag}
+            etarjeta={etarjetap}
+            etarjetacob={etarjetacobp}
             total={total}
             totalfichas={totalfichas}
             totalcobrado={totalcobrado}
@@ -145,32 +145,34 @@ class CobranzaPerico extends Component {
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {total2index(ecobradores, 0, 13) +
-                    total(etarjetar) +
-                    total1index(eoficina, 2)}{" "}
+                  {total1index(ecobradores, 6) +
+                    total(etarjetap) +
+                    total1index(eoficina, 3)}{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
-                  {total2indexfichas(ecobradores, 0, 13) +
-                    totalfichas(etarjetar) +
-                    total1indexfichas(eoficina, 2)}
+                  {total1indexfichas(ecobradores, 6) +
+                    totalfichas(etarjetap) +
+                    total1indexfichas(eoficina, 3)}
                 </strong>
               </div>
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {total2index(ecobradorescob, 0, 13) +
-                    total(etarjetacobr) +
-                    total1index(eoficinacob, 2)}{" "}
+                  {total1index(ecobradorescob, 6) + total(etarjetacobp)
+                  // + total1index(eoficinacob, 2)
+                  }{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
                   {" "}
-                  {total2indexfichas(ecobradorescob, 0, 13) +
-                    totalfichas(etarjetacobr) +
-                    total1indexfichas(eoficinacob, 2)}
+                  {total1indexfichas(ecobradorescob, 6) +
+                    totalfichas(etarjetacobp)
+                  // +
+                  // total1indexfichas(eoficinacob, 2)
+                  }
                 </strong>
               </div>
               <div className="col-2">
@@ -200,12 +202,12 @@ class CobranzaPerico extends Component {
 }
 
 const mapStateToProps = state => ({
-  eoficina: state.efectividad.eoficina,
-  eoficinacob: state.efectividad.eoficinacob,
-  ecobradores: state.efectividad.ecobradores,
-  ecobradorescob: state.efectividad.ecobradorescob,
-  etarjetar: state.efectividad.etarjetar,
-  etarjetacobr: state.efectividad.etarjetacobr,
+  eoficinam: state.efectividad.eoficina,
+  eoficinacobm: state.efectividad.eoficinacob,
+  ecobradoresm: state.efectividad.ecobradores,
+  ecobradorescobm: state.efectividad.ecobradorescob,
+  etarjetapm: state.efectividad.etarjetap,
+  etarjetacobpm: state.efectividad.etarjetacobp,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
@@ -215,6 +217,6 @@ export default connect(mapStateToProps, {
   eCobradoresTotal,
   eOficinaCobrado,
   eOficinaTotal,
-  eTarjetaCobradoperico,
-  eTarjetaTotalperico
-})(CobranzaPerico);
+  eTarjetaCobradosanpedro,
+  eTarjetaTotalsanpedro
+})(CobranzaSanPedro);

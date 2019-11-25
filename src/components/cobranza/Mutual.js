@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import CobranzaPalpala from "./palpala/CobranzaPalpala";
-import CobranzaPerico from "./perico/CobranzaPerico";
-import CobranzaSanPedro from "./sanpedro/CobranzaSanPedro";
-import CobranzaSSJ from "./ssj/CobranzaSSJ";
+import CobranzaPalpala from "./palpala/CobranzaPalpalaM";
+import CobranzaPerico from "./perico/CobranzaPericoM";
+import CobranzaSanPedro from "./sanpedro/CobranzaSanPedroM";
+import CobranzaSSJ from "./ssj/CobranzaSSJM";
 
-export default class Werchow extends Component {
+export default class Mutual extends Component {
   render() {
     return (
       <div className="container mt-4 mb-4">

@@ -15,6 +15,21 @@ import Eoficina from "../Eoficina";
 import Ecobradores from "../Ecobradores";
 import Ebanco from "../Ebanco";
 
+import {
+  total,
+  total1index,
+  total1indexfichas,
+  total2indexfichas,
+  totalfichas,
+  totalcobrado,
+  totalfichascob,
+  efecparcial,
+  total2index,
+  efectividad2,
+  imprimir,
+  efectividad
+} from "../funciones";
+
 class CobranzaPalpala extends Component {
   state = {
     eoficina: "",
@@ -53,179 +68,6 @@ class CobranzaPalpala extends Component {
     }, 300);
   }
 
-  total = array => {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total += array[i].cobranza;
-    }
-
-    return total;
-  };
-
-  total2index = (array, index1, index2) => {
-    let total1 = 0;
-    let total2 = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total1 = array[index1].cobranza;
-    }
-
-    for (let i = 0; i < array.length; i++) {
-      total2 = array[index2].cobranza;
-    }
-
-    let total = total1 + total2;
-
-    return total;
-  };
-
-  total2indexfichas = (array, index1, index2) => {
-    let total1 = 0;
-    let total2 = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total1 = array[index1].fichas;
-    }
-
-    for (let i = 0; i < array.length; i++) {
-      total2 = array[index2].fichas;
-    }
-
-    let total = total1 + total2;
-
-    return total;
-  };
-
-  total1index = (array, index) => {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total = array[index].cobranza;
-    }
-
-    return total;
-  };
-
-  total1indexfichas = (array, index) => {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total = array[index].fichas;
-    }
-
-    return total;
-  };
-
-  totalcobrado = array => {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total += array[i].cobranza;
-    }
-
-    return total;
-  };
-
-  totalfichas = array => {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total += array[i].fichas;
-    }
-
-    return total;
-  };
-
-  totalfichascob = array => {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-      total += array[i].fichas;
-    }
-
-    return total;
-  };
-
-  efectividad2 = (array1, array2) => {
-    let total = 0;
-    let cobrado = 0;
-
-    for (let i = 0; i < array1.length; i++) {
-      total += array1[i].cobranza;
-    }
-
-    for (let i = 0; i < array2.length; i++) {
-      cobrado += array2[i].cobranza;
-    }
-
-    let efectividad = (cobrado * 100) / total;
-    let resultado = efectividad.toFixed(2);
-
-    return resultado;
-  };
-
-  efectividad = (array1, array2, index1, index2) => {
-    let total1 = 0;
-    let total2 = 0;
-
-    let cobrado1 = 0;
-    let cobrado2 = 0;
-
-    for (let i = 0; i < array1.length; i++) {
-      total1 += array1[index1].cobranza;
-      total2 += array1[index2].cobranza;
-    }
-
-    for (let i = 0; i < array2.length; i++) {
-      cobrado1 += array2[index1].cobranza;
-      cobrado2 += array2[index2].cobranza;
-    }
-
-    let total = total1 + total2;
-    let cobrado = cobrado1 + cobrado2;
-
-    let efectividad = (cobrado * 100) / total;
-    let resultado = efectividad.toFixed(2);
-
-    return resultado;
-  };
-
-  efecparcial = (array1, array2, index) => {
-    let total = 0;
-    let cobrado = 0;
-
-    for (let i = 0; i < array1.length; i++) {
-      total += array1[index].cobranza;
-    }
-
-    for (let i = 0; i < array2.length; i++) {
-      cobrado += array2[index].cobranza;
-    }
-
-    let efectividad = (cobrado * 100) / total;
-    let resultado = efectividad.toFixed(2);
-
-    return resultado;
-  };
-
-  imprimir = () => {
-    let contenido = document.getElementById("l").innerHTML;
-    let contenidoOrg = document.body.innerHTML;
-
-    document.body.innerHTML = contenido;
-
-    window.print();
-
-    document.body.innerHTML = contenidoOrg;
-
-    window.location.reload(true);
-  };
-
-  reload = () => {
-    document.location.reload();
-  };
-
   render() {
     const {
       eoficina,
@@ -237,16 +79,16 @@ class CobranzaPalpala extends Component {
     } = this.state;
 
     let acobrar =
-      this.total2index(ecobradores, 1, 2) +
-      this.total(etarjetal) +
-      this.total1index(eoficina, 1);
+      total2index(ecobradores, 1, 2) +
+      total(etarjetal) +
+      total1index(eoficina, 1);
 
     let cobrado =
-      this.total2index(ecobradorescob, 1, 2) +
-      this.total(etarjetacobl) +
-      this.total1index(eoficinacob, 1);
+      total2index(ecobradorescob, 1, 2) +
+      total(etarjetacobl) +
+      total1index(eoficinacob, 1);
 
-    let efectividad = (cobrado * 100) / acobrar;
+    let efectividadt = (cobrado * 100) / acobrar;
     let flag = 3;
 
     return (
@@ -259,12 +101,12 @@ class CobranzaPalpala extends Component {
             flag={flag}
             ecobradores={ecobradores}
             ecobradorescob={ecobradorescob}
-            total={this.total}
-            totalfichas={this.totalfichas}
-            totalcobrado={this.totalcobrado}
-            totalfichascob={this.totalfichascob}
-            efecparcial={this.efecparcial}
-            efectividad={this.efectividad}
+            total={total}
+            totalfichas={totalfichas}
+            totalcobrado={totalcobrado}
+            totalfichascob={totalfichascob}
+            efecparcial={efecparcial}
+            efectividad={efectividad}
           />
 
           <hr />
@@ -273,12 +115,12 @@ class CobranzaPalpala extends Component {
             flag={flag}
             eoficina={eoficina}
             eoficinacob={eoficinacob}
-            total={this.total}
-            totalfichas={this.totalfichas}
-            totalcobrado={this.totalcobrado}
-            totalfichascob={this.totalfichascob}
-            efecparcial={this.efecparcial}
-            efectividad={this.efectividad}
+            total={total}
+            totalfichas={totalfichas}
+            totalcobrado={totalcobrado}
+            totalfichascob={totalfichascob}
+            efecparcial={efecparcial}
+            efectividad={efectividad}
           />
 
           <hr />
@@ -286,12 +128,12 @@ class CobranzaPalpala extends Component {
           <Ebanco
             etarjeta={etarjetal}
             etarjetacob={etarjetacobl}
-            total={this.total}
-            totalfichas={this.totalfichas}
-            totalcobrado={this.totalcobrado}
-            totalfichascob={this.totalfichascob}
-            efecparcial={this.efecparcial}
-            efectividad2={this.efectividad2}
+            total={total}
+            totalfichas={totalfichas}
+            totalcobrado={totalcobrado}
+            totalfichascob={totalfichascob}
+            efecparcial={efecparcial}
+            efectividad2={efectividad2}
           />
 
           <div className="container mb-4">
@@ -304,36 +146,36 @@ class CobranzaPalpala extends Component {
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {this.total2index(ecobradores, 1, 2) +
-                    this.total(etarjetal) +
-                    this.total1index(eoficina, 1)}{" "}
+                  {total2index(ecobradores, 1, 2) +
+                    total(etarjetal) +
+                    total1index(eoficina, 1)}{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
-                  {this.total2indexfichas(ecobradores, 1, 2) +
-                    this.totalfichas(etarjetal) +
-                    this.total1indexfichas(eoficina, 1)}
+                  {total2indexfichas(ecobradores, 1, 2) +
+                    totalfichas(etarjetal) +
+                    total1indexfichas(eoficina, 1)}
                 </strong>
               </div>
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {this.total2index(ecobradorescob, 1, 2) +
-                    this.total(etarjetacobl) +
-                    this.total1index(eoficinacob, 1)}{" "}
+                  {total2index(ecobradorescob, 1, 2) +
+                    total(etarjetacobl) +
+                    total1index(eoficinacob, 1)}{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
                   {" "}
-                  {this.total2indexfichas(ecobradorescob, 1, 2) +
-                    this.totalfichas(etarjetacobl) +
-                    this.total1indexfichas(eoficinacob, 1)}
+                  {total2indexfichas(ecobradorescob, 1, 2) +
+                    totalfichas(etarjetacobl) +
+                    total1indexfichas(eoficinacob, 1)}
                 </strong>
               </div>
               <div className="col-2">
-                <strong>{efectividad.toFixed(2)}%</strong>
+                <strong>{efectividadt.toFixed(2)}%</strong>
               </div>
             </div>
           </div>
@@ -346,7 +188,7 @@ class CobranzaPalpala extends Component {
               <Link
                 to="#"
                 className="btn btn-info col-md-3 mr-1"
-                onClick={this.imprimir}
+                onClick={imprimir}
               >
                 Imprimir Solicitud
               </Link>

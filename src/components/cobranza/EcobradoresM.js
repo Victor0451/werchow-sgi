@@ -10,7 +10,7 @@ export default class Mcobradores extends Component {
       ecobradorescob,
       efecparcial,
       efectividad,
-      efectividad3,
+      efectividad3M,
       flag
     } = this.props;
     let tmp = new Date(Date.now());
@@ -129,7 +129,7 @@ export default class Mcobradores extends Component {
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-between border-bottom text-center">
+                {/* <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[13].zona}</div>
                   <div className="col-3">CRUZ MANUEL ALBERTO</div>
                   <div className="col-2">$ {ecobradores[13].cobranza}</div>
@@ -139,7 +139,7 @@ export default class Mcobradores extends Component {
                   <div className="col-2">
                     {efecparcial(ecobradores, ecobradorescob, 13)}%
                   </div>
-                </div>
+                </div> */}
 
                 <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
                   <div className="col-4">
@@ -149,28 +149,33 @@ export default class Mcobradores extends Component {
 
                   <div className="col-2">
                     <strong>
-                      $ {ecobradores[0].cobranza + ecobradores[13].cobranza}
+                      {/* $ {ecobradores[0].cobranza + ecobradores[13].cobranza} */}
+                      $ {ecobradores[0].cobranza}
                     </strong>
                   </div>
                   <div className="col-1">
                     <strong>
-                      {ecobradores[0].fichas + ecobradores[13].fichas}
+                      {/* {ecobradores[0].fichas + ecobradores[13].fichas} */}
+                      {ecobradores[0].fichas}
                     </strong>
                   </div>
                   <div className="col-2">
                     <strong>
                       ${" "}
-                      {ecobradorescob[0].cobranza + ecobradorescob[13].cobranza}
+                      {/* {ecobradorescob[0].cobranza + ecobradorescob[13].cobranza} */}
+                      {ecobradorescob[0].cobranza}
                     </strong>
                   </div>
                   <div className="col-1">
                     <strong>
-                      {ecobradorescob[0].fichas + ecobradorescob[13].fichas}
+                      {/* {ecobradorescob[0].fichas + ecobradorescob[13].fichas} */}
+                      {ecobradorescob[0].fichas}
                     </strong>
                   </div>
                   <div className="col-2">
                     <strong>
-                      {efectividad(ecobradores, ecobradorescob, 0, 13)}%
+                      {/* {efectividad(ecobradores, ecobradorescob, 0, 13)}% */}
+                      {efecparcial(ecobradores, ecobradorescob, 0)}%
                     </strong>
                   </div>
                 </div>
@@ -189,7 +194,7 @@ export default class Mcobradores extends Component {
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-between border-bottom text-center">
+                {/* <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[15].zona}</div>
                   <div className="col-3">RIVADENEIRA</div>
                   <div className="col-2">$ {ecobradores[15].cobranza}</div>
@@ -211,7 +216,7 @@ export default class Mcobradores extends Component {
                   <div className="col-2">
                     {efecparcial(ecobradores, ecobradorescob, 16)}%
                   </div>
-                </div>
+                </div> */}
 
                 <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
                   <div className="col-4">
@@ -220,47 +225,27 @@ export default class Mcobradores extends Component {
                   </div>
 
                   <div className="col-2">
-                    <strong>
-                      ${" "}
-                      {ecobradores[6].cobranza +
-                        ecobradores[15].cobranza +
-                        ecobradores[16].cobranza}
-                    </strong>
+                    <strong>$ {ecobradores[6].cobranza}</strong>
                   </div>
                   <div className="col-1">
-                    <strong>
-                      {ecobradores[6].fichas +
-                        ecobradores[15].fichas +
-                        ecobradores[16].fichas}
-                    </strong>
+                    <strong>{ecobradores[6].fichas}</strong>
+                  </div>
+                  <div className="col-2">
+                    <strong>$ {ecobradorescob[6].cobranza}</strong>
+                  </div>
+                  <div className="col-1">
+                    <strong>{ecobradorescob[6].fichas}</strong>
                   </div>
                   <div className="col-2">
                     <strong>
-                      ${" "}
-                      {ecobradorescob[6].cobranza +
-                        ecobradorescob[15].cobranza +
-                        ecobradorescob[16].cobranza}
-                    </strong>
-                  </div>
-                  <div className="col-1">
-                    <strong>
-                      {ecobradorescob[6].fichas +
-                        ecobradorescob[15].fichas +
-                        ecobradorescob[16].fichas}
-                    </strong>
-                  </div>
-                  <div className="col-2">
-                    <strong>
-                      {efectividad(ecobradores, ecobradorescob, 6, 15) +
-                        efecparcial(ecobradores, ecobradorescob, 16)}
-                      %
+                      {efecparcial(ecobradores, ecobradorescob, 6)}%
                     </strong>
                   </div>
                 </div>
               </div>
             ) : flag === 1 ? (
               <div>
-                <div className="d-flex justify-content-between border-bottom text-center">
+                {/* <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[3].zona}</div>
                   <div className="col-3">MARIANA GAZQUEZ</div>
                   <div className="col-2">$ {ecobradores[3].cobranza}</div>
@@ -270,23 +255,35 @@ export default class Mcobradores extends Component {
                   <div className="col-2">
                     {efecparcial(ecobradores, ecobradorescob, 3)}%{" "}
                   </div>
+                </div> */}
+
+                <div className="d-flex justify-content-between border-bottom text-center">
+                  <div className="col-1">{ecobradores[2].zona}</div>
+                  <div className="col-3">CHOQUE GUADALUPE</div>
+                  <div className="col-2">$ {ecobradores[2].cobranza}</div>
+                  <div className="col-1">{ecobradores[2].fichas}</div>{" "}
+                  <div className="col-2">$ {ecobradorescob[2].cobranza}</div>
+                  <div className="col-1">{ecobradorescob[2].fichas}</div>
+                  <div className="col-2">
+                    {efecparcial(ecobradores, ecobradorescob, 2)}%
+                  </div>
                 </div>
 
                 <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">{ecobradores[4].zona}</div>
-                  <div className="col-3">CHOQUE GUADALUPE</div>
-                  <div className="col-2">$ {ecobradores[4].cobranza}</div>
-                  <div className="col-1">{ecobradores[4].fichas}</div>{" "}
-                  <div className="col-2">$ {ecobradorescob[4].cobranza}</div>
-                  <div className="col-1">{ecobradorescob[4].fichas}</div>
+                  <div className="col-1">{ecobradores[3].zona}</div>
+                  <div className="col-3">RODRIGUEZ GUILLERMO</div>
+                  <div className="col-2">$ {ecobradores[3].cobranza}</div>
+                  <div className="col-1">{ecobradores[3].fichas}</div>{" "}
+                  <div className="col-2">$ {ecobradorescob[3].cobranza}</div>
+                  <div className="col-1">{ecobradorescob[3].fichas}</div>
                   <div className="col-2">
-                    {efecparcial(ecobradores, ecobradorescob, 4)}%
+                    {efecparcial(ecobradores, ecobradorescob, 3)}%
                   </div>
                 </div>
 
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[5].zona}</div>
-                  <div className="col-3">RODRIGUEZ GUILLERMO</div>
+                  <div className="col-3">ARANA PABLO</div>
                   <div className="col-2">$ {ecobradores[5].cobranza}</div>
                   <div className="col-1">{ecobradores[5].fichas}</div>{" "}
                   <div className="col-2">$ {ecobradorescob[5].cobranza}</div>
@@ -297,8 +294,20 @@ export default class Mcobradores extends Component {
                 </div>
 
                 <div className="d-flex justify-content-between border-bottom text-center">
+                  <div className="col-1">{ecobradores[6].zona}</div>
+                  <div className="col-3">TRUJILLO</div>
+                  <div className="col-2">$ {ecobradores[6].cobranza}</div>
+                  <div className="col-1">{ecobradores[6].fichas}</div>{" "}
+                  <div className="col-2">$ {ecobradorescob[6].cobranza}</div>
+                  <div className="col-1">{ecobradorescob[6].fichas}</div>
+                  <div className="col-2">
+                    {efecparcial(ecobradores, ecobradorescob, 6)}%
+                  </div>
+                </div>
+
+                <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[7].zona}</div>
-                  <div className="col-3">ARANA PABLO</div>
+                  <div className="col-3">LUIS LEON</div>
                   <div className="col-2">$ {ecobradores[7].cobranza}</div>
                   <div className="col-1">{ecobradores[7].fichas}</div>{" "}
                   <div className="col-2">$ {ecobradorescob[7].cobranza}</div>
@@ -308,9 +317,21 @@ export default class Mcobradores extends Component {
                   </div>
                 </div>
 
+                {/* <div className="d-flex justify-content-between border-bottom text-center">
+                  <div className="col-1">{ecobradores[10].zona}</div>
+                  <div className="col-3">RODRIGUEZ GUILLERMO</div>
+                  <div className="col-2">$ {ecobradores[10].cobranza}</div>
+                  <div className="col-1">{ecobradores[10].fichas}</div>{" "}
+                  <div className="col-2">$ {ecobradorescob[10].cobranza}</div>
+                  <div className="col-1">{ecobradorescob[10].fichas}</div>
+                  <div className="col-2">
+                    {efecparcial(ecobradores, ecobradorescob, 10)}%
+                  </div>
+                </div> */}
+
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[8].zona}</div>
-                  <div className="col-3">TRUJILLO</div>
+                  <div className="col-3">ARANA PABLO (A COM.)</div>
                   <div className="col-2">$ {ecobradores[8].cobranza}</div>
                   <div className="col-1">{ecobradores[8].fichas}</div>{" "}
                   <div className="col-2">$ {ecobradorescob[8].cobranza}</div>
@@ -322,7 +343,7 @@ export default class Mcobradores extends Component {
 
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[9].zona}</div>
-                  <div className="col-3">LUIS LEON</div>
+                  <div className="col-3">CRUZ ANSELMO</div>
                   <div className="col-2">$ {ecobradores[9].cobranza}</div>
                   <div className="col-1">{ecobradores[9].fichas}</div>{" "}
                   <div className="col-2">$ {ecobradorescob[9].cobranza}</div>
@@ -334,7 +355,7 @@ export default class Mcobradores extends Component {
 
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[10].zona}</div>
-                  <div className="col-3">RODRIGUEZ GUILLERMO</div>
+                  <div className="col-3">RIVADENEIRA (S. CLARA)</div>
                   <div className="col-2">$ {ecobradores[10].cobranza}</div>
                   <div className="col-1">{ecobradores[10].fichas}</div>{" "}
                   <div className="col-2">$ {ecobradorescob[10].cobranza}</div>
@@ -343,43 +364,7 @@ export default class Mcobradores extends Component {
                     {efecparcial(ecobradores, ecobradorescob, 10)}%
                   </div>
                 </div>
-
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">{ecobradores[11].zona}</div>
-                  <div className="col-3">ARANA PABLO (A COM.)</div>
-                  <div className="col-2">$ {ecobradores[11].cobranza}</div>
-                  <div className="col-1">{ecobradores[11].fichas}</div>{" "}
-                  <div className="col-2">$ {ecobradorescob[11].cobranza}</div>
-                  <div className="col-1">{ecobradorescob[11].fichas}</div>
-                  <div className="col-2">
-                    {efecparcial(ecobradores, ecobradorescob, 11)}%
-                  </div>
-                </div>
-
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">{ecobradores[12].zona}</div>
-                  <div className="col-3">CRUZ ANSELMO</div>
-                  <div className="col-2">$ {ecobradores[12].cobranza}</div>
-                  <div className="col-1">{ecobradores[12].fichas}</div>{" "}
-                  <div className="col-2">$ {ecobradorescob[12].cobranza}</div>
-                  <div className="col-1">{ecobradorescob[12].fichas}</div>
-                  <div className="col-2">
-                    {efecparcial(ecobradores, ecobradorescob, 12)}%
-                  </div>
-                </div>
-
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">{ecobradores[14].zona}</div>
-                  <div className="col-3">RIVADENEIRA (S. CLARA)</div>
-                  <div className="col-2">$ {ecobradores[14].cobranza}</div>
-                  <div className="col-1">{ecobradores[14].fichas}</div>{" "}
-                  <div className="col-2">$ {ecobradorescob[14].cobranza}</div>
-                  <div className="col-1">{ecobradorescob[14].fichas}</div>
-                  <div className="col-2">
-                    {efecparcial(ecobradores, ecobradorescob, 14)}%
-                  </div>
-                </div>
-
+                {/* 
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[17].zona}</div>
                   <div className="col-3">TRUJILLO X</div>
@@ -390,20 +375,32 @@ export default class Mcobradores extends Component {
                   <div className="col-2">
                     {efecparcial(ecobradores, ecobradorescob, 17)}%
                   </div>
-                </div>
-
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">{ecobradores[18].zona}</div>
-                  <div className="col-3">CHOQUE GUADALUPE</div>
-                  <div className="col-2">$ {ecobradores[18].cobranza}</div>
-                  <div className="col-1">{ecobradores[18].fichas}</div>{" "}
-                  <div className="col-2">$ {ecobradorescob[18].cobranza}</div>
-                  <div className="col-1">{ecobradorescob[18].fichas}</div>
-                  <div className="col-2">
-                    {efecparcial(ecobradores, ecobradorescob, 18)}%
+                </div> */}
+                {!ecobradorescob[11] ? (
+                  <div className="d-flex justify-content-between border-bottom text-center">
+                    <div className="col-1">{ecobradores[11].zona}</div>
+                    <div className="col-3">CHOQUE GUADALUPE</div>
+                    <div className="col-2">$ {ecobradores[11].cobranza}</div>
+                    <div className="col-1">{ecobradores[11].fichas}</div>{" "}
+                    <div className="col-2">$ 0</div>
+                    <div className="col-1">0</div>
+                    <div className="col-2">0%</div>
                   </div>
-                </div>
+                ) : (
+                  <div className="d-flex justify-content-between border-bottom text-center">
+                    <div className="col-1">{ecobradores[11].zona}</div>
+                    <div className="col-3">CHOQUE GUADALUPE</div>
+                    <div className="col-2">$ {ecobradores[11].cobranza}</div>
+                    <div className="col-1">{ecobradores[11].fichas}</div>{" "}
+                    <div className="col-2">$ {ecobradorescob[11].cobranza}</div>
+                    <div className="col-1">{ecobradorescob[11].fichas}</div>
+                    <div className="col-2">
+                      {efecparcial(ecobradores, ecobradorescob, 11)}%
+                    </div>
+                  </div>
+                )}
 
+                {/* 
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{ecobradores[19].zona}</div>
                   <div className="col-3">LEON X</div>
@@ -414,7 +411,7 @@ export default class Mcobradores extends Component {
                   <div className="col-2">
                     {efecparcial(ecobradores, ecobradorescob, 19)}%
                   </div>
-                </div>
+                </div> */}
                 <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
                   <div className="col-4">
                     {" "}
@@ -424,89 +421,68 @@ export default class Mcobradores extends Component {
                   <div className="col-2">
                     <strong>
                       $
-                      {ecobradores[3].cobranza +
-                        ecobradores[4].cobranza +
+                      {ecobradores[2].cobranza +
+                        ecobradores[3].cobranza +
                         ecobradores[5].cobranza +
+                        ecobradores[6].cobranza +
                         ecobradores[7].cobranza +
                         ecobradores[8].cobranza +
                         ecobradores[9].cobranza +
                         ecobradores[10].cobranza +
-                        ecobradores[11].cobranza +
-                        ecobradores[12].cobranza +
-                        ecobradores[14].cobranza +
-                        ecobradores[17].cobranza +
-                        ecobradores[18].cobranza +
-                        ecobradores[19].cobranza}
+                        ecobradores[11].cobranza}
                     </strong>
                   </div>
                   <div className="col-1">
                     <strong>
-                      {ecobradores[3].fichas +
-                        ecobradores[4].fichas +
+                      {ecobradores[2].fichas +
+                        ecobradores[3].fichas +
                         ecobradores[5].fichas +
+                        ecobradores[6].fichas +
                         ecobradores[7].fichas +
                         ecobradores[8].fichas +
                         ecobradores[9].fichas +
                         ecobradores[10].fichas +
-                        ecobradores[11].fichas +
-                        ecobradores[12].fichas +
-                        ecobradores[14].fichas +
-                        ecobradores[17].fichas +
-                        ecobradores[18].fichas +
-                        ecobradores[19].fichas}
+                        ecobradores[11].fichas}
                     </strong>
                   </div>
                   <div className="col-2">
                     <strong>
                       ${" "}
-                      {ecobradorescob[3].cobranza +
-                        ecobradorescob[4].cobranza +
+                      {ecobradorescob[2].cobranza +
+                        ecobradorescob[3].cobranza +
                         ecobradorescob[5].cobranza +
+                        ecobradorescob[6].cobranza +
                         ecobradorescob[7].cobranza +
                         ecobradorescob[8].cobranza +
                         ecobradorescob[9].cobranza +
-                        ecobradorescob[10].cobranza +
-                        ecobradorescob[11].cobranza +
-                        ecobradorescob[12].cobranza +
-                        ecobradorescob[14].cobranza +
-                        ecobradorescob[17].cobranza +
-                        ecobradorescob[18].cobranza +
-                        ecobradorescob[19].cobranza}
+                        ecobradorescob[10].cobranza }
                     </strong>
                   </div>
                   <div className="col-1">
                     <strong>
-                      {ecobradorescob[3].fichas +
-                        ecobradorescob[4].fichas +
+                      {ecobradorescob[2].fichas +
+                        ecobradorescob[3].fichas +
                         ecobradorescob[5].fichas +
+                        ecobradorescob[6].fichas +
                         ecobradorescob[7].fichas +
                         ecobradorescob[8].fichas +
                         ecobradorescob[9].fichas +
-                        ecobradorescob[10].fichas +
-                        ecobradorescob[11].fichas +
-                        ecobradorescob[12].fichas +
-                        ecobradorescob[14].fichas +
-                        ecobradorescob[17].fichas +
-                        ecobradorescob[18].fichas +
-                        ecobradorescob[19].fichas}
+                        ecobradorescob[10].fichas 
+                       }
                     </strong>
                   </div>
                   <div className="col-2">
                     <strong>
-                      {efectividad3(ecobradores, ecobradorescob, [
+                      {efectividad3M(ecobradores, ecobradorescob, [
+                        2,
                         3,
-                        4,
                         5,
+                        6,
                         7,
                         8,
                         9,
                         10,
-                        11,
-                        12,
-                        14,
-                        17,
-                        18,
-                        19
+                        11
                       ])}
                       %
                     </strong>
