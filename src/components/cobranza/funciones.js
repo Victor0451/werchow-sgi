@@ -310,15 +310,4 @@ export const efecparcial = (array1, array2, index) => {
   return resultado;
 };
 
-export const imprimir = () => {
-  let contenido = document.getElementById("ssj").innerHTML;
-  let contenidoOrg = document.body.innerHTML;
 
-  document.body.innerHTML = contenido;
-
-  window.print();
-
-  document.body.innerHTML = contenidoOrg;
-
-  window.location.reload(true);
-};

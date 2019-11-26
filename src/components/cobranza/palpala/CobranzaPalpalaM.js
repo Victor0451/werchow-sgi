@@ -26,7 +26,6 @@ import {
   efecparcial,
   total2index,
   efectividad2,
-  imprimir,
   efectividad
 } from "../funciones";
 
@@ -68,6 +67,19 @@ class CobranzaPalpalaM extends Component {
     }, 300);
   }
 
+  imprimir = () => {
+    let contenido = document.getElementById("lm").innerHTML;
+    let contenidoOrg = document.body.innerHTML;
+
+    document.body.innerHTML = contenido;
+
+    window.print();
+
+    document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
+  };
+
   render() {
     const {
       eoficina,
@@ -93,7 +105,7 @@ class CobranzaPalpalaM extends Component {
 
     return (
       <div className="containes ">
-        <div id="l">
+        <div id="lm">
           <h1 className="mb-4 text-center">Efectividad de Cobranza Palpala</h1>
 
           <hr />
@@ -189,7 +201,7 @@ class CobranzaPalpalaM extends Component {
               <Link
                 to="#"
                 className="btn btn-info col-md-3 mr-1"
-                onClick={imprimir}
+                onClick={this.imprimir}
               >
                 Imprimir Solicitud
               </Link>

@@ -26,8 +26,7 @@ import {
   efecparcial,
   total2index,
   efectividad2,
-  efectividad,
-  imprimir
+  efectividad
 } from "../funciones";
 
 class CobranzaSanPedro extends Component {
@@ -68,6 +67,19 @@ class CobranzaSanPedro extends Component {
     }, 300);
   }
 
+  imprimir = () => {
+    let contenido = document.getElementById("p").innerHTML;
+    let contenidoOrg = document.body.innerHTML;
+
+    document.body.innerHTML = contenido;
+
+    window.print();
+
+    document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
+  };
+
   render() {
     const {
       eoficina,
@@ -92,7 +104,7 @@ class CobranzaSanPedro extends Component {
     let flag = 60;
     return (
       <div className="containes ">
-        <div id="sp">
+        <div id="p">
           <h1 className="mb-4 text-center">
             Efectividad de Cobranza San Pedro
           </h1>
@@ -189,7 +201,7 @@ class CobranzaSanPedro extends Component {
               <Link
                 to="#"
                 className="btn btn-info col-md-3 mr-1"
-                onClick={imprimir}
+                onClick={this.imprimir}
               >
                 Imprimir Solicitud
               </Link>

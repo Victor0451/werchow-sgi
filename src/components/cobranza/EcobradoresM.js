@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Spinner from "../layouts/Spinner";
-import werchowlogo from "../../img/logo.png";
+import mutuallogo from "../../img/logom.jpg";
 import moment from "moment";
 
 export default class Mcobradores extends Component {
@@ -27,7 +27,7 @@ export default class Mcobradores extends Component {
                 <u> Efectividad de Cobradores</u>
               </strong>
               <div className="h6">{fecha}</div>
-              <img className="mutuallogo" src={werchowlogo} alt="werchowlogo" />
+              <img className="mutuallogo" src={mutuallogo} alt="mutuallogo" />
             </h5>
             <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
               <div className="col-1">
@@ -455,7 +455,7 @@ export default class Mcobradores extends Component {
                         ecobradorescob[7].cobranza +
                         ecobradorescob[8].cobranza +
                         ecobradorescob[9].cobranza +
-                        ecobradorescob[10].cobranza }
+                        ecobradorescob[10].cobranza}
                     </strong>
                   </div>
                   <div className="col-1">
@@ -467,8 +467,7 @@ export default class Mcobradores extends Component {
                         ecobradorescob[7].fichas +
                         ecobradorescob[8].fichas +
                         ecobradorescob[9].fichas +
-                        ecobradorescob[10].fichas 
-                       }
+                        ecobradorescob[10].fichas}
                     </strong>
                   </div>
                   <div className="col-2">

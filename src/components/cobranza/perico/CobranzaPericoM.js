@@ -24,7 +24,6 @@ import {
   totalfichascob,
   efecparcial,
   efectividad2,
-  imprimir,
   efectividad
 } from "../funciones";
 
@@ -66,6 +65,19 @@ class CobranzaPericoM extends Component {
     }, 400);
   }
 
+  imprimir = () => {
+    let contenido = document.getElementById("rm").innerHTML;
+    let contenidoOrg = document.body.innerHTML;
+
+    document.body.innerHTML = contenido;
+
+    window.print();
+
+    document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
+  };
+
   render() {
     const {
       eoficina,
@@ -89,7 +101,7 @@ class CobranzaPericoM extends Component {
 
     return (
       <div className="containes ">
-        <div id="r">
+        <div id="rm">
           <h1 className="mb-4 text-center">Efectividad de Cobranza Perico</h1>
 
           <hr />
@@ -185,7 +197,7 @@ class CobranzaPericoM extends Component {
               <Link
                 to="#"
                 className="btn btn-info col-md-3 mr-1"
-                onClick={imprimir}
+                onClick={this.imprimir}
               >
                 Imprimir Solicitud
               </Link>

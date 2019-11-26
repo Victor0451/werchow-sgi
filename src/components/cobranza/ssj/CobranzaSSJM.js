@@ -26,7 +26,6 @@ import {
   efecparcial,
   efectividad3M,
   efectividad2,
-  imprimir,
   efectividad
 } from "../funciones";
 
@@ -68,6 +67,19 @@ class CobranzaSSJM extends Component {
     }, 400);
   }
 
+  imprimir = () => {
+    let contenido = document.getElementById("ssjm").innerHTML;
+    let contenidoOrg = document.body.innerHTML;
+
+    document.body.innerHTML = contenido;
+
+    window.print();
+
+    document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
+  };
+
   render() {
     const {
       eoficina,
@@ -93,7 +105,7 @@ class CobranzaSSJM extends Component {
     let flag = 1;
     return (
       <div className="containes ">
-        <div id="ssj">
+        <div id="ssjm">
           <h1 className="mb-4 text-center">
             Efectividad de Cobranza San Salvador
           </h1>
@@ -192,7 +204,7 @@ class CobranzaSSJM extends Component {
               <Link
                 to="#"
                 className="btn btn-info col-md-3 mr-1"
-                onClick={imprimir}
+                onClick={this.imprimir}
               >
                 Imprimir Solicitud
               </Link>

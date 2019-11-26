@@ -27,8 +27,7 @@ import {
   efectividad3,
   efectividad2,
   totalfichasssj,
-  efectividad,
-  imprimir
+  efectividad
 } from "../funciones";
 
 class CobranzaSSJ extends Component {
@@ -68,6 +67,19 @@ class CobranzaSSJ extends Component {
       });
     }, 300);
   }
+
+  imprimir = () => {
+    let contenido = document.getElementById("ssj").innerHTML;
+    let contenidoOrg = document.body.innerHTML;
+
+    document.body.innerHTML = contenido;
+
+    window.print();
+
+    document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
+  };
 
   render() {
     const {
@@ -263,7 +275,7 @@ class CobranzaSSJ extends Component {
               <Link
                 to="#"
                 className="btn btn-info col-md-3 mr-1"
-                onClick={imprimir}
+                onClick={this.imprimir}
               >
                 Imprimir Solicitud
               </Link>
