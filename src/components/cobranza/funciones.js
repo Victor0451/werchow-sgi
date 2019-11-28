@@ -37,6 +37,28 @@ export const totalcobssj = (array1, index) => {
   return total;
 };
 
+export const efectividadSP = (array1, array2, index) => {
+  let total = 0;
+  let cobrado = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    total += array1[index[0]].cobranza;
+    total += array1[index[1]].cobranza;
+    total += array1[index[2]].cobranza;
+  }
+
+  for (let i = 0; i < array2.length; i++) {
+    cobrado += array2[index[0]].cobranza;
+    cobrado += array2[index[1]].cobranza;
+    cobrado += array2[index[2]].cobranza;
+  }
+
+  let efectividad = (cobrado * 100) / total;
+  let resultado = efectividad.toFixed(2);
+
+  return resultado;
+};
+
 export const efectividad3 = (array1, array2, index) => {
   let total = 0;
   let cobrado = 0;
@@ -309,5 +331,3 @@ export const efecparcial = (array1, array2, index) => {
 
   return resultado;
 };
-
-

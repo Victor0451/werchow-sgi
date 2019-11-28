@@ -26,6 +26,7 @@ import {
   efecparcial,
   total2index,
   efectividad2,
+  efectividadSP,
   efectividad
 } from "../funciones";
 
@@ -119,7 +120,7 @@ class CobranzaSanPedro extends Component {
             totalcobrado={totalcobrado}
             totalfichascob={totalfichascob}
             efecparcial={efecparcial}
-            efectividad={efectividad}
+            efectividadSP={efectividadSP}
           />
 
           <hr />

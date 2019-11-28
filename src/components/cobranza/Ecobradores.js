@@ -9,6 +9,7 @@ export default class Mcobradores extends Component {
       ecobradores,
       ecobradorescob,
       efecparcial,
+      efectividadSP,
       efectividad,
       efectividad3,
       flag
@@ -251,9 +252,7 @@ export default class Mcobradores extends Component {
                   </div>
                   <div className="col-2">
                     <strong>
-                      {efectividad(ecobradores, ecobradorescob, 6, 15) +
-                        efecparcial(ecobradores, ecobradorescob, 16)}
-                      %
+                      {efectividadSP(ecobradores, ecobradorescob, [6,15,16])}%
                     </strong>
                   </div>
                 </div>
