@@ -10,7 +10,12 @@ import {
   ETARJETA_R,
   ETARJETA_COBRADO_R,
   ETARJETA_P,
-  ETARJETA_COBRADO_P
+  ETARJETA_COBRADO_P,
+  EPOLICIA_L,
+  EPOLICIA_P,
+  EPOLICIA_R,
+  EPOLICIA_W,
+  ECONVENIOS_P
 } from "../actions/types";
 
 const initialState = {
@@ -87,6 +92,36 @@ export default function(state = initialState, action) {
       return {
         ...state,
         etarjetacobp: action.payload
+      };
+
+    case EPOLICIA_L:
+      return {
+        ...state,
+        epolicial: action.payload
+      };
+
+    case EPOLICIA_P:
+      return {
+        ...state,
+        epoliciap: action.payload
+      };
+
+    case EPOLICIA_R:
+      return {
+        ...state,
+        epoliciar: action.payload
+      };
+
+    case EPOLICIA_W:
+      return {
+        ...state,
+        epoliciaw: action.payload
+      };
+
+    case ECONVENIOS_P:
+      return {
+        ...state,
+        econveniop: action.payload
       };
 
     default:

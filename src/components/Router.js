@@ -26,6 +26,7 @@ import store from "../store";
 import { Provider } from "react-redux";
 import Werchow from "./cobranza/Werchow";
 import Mutual from "./cobranza/Mutual";
+import GestionPoli from "./campañas/policia/GestionPoli";
 
 const token = sessionStorage.getItem("token");
 
@@ -90,6 +91,11 @@ export default class Router extends Component {
                 exact
                 path={"/gestioncaso/BlanqueoM"}
                 component={GestionBlanM}
+              />
+              <Route
+                exact
+                path={"/gestioncaso/Policia"}
+                component={GestionPoli}
               />
               <Route
                 exact

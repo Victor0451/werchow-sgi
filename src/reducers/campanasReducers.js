@@ -14,7 +14,8 @@ import {
   REIN,
   BLANQUEO,
   CAMPANA_OPERADOR_NOTI,
-  CAMPANA_OPERADOR_HIST
+  CAMPANA_OPERADOR_HIST,
+  POLICIA
 } from "../actions/types";
 
 const initialState = {
@@ -43,6 +44,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         rein: action.payload
+      };
+    case POLICIA:
+      return {
+        ...state,
+        poli: action.payload
       };
     case ESTADO_CAMP:
       return {

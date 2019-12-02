@@ -61,7 +61,9 @@ class CampanaCaso extends Component {
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
-            <h1 className="mt-4 mb-4 text-center"><u>GESTION DE CAMPAÑAS WERCHOW</u></h1>
+            <h1 className="mt-4 mb-4 text-center">
+              <u>GESTION DE CAMPAÑAS WERCHOW</u>
+            </h1>
             <div className="row">
               <div className="col-md-6 mt-4">
                 <div className="card bg-light mb-3">
@@ -125,6 +127,21 @@ class CampanaCaso extends Component {
 
               <div className="col-md-6 mt-4">
                 <div className="card bg-light mb-3">
+                  <div className="card-header">POLICIAS</div>
+                  <div className="card-body">
+                    <h5 className="card-title">Listado de casos:</h5>
+                    <Link
+                      className="btn btn-primary"
+                      to={`/gestioncaso/Policia`}
+                    >
+                      Abrir Campaña
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-6 mt-4">
+                <div className="card bg-light mb-3">
                   <div className="card-header">RECORDATORIOS DE PAGOS</div>
                   <div className="card-body">
                     <h5 className="card-title">
@@ -148,7 +165,9 @@ class CampanaCaso extends Component {
             role="tabpanel"
             aria-labelledby="nav-profile-tab"
           >
-            <h1 className="mt-4 mb-4 text-center"><u>GESTION DE CAMPAÑAS MUTUAL</u></h1>
+            <h1 className="mt-4 mb-4 text-center">
+              <u>GESTION DE CAMPAÑAS MUTUAL</u>
+            </h1>
             <div className="row">
               <div className="col-md-6 mt-4">
                 <div className="card bg-light mb-3">
@@ -233,7 +252,6 @@ const mapStateToProps = state => ({
   blanw: state.campanas.blanw,
   estado: state.campanas.estado
 });
-export default connect(
-  mapStateToProps,
-  { atW, RecW, ReinW, BlanW }
-)(CampanaCaso);
+export default connect(mapStateToProps, { atW, RecW, ReinW, BlanW })(
+  CampanaCaso
+);

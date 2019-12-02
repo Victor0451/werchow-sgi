@@ -10,7 +10,12 @@ import {
   ETARJETA_R,
   ETARJETA_COBRADO_R,
   ETARJETA_P,
-  ETARJETA_COBRADO_P
+  ETARJETA_COBRADO_P,
+  EPOLICIA_L,
+  EPOLICIA_R,
+  EPOLICIA_P,
+  EPOLICIA_W,
+  ECONVENIOS_P
 } from "../actions/types";
 import axios from "axios";
 
@@ -130,6 +135,56 @@ export const eTarjetaCobradosanpedro = () => async dispatch => {
   );
   dispatch({
     type: ETARJETA_COBRADO_P,
+    payload: respuesta.data
+  });
+};
+
+export const ePoliciaTotalPalpala = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadw/epoliciapalpalatotal`
+  );
+  dispatch({
+    type: EPOLICIA_L,
+    payload: respuesta.data
+  });
+};
+
+export const ePoliciaTotalPerico = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadw/epoliciapericototal`
+  );
+  dispatch({
+    type: EPOLICIA_R,
+    payload: respuesta.data
+  });
+};
+
+export const ePoliciaTotalSanSalvador = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadw/epoliciassjtotal`
+  );
+  dispatch({
+    type: EPOLICIA_W,
+    payload: respuesta.data
+  });
+};
+
+export const ePoliciaTotalSanPerdro = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadw/epoliciasanpedrototal`
+  );
+  dispatch({
+    type: EPOLICIA_P,
+    payload: respuesta.data
+  });
+};
+
+export const eConveniosTotalSanPerdro = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadw/econveniosanpedrototal`
+  );
+  dispatch({
+    type: ECONVENIOS_P,
     payload: respuesta.data
   });
 };

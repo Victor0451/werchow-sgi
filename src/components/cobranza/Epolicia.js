@@ -3,17 +3,17 @@ import Spinner from "../layouts/Spinner";
 
 export default class Mpolicia extends Component {
   render() {
-    const { mpolicia, mbanconv } = this.props;
+    const { epoliciap } = this.props;
 
     return (
-      <div>
-        {!mpolicia ? (
+      <div className="mt-4">
+        {!epoliciap ? (
           <Spinner />
         ) : (
           <div className=" container">
             <h5 className="mb-4">
               <strong>
-                <u> Mora de Convenios y Policias</u>
+                <u> Efectividad de Convenios y Policias</u>
               </strong>
             </h5>
             <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
@@ -26,16 +26,16 @@ export default class Mpolicia extends Component {
                 <strong>BANCO</strong>
               </div>
               <div className="col-2">
-                <strong>MORA</strong>
+                <strong>A COBRAR</strong>
               </div>
               <div className="col-1">
                 <strong>FICHAS</strong>
               </div>
               <div className="col-2">
-                <strong>MORA REC.</strong>
+                <strong>COBRADO</strong>
               </div>
               <div className="col-1">
-                <strong>FIC REC.</strong>
+                <strong>FICHAS</strong>
               </div>
               <div className="col-2">
                 <strong>EFECTIVIDAD</strong>
@@ -45,8 +45,8 @@ export default class Mpolicia extends Component {
             <div className="d-flex justify-content-between border-bottom text-center">
               <div className="col-1">**</div>
               <div className="col-3">CONVENIOS</div>
-              <div className="col-2">$ {mbanconv[0].mora}</div>
-              <div className="col-1">{mbanconv[0].fichas}</div>
+              <div className="col-2">$ </div>
+              <div className="col-1"></div>
               <div className="col-2"> - </div>
               <div className="col-1"> - </div>
               <div className="col-2"> 0% </div>
@@ -54,8 +54,8 @@ export default class Mpolicia extends Component {
             <div className="d-flex justify-content-between border-bottom text-center">
               <div className="col-1">**</div>
               <div className="col-3">POLICIA</div>
-              <div className="col-2">$ {mpolicia[0].mora}</div>
-              <div className="col-1">{mpolicia[0].fichas}</div>
+              <div className="col-2">$ {epoliciap[0].cobranza}</div>
+              <div className="col-1">{epoliciap[0].fichas}</div>
               <div className="col-2"> - </div>
               <div className="col-1"> - </div>
               <div className="col-2"> 0% </div>
@@ -67,10 +67,10 @@ export default class Mpolicia extends Component {
               </div>
 
               <div className="col-2">
-                <strong>$ {mpolicia[0].mora + mbanconv[0].mora}</strong>
+                <strong>$ {epoliciap[0].cobranza}</strong>
               </div>
               <div className="col-1">
-                <strong>{mpolicia[0].fichas + mbanconv[0].fichas}</strong>
+                <strong>{epoliciap[0].fichas}</strong>
               </div>
               <div className="col-2">
                 <strong>$ - </strong>

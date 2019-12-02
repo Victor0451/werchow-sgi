@@ -8,12 +8,15 @@ import {
   eOficinaCobrado,
   eOficinaTotal,
   eTarjetaCobradosanpedro,
-  eTarjetaTotalsanpedro
+  eTarjetaTotalsanpedro,
+  ePoliciaTotalSanPerdro,
+  eConveniosTotalSanPerdro
 } from "../../../actions/efectividadActions";
 
 import Eoficina from "../Eoficina";
 import Ecobradores from "../Ecobradores";
 import Ebanco from "../Ebanco";
+import Epolicia from "../Epolicia";
 
 import {
   total,
@@ -37,7 +40,9 @@ class CobranzaSanPedro extends Component {
     ecobradores: "",
     ecobradorescob: "",
     etarjetap: "",
-    etarjetacobp: ""
+    etarjetacobp: "",
+    epoliciap: "",
+    econveniop: ""
   };
   componentDidMount() {
     this.props.eCobradoresCobrado();
@@ -46,6 +51,8 @@ class CobranzaSanPedro extends Component {
     this.props.eOficinaTotal();
     this.props.eTarjetaCobradosanpedro();
     this.props.eTarjetaTotalsanpedro();
+    this.props.ePoliciaTotalSanPerdro();
+    this.props.eConveniosTotalSanPerdro();
 
     setTimeout(() => {
       const {
@@ -54,7 +61,9 @@ class CobranzaSanPedro extends Component {
         ecobradores,
         ecobradorescob,
         etarjetap,
-        etarjetacobp
+        etarjetacobp,
+        epoliciap,
+        econveniop
       } = this.props;
 
       this.setState({
@@ -63,7 +72,9 @@ class CobranzaSanPedro extends Component {
         ecobradores: ecobradores,
         ecobradorescob: ecobradorescob,
         etarjetap: etarjetap,
-        etarjetacobp: etarjetacobp
+        etarjetacobp: etarjetacobp,
+        epoliciap: epoliciap,
+        econveniop: econveniop
       });
     }, 300);
   }
@@ -88,8 +99,11 @@ class CobranzaSanPedro extends Component {
       ecobradores,
       ecobradorescob,
       etarjetap,
-      etarjetacobp
+      etarjetacobp,
+      epoliciap,
+      econveniop
     } = this.state;
+
 
     let acobrar =
       total2index(ecobradores, 0, 13) +
@@ -149,6 +163,8 @@ class CobranzaSanPedro extends Component {
             efecparcial={efecparcial}
             efectividad2={efectividad2}
           />
+
+          {/* <Epolicia epoliciap={epoliciap} /> */}
 
           <div className="container mb-4">
             <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
@@ -220,6 +236,8 @@ const mapStateToProps = state => ({
   ecobradores: state.efectividad.ecobradores,
   ecobradorescob: state.efectividad.ecobradorescob,
   etarjetap: state.efectividad.etarjetap,
+  epoliciap: state.efectividad.epoliciap,
+  econveniop: state.efectividad.econveniop,
   etarjetacobp: state.efectividad.etarjetacobp,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
@@ -231,5 +249,7 @@ export default connect(mapStateToProps, {
   eOficinaCobrado,
   eOficinaTotal,
   eTarjetaCobradosanpedro,
-  eTarjetaTotalsanpedro
+  eTarjetaTotalsanpedro,
+  ePoliciaTotalSanPerdro,
+  eConveniosTotalSanPerdro
 })(CobranzaSanPedro);

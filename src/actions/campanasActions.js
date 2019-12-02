@@ -1,5 +1,6 @@
 import {
   AT,
+  POLICIA,
   CREAR_CAMP_AT,
   ESTADO_CAMP,
   CAMPANA_OPERADOR,
@@ -57,6 +58,16 @@ export const BlanW = () => async dispatch => {
   );
   dispatch({
     type: BLANQUEO,
+    payload: respuesta.data
+  });
+};
+
+export const PoliW = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/PoliW`
+  );
+  dispatch({
+    type: POLICIA,
     payload: respuesta.data
   });
 };
@@ -198,9 +209,29 @@ export const campanaOperadorBlan = operador => async dispatch => {
   });
 };
 
+export const campanaOperadorPoli = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadorpoli/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
 export const campanaOperadorTrabBlan = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabblan/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_TRAB,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorTrabPoli = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadortrabpoli/${operador}`
   );
   dispatch({
     type: CAMPANA_OPERADOR_TRAB,
@@ -231,6 +262,16 @@ export const campanaOperadorNotiRein = operador => async dispatch => {
 export const campanaOperadorNotiRec = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadornotirec/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR_NOTI,
+    payload: respuesta.data
+  });
+};
+
+export const campanaOperadorNotiPoli = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/campanaoperadornotipoli/${operador}`
   );
   dispatch({
     type: CAMPANA_OPERADOR_NOTI,

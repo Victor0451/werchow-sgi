@@ -15,6 +15,10 @@ import BlanqueoCC from "./estados/blanqueoCC";
 import BlanqueoPal from "./estados/blanqueoPal";
 import BlanqueoPer from "./estados/blanqueoPer";
 import BlanqueoSP from "./estados/blanqueoSP";
+import PoliCC from "./estados/poliCC";
+import PoliPer from "./estados/poliPer";
+import PoliPal from "./estados/poliPalpala";
+import PoliSP from "./estados/poliSP";
 
 import toastr from "../../../utils/toastr";
 
@@ -25,6 +29,7 @@ import {
   RecW,
   ReinW,
   BlanW,
+  PoliW,
   verificarEstadoCamp,
   crearCampAT
 } from "../../../actions/campanasActions";
@@ -52,7 +57,13 @@ class EstadoSocio extends Component {
     BlanCasaCentralMG: [],
     BlanPalpala: [],
     BlanPerico: [],
-    BlanSanPedro: []
+    BlanSanPedro: [],
+    PoliPalpala: [],
+    PoliPerico: [],
+    PoliSanPedro: [],
+    PoliCasaCentralAT: [],
+    PoliCasaCentralGG: [],
+    PoliCasaCentralMG: []
   };
 
   atDelMes = () => {
@@ -257,6 +268,56 @@ class EstadoSocio extends Component {
     }
   };
 
+  polisDelMes = () => {
+    let newDate = new Date();
+    let date = newDate.getDate();
+
+    if (date) {
+      this.props.PoliW();
+
+      setTimeout(() => {
+        const { poli } = this.props;
+        console.log(this.props);
+        if (poli) {
+          let policias = poli[0];
+
+          let PoliPerico = policias.filter(rec => {
+            return rec.SUCURSAL === "R";
+          });
+
+          let PoliPalpala = policias.filter(rec => {
+            return rec.SUCURSAL === "L";
+          });
+
+          let PoliSanPedro = policias.filter(rec => {
+            return rec.SUCURSAL === "P";
+          });
+
+          let PoliCasaCentral = policias.filter(rec => {
+            return rec.SUCURSAL === "W";
+          });
+
+          let PoliCCmitad = Math.floor(PoliCasaCentral.length / 2);
+
+          let PoliCasaCentralGG = PoliCasaCentral.slice(0, PoliCCmitad);
+
+          let PoliCasaCentralMG = PoliCasaCentral.slice(
+            PoliCCmitad,
+            PoliCasaCentral.length
+          );
+
+          this.setState({
+            PoliCasaCentralGG: PoliCasaCentralGG,
+            PoliCasaCentralMG: PoliCasaCentralMG,
+            PoliPalpala: PoliPalpala,
+            PoliPerico: PoliPerico,
+            PoliSanPedro: PoliSanPedro
+          });
+        }
+      }, 1000);
+    }
+  };
+
   crearCampana = (array, idcamp) => {
     let tmp = new Date(Date.now());
     let fecha = tmp.toISOString().split("T")[0];
@@ -315,7 +376,13 @@ class EstadoSocio extends Component {
       BlanCasaCentralMG,
       BlanPalpala,
       BlanPerico,
-      BlanSanPedro
+      BlanSanPedro,
+      PoliCasaCentralAT,
+      PoliCasaCentralMG,
+      PoliCasaCentralGG,
+      PoliPalpala,
+      PoliPerico,
+      PoliSanPedro
     } = this.state;
     let flag = 1;
     return (
@@ -396,6 +463,26 @@ class EstadoSocio extends Component {
                   BlanPalpala.length +
                   BlanPerico.length +
                   BlanSanPedro.length}
+              </span>
+            </a>
+
+            <a
+              className="nav-item nav-link"
+              id="nav-poli-tab"
+              data-toggle="tab"
+              href="#nav-poli"
+              role="tab"
+              aria-controls="nav-poli"
+              aria-selected="false"
+            >
+              Policia {""}
+              <span className="badge badge-pill badge-dark text-white">
+                {PoliCasaCentralMG.length +
+                  PoliCasaCentralAT.length +
+                  PoliCasaCentralGG.length +
+                  PoliPalpala.length +
+                  PoliPerico.length +
+                  PoliSanPedro.length}
               </span>
             </a>
           </div>
@@ -607,6 +694,57 @@ class EstadoSocio extends Component {
               flag={flag}
             />
           </div>
+          <div
+            className="tab-pane fade"
+            id="nav-poli"
+            role="tabpanel"
+            aria-labelledby="nav-poli-tab"
+          >
+            <div className="jumbotron row mt-4">
+              <div className="col-md-6">
+                <h2>Buscar Cartera para Policias</h2>
+              </div>
+              <div className="col-md-6">
+                <button
+                  className="btn btn-secondary btn-block"
+                  onClick={this.polisDelMes}
+                >
+                  Buscar
+                </button>
+              </div>
+            </div>
+
+            <PoliCC
+              PoliCasaCentralGG={PoliCasaCentralGG}
+              PoliCasaCentralMG={PoliCasaCentralMG}
+              PoliCasaCentralAT={PoliCasaCentralAT}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+
+            <hr />
+
+            <PoliPal
+              PoliPalpala={PoliPalpala}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+
+            <hr />
+
+            <PoliPer
+              PoliPerico={PoliPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+
+            <hr />
+            <PoliSP
+              PoliSanPedro={PoliSanPedro}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+          </div>
         </div>
       </div>
     );
@@ -618,10 +756,16 @@ const mapStateToProps = state => ({
   rec: state.campanas.rec,
   rein: state.campanas.rein,
   blan: state.campanas.blan,
+  poli: state.campanas.poli,
   estado: state.campanas.estado
 });
 
-export default connect(
-  mapStateToProps,
-  { atW, RecW, ReinW, BlanW, verificarEstadoCamp, crearCampAT }
-)(EstadoSocio);
+export default connect(mapStateToProps, {
+  atW,
+  RecW,
+  ReinW,
+  BlanW,
+  PoliW,
+  verificarEstadoCamp,
+  crearCampAT
+})(EstadoSocio);
