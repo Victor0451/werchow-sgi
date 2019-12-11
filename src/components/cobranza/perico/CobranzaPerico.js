@@ -1,71 +1,79 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import MesSelect from "react-select";
+import { meses } from "../../layouts/Arrays/arrays";
+
 import { connect } from "react-redux";
 import {
-  eCobradoresCobrado,
-  eCobradoresTotal,
-  eOficinaCobrado,
-  eOficinaTotal,
-  eTarjetaCobradoperico,
-  eTarjetaTotalperico
+  eCobradores,
+  eOficina,
+  eTarjetaPerico,
+  ePolicia,
+  eConvenios
 } from "../../../actions/efectividadActions";
 
 import Eoficina from "../Eoficina";
 import Ecobradores from "../Ecobradores";
 import Ebanco from "../Ebanco";
+import Epolicia from "../Epolicia";
 
 import {
   total,
-  total1index,
+  total1indexacob,
+  total1indexcobrado,
   total1indexfichas,
   total2indexfichas,
   totalfichas,
   totalcobrado,
   totalfichascob,
   efecparcial,
-  total2index,
+  total2indexacob,
+  total2indexcobrado,
   efectividad2,
-  efectividad
+  efectividad,
+  efectividad2a
+
 } from "../funciones";
 
 class CobranzaPerico extends Component {
   state = {
     eoficina: "",
-    eoficinacob: "",
     ecobradores: "",
-    ecobradorescob: "",
     etarjetar: "",
-    etarjetacobr: ""
+    epolicia: "",
+    econvenio: "",
+    month: ""
   };
-  componentDidMount() {
-    this.props.eCobradoresCobrado();
-    this.props.eCobradoresTotal();
-    this.props.eOficinaCobrado();
-    this.props.eOficinaTotal();
-    this.props.eTarjetaCobradoperico();
-    this.props.eTarjetaTotalperico();
+
+  handleChange = (value, state) => {
+    let mes = value.value;
+    let month = value.label;
+    this.props.eCobradores(mes);
+    this.props.eOficina(mes);
+    this.props.eTarjetaPerico(mes);
+    this.props.ePolicia(mes);
+    this.props.eConvenios(mes);
 
     setTimeout(() => {
       const {
         eoficina,
-        eoficinacob,
         ecobradores,
-        ecobradorescob,
         etarjetar,
-        etarjetacobr
+        epolicia,
+        econvenio
       } = this.props;
 
       this.setState({
         eoficina: eoficina,
-        eoficinacob: eoficinacob,
         ecobradores: ecobradores,
-        ecobradorescob: ecobradorescob,
         etarjetar: etarjetar,
-        etarjetacobr: etarjetacobr
+        econvenio: econvenio,
+        epolicia: epolicia,
+        month: month
       });
     }, 300);
-  }
+  };
 
   imprimir = () => {
     let contenido = document.getElementById("r").innerHTML;
@@ -83,35 +91,42 @@ class CobranzaPerico extends Component {
   render() {
     const {
       eoficina,
-      eoficinacob,
       ecobradores,
-      ecobradorescob,
       etarjetar,
-      etarjetacobr
+      epolicia,
+      econvenio
     } = this.state;
 
-    let acobrar =
-      total2index(ecobradores, 0, 13) +
-      total(etarjetar) +
-      total1index(eoficina, 2);
+    // let acobrar =
+    //   total2index(ecobradores, 0, 13) +
+    //   total(etarjetar) +
+    //   total1index(eoficina, 2);
 
-    let cobrado =
-      total2index(ecobradorescob, 0, 13) +
-      total(etarjetacobr) +
-      total1index(eoficinacob, 2);
+    // let cobrado =
+    //   total2index(ecobradorescob, 0, 13) +
+    //   total(etarjetacobr) +
+    //   total1index(eoficinacob, 2);
 
-    let efectividadt = (cobrado * 100) / acobrar;
+    // let efectividadt = (cobrado * 100) / acobrar;
     let flag = 5;
     return (
       <div className="containes ">
         <div id="r">
+          <hr className="mt-4 mb-4" />
+          <div className="mb-4">
+            <MesSelect
+              options={meses}
+              placeholder={"Eliga un Mes"}
+              onChange={value => this.handleChange(value, "mes")}
+            />
+          </div>
+          <hr className="mt-4 mb-4" />
+
           <h1 className="mb-4 text-center">Efectividad de Cobranza Perico</h1>
 
-          <hr />
           <Ecobradores
             flag={flag}
             ecobradores={ecobradores}
-            ecobradorescob={ecobradorescob}
             total={total}
             totalfichas={totalfichas}
             totalcobrado={totalcobrado}
@@ -125,7 +140,6 @@ class CobranzaPerico extends Component {
           <Eoficina
             flag={flag}
             eoficina={eoficina}
-            eoficinacob={eoficinacob}
             total={total}
             totalfichas={totalfichas}
             totalcobrado={totalcobrado}
@@ -138,13 +152,22 @@ class CobranzaPerico extends Component {
 
           <Ebanco
             etarjeta={etarjetar}
-            etarjetacob={etarjetacobr}
             total={total}
             totalfichas={totalfichas}
             totalcobrado={totalcobrado}
             totalfichascob={totalfichascob}
             efecparcial={efecparcial}
             efectividad2={efectividad2}
+          />
+
+          <hr />
+
+          <Epolicia
+            epolicia={epolicia}
+            econvenio={econvenio}
+            flag={flag}
+            efectividad2a={efectividad2a}
+            efecparcial={efecparcial}
           />
 
           <div className="container mb-4">
@@ -157,9 +180,9 @@ class CobranzaPerico extends Component {
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {total2index(ecobradores, 0, 13) +
+                  {total2indexacob(ecobradores, 0, 13) +
                     total(etarjetar) +
-                    total1index(eoficina, 2)}{" "}
+                    total1indexacob(eoficina, 2)}{" "}
                 </strong>
               </div>
               <div className="col-1">
@@ -172,21 +195,24 @@ class CobranzaPerico extends Component {
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {total2index(ecobradorescob, 0, 13) +
-                    total(etarjetacobr) +
-                    total1index(eoficinacob, 2)}{" "}
+                  {total2indexcobrado(ecobradores, 0, 13) +
+                    total(etarjetar) +
+                    total1indexcobrado(eoficina, 2)}{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
                   {" "}
-                  {total2indexfichas(ecobradorescob, 0, 13) +
-                    totalfichas(etarjetacobr) +
-                    total1indexfichas(eoficinacob, 2)}
+                  {total2indexfichas(ecobradores, 0, 13) +
+                    totalfichas(etarjetar) +
+                    total1indexfichas(eoficina, 2)}
                 </strong>
               </div>
-              <div className="col-2">
-                <strong>{efectividadt.toFixed(2)}%</strong>
+              <div className="col-1">
+                {/* <strong>{efectividadt.toFixed(2)}%</strong> */}
+              </div>
+              <div className="col-1">
+                {/* <strong>{efectividadt.toFixed(2)}%</strong> */}
               </div>
             </div>
           </div>
@@ -213,20 +239,18 @@ class CobranzaPerico extends Component {
 
 const mapStateToProps = state => ({
   eoficina: state.efectividad.eoficina,
-  eoficinacob: state.efectividad.eoficinacob,
   ecobradores: state.efectividad.ecobradores,
-  ecobradorescob: state.efectividad.ecobradorescob,
   etarjetar: state.efectividad.etarjetar,
-  etarjetacobr: state.efectividad.etarjetacobr,
+  econvenio: state.efectividad.econvenio,
+  epolicia: state.efectividad.epolicia,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, {
-  eCobradoresCobrado,
-  eCobradoresTotal,
-  eOficinaCobrado,
-  eOficinaTotal,
-  eTarjetaCobradoperico,
-  eTarjetaTotalperico
+  eCobradores,
+  eOficina,
+  eTarjetaPerico,
+  ePolicia,
+  eConvenios
 })(CobranzaPerico);

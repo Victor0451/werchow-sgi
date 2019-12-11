@@ -63,7 +63,7 @@ export default class Mutual extends Component {
             role="tabpanel"
             aria-labelledby="nav-palpala-tab"
           >
-            <CobranzaPalpala />
+            {/* <CobranzaPalpala /> */}
           </div>
           <div
             className="tab-pane fade"
@@ -71,7 +71,7 @@ export default class Mutual extends Component {
             role="tabpanel"
             aria-labelledby="nav-perico-tab"
           >
-            <CobranzaPerico />
+            {/* <CobranzaPerico /> */}
           </div>
           <div
             className="tab-pane fade"
@@ -79,7 +79,7 @@ export default class Mutual extends Component {
             role="tabpanel"
             aria-labelledby="nav-sanpedro-tab"
           >
-            <CobranzaSanPedro />
+            {/* <CobranzaSanPedro /> */}
           </div>
           <div
             className="tab-pane fade"
@@ -87,7 +87,7 @@ export default class Mutual extends Component {
             role="tabpanel"
             aria-labelledby="nav-ssj-tab"
           >
-            <CobranzaSSJ />
+            {/* <CobranzaSSJ /> */}
           </div>
         </div>
       </div>

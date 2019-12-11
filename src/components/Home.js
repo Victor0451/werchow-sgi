@@ -28,7 +28,7 @@ class Home extends Component {
 
         setTimeout(() => {
           const { buscaso } = this.props;
-         
+
           if (buscaso) {
             this.setState({
               buscaso: buscaso
@@ -56,7 +56,7 @@ class Home extends Component {
   render() {
     const { buscaso } = this.state;
     const { user } = this.props.auth;
-    console.log(buscaso)
+    console.log(buscaso);
 
     return (
       <div className="">
@@ -190,6 +190,18 @@ class Home extends Component {
                 ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de ALEJANDRA TEJERINA`
                 : buscaso.idcampana === 49
                 ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de ALEJANDRA TEJERINA`
+                : buscaso.idcampana === 50
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de MARIA GALIAN`
+                : buscaso.idcampana === 51
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de GISELA GIMENEZ`
+                : buscaso.idcampana === 52
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de ALEJANDRA TEJERINA`
+                : buscaso.idcampana === 53
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de MARISA CARRIZO`
+                : buscaso.idcampana === 54
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de VANESA GOROSITO`
+                : buscaso.idcampana === 55
+                ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de SILVIA JUAREZ`
                 : null}
             </div>
           </div>
@@ -205,9 +217,6 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    buscarCaso
-  }
-)(Home);
+export default connect(mapStateToProps, {
+  buscarCaso
+})(Home);

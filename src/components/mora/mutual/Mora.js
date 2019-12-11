@@ -1,35 +1,32 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import MesSelect from "react-select";
 
 import { connect } from "react-redux";
-import { mOficina, mCobradores, mTarjeta } from "../../../actions/moraMActions";
+import {
+  mOficina,
+  mCobradores,
+  mTarjeta,
+  mBanConv
+} from "../../../actions/moraMActions";
+
+import { meses } from "../../layouts/Arrays/arrays";
 
 import Moficina from "./Moficina";
 import Mcobradores from "./Mcobradores";
 import Mbanco from "./Mbanco";
+import Mpolicia from "./Mpolicia";
 
 class Mora extends Component {
   state = {
     mcobradores: "",
+    mcobradoresp: "",
     moficina: "",
-    mtarjeta: ""
+    mtarjeta: "",
+    mes: "",
+    month: ""
   };
-  componentDidMount() {
-    this.props.mCobradores();
-    this.props.mOficina();
-    this.props.mTarjeta();
-
-    setTimeout(() => {
-      const { mcobradores, moficina, mtarjeta } = this.props;
-
-      this.setState({
-        mcobradores: mcobradores,
-        moficina: moficina,
-        mtarjeta: mtarjeta
-      });
-    }, 300);
-  }
-
+  
   totalmora = array => {
     let total = 0;
 
@@ -113,82 +110,135 @@ class Mora extends Component {
     window.location.reload(true);
   };
 
-  reload = () => {
-    document.location.reload();
+  handleChange = (value, state) => {
+    let mes = value.value;
+    let month = value.label;
+    this.props.mCobradores(mes);
+    this.props.mOficina(mes);
+    this.props.mTarjeta(mes);
+    this.props.mBanConv(mes);
+
+    setTimeout(() => {
+      const { mcobradoresm, moficinam, mtarjetam, mbanconvm } = this.props;
+
+      this.setState({
+        mcobradores: mcobradoresm,
+        moficina: moficinam,
+        mtarjeta: mtarjetam,
+        mbanconv: mbanconvm,
+        month: month
+      });
+
+      this.setState({ [state]: value.value });
+    }, 500);
   };
 
   render() {
-    const { mcobradores, moficina, mtarjeta } = this.state;
+    const {
+      mcobradores,
+      moficina,
+      mtarjeta,
+      mbanconv,
+      mes,
+      month
+    } = this.state;
 
     let coof = mcobradores.concat(moficina);
     let totalgral = coof.concat(mtarjeta);
 
     return (
-      <div className="containes ">
+      <div className="container">
         <h1 className="mb-4 text-center">Mora Mutual</h1>
-        <div id="moraw">
-          <hr />
-          <Mcobradores
-            mcobradores={mcobradores}
-            totalmora={this.totalmora}
-            totalfichas={this.totalfichas}
-            totalmorarec={this.totalmorarec}
-            totalfichasrec={this.totalfichasrec}
-            efectividad={this.efectividad}
-            efecparcial={this.efecparcial}
+        <hr className="mt-4 mb-4" />
+        <div className="">
+          <MesSelect
+            options={meses}
+            placeholder={"Eliga un Mes"}
+            onChange={value => this.handleChange(value, "mes")}
           />
+        </div>
+        {mes.length === 0 ? (
+          ""
+        ) : (
+          <div id="moraw">
+            <hr />
 
-          <hr />
+            <Mcobradores
+              mes={month}
+              mcobradores={mcobradores}
+              totalmora={this.totalmora}
+              totalfichas={this.totalfichas}
+              totalmorarec={this.totalmorarec}
+              totalfichasrec={this.totalfichasrec}
+              efectividad={this.efectividad}
+              efecparcial={this.efecparcial}
+            />
 
-          <Moficina
-            moficina={moficina}
-            totalmora={this.totalmora}
-            totalfichas={this.totalfichas}
-            totalmorarec={this.totalmorarec}
-            totalfichasrec={this.totalfichasrec}
-            efectividad={this.efectividad}
-            efecparcial={this.efecparcial}
-          />
+            <hr />
 
-          <hr />
+            <Moficina
+              moficina={moficina}
+              totalmora={this.totalmora}
+              totalfichas={this.totalfichas}
+              totalmorarec={this.totalmorarec}
+              totalfichasrec={this.totalfichasrec}
+              efectividad={this.efectividad}
+              efecparcial={this.efecparcial}
+            />
 
-          <Mbanco
-            mtarjeta={mtarjeta}
-            totalmora={this.totalmora}
-            totalfichas={this.totalfichas}
-            totalmorarec={this.totalmorarec}
-            totalfichasrec={this.totalfichasrec}
-            efectividad={this.efectividad}
-            efecparcial={this.efecparcial}
-          />
+            <hr />
 
-          <div className="container mb-4">
-            <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
-              <div className="col-4">
-                {" "}
-                <strong>TOTAL GENERAL</strong>
-              </div>
+            <Mbanco
+              mtarjeta={mtarjeta}
+              mbanconv={mbanconv}
+              totalmora={this.totalmora}
+              totalfichas={this.totalfichas}
+              totalmorarec={this.totalmorarec}
+              totalfichasrec={this.totalfichasrec}
+              efectividad={this.efectividad}
+              efecparcial={this.efecparcial}
+            />
 
-              <div className="col-2">
-                <strong>$ {this.totalmora(totalgral)}</strong>
-              </div>
-              <div className="col-1">
-                <strong>{this.totalfichas(totalgral)}</strong>
-              </div>
-              <div className="col-2">
-                <strong>$ {this.totalmorarec(totalgral)}</strong>
-              </div>
-              <div className="col-1">
-                <strong>{this.totalfichasrec(totalgral)}</strong>
-              </div>
-              <div className="col-2">
-                <strong>{this.efectividad(totalgral)}%</strong>
+            <hr />
+
+            {/* <Mpolicia
+              mbanconv={mbanconv}
+              totalmora={this.totalmora}
+              totalfichas={this.totalfichas}
+              totalmorarec={this.totalmorarec}
+              totalfichasrec={this.totalfichasrec}
+              efectividad={this.efectividad}
+              efecparcial={this.efecparcial}
+            /> */}
+
+            <div className="container mb-4">
+              <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
+                <div className="col-4">
+                  {" "}
+                  <strong>TOTAL GENERAL</strong>
+                </div>
+
+                <div className="col-2">
+                  <strong>$ {this.totalmora(totalgral)}</strong>
+                </div>
+                <div className="col-1">
+                  <strong>{this.totalfichas(totalgral)}</strong>
+                </div>
+                <div className="col-2">
+                  <strong>$ {this.totalmorarec(totalgral)}</strong>
+                </div>
+                <div className="col-1">
+                  <strong>{this.totalfichasrec(totalgral)}</strong>
+                </div>
+                <div className="col-2">
+                  <strong>{this.efectividad(totalgral)}%</strong>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <div className="jumbotron">
+        <div className="jumbotron mt-4">
           <div className="mt-4 p-4 border">
             <h3 className="text-center mb-4 font-weight-bold">Opciones</h3>
             <div className="d-flex justify-content-center">
@@ -208,20 +258,17 @@ class Mora extends Component {
 }
 
 const mapStateToProps = state => ({
-  moficina: state.mora.moficina,
-  mcobradores: state.mora.mcobradores,
-  mtarjeta: state.mora.mtarjeta,
-  mpolicia: state.mora.mpolicia,
-  mbanconv: state.mora.mbanconv,
+  moficinam: state.mora.moficina,
+  mcobradoresm: state.mora.mcobradores,
+  mtarjetam: state.mora.mtarjeta,
+  mbanconvm: state.mora.mbanconv,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    mOficina,
-    mCobradores,
-    mTarjeta
-  }
-)(Mora);
+export default connect(mapStateToProps, {
+  mOficina,
+  mCobradores,
+  mTarjeta,
+  mBanConv
+})(Mora);

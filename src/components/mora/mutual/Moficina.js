@@ -48,43 +48,51 @@ export default class Moficina extends Component {
                 <strong>EFECTIVIDAD</strong>
               </div>
             </div>
+            {!moficina[1] ? null : (
+              <div className="d-flex justify-content-between border-bottom text-center">
+                <div className="col-1">{moficina[1].zona}</div>
+                <div className="col-3">PALPALA</div>
+                <div className="col-2">$ {moficina[1].mora}</div>
+                <div className="col-1">{moficina[1].fichas}</div>
+                <div className="col-2">$ {moficina[1].morarec}</div>
+                <div className="col-1">{moficina[1].fichasrec}</div>
+                <div className="col-2"> {efecparcial(moficina, 1)}% </div>
+              </div>
+            )}
+            {!moficina[2] ? null : (
+              <div className="d-flex justify-content-between border-bottom text-center">
+                <div className="col-1">{moficina[2].zona}</div>
+                <div className="col-3">PERICO</div>
+                <div className="col-2">$ {moficina[2].mora}</div>
+                <div className="col-1">{moficina[2].fichas}</div>
+                <div className="col-2">$ {moficina[2].morarec}</div>
+                <div className="col-1">{moficina[2].fichasrec}</div>
+                <div className="col-2"> {efecparcial(moficina, 2)}% </div>
+              </div>
+            )}
+            {!moficina[0] ? null : (
+              <div className="d-flex justify-content-between border-bottom text-center">
+                <div className="col-1">{moficina[0].zona}</div>
+                <div className="col-3">CASA CENTRAL</div>
+                <div className="col-2">$ {moficina[0].mora}</div>
+                <div className="col-1">{moficina[0].fichas}</div>
+                <div className="col-2">$ {moficina[0].morarec}</div>
+                <div className="col-1">{moficina[0].fichasrec}</div>
+                <div className="col-2"> {efecparcial(moficina, 0)}% </div>
+              </div>
+            )}
+            {!moficina[3] ? null : (
+              <div className="d-flex justify-content-between border-bottom text-center">
+                <div className="col-1">{moficina[3].zona}</div>
+                <div className="col-3">SAN PEDRO</div>
+                <div className="col-2">$ {moficina[3].mora}</div>
+                <div className="col-1">{moficina[3].fichas}</div>
+                <div className="col-2">$ {moficina[3].morarec}</div>
+                <div className="col-1">{moficina[3].fichasrec}</div>
+                <div className="col-2"> {efecparcial(moficina, 3)}% </div>
+              </div>
+            )}
 
-            <div className="d-flex justify-content-between border-bottom text-center">
-              <div className="col-1">{moficina[1].zona}</div>
-              <div className="col-3">PALPALA</div>
-              <div className="col-2">$ {moficina[1].mora}</div>
-              <div className="col-1">{moficina[1].fichas}</div>
-              <div className="col-2">$ {moficina[1].morarec}</div>
-              <div className="col-1">{moficina[1].fichasrec}</div>
-              <div className="col-2"> {efecparcial(moficina, 1)}% </div>
-            </div>
-            <div className="d-flex justify-content-between border-bottom text-center">
-              <div className="col-1">{moficina[2].zona}</div>
-              <div className="col-3">PERICO</div>
-              <div className="col-2">$ {moficina[2].mora}</div>
-              <div className="col-1">{moficina[2].fichas}</div>
-              <div className="col-2">$ {moficina[2].morarec}</div>
-              <div className="col-1">{moficina[2].fichasrec}</div>
-              <div className="col-2"> {efecparcial(moficina, 2)}% </div>
-            </div>
-            <div className="d-flex justify-content-between border-bottom text-center">
-              <div className="col-1">{moficina[0].zona}</div>
-              <div className="col-3">CASA CENTRAL</div>
-              <div className="col-2">$ {moficina[0].mora}</div>
-              <div className="col-1">{moficina[0].fichas}</div>
-              <div className="col-2">$ {moficina[0].morarec}</div>
-              <div className="col-1">{moficina[0].fichasrec}</div>
-              <div className="col-2"> {efecparcial(moficina, 0)}% </div>
-            </div>
-            <div className="d-flex justify-content-between border-bottom text-center">
-              <div className="col-1">{moficina[3].zona}</div>
-              <div className="col-3">SAN PEDRO</div>
-              <div className="col-2">$ {moficina[3].mora}</div>
-              <div className="col-1">{moficina[3].fichas}</div>
-              <div className="col-2">$ {moficina[3].morarec}</div>
-              <div className="col-1">{moficina[3].fichasrec}</div>
-              <div className="col-2"> {efecparcial(moficina, 3)}% </div>
-            </div>
             <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
               <div className="col-4">
                 {" "}

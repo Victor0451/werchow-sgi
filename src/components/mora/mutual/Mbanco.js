@@ -50,33 +50,39 @@ export default class Mbanco extends Component {
               </div>
             </div>
 
-            <div className="d-flex justify-content-between border-bottom text-center">
-              <div className="col-1">**</div>
-              <div className="col-3">NARANJA</div>
-              <div className="col-2">$ {mtarjeta[0].mora}</div>
-              <div className="col-1">{mtarjeta[0].fichas}</div>
-              <div className="col-2">$ {mtarjeta[0].morarec}</div>
-              <div className="col-1">{mtarjeta[0].fichasrec}</div>
-              <div className="col-2"> {efecparcial(mtarjeta, 0)}% </div>
-            </div>
-            <div className="d-flex justify-content-between border-bottom text-center">
-              <div className="col-1">**</div>
-              <div className="col-3">SU-CREDITO</div>
-              <div className="col-2">$ - </div>
-              <div className="col-1"> - </div>
-              <div className="col-2"> - </div>
-              <div className="col-1"> - </div>
-              <div className="col-2"> 0.00% </div>
-            </div>
-            <div className="d-flex justify-content-between border-bottom text-center">
-              <div className="col-1">**</div>
-              <div className="col-3">VISA</div>
-              <div className="col-2">$ {mtarjeta[1].mora}</div>
-              <div className="col-1">{mtarjeta[1].fichas}</div>
-              <div className="col-2">$ {mtarjeta[1].morarec}</div>
-              <div className="col-1">{mtarjeta[1].fichasrec}</div>
-              <div className="col-2"> {efecparcial(mtarjeta, 1)}% </div>
-            </div>
+            {!mtarjeta[0] ? null : (
+              <div className="d-flex justify-content-between border-bottom text-center">
+                <div className="col-1">**</div>
+                <div className="col-3">NARANJA</div>
+                <div className="col-2">$ {mtarjeta[0].mora}</div>
+                <div className="col-1">{mtarjeta[0].fichas}</div>
+                <div className="col-2">$ {mtarjeta[0].morarec}</div>
+                <div className="col-1">{mtarjeta[0].fichasrec}</div>
+                <div className="col-2"> {efecparcial(mtarjeta, 0)}% </div>
+              </div>
+            )}
+            {!mtarjeta[2] ? null : (
+              <div className="d-flex justify-content-between border-bottom text-center">
+                <div className="col-1">**</div>
+                <div className="col-3">SU-CREDITO</div>
+                <div className="col-2">$ - </div>
+                <div className="col-1"> - </div>
+                <div className="col-2"> - </div>
+                <div className="col-1"> - </div>
+                <div className="col-2"> 0.00% </div>
+              </div>
+            )}
+            {!mtarjeta[1] ? null : (
+              <div className="d-flex justify-content-between border-bottom text-center">
+                <div className="col-1">**</div>
+                <div className="col-3">VISA</div>
+                <div className="col-2">$ {mtarjeta[1].mora}</div>
+                <div className="col-1">{mtarjeta[1].fichas}</div>
+                <div className="col-2">$ {mtarjeta[1].morarec}</div>
+                <div className="col-1">{mtarjeta[1].fichasrec}</div>
+                <div className="col-2"> {efecparcial(mtarjeta, 1)}% </div>
+              </div>
+            )}
             <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
               <div className="col-4">
                 {" "}

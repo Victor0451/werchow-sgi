@@ -1,9 +1,9 @@
-import { MCOBRADORES, MOFICINA, MTARJETA,  MBANCONV } from "./types";
+import { MCOBRADORES, MOFICINA, MTARJETA, MBANCONV } from "./types";
 import axios from "axios";
 
-export const mCobradores = () => async dispatch => {
+export const mCobradores = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/moram/mcobradores`
+    `http://190.231.32.232:5002/api/sgi/moram/mcobradores/${mes}`
   );
   dispatch({
     type: MCOBRADORES,
@@ -11,9 +11,9 @@ export const mCobradores = () => async dispatch => {
   });
 };
 
-export const mOficina = () => async dispatch => {
+export const mOficina = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/moram/moficina`
+    `http://190.231.32.232:5002/api/sgi/moram/moficina/${mes}`
   );
   dispatch({
     type: MOFICINA,
@@ -21,9 +21,9 @@ export const mOficina = () => async dispatch => {
   });
 };
 
-export const mTarjeta = () => async dispatch => {
+export const mTarjeta = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/moram/mtarjetas`
+    `http://190.231.32.232:5002/api/sgi/moram/mtarjetas/${mes}`
   );
   dispatch({
     type: MTARJETA,
@@ -31,10 +31,9 @@ export const mTarjeta = () => async dispatch => {
   });
 };
 
-
-export const mBanConv = () => async dispatch => {
+export const mBanConv = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/moram/mbanconv`
+    `http://190.231.32.232:5002/api/sgi/moram/mbanconv/${mes}`
   );
   dispatch({
     type: MBANCONV,

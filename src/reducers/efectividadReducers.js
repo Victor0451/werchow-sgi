@@ -1,21 +1,13 @@
 import {
   ECOBRADORES,
   EOFICINA,
-  EOFICINA_COBRADO,
-  ECOBRADORES_COBRADO,
   ETARJETA_W,
-  ETARJETA_COBRADO_W,
   ETARJETA_L,
-  ETARJETA_COBRADO_L,
   ETARJETA_R,
-  ETARJETA_COBRADO_R,
   ETARJETA_P,
-  ETARJETA_COBRADO_P,
-  EPOLICIA_L,
-  EPOLICIA_P,
-  EPOLICIA_R,
-  EPOLICIA_W,
-  ECONVENIOS_P
+  EPOLICIA,
+  ECONVENIOS,
+  EBANCO
 } from "../actions/types";
 
 const initialState = {
@@ -30,22 +22,10 @@ export default function(state = initialState, action) {
         eoficina: action.payload
       };
 
-    case EOFICINA_COBRADO:
-      return {
-        ...state,
-        eoficinacob: action.payload
-      };
-
     case ECOBRADORES:
       return {
         ...state,
         ecobradores: action.payload
-      };
-
-    case ECOBRADORES_COBRADO:
-      return {
-        ...state,
-        ecobradorescob: action.payload
       };
 
     case ETARJETA_W:
@@ -54,74 +34,39 @@ export default function(state = initialState, action) {
         etarjetaw: action.payload
       };
 
-    case ETARJETA_COBRADO_W:
-      return {
-        ...state,
-        etarjetacobw: action.payload
-      };
-
     case ETARJETA_L:
       return {
         ...state,
         etarjetal: action.payload
       };
 
-    case ETARJETA_COBRADO_L:
-      return {
-        ...state,
-        etarjetacobl: action.payload
-      };
     case ETARJETA_R:
       return {
         ...state,
         etarjetar: action.payload
       };
 
-    case ETARJETA_COBRADO_R:
-      return {
-        ...state,
-        etarjetacobr: action.payload
-      };
     case ETARJETA_P:
       return {
         ...state,
         etarjetap: action.payload
       };
 
-    case ETARJETA_COBRADO_P:
+    case EPOLICIA:
       return {
         ...state,
-        etarjetacobp: action.payload
+        epolicia: action.payload
       };
 
-    case EPOLICIA_L:
+    case ECONVENIOS:
       return {
         ...state,
-        epolicial: action.payload
+        econvenio: action.payload
       };
-
-    case EPOLICIA_P:
+    case EBANCO:
       return {
         ...state,
-        epoliciap: action.payload
-      };
-
-    case EPOLICIA_R:
-      return {
-        ...state,
-        epoliciar: action.payload
-      };
-
-    case EPOLICIA_W:
-      return {
-        ...state,
-        epoliciaw: action.payload
-      };
-
-    case ECONVENIOS_P:
-      return {
-        ...state,
-        econveniop: action.payload
+        ebanco: action.payload
       };
 
     default:

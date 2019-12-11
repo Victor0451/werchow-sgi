@@ -79,39 +79,27 @@ class EstadoSocio extends Component {
         if (at) {
           let atrasados = at[0];
 
-          let AtPerico = atrasados.filter(at => {
-            return at.SUCURSAL === "R";
-          });
-
-          let AtPalpala = atrasados.filter(at => {
-            return at.SUCURSAL === "L";
-          });
-
-          let AtSanPedro = atrasados.filter(at => {
-            return at.SUCURSAL === "P";
+          let AtInterior = atrasados.filter(at => {
+            return at.SUCURSAL !== "W";
           });
 
           let AtCasaCentral = atrasados.filter(at => {
             return at.SUCURSAL === "W";
           });
 
-          // let AtCCmitad = Math.floor(AtCasaCentral.length / 2);
+          let AtCCmitad = Math.floor(AtCasaCentral.length / 2);
 
-          // let AtCasaCentralGG = AtCasaCentral.slice(0, AtCCmitad);
+          let AtCasaCentralGG = AtCasaCentral.slice(0, AtCCmitad);
 
-          // let AtCasaCentralMG = AtCasaCentral.slice(
-          //   AtCCmitad,
-          //   AtCasaCentral.length
-          // );
+          let AtCasaCentralMG = AtCasaCentral.slice(
+            AtCCmitad,
+            AtCasaCentral.length
+          );
 
           this.setState({
-            // AtCasaCentralGG: AtCasaCentralGG,
-            // AtCasaCentralMG: AtCasaCentralMG,
-
-            AtCasaCentralAT: AtCasaCentral,
-            AtPalpala: AtPalpala,
-            AtPerico: AtPerico,
-            AtSanPedro: AtSanPedro
+            AtCasaCentralGG: AtCasaCentralGG,
+            AtCasaCentralMG: AtCasaCentralMG,
+            AtCasaCentralAT: AtInterior
           });
         }
       }, 1000);
