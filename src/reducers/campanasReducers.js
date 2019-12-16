@@ -15,7 +15,8 @@ import {
   BLANQUEO,
   CAMPANA_OPERADOR_NOTI,
   CAMPANA_OPERADOR_HIST,
-  POLICIA
+  POLICIA,
+  BUSCAR_GESTION_CASO
 } from "../actions/types";
 
 const initialState = {
@@ -101,6 +102,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         buscaso: action.payload
+      };
+
+    case BUSCAR_GESTION_CASO:
+      return {
+        ...state,
+        busgestcaso: action.payload
       };
 
     case GET_DEUDA:

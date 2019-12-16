@@ -12,6 +12,7 @@ import {
   GET_RECUPERACION,
   GET_DEUDA,
   BUSCAR_CASO,
+  BUSCAR_GESTION_CASO,
   REC,
   REIN,
   BLANQUEO,
@@ -79,6 +80,22 @@ export const buscarCaso = id => async dispatch => {
     .then(res =>
       dispatch({
         type: BUSCAR_CASO,
+        payload: res.data
+      })
+    )
+
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const buscarGestionCaso = id => async dispatch => {
+  await axios
+    .get(`http://190.231.32.232:5002/api/sgi/campanas/buscargestioncaso/${id}`)
+
+    .then(res =>
+      dispatch({
+        type: BUSCAR_GESTION_CASO,
         payload: res.data
       })
     )

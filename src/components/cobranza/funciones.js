@@ -269,6 +269,23 @@ export const total2indexfichas = (array, index1, index2) => {
   return total;
 };
 
+export const total2indexfichascob = (array, index1, index2) => {
+  let total1 = 0;
+  let total2 = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    total1 = array[index1].fichascob;
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    total2 = array[index2].fichascob;
+  }
+
+  let total = total1 + total2;
+
+  return total;
+};
+
 export const totalacob = array => {
   let total = 0;
 

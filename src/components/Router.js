@@ -4,7 +4,7 @@ import Navbar from "./layouts/Navbar";
 import EstadoSocio from "./campañas/estadoSocio/EstadoSocio";
 import CampanaCaso from "./campañas/CampanaCaso";
 import GestionAt from "./campañas/atrasados/GestionAt";
-import Home from "./Home";
+import Home from "./home/Home";
 import Login from "./auth/Login";
 import Edit from "./auth/Edit";
 import Register from "./auth/Register";
