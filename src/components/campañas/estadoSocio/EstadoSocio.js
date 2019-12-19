@@ -79,8 +79,16 @@ class EstadoSocio extends Component {
         if (at) {
           let atrasados = at[0];
 
-          let AtInterior = atrasados.filter(at => {
-            return at.SUCURSAL !== "W";
+          let AtPerico = atrasados.filter(at => {
+            return at.SUCURSAL === "R";
+          });
+
+          let AtPalpala = atrasados.filter(at => {
+            return at.SUCURSAL === "L";
+          });
+
+          let AtSanPedro = atrasados.filter(at => {
+            return at.SUCURSAL === "P";
           });
 
           let AtCasaCentral = atrasados.filter(at => {
@@ -99,7 +107,9 @@ class EstadoSocio extends Component {
           this.setState({
             AtCasaCentralGG: AtCasaCentralGG,
             AtCasaCentralMG: AtCasaCentralMG,
-            AtCasaCentralAT: AtInterior
+            AtPalpala: AtPalpala,
+            AtPerico: AtPerico,
+            AtSanPedro: AtSanPedro
           });
         }
       }, 1000);

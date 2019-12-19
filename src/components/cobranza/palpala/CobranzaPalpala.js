@@ -35,7 +35,10 @@ import {
   efectividad,
   total1indexfichascob,
   efectividad2a,
-  total2indexfichascob
+  total2indexfichascob,
+  totaladelantado,
+  totaladelantadodosindex,
+  totaladelantadounindex
 } from "../funciones";
 
 class CobranzaPalpala extends Component {
@@ -105,21 +108,26 @@ class CobranzaPalpala extends Component {
       epolicia,
       ebanco
     } = this.state;
-    console.log(this.state);
+
     let acobrar =
       total2indexacob(ecobradores, 1, 2) +
       totalacob(etarjetal) +
       total1indexacob(eoficina, 1) +
-      totalacob(epolicia) +
-      totalacob(econvenio);
+      total1indexacob(epolicia, 0) +
+      total1indexacob(econvenio, 0) +
+      total1indexacob(ebanco, 0) +
+      totaladelantadodosindex(ecobradores, 1, 2) +
+      totaladelantadounindex(eoficina, 1);
     let cobrado =
       total2indexcobrado(ecobradores, 1, 2) +
       totalcobrado(etarjetal) +
       total1indexcobrado(eoficina, 1) +
-      totalcobrado(epolicia) +
-      totalcobrado(econvenio);
+      total1indexcobrado(epolicia, 0) +
+      total1indexcobrado(econvenio, 0) +
+      total1indexcobrado(ebanco, 0);
 
     let efectividadt = (cobrado * 100) / acobrar;
+
     let flag = 3;
 
     return (
@@ -200,8 +208,9 @@ class CobranzaPalpala extends Component {
                   {total2indexacob(ecobradores, 1, 2) +
                     totalacob(etarjetal) +
                     total1indexacob(eoficina, 1) +
-                    totalacob(econvenio) +
-                    totalacob(epolicia)}{" "}
+                    total1indexacob(econvenio, 0) +
+                    total1indexacob(epolicia, 0) +
+                    total1indexacob(ebanco, 0)}{" "}
                 </strong>
               </div>
               <div className="col-1">
@@ -209,8 +218,9 @@ class CobranzaPalpala extends Component {
                   {total2indexfichas(ecobradores, 1, 2) +
                     totalfichas(etarjetal) +
                     total1indexfichas(eoficina, 1) +
-                    totalfichas(econvenio) +
-                    totalfichas(epolicia)}
+                    total1indexfichas(econvenio, 0) +
+                    total1indexfichas(epolicia, 0) +
+                    total1indexfichas(ebanco, 0)}
                 </strong>
               </div>
               <div className="col-2">
@@ -219,8 +229,9 @@ class CobranzaPalpala extends Component {
                   {total2indexcobrado(ecobradores, 1, 2) +
                     totalcobrado(etarjetal) +
                     total1indexcobrado(eoficina, 1) +
-                    totalcobrado(econvenio) +
-                    totalcobrado(epolicia)}{" "}
+                    total1indexcobrado(econvenio, 0) +
+                    total1indexcobrado(epolicia, 0) +
+                    total1indexcobrado(ebanco, 0)}{" "}
                 </strong>
               </div>
               <div className="col-1">
@@ -229,12 +240,20 @@ class CobranzaPalpala extends Component {
                   {total2indexfichascob(ecobradores, 1, 2) +
                     totalfichascob(etarjetal) +
                     total1indexfichascob(eoficina, 1) +
-                    totalfichascob(econvenio) +
-                    totalfichascob(epolicia)}
+                    total1indexfichascob(econvenio, 0) +
+                    total1indexfichascob(epolicia, 0) +
+                    total1indexfichascob(ebanco, 0)}
                 </strong>
               </div>
               <div className="col-1">
-                ${/* <strong>{efectividadt.toFixed(2)}%</strong> */}
+                <strong>
+                  ${" "}
+                  {ecobradores.length === 0
+                    ? null
+                    : ecobradores[1].adelantado +
+                      ecobradores[2].adelantado +
+                      eoficina[1].adelantado}
+                </strong>
               </div>
               <div className="col-1">
                 <strong>{efectividadt.toFixed(2)}%</strong>

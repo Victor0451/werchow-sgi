@@ -59,6 +59,28 @@ export const totalSsjCob = (array1, index) => {
   return cobrado;
 };
 
+export const totalSsjAdelantado = (array1, index) => {
+  let adelantado = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    adelantado =
+      array1[index[0]].adelantado +
+      array1[index[1]].adelantado +
+      array1[index[2]].adelantado +
+      array1[index[3]].adelantado +
+      array1[index[4]].adelantado +
+      array1[index[5]].adelantado +
+      array1[index[6]].adelantado +
+      array1[index[7]].adelantado +
+      array1[index[8]].adelantado +
+      array1[index[9]].adelantado +
+      array1[index[10]].adelantado +
+      array1[index[11]].adelantado +
+      array1[index[12]].adelantado;
+  }
+  return adelantado;
+};
+
 export const efectividadSP = (array, index) => {
   let total = 0;
   let cobrado = 0;
@@ -175,7 +197,7 @@ export const efectividad3M = (array1, array2, index) => {
   return resultado;
 };
 
-export const totalfichasssj = (array1, index) => {
+export const totalfichasacobssj = (array1, index) => {
   let total = 0;
 
   for (let i = 0; i < array1.length; i++) {
@@ -198,6 +220,29 @@ export const totalfichasssj = (array1, index) => {
   return total;
 };
 
+export const totalfichascobradasssj = (array1, index) => {
+  let total = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    total =
+      array1[index[0]].fichascob +
+      array1[index[1]].fichascob +
+      array1[index[2]].fichascob +
+      array1[index[3]].fichascob +
+      array1[index[4]].fichascob +
+      array1[index[5]].fichascob +
+      array1[index[6]].fichascob +
+      array1[index[7]].fichascob +
+      array1[index[8]].fichascob +
+      array1[index[9]].fichascob +
+      array1[index[10]].fichascob +
+      array1[index[11]].fichascob +
+      array1[index[12]].fichascob;
+  }
+
+  return total;
+};
+
 export const total = array => {
   let total = 0;
 
@@ -208,11 +253,49 @@ export const total = array => {
   return total;
 };
 
-export const totalSsj = array => {
+export const totaladelantadounindex = (array, index) => {
+  let totalad = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    totalad = array[index].adelantado;
+  }
+
+  return totalad;
+};
+
+export const totaladelantadodosindex = (array, index1, index2) => {
+  let totalad = 0;
+  let ad1 = 0;
+  let ad2 = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    ad1 = array[index1].adelantado;
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    ad2 = array[index2].adelantado;
+  }
+
+  totalad = ad1 + ad2;
+
+  return totalad;
+};
+
+export const totalSsjCobrado = array => {
   let cobrado = 0;
 
   for (let i = 0; i < array.length; i++) {
-    cobrado += array[i].cobrado;
+    cobrado = array[i].cobrado;
+  }
+
+  return cobrado;
+};
+
+export const totalSsjACob = array => {
+  let cobrado = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    cobrado = array[i].total;
   }
 
   return cobrado;
@@ -392,8 +475,8 @@ export const efectividad = (array1, index1, index2) => {
   let cobrado2 = 0;
 
   for (let i = 0; i < array1.length; i++) {
-    total1 += array1[index1].total;
-    total2 += array1[index2].total;
+    total1 += array1[index1].total + array1[index1].adelantado;
+    total2 += array1[index2].total + array1[index2].adelantado;
   }
 
   for (let i = 0; i < array1.length; i++) {
@@ -410,21 +493,20 @@ export const efectividad = (array1, index1, index2) => {
   return resultado;
 };
 
-export const efectividad2a = (array1, array2, index1, index2) => {
-  let total1 = 0;
-  let total2 = 0;
-
-  let cobrado1 = 0;
-  let cobrado2 = 0;
+export const efectividad2a = (array1, array2, index1) => {
+  let total1;
+  let total2;
+  let cobrado1;
+  let cobrado2;
 
   for (let i = 0; i < array1.length; i++) {
-    total1 += array1[index1].cobranza;
-    total2 += array1[index2].cobranza;
+    total1 = array1[index1].total;
+    cobrado1 = array1[index1].cobrado;
   }
 
   for (let i = 0; i < array2.length; i++) {
-    cobrado1 += array2[index1].cobranza;
-    cobrado2 += array2[index2].cobranza;
+    total2 = array2[index1].total;
+    cobrado2 = array2[index1].cobrado;
   }
 
   let total = total1 + total2;
@@ -441,7 +523,7 @@ export const efecparcial = (array1, index) => {
   let cobrado = 0;
 
   for (let i = 0; i < array1.length; i++) {
-    total += array1[index].total;
+    total += array1[index].total + array1[index].adelantado;
   }
 
   for (let i = 0; i < array1.length; i++) {
@@ -461,18 +543,31 @@ export const efectividadSsj = (array1, index) => {
   for (let i = 0; i < array1.length; i++) {
     total =
       array1[index[0]].total +
+      array1[index[0]].adelantado +
       array1[index[1]].total +
+      array1[index[1]].adelantado +
       array1[index[2]].total +
+      array1[index[2]].adelantado +
       array1[index[3]].total +
+      array1[index[3]].adelantado +
       array1[index[4]].total +
+      array1[index[4]].adelantado +
       array1[index[5]].total +
+      array1[index[5]].adelantado +
       array1[index[6]].total +
+      array1[index[6]].adelantado +
       array1[index[7]].total +
+      array1[index[7]].adelantado +
       array1[index[8]].total +
+      array1[index[8]].adelantado +
       array1[index[9]].total +
+      array1[index[9]].adelantado +
       array1[index[10]].total +
+      array1[index[10]].adelantado +
       array1[index[11]].total +
-      array1[index[12]].total;
+      array1[index[11]].adelantado +
+      array1[index[12]].total +
+      array1[index[12]].adelantado;
   }
 
   for (let i = 0; i < array1.length; i++) {

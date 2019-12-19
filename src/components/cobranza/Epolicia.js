@@ -53,7 +53,7 @@ export default class Mpolicia extends Component {
                   <div className="col-1">{econvenio[0].fichas}</div>
                   <div className="col-2">$ {econvenio[0].cobrado}</div>
                   <div className="col-1"> {econvenio[0].fichascob} </div>
-                  <div className="col-1"> {econvenio[0].adelantado} </div>
+                  <div className="col-1">$ {econvenio[0].adelantado} </div>
                   <div className="col-1"> {efecparcial(econvenio, 0)}% </div>
                 </div>
 
@@ -64,7 +64,7 @@ export default class Mpolicia extends Component {
                   <div className="col-1">{epolicia[0].fichas}</div>
                   <div className="col-2">$ {epolicia[0].cobrado}</div>
                   <div className="col-1"> {epolicia[0].fichascob} </div>
-                  <div className="col-1"> {epolicia[0].adelantado} </div>
+                  <div className="col-1">$ {epolicia[0].adelantado} </div>
                   <div className="col-1"> {efecparcial(epolicia, 0)}% </div>
                 </div>
               </div>
@@ -116,34 +116,31 @@ export default class Mpolicia extends Component {
                   <div className="col-1"> {efecparcial(epolicia, 2)}% </div>
                 </div>
               </div>
-            ) : (
-              flag ===
-              1(
-                <div>
-                  <div className="d-flex justify-content-between border-bottom text-center">
-                    <div className="col-1">**</div>
-                    <div className="col-3">CONVENIOS</div>
-                    <div className="col-2">$ {econvenio[3].total}</div>
-                    <div className="col-1">{econvenio[3].fichas}</div>
-                    <div className="col-2">$ {econvenio[3].cobrado}</div>
-                    <div className="col-1"> {econvenio[3].fichascob} </div>
-                    <div className="col-1"> {econvenio[3].adelantado} </div>
-                    <div className="col-1"> {efecparcial(econvenio, 3)}% </div>
-                  </div>
-
-                  <div className="d-flex justify-content-between border-bottom text-center">
-                    <div className="col-1">**</div>
-                    <div className="col-3">POLICIA</div>
-                    <div className="col-2">$ {epolicia[3].total}</div>
-                    <div className="col-1">{epolicia[3].fichas}</div>
-                    <div className="col-2">$ {epolicia[3].cobrado}</div>
-                    <div className="col-1"> {epolicia[3].fichascob} </div>
-                    <div className="col-1"> {epolicia[3].adelantado} </div>
-                    <div className="col-1"> {efecparcial(epolicia, 3)}% </div>
-                  </div>
+            ) : flag === 1 ? (
+              <div>
+                <div className="d-flex justify-content-between border-bottom text-center">
+                  <div className="col-1">**</div>
+                  <div className="col-3">CONVENIOS</div>
+                  <div className="col-2">$ {econvenio[3].total}</div>
+                  <div className="col-1">{econvenio[3].fichas}</div>
+                  <div className="col-2">$ {econvenio[3].cobrado}</div>
+                  <div className="col-1"> {econvenio[3].fichascob} </div>
+                  <div className="col-1">$ {econvenio[3].adelantado} </div>
+                  <div className="col-1"> {efecparcial(econvenio, 3)}% </div>
                 </div>
-              )
-            )}
+
+                <div className="d-flex justify-content-between border-bottom text-center">
+                  <div className="col-1">**</div>
+                  <div className="col-3">POLICIA</div>
+                  <div className="col-2">$ {epolicia[3].total}</div>
+                  <div className="col-1">{epolicia[3].fichas}</div>
+                  <div className="col-2">$ {epolicia[3].cobrado}</div>
+                  <div className="col-1"> {epolicia[3].fichascob} </div>
+                  <div className="col-1">$ {epolicia[3].adelantado} </div>
+                  <div className="col-1"> {efecparcial(epolicia, 3)}% </div>
+                </div>
+              </div>
+            ) : null}
 
             {flag === 3 ? (
               <div className="d-flex justify-content-between text-center border-bottom  border-dark  ">
@@ -170,13 +167,10 @@ export default class Mpolicia extends Component {
                   </strong>
                 </div>
                 <div className="col-1">
-                  <strong>
-                    {" "}
-                    {epolicia[0].adelantado + econvenio[0].adelantado}{" "}
-                  </strong>
+                  <strong>$ 0</strong>
                 </div>
                 <div className="col-1">
-                  <strong>{efectividad2a(econvenio, epolicia, 0, 0)}%</strong>
+                  <strong>{efectividad2a(econvenio, epolicia, 0)}%</strong>
                 </div>
               </div>
             ) : flag === 5 ? (
@@ -198,10 +192,7 @@ export default class Mpolicia extends Component {
                   </strong>
                 </div>
                 <div className="col-1">
-                  <strong>
-                    {" "}
-                    {epolicia[1].fichascob + econvenio[1].fichascob}{" "}
-                  </strong>
+                  <strong>$ 0</strong>
                 </div>
                 <div className="col-1">
                   <strong>
@@ -238,10 +229,7 @@ export default class Mpolicia extends Component {
                   </strong>
                 </div>
                 <div className="col-1">
-                  <strong>
-                    {" "}
-                    {epolicia[2].adelantado + econvenio[2].adelantado}{" "}
-                  </strong>
+                  <strong>$ 0</strong>
                 </div>
                 <div className="col-1">
                   <strong>{efectividad2a(econvenio, epolicia, 2, 2)}%</strong>
@@ -272,10 +260,7 @@ export default class Mpolicia extends Component {
                   </strong>
                 </div>
                 <div className="col-1">
-                  <strong>
-                    {" "}
-                    {epolicia[3].adelantado + econvenio[3].adelantado}{" "}
-                  </strong>
+                  <strong>$ 0</strong>
                 </div>
                 <div className="col-1">
                   <strong>{efectividad2a(econvenio, epolicia, 3, 3)}%</strong>

@@ -10,7 +10,8 @@ import {
   eOficina,
   eTarjetaSanPedro,
   ePolicia,
-  eConvenios
+  eConvenios,
+  eBanco
 } from "../../../actions/efectividadActions";
 
 import Eoficina from "../Eoficina";
@@ -21,20 +22,25 @@ import Epolicia from "../Epolicia";
 import {
   total,
   total1indexacob,
-  total2indexacob,
   total1indexcobrado,
-  total2indexcobrado,
   total1indexfichas,
   total2indexfichas,
   totalfichas,
   totalcobrado,
   totalfichascob,
+  totalacob,
   efecparcial,
+  total2indexacob,
+  total2indexcobrado,
   efectividad2,
-  efectividadSP,
   efectividad,
-  efectividad2a
-
+  total1indexfichascob,
+  efectividad2a,
+  total2indexfichascob,
+  totaladelantado,
+  totaladelantadodosindex,
+  totaladelantadounindex,
+  efectividadSP
 } from "../funciones";
 
 class CobranzaSanPedro extends Component {
@@ -44,6 +50,7 @@ class CobranzaSanPedro extends Component {
     etarjetap: "",
     econvenio: "",
     epolicia: "",
+    ebanco: "",
     month: ""
   };
 
@@ -55,13 +62,16 @@ class CobranzaSanPedro extends Component {
     this.props.eTarjetaSanPedro(mes);
     this.props.ePolicia(mes);
     this.props.eConvenios(mes);
+    this.props.eBanco(mes);
+
     setTimeout(() => {
       const {
         eoficina,
         ecobradores,
         etarjetap,
         epolicia,
-        econvenio
+        econvenio,
+        ebanco
       } = this.props;
 
       this.setState({
@@ -70,6 +80,7 @@ class CobranzaSanPedro extends Component {
         etarjetap: etarjetap,
         epolicia: epolicia,
         econvenio: econvenio,
+        ebanco: ebanco,
         month: month
       });
     }, 300);
@@ -94,20 +105,28 @@ class CobranzaSanPedro extends Component {
       ecobradores,
       etarjetap,
       epolicia,
-      econvenio
+      econvenio,
+      ebanco
     } = this.state;
 
-    // let acobrar =
-    //   total2index(ecobradores, 0, 13) +
-    //   total(etarjetap) +
-    //   total1index(eoficina, 2);
-
-    // let cobrado =
-    //   total2index(ecobradorescob, 0, 13) +
-    //   total(etarjetacobp) +
-    //   total1index(eoficinacob, 2);
-
-    // let efectividadt = (cobrado * 100) / acobrar;
+    let acobrar =
+      total2indexacob(ecobradores, 6, 15) +
+      total1indexacob(ecobradores, 16) +
+      totalacob(etarjetap) +
+      total1indexacob(eoficina, 2) +
+      totaladelantadodosindex(ecobradores, 6, 15) +
+      totaladelantadounindex(ecobradores, 16) +
+      totaladelantadounindex(eoficina, 2) +
+      total1indexacob(econvenio, 2) +
+      total1indexacob(epolicia, 2);
+    let cobrado =
+      total2indexcobrado(ecobradores, 6, 15) +
+      total1indexcobrado(ecobradores, 16) +
+      totalcobrado(etarjetap) +
+      total1indexcobrado(eoficina, 2) +
+      total1indexcobrado(econvenio, 2) +
+      total1indexcobrado(epolicia, 2);
+    let efectividadt = (cobrado * 100) / acobrar;
     let flag = 60;
     return (
       <div className="container ">
@@ -153,6 +172,8 @@ class CobranzaSanPedro extends Component {
           <hr />
 
           <Ebanco
+            flag={flag}
+            ebanco={ebanco}
             etarjeta={etarjetap}
             total={total}
             totalfichas={totalfichas}
@@ -160,6 +181,7 @@ class CobranzaSanPedro extends Component {
             totalfichascob={totalfichascob}
             efecparcial={efecparcial}
             efectividad2={efectividad2}
+            total1indexfichascob={total1indexfichascob}
           />
 
           <hr />
@@ -182,39 +204,59 @@ class CobranzaSanPedro extends Component {
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {total2indexacob(ecobradores, 0, 13) +
-                    total(etarjetap) +
-                    total1indexacob(eoficina, 2)}{" "}
+                  {total2indexacob(ecobradores, 6, 15) +
+                    total1indexacob(ecobradores, 16) +
+                    totalacob(etarjetap) +
+                    total1indexacob(eoficina, 3) +
+                    total1indexacob(econvenio, 2) +
+                    total1indexacob(epolicia, 2)}{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
-                  {total2indexfichas(ecobradores, 0, 13) +
+                  {total2indexfichas(ecobradores, 6, 15) +
+                    total1indexfichas(ecobradores, 16) +
                     totalfichas(etarjetap) +
-                    total1indexfichas(eoficina, 2)}
+                    total1indexfichas(eoficina, 3) +
+                    total1indexfichas(econvenio, 1) +
+                    total1indexfichas(epolicia, 1)}
                 </strong>
               </div>
               <div className="col-2">
                 <strong>
                   ${" "}
-                  {total2indexcobrado(ecobradores, 0, 13) +
-                    total(etarjetap) +
-                    total1indexcobrado(eoficina, 2)}{" "}
+                  {total2indexcobrado(ecobradores, 6, 15) +
+                    total1indexcobrado(ecobradores, 16) +
+                    totalcobrado(etarjetap) +
+                    total1indexcobrado(eoficina, 3) +
+                    total1indexcobrado(econvenio, 1) +
+                    total1indexcobrado(epolicia, 1)}{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
                   {" "}
-                  {total2indexfichas(ecobradores, 0, 13) +
-                    totalfichas(etarjetap) +
-                    total1indexfichas(eoficina, 2)}
+                  {total2indexfichascob(ecobradores, 6, 15) +
+                    total1indexfichascob(ecobradores, 16) +
+                    totalfichascob(etarjetap) +
+                    total1indexfichascob(eoficina, 3) +
+                    total1indexfichascob(econvenio, 1) +
+                    total1indexfichascob(epolicia, 1)}
                 </strong>
               </div>
               <div className="col-1">
-                {/* <strong>{efectividadt.toFixed(2)}%</strong> */}
+                <strong>
+                  $
+                  {ecobradores.length === 0
+                    ? null
+                    : ecobradores[6].adelantado +
+                      ecobradores[15].adelantado +
+                      ecobradores[16].adelantado +
+                      eoficina[1].adelantado}
+                </strong>
               </div>
               <div className="col-1">
-                {/* <strong>{efectividadt.toFixed(2)}%</strong> */}
+                <strong>{efectividadt.toFixed(2)}%</strong>
               </div>
             </div>
           </div>
@@ -245,6 +287,7 @@ const mapStateToProps = state => ({
   etarjetap: state.efectividad.etarjetap,
   econvenio: state.efectividad.econvenio,
   epolicia: state.efectividad.epolicia,
+  ebanco: state.efectividad.ebanco,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
@@ -254,5 +297,6 @@ export default connect(mapStateToProps, {
   eOficina,
   eTarjetaSanPedro,
   ePolicia,
-  eConvenios
+  eConvenios,
+  eBanco
 })(CobranzaSanPedro);

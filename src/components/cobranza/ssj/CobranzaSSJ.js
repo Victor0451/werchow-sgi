@@ -9,7 +9,8 @@ import {
   eOficina,
   eTarjetaSsj,
   eConvenios,
-  ePolicia
+  ePolicia,
+  eBanco
 } from "../../../actions/efectividadActions";
 
 import Eoficina from "../Eoficina";
@@ -20,21 +21,32 @@ import Epolicia from "../Epolicia";
 import {
   total,
   total1indexacob,
-  total1indexfichas,
-  totalfichas,
-  totalSsjCob,
-  totalSsjaCob,
-  totalfichascob,
-  totalcobrado,
-  efecparcial,
-  efectividad3,
-  efectividad2,
-  totalfichasssj,
-  efectividad,
   total1indexcobrado,
+  total1indexfichas,
   totalSsj,
+  totalSsjCob,
+  efectividad3,
+  totalSsjaCob,
+  totalfichasssj,
+  total2indexfichas,
+  totalfichas,
+  totalcobrado,
+  totalfichascob,
   totalacob,
-  efectividad2a
+  efecparcial,
+  total2indexacob,
+  total2indexcobrado,
+  efectividad2,
+  efectividad,
+  total1indexfichascob,
+  efectividad2a,
+  total2indexfichascob,
+  totaladelantado,
+  totaladelantadodosindex,
+  totaladelantadounindex,
+  efectividadSP,
+  totalfichasacobssj,
+  totalSsjAdelantado
 } from "../funciones";
 
 class CobranzaSSJ extends Component {
@@ -44,6 +56,7 @@ class CobranzaSSJ extends Component {
     etarjetaw: "",
     econvenio: "",
     epolicia: "",
+    ebanco: "",
     month: ""
   };
 
@@ -55,6 +68,7 @@ class CobranzaSSJ extends Component {
     this.props.eTarjetaSsj(mes);
     this.props.eConvenios(mes);
     this.props.ePolicia(mes);
+    this.props.eBanco(mes);
 
     setTimeout(() => {
       const {
@@ -62,7 +76,8 @@ class CobranzaSSJ extends Component {
         ecobradores,
         etarjetaw,
         epolicia,
-        econvenio
+        econvenio,
+        ebanco
       } = this.props;
 
       this.setState({
@@ -71,22 +86,43 @@ class CobranzaSSJ extends Component {
         etarjetaw: etarjetaw,
         econvenio: econvenio,
         epolicia: epolicia,
+        ebanco: ebanco,
         month: month
       });
     }, 300);
   };
 
   imprimir = () => {
-    let contenido = document.getElementById("ssj").innerHTML;
-    let contenidoOrg = document.body.innerHTML;
+    // let contenido = document.getElementById("ssj").innerHTML;
+    // let contenidoOrg = document.body.innerHTML;
 
-    document.body.innerHTML = contenido;
+    // document.body.innerHTML = contenido;
 
-    window.print();
+    // window.print();
 
-    document.body.innerHTML = contenidoOrg;
+    // document.body.innerHTML = contenidoOrg;
 
-    window.location.reload(true);
+    // window.location.reload(true);
+
+    let mywindow = window.open("", "PRINT", "height=1000,width=1000");
+
+    mywindow.document.write("<html><head>");
+    mywindow.document.write(
+      '<link href="../../../css/index.css" rel="stylesheet"><link rel="stylesheet" media="print" href="../../../css/index.css"><link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"  crossorigin="anonymous">'
+    );
+
+    mywindow.document.write("</head><body >");
+    mywindow.document.write(document.getElementById("ssj").innerHTML);
+    mywindow.document.write("</body></html>");
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+
+    setTimeout(function() {
+      mywindow.print();
+      mywindow.close();
+    }, 1000);
+    return true;
   };
 
   render() {
@@ -95,7 +131,8 @@ class CobranzaSSJ extends Component {
       ecobradores,
       etarjetaw,
       epolicia,
-      econvenio
+      econvenio,
+      ebanco
     } = this.state;
 
     let acobrar =
@@ -115,14 +152,35 @@ class CobranzaSSJ extends Component {
         19
       ]) +
       totalacob(etarjetaw) +
-      total1indexacob(eoficina, 0);
-
+      total1indexacob(eoficina, 0) +
+      total1indexacob(epolicia, 3) +
+      total1indexacob(econvenio, 3) +
+      totalSsjAdelantado(ecobradores, [
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        17,
+        18,
+        19
+      ]) +
+      totaladelantadounindex(eoficina, 0);
     let cobrado =
       totalSsjCob(ecobradores, [3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 17, 18, 19]) +
       totalcobrado(etarjetaw) +
-      total1indexcobrado(eoficina, 0);
+      total1indexcobrado(eoficina, 0) +
+      total1indexcobrado(epolicia, 3) +
+      total1indexcobrado(econvenio, 3);
 
     let efectividadt = (cobrado * 100) / acobrar;
+
+    console.log("a cobrar: ", acobrar, "cobrado: ", cobrado);
 
     let flag = 1;
     return (
@@ -136,7 +194,7 @@ class CobranzaSSJ extends Component {
           />
         </div>
         <hr className="mt-4 mb-4" />
-        <div id="ssj">
+        <div id="ssj" className="ssj">
           <h1 className="mb-4 text-center">
             Efectividad de Cobranza San Salvador
           </h1>
@@ -171,6 +229,7 @@ class CobranzaSSJ extends Component {
 
           <Ebanco
             flag={flag}
+            ebanco={ebanco}
             etarjeta={etarjetaw}
             total={total}
             totalfichas={totalfichas}
@@ -178,6 +237,7 @@ class CobranzaSSJ extends Component {
             totalfichascob={totalfichascob}
             efecparcial={efecparcial}
             efectividad2={efectividad2}
+            total1indexfichascob={total1indexfichascob}
           />
           <hr />
 
@@ -220,7 +280,7 @@ class CobranzaSSJ extends Component {
               </div>
               <div className="col-1">
                 <strong>
-                  {totalfichasssj(ecobradores, [
+                  {totalfichasacobssj(ecobradores, [
                     3,
                     4,
                     5,
@@ -235,8 +295,10 @@ class CobranzaSSJ extends Component {
                     18,
                     19
                   ]) +
-                    totalfichas(etarjetaw) +
-                    total1indexfichas(eoficina, 0)}
+                    totalfichascob(etarjetaw) +
+                    total1indexfichas(eoficina, 0) +
+                    total1indexfichascob(econvenio, 3) +
+                    total1indexfichascob(epolicia, 3)}
                 </strong>
               </div>
               <div className="col-2">
@@ -257,14 +319,16 @@ class CobranzaSSJ extends Component {
                     18,
                     19
                   ]) +
-                    totalSsj(etarjetaw) +
-                    total1indexcobrado(eoficina, 0)}{" "}
+                    totalcobrado(etarjetaw) +
+                    total1indexcobrado(eoficina, 0) +
+                    total1indexcobrado(econvenio, 3) +
+                    total1indexcobrado(epolicia, 3)}{" "}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
                   {" "}
-                  {totalfichascob(ecobradores, [
+                  {totalfichasacobssj(ecobradores, [
                     3,
                     4,
                     5,
@@ -280,11 +344,30 @@ class CobranzaSSJ extends Component {
                     19
                   ]) +
                     totalfichascob(etarjetaw) +
-                    total1indexfichas(eoficina, 0)}
+                    total1indexfichascob(eoficina, 0) +
+                    total1indexfichascob(econvenio, 3) +
+                    total1indexfichascob(epolicia, 3)}
                 </strong>
               </div>
               <div className="col-1">
-                $ {/* <strong>{efectividadt.toFixed(2)}%</strong> */}
+                <strong>
+                  ${" "}
+                  {totalSsjAdelantado(ecobradores, [
+                    3,
+                    4,
+                    5,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    14,
+                    17,
+                    18,
+                    19
+                  ]) + totaladelantadounindex(eoficina, 0)}
+                </strong>
               </div>
               <div className="col-1">
                 <strong>{efectividadt.toFixed(2)}%</strong>
@@ -318,6 +401,7 @@ const mapStateToProps = state => ({
   etarjetaw: state.efectividad.etarjetaw,
   epolicia: state.efectividad.epolicia,
   econvenio: state.efectividad.econvenio,
+  ebanco: state.efectividad.ebanco,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
@@ -327,5 +411,6 @@ export default connect(mapStateToProps, {
   eOficina,
   eTarjetaSsj,
   eConvenios,
-  ePolicia
+  ePolicia,
+  eBanco
 })(CobranzaSSJ);

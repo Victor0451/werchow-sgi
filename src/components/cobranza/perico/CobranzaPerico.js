@@ -10,7 +10,8 @@ import {
   eOficina,
   eTarjetaPerico,
   ePolicia,
-  eConvenios
+  eConvenios,
+  eBanco
 } from "../../../actions/efectividadActions";
 
 import Eoficina from "../Eoficina";
@@ -27,13 +28,18 @@ import {
   totalfichas,
   totalcobrado,
   totalfichascob,
+  totalacob,
   efecparcial,
   total2indexacob,
   total2indexcobrado,
   efectividad2,
   efectividad,
-  efectividad2a
-
+  total1indexfichascob,
+  efectividad2a,
+  total2indexfichascob,
+  totaladelantado,
+  totaladelantadodosindex,
+  totaladelantadounindex
 } from "../funciones";
 
 class CobranzaPerico extends Component {
@@ -43,6 +49,7 @@ class CobranzaPerico extends Component {
     etarjetar: "",
     epolicia: "",
     econvenio: "",
+    ebanco: "",
     month: ""
   };
 
@@ -53,6 +60,7 @@ class CobranzaPerico extends Component {
     this.props.eOficina(mes);
     this.props.eTarjetaPerico(mes);
     this.props.ePolicia(mes);
+    this.props.eBanco(mes);
     this.props.eConvenios(mes);
 
     setTimeout(() => {
@@ -61,7 +69,8 @@ class CobranzaPerico extends Component {
         ecobradores,
         etarjetar,
         epolicia,
-        econvenio
+        econvenio,
+        ebanco
       } = this.props;
 
       this.setState({
@@ -70,6 +79,7 @@ class CobranzaPerico extends Component {
         etarjetar: etarjetar,
         econvenio: econvenio,
         epolicia: epolicia,
+        ebanco: ebanco,
         month: month
       });
     }, 300);
@@ -94,20 +104,26 @@ class CobranzaPerico extends Component {
       ecobradores,
       etarjetar,
       epolicia,
-      econvenio
+      econvenio,
+      ebanco
     } = this.state;
 
-    // let acobrar =
-    //   total2index(ecobradores, 0, 13) +
-    //   total(etarjetar) +
-    //   total1index(eoficina, 2);
+    let acobrar =
+      total2indexacob(ecobradores, 0, 13) +
+      totalacob(etarjetar) +
+      total1indexacob(eoficina, 2) +
+      totaladelantadodosindex(ecobradores, 0, 13) +
+      totaladelantadounindex(eoficina, 1) +
+      total1indexacob(econvenio, 1) +
+      total1indexacob(epolicia, 1);
+    let cobrado =
+      total2indexcobrado(ecobradores, 0, 13) +
+      totalcobrado(etarjetar) +
+      total1indexcobrado(eoficina, 2) +
+      total1indexcobrado(econvenio, 1) +
+      total1indexcobrado(epolicia, 1);
 
-    // let cobrado =
-    //   total2index(ecobradorescob, 0, 13) +
-    //   total(etarjetacobr) +
-    //   total1index(eoficinacob, 2);
-
-    // let efectividadt = (cobrado * 100) / acobrar;
+    let efectividadt = (cobrado * 100) / acobrar;
     let flag = 5;
     return (
       <div className="containes ">
@@ -121,9 +137,7 @@ class CobranzaPerico extends Component {
             />
           </div>
           <hr className="mt-4 mb-4" />
-
           <h1 className="mb-4 text-center">Efectividad de Cobranza Perico</h1>
-
           <Ecobradores
             flag={flag}
             ecobradores={ecobradores}
@@ -134,9 +148,7 @@ class CobranzaPerico extends Component {
             efecparcial={efecparcial}
             efectividad={efectividad}
           />
-
           <hr />
-
           <Eoficina
             flag={flag}
             eoficina={eoficina}
@@ -149,8 +161,9 @@ class CobranzaPerico extends Component {
           />
 
           <hr />
-
           <Ebanco
+            flag={flag}
+            ebanco={ebanco}
             etarjeta={etarjetar}
             total={total}
             totalfichas={totalfichas}
@@ -158,18 +171,17 @@ class CobranzaPerico extends Component {
             totalfichascob={totalfichascob}
             efecparcial={efecparcial}
             efectividad2={efectividad2}
+            total1indexfichascob={total1indexfichascob}
           />
-
           <hr />
-
           <Epolicia
+            flag={flag}
             epolicia={epolicia}
             econvenio={econvenio}
             flag={flag}
             efectividad2a={efectividad2a}
             efecparcial={efecparcial}
           />
-
           <div className="container mb-4">
             <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
               <div className="col-4">
@@ -181,38 +193,55 @@ class CobranzaPerico extends Component {
                 <strong>
                   ${" "}
                   {total2indexacob(ecobradores, 0, 13) +
-                    total(etarjetar) +
-                    total1indexacob(eoficina, 2)}{" "}
+                    totalacob(etarjetar) +
+                    total1indexacob(eoficina, 2) +
+                    total1indexcobrado(econvenio, 1) +
+                    total1indexcobrado(epolicia, 1)}
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
                   {total2indexfichas(ecobradores, 0, 13) +
                     totalfichas(etarjetar) +
-                    total1indexfichas(eoficina, 2)}
+                    total1indexfichas(eoficina, 2) + 
+                    total1indexfichas(econvenio, 1) +
+                    total1indexfichas(epolicia, 1)}
                 </strong>
               </div>
               <div className="col-2">
                 <strong>
                   ${" "}
                   {total2indexcobrado(ecobradores, 0, 13) +
-                    total(etarjetar) +
-                    total1indexcobrado(eoficina, 2)}{" "}
+                    totalcobrado(etarjetar) +
+                    total1indexcobrado(eoficina, 2)+ 
+                    total1indexcobrado(econvenio, 1) +
+                    total1indexcobrado(epolicia, 1)
+                    }
                 </strong>
               </div>
               <div className="col-1">
                 <strong>
                   {" "}
-                  {total2indexfichas(ecobradores, 0, 13) +
-                    totalfichas(etarjetar) +
-                    total1indexfichas(eoficina, 2)}
+                  {total2indexfichascob(ecobradores, 0, 13) +
+                    totalfichascob(etarjetar) +
+                    total1indexfichascob(eoficina, 2) + 
+                    total1indexfichascob(econvenio, 1) +
+                    total1indexfichascob(epolicia, 1)
+                    }
                 </strong>
               </div>
               <div className="col-1">
-                {/* <strong>{efectividadt.toFixed(2)}%</strong> */}
+                <strong>
+                  ${" "}
+                  {ecobradores.length === 0
+                    ? null
+                    : ecobradores[0].adelantado +
+                      ecobradores[13].adelantado +
+                      eoficina[2].adelantado}
+                </strong>
               </div>
               <div className="col-1">
-                {/* <strong>{efectividadt.toFixed(2)}%</strong> */}
+                <strong>{efectividadt.toFixed(2)}%</strong>
               </div>
             </div>
           </div>
@@ -243,6 +272,7 @@ const mapStateToProps = state => ({
   etarjetar: state.efectividad.etarjetar,
   econvenio: state.efectividad.econvenio,
   epolicia: state.efectividad.epolicia,
+  ebanco: state.efectividad.ebanco,
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
@@ -252,5 +282,6 @@ export default connect(mapStateToProps, {
   eOficina,
   eTarjetaPerico,
   ePolicia,
-  eConvenios
+  eConvenios,
+  eBanco
 })(CobranzaPerico);

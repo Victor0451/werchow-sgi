@@ -101,16 +101,16 @@ export default class Moficina extends Component {
                   </div>
 
                   <div className="col-2">
-                    <strong>$ {eoficina[2].cobranza}</strong>
+                    <strong>$ {eoficina[2].total}</strong>
                   </div>
                   <div className="col-1">
                     <strong>{eoficina[2].fichas}</strong>
                   </div>
                   <div className="col-2">
-                    <strong>$ {eoficina[2].cobranza}</strong>
+                    <strong>$ {eoficina[2].cobrado}</strong>
                   </div>
                   <div className="col-1">
-                    <strong> {eoficina[2].fichas} </strong>
+                    <strong> {eoficina[2].fichascob} </strong>
                   </div>
                   <div className="col-1">
                     <strong>$ {eoficina[2].adelantado} </strong>
@@ -125,10 +125,10 @@ export default class Moficina extends Component {
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{eoficina[3].zona}</div>
                   <div className="col-3">PERICO</div>
-                  <div className="col-2">$ {eoficina[3].cobranza}</div>
+                  <div className="col-2">$ {eoficina[3].total}</div>
                   <div className="col-1">{eoficina[3].fichas}</div>
-                  <div className="col-2">$ {eoficina[3].cobranza}</div>
-                  <div className="col-1">{eoficina[3].fichas}</div>
+                  <div className="col-2">$ {eoficina[3].cobrado}</div>
+                  <div className="col-1">{eoficina[3].fichascob}</div>
                   <div className="col-1">$ {eoficina[3].adelantado}</div>
                   <div className="col-1"> {efecparcial(eoficina, 3)}% </div>
                 </div>
@@ -140,16 +140,16 @@ export default class Moficina extends Component {
                   </div>
 
                   <div className="col-2">
-                    <strong>$ {eoficina[3].cobranza}</strong>
+                    <strong>$ {eoficina[3].total}</strong>
                   </div>
                   <div className="col-1">
                     <strong>{eoficina[3].fichas}</strong>
                   </div>
                   <div className="col-2">
-                    <strong>$ {eoficina[3].cobranza}</strong>
+                    <strong>$ {eoficina[3].cobrado}</strong>
                   </div>
                   <div className="col-1">
-                    <strong> {eoficina[3].fichas} </strong>
+                    <strong> {eoficina[3].fichascob} </strong>
                   </div>
                   <div className="col-1">$ {eoficina[3].adelantado}</div>
 
@@ -163,10 +163,10 @@ export default class Moficina extends Component {
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{eoficina[0].zona}</div>
                   <div className="col-3">SAN SALVADOR</div>
-                  <div className="col-2">$ {eoficina[0].cobranza}</div>
+                  <div className="col-2">$ {eoficina[0].total}</div>
                   <div className="col-1">{eoficina[0].fichas}</div>
-                  <div className="col-2">$ {eoficina[0].cobranza}</div>
-                  <div className="col-1">{eoficina[0].fichas}</div>
+                  <div className="col-2">$ {eoficina[0].cobrado}</div>
+                  <div className="col-1">{eoficina[0].fichascob}</div>
                   <div className="col-1">{eoficina[0].adelantado}</div>
 
                   <div className="col-1"> {efecparcial(eoficina, 0)}% </div>

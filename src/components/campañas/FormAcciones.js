@@ -245,7 +245,7 @@ class FormAcciones extends Component {
                 <input
                   type="text"
                   className="mr-2 alert alert-danger border-0"
-                  defaultValue={caso.montoadeudado}
+                  defaultValue={caso.cuota}
                   readOnly
                 ></input>
               </div>
