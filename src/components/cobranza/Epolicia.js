@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { array } from "prop-types";
 import { efectividad2a } from "./funciones";
 
 export default class Mpolicia extends Component {

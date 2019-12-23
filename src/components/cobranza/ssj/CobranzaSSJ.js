@@ -23,28 +23,19 @@ import {
   total1indexacob,
   total1indexcobrado,
   total1indexfichas,
-  totalSsj,
   totalSsjCob,
   efectividad3,
   totalSsjaCob,
-  totalfichasssj,
-  total2indexfichas,
   totalfichas,
   totalcobrado,
   totalfichascob,
   totalacob,
-  efecparcial,
-  total2indexacob,
-  total2indexcobrado,
+  efecparcial, 
   efectividad2,
   efectividad,
   total1indexfichascob,
-  efectividad2a,
-  total2indexfichascob,
-  totaladelantado,
-  totaladelantadodosindex,
+  efectividad2a, 
   totaladelantadounindex,
-  efectividadSP,
   totalfichasacobssj,
   totalSsjAdelantado
 } from "../funciones";
@@ -93,36 +84,16 @@ class CobranzaSSJ extends Component {
   };
 
   imprimir = () => {
-    // let contenido = document.getElementById("ssj").innerHTML;
-    // let contenidoOrg = document.body.innerHTML;
+    let contenido = document.getElementById("ssj").innerHTML;
+    let contenidoOrg = document.body.innerHTML;
 
-    // document.body.innerHTML = contenido;
+    document.body.innerHTML = contenido;
 
-    // window.print();
+    window.print();
 
-    // document.body.innerHTML = contenidoOrg;
+    document.body.innerHTML = contenidoOrg;
 
-    // window.location.reload(true);
-
-    let mywindow = window.open("", "PRINT", "height=1000,width=1000");
-
-    mywindow.document.write("<html><head>");
-    mywindow.document.write(
-      '<link href="../../../css/index.css" rel="stylesheet"><link rel="stylesheet" media="print" href="../../../css/index.css"><link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"  crossorigin="anonymous">'
-    );
-
-    mywindow.document.write("</head><body >");
-    mywindow.document.write(document.getElementById("ssj").innerHTML);
-    mywindow.document.write("</body></html>");
-
-    mywindow.document.close(); // necessary for IE >= 10
-    mywindow.focus(); // necessary for IE >= 10*/
-
-    setTimeout(function() {
-      mywindow.print();
-      mywindow.close();
-    }, 1000);
-    return true;
+    window.location.reload(true);
   };
 
   render() {
@@ -180,7 +151,7 @@ class CobranzaSSJ extends Component {
 
     let efectividadt = (cobrado * 100) / acobrar;
 
-    console.log("a cobrar: ", acobrar, "cobrado: ", cobrado);
+    
 
     let flag = 1;
     return (

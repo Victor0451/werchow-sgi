@@ -301,4 +301,9 @@ input:focus {
   height: 45px;
 }
 
-@media print{@page {size: landscape}}
+@media print {
+ 
+  /* @page {
+    size: landscape;    
+  } */
+}

@@ -7,15 +7,14 @@ export default class Mcobradores extends Component {
   render() {
     const {
       ecobradores,
-      ecobradorescob,
       efecparcial,
       efectividadSP,
       efectividad,
-      efectividad3,
       flag
     } = this.props;
     let tmp = new Date(Date.now());
     let fecha = moment(tmp).format("DD/MM/YYYY HH:mm:ss");
+    console.log(ecobradores);
 
     return (
       <div>
@@ -259,7 +258,9 @@ export default class Mcobradores extends Component {
                   </div>
                   <div className="col-1">
                     $
-                    {/* <strong>{efectividadSP(ecobradores, [6, 15, 16])}%</strong> */}
+                    {ecobradores[6].adelantado +
+                      ecobradores[15].adelantado +
+                      ecobradores[16].adelantado}
                   </div>
                   <div className="col-1">
                     <strong>{efectividadSP(ecobradores, [6, 15, 16])}%</strong>

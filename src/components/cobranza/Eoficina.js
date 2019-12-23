@@ -190,7 +190,9 @@ export default class Moficina extends Component {
                   <div className="col-1">
                     <strong> {eoficina[0].fichascob} </strong>
                   </div>
-                  <div className="col-1">$ {eoficina[0].adelantado}</div>
+                  <div className="col-1">
+                    $ <strong>{eoficina[0].adelantado}</strong>
+                  </div>
 
                   <div className="col-1">
                     <strong>{efecparcial(eoficina, 0)}%</strong>

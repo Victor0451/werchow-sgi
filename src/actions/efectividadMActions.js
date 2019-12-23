@@ -1,22 +1,18 @@
 import {
   ECOBRADORES,
   EOFICINA,
-  ECOBRADORES_COBRADO,
-  EOFICINA_COBRADO,
   ETARJETA_W,
-  ETARJETA_COBRADO_W,
   ETARJETA_L,
-  ETARJETA_COBRADO_L,
   ETARJETA_R,
-  ETARJETA_COBRADO_R,
   ETARJETA_P,
-  ETARJETA_COBRADO_P
-} from "./types";
+  EPOLICIA
+} from "../actions/types";
+
 import axios from "axios";
 
-export const eCobradoresTotal = () => async dispatch => {
+export const eCobradores = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/ecobradorestotal`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/ecobradores/${mes}`
   );
   dispatch({
     type: ECOBRADORES,
@@ -24,19 +20,9 @@ export const eCobradoresTotal = () => async dispatch => {
   });
 };
 
-export const eCobradoresCobrado = () => async dispatch => {
+export const eOficina = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/ecobradorescobrado`
-  );
-  dispatch({
-    type: ECOBRADORES_COBRADO,
-    payload: respuesta.data
-  });
-};
-
-export const eOficinaTotal = () => async dispatch => {
-  const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/eoficinatotal`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/eoficina/${mes}`
   );
   dispatch({
     type: EOFICINA,
@@ -44,39 +30,9 @@ export const eOficinaTotal = () => async dispatch => {
   });
 };
 
-export const eOficinaCobrado = () => async dispatch => {
+export const eTarjetaPalpala = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/eoficinacobrado`
-  );
-  dispatch({
-    type: EOFICINA_COBRADO,
-    payload: respuesta.data
-  });
-};
-
-export const eTarjetaTotalSsj = () => async dispatch => {
-  const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetassjtotal`
-  );
-  dispatch({
-    type: ETARJETA_W,
-    payload: respuesta.data
-  });
-};
-
-export const eTarjetaCobradoSsj = () => async dispatch => {
-  const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetassjcobrado`
-  );
-  dispatch({
-    type: ETARJETA_COBRADO_W,
-    payload: respuesta.data
-  });
-};
-
-export const eTarjetaTotalpalpala = () => async dispatch => {
-  const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetapalpalatotal`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetapalpala/${mes}`
   );
   dispatch({
     type: ETARJETA_L,
@@ -84,19 +40,9 @@ export const eTarjetaTotalpalpala = () => async dispatch => {
   });
 };
 
-export const eTarjetaCobradopalpala = () => async dispatch => {
+export const eTarjetaPerico = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetapalpalacobrado`
-  );
-  dispatch({
-    type: ETARJETA_COBRADO_L,
-    payload: respuesta.data
-  });
-};
-
-export const eTarjetaTotalperico = () => async dispatch => {
-  const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetapericototal`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetaperico/${mes}`
   );
   dispatch({
     type: ETARJETA_R,
@@ -104,19 +50,19 @@ export const eTarjetaTotalperico = () => async dispatch => {
   });
 };
 
-export const eTarjetaCobradoperico = () => async dispatch => {
+export const eTarjetaSsj = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetapericocobrado`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetassj/${mes}`
   );
   dispatch({
-    type: ETARJETA_COBRADO_R,
+    type: ETARJETA_W,
     payload: respuesta.data
   });
 };
 
-export const eTarjetaTotalsanpedro = () => async dispatch => {
+export const eTarjetaSanPedro = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetasanpedrototal`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetasanpedro/${mes}`
   );
   dispatch({
     type: ETARJETA_P,
@@ -124,12 +70,12 @@ export const eTarjetaTotalsanpedro = () => async dispatch => {
   });
 };
 
-export const eTarjetaCobradosanpedro = () => async dispatch => {
+export const ePolicia = mes => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetasanpedrocobrado`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/epolicia/${mes}`
   );
   dispatch({
-    type: ETARJETA_COBRADO_P,
+    type: EPOLICIA,
     payload: respuesta.data
   });
 };

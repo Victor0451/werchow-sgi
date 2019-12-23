@@ -36,7 +36,6 @@ import {
   total1indexfichascob,
   efectividad2a,
   total2indexfichascob,
-  totaladelantado,
   totaladelantadodosindex,
   totaladelantadounindex
 } from "../funciones";

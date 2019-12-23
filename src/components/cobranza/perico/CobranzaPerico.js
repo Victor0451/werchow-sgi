@@ -37,7 +37,6 @@ import {
   total1indexfichascob,
   efectividad2a,
   total2indexfichascob,
-  totaladelantado,
   totaladelantadodosindex,
   totaladelantadounindex
 } from "../funciones";
@@ -127,16 +126,16 @@ class CobranzaPerico extends Component {
     let flag = 5;
     return (
       <div className="containes ">
+        <hr className="mt-4 mb-4" />
+        <div className="mb-4">
+          <MesSelect
+            options={meses}
+            placeholder={"Eliga un Mes"}
+            onChange={value => this.handleChange(value, "mes")}
+          />
+        </div>
+        <hr className="mt-4 mb-4" />
         <div id="r">
-          <hr className="mt-4 mb-4" />
-          <div className="mb-4">
-            <MesSelect
-              options={meses}
-              placeholder={"Eliga un Mes"}
-              onChange={value => this.handleChange(value, "mes")}
-            />
-          </div>
-          <hr className="mt-4 mb-4" />
           <h1 className="mb-4 text-center">Efectividad de Cobranza Perico</h1>
           <Ecobradores
             flag={flag}
@@ -178,7 +177,6 @@ class CobranzaPerico extends Component {
             flag={flag}
             epolicia={epolicia}
             econvenio={econvenio}
-            flag={flag}
             efectividad2a={efectividad2a}
             efecparcial={efecparcial}
           />
@@ -203,7 +201,7 @@ class CobranzaPerico extends Component {
                 <strong>
                   {total2indexfichas(ecobradores, 0, 13) +
                     totalfichas(etarjetar) +
-                    total1indexfichas(eoficina, 2) + 
+                    total1indexfichas(eoficina, 2) +
                     total1indexfichas(econvenio, 1) +
                     total1indexfichas(epolicia, 1)}
                 </strong>
@@ -213,10 +211,9 @@ class CobranzaPerico extends Component {
                   ${" "}
                   {total2indexcobrado(ecobradores, 0, 13) +
                     totalcobrado(etarjetar) +
-                    total1indexcobrado(eoficina, 2)+ 
+                    total1indexcobrado(eoficina, 2) +
                     total1indexcobrado(econvenio, 1) +
-                    total1indexcobrado(epolicia, 1)
-                    }
+                    total1indexcobrado(epolicia, 1)}
                 </strong>
               </div>
               <div className="col-1">
@@ -224,10 +221,9 @@ class CobranzaPerico extends Component {
                   {" "}
                   {total2indexfichascob(ecobradores, 0, 13) +
                     totalfichascob(etarjetar) +
-                    total1indexfichascob(eoficina, 2) + 
+                    total1indexfichascob(eoficina, 2) +
                     total1indexfichascob(econvenio, 1) +
-                    total1indexfichascob(epolicia, 1)
-                    }
+                    total1indexfichascob(epolicia, 1)}
                 </strong>
               </div>
               <div className="col-1">

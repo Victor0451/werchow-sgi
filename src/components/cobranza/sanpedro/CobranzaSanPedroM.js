@@ -1,234 +1,254 @@
-// import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-// import { connect } from "react-redux";
-// import {
-//   eCobradoresCobrado,
-//   eCobradoresTotal,
-//   eOficinaCobrado,
-//   eOficinaTotal,
-//   eTarjetaCobradosanpedro,
-//   eTarjetaTotalsanpedro
-// } from "../../../actions/efectividadMActions";
+import MesSelect from "react-select";
+import { meses } from "../../layouts/Arrays/arrays";
 
-// import Eoficina from "../EoficinaM";
-// import Ecobradores from "../EcobradoresM";
-// import Ebanco from "../EbancoM";
+import { connect } from "react-redux";
+import {
+  eCobradores,
+  eOficina,
+  eTarjetaSanPedro
+} from "../../../actions/efectividadMActions";
 
-// import {
-//   total,
-//   total1index,
-//   total1indexfichas,
-//   totalfichas,
-//   totalcobrado,
-//   totalfichascob,
-//   efecparcial,
-//   efectividad2,
-//   efectividad
-// } from "../funciones";
+import Eoficina from "../Eoficina";
+import Ecobradores from "../EcobradoresM";
+import Ebanco from "../EbancoM";
+// import Epolicia from "../Epolicia";
 
-// class CobranzaSanPedro extends Component {
-//   state = {
-//     eoficina: "",
-//     eoficinacob: "",
-//     ecobradores: "",
-//     ecobradorescob: "",
-//     etarjetap: "",
-//     etarjetacobp: ""
-//   };
-//   componentDidMount() {
-//     this.props.eCobradoresCobrado();
-//     this.props.eCobradoresTotal();
-//     this.props.eOficinaCobrado();
-//     this.props.eOficinaTotal();
-//     this.props.eTarjetaCobradosanpedro();
-//     this.props.eTarjetaTotalsanpedro();
+import {
+  total,
+  total1indexacob,
+  total1indexcobrado,
+  total1indexfichas,
+  total2indexfichas,
+  totalfichas,
+  totalcobrado,
+  totalfichascob,
+  totalacob,
+  efecparcial,
+  total2indexacob,
+  total2indexcobrado,
+  efectividad2,
+  efectividad,
+  total1indexfichascob,
+  total2indexfichascob,
+  totaladelantadodosindex,
+  totaladelantadounindex,
+  efectividadSP,
+  efectividadTjt
+} from "../funciones";
 
-//     setTimeout(() => {
-//       const {
-//         eoficinam,
-//         eoficinacobm,
-//         ecobradoresm,
-//         ecobradorescobm,
-//         etarjetapm,
-//         etarjetacobpm
-//       } = this.props;
+class CobranzaSanPedroM extends Component {
+  state = {
+    eoficina: "",
+    ecobradores: "",
+    etarjetap: "",
+    econvenio: "",
+    epolicia: "",
+    ebanco: "",
+    month: ""
+  };
 
-//       this.setState({
-//         eoficina: eoficinam,
-//         eoficinacob: eoficinacobm,
-//         ecobradores: ecobradoresm,
-//         ecobradorescob: ecobradorescobm,
-//         etarjetap: etarjetapm,
-//         etarjetacobp: etarjetacobpm
-//       });
-//     }, 400);
-//   }
+  handleChange = (value, state) => {
+    let mes = value.value;
+    let month = value.label;
+    this.props.eCobradores(mes);
+    this.props.eOficina(mes);
+    this.props.eTarjetaSanPedro(mes);
+    setTimeout(() => {
+      const { eoficina, ecobradores, etarjetap } = this.props;
 
-//   imprimir = () => {
-//     let contenido = document.getElementById("pm").innerHTML;
-//     let contenidoOrg = document.body.innerHTML;
+      this.setState({
+        eoficina: eoficina,
+        ecobradores: ecobradores,
+        etarjetap: etarjetap,
+        month: month
+      });
+    }, 300);
+  };
 
-//     document.body.innerHTML = contenido;
+  imprimir = () => {
+    let contenido = document.getElementById("p").innerHTML;
+    let contenidoOrg = document.body.innerHTML;
 
-//     window.print();
+    document.body.innerHTML = contenido;
 
-//     document.body.innerHTML = contenidoOrg;
+    window.print();
 
-//     window.location.reload(true);
-//   };
+    document.body.innerHTML = contenidoOrg;
 
-//   render() {
-//     const {
-//       eoficina,
-//       eoficinacob,
-//       ecobradores,
-//       ecobradorescob,
-//       etarjetap,
-//       etarjetacobp
-//     } = this.state;
+    window.location.reload(true);
+  };
 
-//     let acobrar =
-//       total1index(ecobradores, 0) + total(etarjetap) + total1index(eoficina, 2);
+  render() {
+    const { eoficina, ecobradores, etarjetap, ebanco } = this.state;
 
-//     let cobrado =
-//       total1index(ecobradorescob, 0) +
-//       total(etarjetacobp) +
-//       total1index(eoficinacob, 2);
+    let acobrar =
+      total2indexacob(ecobradores, 4, 10) +
+      totalacob(etarjetap) +
+      total1indexacob(eoficina, 2) +
+      totaladelantadodosindex(ecobradores, 4, 10) +
+      totaladelantadounindex(eoficina, 2);
+    let cobrado =
+      total2indexcobrado(ecobradores, 4, 10) +
+      totalcobrado(etarjetap) +
+      total1indexcobrado(eoficina, 2);
 
-//     let efectividadt = (cobrado * 100) / acobrar;
-//     let flag = 60;
+    let efectividadt = (cobrado * 100) / acobrar;
+    let flag = 60;
+    return (
+      <div className="container ">
+        <hr className="mt-4 mb-4" />
+        <div className="mb-4">
+          <MesSelect
+            options={meses}
+            placeholder={"Eliga un Mes"}
+            onChange={value => this.handleChange(value, "mes")}
+          />
+        </div>
+        <hr className="mt-4 mb-4" />
+        <div id="p">
+          <h1 className="mb-4 text-center">
+            Efectividad de Cobranza San Pedro
+          </h1>
 
-//     return (
-//       <div className="containes ">
-//         <div id="pm">
-//           <h1 className="mb-4 text-center">
-//             Efectividad de Cobranza San Pedro
-//           </h1>
+          <hr />
+          <Ecobradores
+            flag={flag}
+            ecobradores={ecobradores}
+            total={total}
+            totalfichas={totalfichas}
+            totalcobrado={totalcobrado}
+            totalfichascob={totalfichascob}
+            efecparcial={efecparcial}
+            efectividadSP={efectividadSP}
+            efectividad={efectividad}
+          />
 
-//           <hr />
-//           <Ecobradores
-//             flag={flag}
-//             ecobradores={ecobradores}
-//             ecobradorescob={ecobradorescob}
-//             total={total}
-//             totalfichas={totalfichas}
-//             totalcobrado={totalcobrado}
-//             totalfichascob={totalfichascob}
-//             efecparcial={efecparcial}
-//             efectividad={efectividad}
-//           />
+          <hr />
 
-//           <hr />
+          <Eoficina
+            flag={flag}
+            eoficina={eoficina}
+            total={total}
+            totalfichas={totalfichas}
+            totalcobrado={totalcobrado}
+            totalfichascob={totalfichascob}
+            efecparcial={efecparcial}
+            efectividad={efectividad}
+          />
 
-//           <Eoficina
-//             flag={flag}
-//             eoficina={eoficina}
-//             eoficinacob={eoficinacob}
-//             total={total}
-//             totalfichas={totalfichas}
-//             totalcobrado={totalcobrado}
-//             totalfichascob={totalfichascob}
-//             efecparcial={efecparcial}
-//             efectividad={efectividad}
-//           />
+          <hr />
 
-//           <hr />
+          <Ebanco
+            flag={flag}
+            ebanco={ebanco}
+            etarjeta={etarjetap}
+            total={total}
+            totalfichas={totalfichas}
+            totalcobrado={totalcobrado}
+            totalfichascob={totalfichascob}
+            efecparcial={efecparcial}
+            efectividad2={efectividad2}
+            total1indexfichascob={total1indexfichascob}
+            efectividadTjt={efectividadTjt}
+          />
 
-//           <Ebanco
-//             flag={flag}
-//             etarjeta={etarjetap}
-//             etarjetacob={etarjetacobp}
-//             total={total}
-//             totalfichas={totalfichas}
-//             totalcobrado={totalcobrado}
-//             totalfichascob={totalfichascob}
-//             efecparcial={efecparcial}
-//             efectividad2={efectividad2}
-//           />
+          <hr />
 
-//           <div className="container mb-4">
-//             <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
-//               <div className="col-4">
-//                 {" "}
-//                 <strong>TOTAL GENERAL</strong>
-//               </div>
+          {/* <Epolicia
+            epolicia={epolicia}
+            econvenio={econvenio}
+            flag={flag}
+            efectividad2a={efectividad2a}
+            efecparcial={efecparcial}
+          /> */}
 
-//               <div className="col-2">
-//                 <strong>
-//                   ${" "}
-//                   {total1index(ecobradores, 6) +
-//                     total(etarjetap) +
-//                     total1index(eoficina, 3)}{" "}
-//                 </strong>
-//               </div>
-//               <div className="col-1">
-//                 <strong>
-//                   {total1indexfichas(ecobradores, 6) +
-//                     totalfichas(etarjetap) +
-//                     total1indexfichas(eoficina, 3)}
-//                 </strong>
-//               </div>
-//               <div className="col-2">
-//                 <strong>
-//                   ${" "}
-//                   {total1index(ecobradorescob, 6) + total(etarjetacobp)
-//                   // + total1index(eoficinacob, 2)
-//                   }{" "}
-//                 </strong>
-//               </div>
-//               <div className="col-1">
-//                 <strong>
-//                   {" "}
-//                   {total1indexfichas(ecobradorescob, 6) +
-//                     totalfichas(etarjetacobp)
-//                   // +
-//                   // total1indexfichas(eoficinacob, 2)
-//                   }
-//                 </strong>
-//               </div>
-//               <div className="col-2">
-//                 <strong>{efectividadt.toFixed(2)}%</strong>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
+          <div className="container mb-4">
+            <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
+              <div className="col-4">
+                {" "}
+                <strong>TOTAL GENERAL</strong>
+              </div>
 
-//         <div className="jumbotron">
-//           <div className="mt-4 p-4 border">
-//             <h3 className="text-center mb-4 font-weight-bold">Opciones</h3>
-//             <div className="d-flex justify-content-center">
-//               <Link
-//                 to="#"
-//                 className="btn btn-info col-md-3 mr-1"
-//                 onClick={this.imprimir}
-//               >
-//                 Imprimir Solicitud
-//               </Link>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+              <div className="col-2">
+                <strong>
+                  ${" "}
+                  {total2indexacob(ecobradores, 4, 10) +
+                    totalacob(etarjetap) +
+                    total1indexacob(eoficina, 3)}{" "}
+                </strong>
+              </div>
+              <div className="col-1">
+                <strong>
+                  {total2indexfichas(ecobradores, 4, 10) +
+                    totalfichas(etarjetap) +
+                    total1indexfichas(eoficina, 3)}
+                </strong>
+              </div>
+              <div className="col-2">
+                <strong>
+                  ${" "}
+                  {total2indexcobrado(ecobradores, 4, 10) +
+                    totalcobrado(etarjetap) +
+                    total1indexcobrado(eoficina, 3)}{" "}
+                </strong>
+              </div>
+              <div className="col-1">
+                <strong>
+                  {" "}
+                  {total2indexfichascob(ecobradores, 4, 10) +
+                    totalfichascob(etarjetap) +
+                    total1indexfichascob(eoficina, 3)}
+                </strong>
+              </div>
+              <div className="col-1">
+                <strong>
+                  $
+                  {ecobradores.length === 0
+                    ? null
+                    : ecobradores[4].adelantado +
+                      ecobradores[10].adelantado +
+                      eoficina[1].adelantado}
+                </strong>
+              </div>
+              <div className="col-1">
+                <strong>{efectividadt.toFixed(2)}%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
 
-// const mapStateToProps = state => ({
-//   eoficinam: state.efectividad.eoficina,
-//   eoficinacobm: state.efectividad.eoficinacob,
-//   ecobradoresm: state.efectividad.ecobradores,
-//   ecobradorescobm: state.efectividad.ecobradorescob,
-//   etarjetapm: state.efectividad.etarjetap,
-//   etarjetacobpm: state.efectividad.etarjetacobp,
-//   auth: state.auth,
-//   isAuthenticated: state.auth.isAuthenticated
-// });
+        <div className="jumbotron">
+          <div className="mt-4 p-4 border">
+            <h3 className="text-center mb-4 font-weight-bold">Opciones</h3>
+            <div className="d-flex justify-content-center">
+              <Link
+                to="#"
+                className="btn btn-info col-md-3 mr-1"
+                onClick={this.imprimir}
+              >
+                Imprimir Solicitud
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
-// export default connect(mapStateToProps, {
-//   eCobradoresCobrado,
-//   eCobradoresTotal,
-//   eOficinaCobrado,
-//   eOficinaTotal,
-//   eTarjetaCobradosanpedro,
-//   eTarjetaTotalsanpedro
-// })(CobranzaSanPedro);
+const mapStateToProps = state => ({
+  eoficina: state.efectividad.eoficina,
+  ecobradores: state.efectividad.ecobradores,
+  etarjetap: state.efectividad.etarjetap,
+  auth: state.auth,
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {
+  eCobradores,
+  eOficina,
+  eTarjetaSanPedro
+})(CobranzaSanPedroM);

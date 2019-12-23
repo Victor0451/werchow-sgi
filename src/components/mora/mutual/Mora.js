@@ -15,7 +15,7 @@ import { meses } from "../../layouts/Arrays/arrays";
 import Moficina from "./Moficina";
 import Mcobradores from "./Mcobradores";
 import Mbanco from "./Mbanco";
-import Mpolicia from "./Mpolicia";
+// import Mpolicia from "./Mpolicia";
 
 class Mora extends Component {
   state = {

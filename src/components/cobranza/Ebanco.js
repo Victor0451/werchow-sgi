@@ -204,7 +204,7 @@ export default class Mbanco extends Component {
                     <strong>$ 0</strong>
                   </div>
                   <div className="col-1">
-                    <strong>{efectividad2(etarjeta)}%</strong>
+                    <strong>{efectividad2(etarjeta, ebanco, 0)}%</strong>
                   </div>
                 </div>
               ) : flag === 5 ? (
@@ -240,7 +240,7 @@ export default class Mbanco extends Component {
                     <strong>$ 0</strong>
                   </div>
                   <div className="col-1">
-                    <strong>{efectividad2(etarjeta)}%</strong>
+                    <strong>{efectividad2(etarjeta, ebanco, 1)}%</strong>
                   </div>
                 </div>
               ) : flag === 60 ? (
@@ -276,7 +276,7 @@ export default class Mbanco extends Component {
                     <strong>$ 0</strong>
                   </div>
                   <div className="col-1">
-                    <strong>{efectividad2(etarjeta)}%</strong>
+                    <strong>{efectividad2(etarjeta, ebanco, 2)}%</strong>
                   </div>
                 </div>
               ) : flag === 1 ? (
@@ -312,7 +312,7 @@ export default class Mbanco extends Component {
                     <strong>$ 0</strong>
                   </div>
                   <div className="col-1">
-                    <strong>{efectividad2(etarjeta)}%</strong>
+                    <strong>{efectividad2(etarjeta, ebanco, 3)}%</strong>
                   </div>
                 </div>
               ) : null}

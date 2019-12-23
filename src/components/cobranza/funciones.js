@@ -81,6 +81,54 @@ export const totalSsjAdelantado = (array1, index) => {
   return adelantado;
 };
 
+export const totalSsjaCobM = (array1, index) => {
+  let total = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    total =
+      array1[index[0]].total +
+      array1[index[1]].total +
+      array1[index[2]].total +
+      array1[index[3]].total +
+      array1[index[4]].total +
+      array1[index[5]].total +
+      array1[index[6]].total;
+  }
+  return total;
+};
+
+export const totalSsjCobM = (array1, index) => {
+  let cobrado = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    cobrado =
+      array1[index[0]].cobrado +
+      array1[index[1]].cobrado +
+      array1[index[2]].cobrado +
+      array1[index[3]].cobrado +
+      array1[index[4]].cobrado +
+      array1[index[5]].cobrado +
+      array1[index[6]].cobrado;
+  }
+  return cobrado;
+};
+
+export const totalSsjAdelantadoM = (array1, index) => {
+  let adelantado = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    adelantado =
+      array1[index[0]].adelantado +
+      array1[index[1]].adelantado +
+      array1[index[2]].adelantado +
+      array1[index[3]].adelantado +
+      array1[index[4]].adelantado +
+      array1[index[5]].adelantado +
+      array1[index[6]].adelantado;
+  }
+  return adelantado;
+};
+
 export const efectividadSP = (array, index) => {
   let total = 0;
   let cobrado = 0;
@@ -238,6 +286,40 @@ export const totalfichascobradasssj = (array1, index) => {
       array1[index[10]].fichascob +
       array1[index[11]].fichascob +
       array1[index[12]].fichascob;
+  }
+
+  return total;
+};
+
+export const totalfichasacobssjM = (array1, index) => {
+  let total = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    total =
+      array1[index[0]].fichas +
+      array1[index[1]].fichas +
+      array1[index[2]].fichas +
+      array1[index[3]].fichas +
+      array1[index[4]].fichas +
+      array1[index[5]].fichas +
+      array1[index[6]].fichas;
+  }
+
+  return total;
+};
+
+export const totalfichascobradasssjM = (array1, index) => {
+  let total = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    total =
+      array1[index[0]].fichascob +
+      array1[index[1]].fichascob +
+      array1[index[2]].fichascob +
+      array1[index[3]].fichascob +
+      array1[index[4]].fichascob +
+      array1[index[5]].fichascob +
+      array1[index[6]].fichascob;
   }
 
   return total;
@@ -449,19 +531,27 @@ export const totalfichascob = array => {
   return total;
 };
 
-export const efectividad2 = array1 => {
-  let total = 0;
-  let cobrado = 0;
+export const efectividad2 = (array1, array2, index) => {
+  let total1 = 0;
+  let total2 = 0;
+  let cobrado1 = 0;
+  let cobrado2 = 0;
 
   for (let i = 0; i < array1.length; i++) {
-    total += array1[i].total;
+    total1 += array1[i].total;
+    cobrado1 += array1[i].cobrado;
   }
 
-  for (let i = 0; i < array1.length; i++) {
-    cobrado += array1[i].cobrado;
+  for (let i = 0; i < array2.length; i++) {
+    total2 = array2[index].total;
+    cobrado2 = array2[index].cobrado;
   }
+
+  let total = total1 + total2;
+  let cobrado = cobrado1 + cobrado2;
 
   let efectividad = (cobrado * 100) / total;
+  // console.log("a cobrar: ", total, "cobrado: ", cobrado);
   let resultado = efectividad.toFixed(2);
 
   return resultado;
@@ -536,6 +626,24 @@ export const efecparcial = (array1, index) => {
   return resultado;
 };
 
+export const efectividadTjt = array1 => {
+  let total = 0;
+  let cobrado = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    total += array1[i].total;
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    cobrado += array1[i].cobrado;
+  }
+
+  let efectividad = (cobrado * 100) / total;
+  let resultado = efectividad.toFixed(2);
+
+  return resultado;
+};
+
 export const efectividadSsj = (array1, index) => {
   let total = 0;
   let cobrado = 0;
@@ -585,6 +693,45 @@ export const efectividadSsj = (array1, index) => {
       array1[index[10]].cobrado +
       array1[index[11]].cobrado +
       array1[index[12]].cobrado;
+  }
+
+  let efectividad = (cobrado * 100) / total;
+  let resultado = efectividad.toFixed(2);
+
+  return resultado;
+};
+
+export const efectividadSsjM = (array1, index) => {
+  let total = 0;
+  let cobrado = 0;
+
+  for (let i = 0; i < array1.length; i++) {
+    total =
+      array1[index[0]].total +
+      array1[index[0]].adelantado +
+      array1[index[1]].total +
+      array1[index[1]].adelantado +
+      array1[index[2]].total +
+      array1[index[2]].adelantado +
+      array1[index[3]].total +
+      array1[index[3]].adelantado +
+      array1[index[4]].total +
+      array1[index[4]].adelantado +
+      array1[index[5]].total +
+      array1[index[5]].adelantado +
+      array1[index[6]].total +
+      array1[index[6]].adelantado;
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    cobrado =
+      array1[index[0]].cobrado +
+      array1[index[1]].cobrado +
+      array1[index[2]].cobrado +
+      array1[index[3]].cobrado +
+      array1[index[4]].cobrado +
+      array1[index[5]].cobrado +
+      array1[index[6]].cobrado;
   }
 
   let efectividad = (cobrado * 100) / total;
