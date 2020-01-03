@@ -27,67 +27,76 @@ class Navbar extends Component {
 
             {isAuthenticated && user.perfil === 1 ? (
               <ul className="navbar-nav ">
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown ">
                   <Link
-                    to=""
-                    className="nav-link dropdown-toggle"
+                    to="#"
                     role="button"
                     data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Mora{" "}
-                  </Link>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <Link
-                      to="/mora/werchow"
-                      className="dropdown-item text-dark"
-                    >
-                      Werchow
-                    </Link>
-
-                    <hr />
-
-                    <Link to="/mora/mutual" className="dropdown-item text-dark">
-                      Mutual
-                    </Link>
-                  </div>
-                </li>
-
-                <li className="nav-item dropdown">
-                  <Link
-                    to=""
                     className="nav-link dropdown-toggle"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
                   >
-                    Efectividad de Cobranza{" "}
+                    Informes
                   </Link>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <Link
-                      to="/cobranza/werchow"
-                      className="dropdown-item text-dark"
-                    >
-                      Werchow
-                    </Link>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-submenu">
+                      <Link
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        className="  dropdown-toggle dropdown-item text-dark"
+                      >
+                        Mora
+                      </Link>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link
+                            to="/mora/werchow"
+                            className="dropdown-item text-dark"
+                          >
+                            Mora Werchow
+                          </Link>
+                        </li>
+                        <hr />
+                        <li>
+                          <Link
+                            to="/mora/mutual"
+                            className="dropdown-item text-dark"
+                          >
+                            Mora Mutual
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
 
-                    <hr />
-
-                    <Link
-                      to="/cobranza/mutual"
-                      className="dropdown-item text-dark"
-                    >
-                      Mutual
-                    </Link>
-                  </div>
+                    <li className="dropdown-submenu">
+                      <Link
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        className="  dropdown-toggle dropdown-item text-dark"
+                      >
+                        Cobranza
+                      </Link>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link
+                            to="/cobranza/werchow"
+                            className="dropdown-item text-dark"
+                          >
+                            Cobranza Werchow
+                          </Link>
+                        </li>
+                        <hr />
+                        <li>
+                          <Link
+                            to="/cobranza/mutual"
+                            className="dropdown-item text-dark"
+                          >
+                            Cobranza Mutual
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
 
                 <li className="nav-item dropdown">

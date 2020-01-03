@@ -10,7 +10,7 @@ export default class Mcobradores extends Component {
       efecparcial,
       efectividadSP,
       efectividad,
-      flag
+      flag   
     } = this.props;
     let tmp = new Date(Date.now());
     let fecha = moment(tmp).format("DD/MM/YYYY HH:mm:ss");

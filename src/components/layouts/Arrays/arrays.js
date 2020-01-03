@@ -37,3 +37,8 @@ export const meses = [
   { value: 11, label: "NOVIEMBRE" },
   { value: 12, label: "DICIEMBRE" }
 ];
+
+export const anos = [
+  { value: 2019, label: "2019" },
+  { value: 2020, label: "2020" }
+];

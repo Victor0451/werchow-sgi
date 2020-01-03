@@ -15,7 +15,7 @@ import { meses } from "../../layouts/Arrays/arrays";
 import Moficina from "./Moficina";
 import Mcobradores from "./Mcobradores";
 import Mbanco from "./Mbanco";
-// import Mpolicia from "./Mpolicia";
+import Mpolicia from "./Mpolicia";
 
 class Mora extends Component {
   state = {
@@ -207,7 +207,7 @@ class Mora extends Component {
 
             <hr />
 
-            {/* <Mpolicia
+            <Mpolicia
               mbanconv={mbanconv}
               totalmora={this.totalmora}
               totalfichas={this.totalfichas}
@@ -215,7 +215,7 @@ class Mora extends Component {
               totalfichasrec={this.totalfichasrec}
               efectividad={this.efectividad}
               efecparcial={this.efecparcial}
-            /> */}
+            />
 
             <div className="container mb-4">
               <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">

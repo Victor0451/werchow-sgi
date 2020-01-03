@@ -10,9 +10,15 @@ import {
 
 import axios from "axios";
 
-export const eCobradores = mes => async dispatch => {
+export const eCobradores = (mes, ano) => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/ecobradores/${mes}`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/ecobradores`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
   );
   dispatch({
     type: ECOBRADORES,
@@ -20,9 +26,15 @@ export const eCobradores = mes => async dispatch => {
   });
 };
 
-export const eOficina = mes => async dispatch => {
+export const eOficina = (mes, ano) => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/eoficina/${mes}`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/eoficina`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
   );
   dispatch({
     type: EOFICINA,
@@ -30,9 +42,15 @@ export const eOficina = mes => async dispatch => {
   });
 };
 
-export const eTarjetaPalpala = mes => async dispatch => {
+export const eTarjetaPalpala = (mes, ano) => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetapalpala/${mes}`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetapalpala`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
   );
   dispatch({
     type: ETARJETA_L,
@@ -40,9 +58,15 @@ export const eTarjetaPalpala = mes => async dispatch => {
   });
 };
 
-export const eTarjetaPerico = mes => async dispatch => {
+export const eTarjetaPerico = (mes, ano) => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetaperico/${mes}`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetaperico`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
   );
   dispatch({
     type: ETARJETA_R,
@@ -50,9 +74,15 @@ export const eTarjetaPerico = mes => async dispatch => {
   });
 };
 
-export const eTarjetaSsj = mes => async dispatch => {
+export const eTarjetaSsj = (mes, ano) => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetassj/${mes}`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetassj`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
   );
   dispatch({
     type: ETARJETA_W,
@@ -60,9 +90,15 @@ export const eTarjetaSsj = mes => async dispatch => {
   });
 };
 
-export const eTarjetaSanPedro = mes => async dispatch => {
+export const eTarjetaSanPedro = (mes, ano) => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetasanpedro/${mes}`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/etarjetasanpedro`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
   );
   dispatch({
     type: ETARJETA_P,
@@ -70,9 +106,15 @@ export const eTarjetaSanPedro = mes => async dispatch => {
   });
 };
 
-export const ePolicia = mes => async dispatch => {
+export const ePolicia = (mes, ano) => async dispatch => {
   const respuesta = await axios.get(
-    `http://190.231.32.232:5002/api/sgi/efectividadm/epolicia/${mes}`
+    `http://190.231.32.232:5002/api/sgi/efectividadm/epolicia`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
   );
   dispatch({
     type: EPOLICIA,

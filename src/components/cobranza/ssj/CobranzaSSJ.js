@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import MesSelect from "react-select";
-import { meses } from "../../layouts/Arrays/arrays";
+import AnoSelect from "react-select";
+
+import { meses, anos } from "../../layouts/Arrays/arrays";
 
 import { connect } from "react-redux";
 import {
@@ -30,11 +33,11 @@ import {
   totalcobrado,
   totalfichascob,
   totalacob,
-  efecparcial, 
+  efecparcial,
   efectividad2,
   efectividad,
   total1indexfichascob,
-  efectividad2a, 
+  efectividad2a,
   totaladelantadounindex,
   totalfichasacobssj,
   totalSsjAdelantado
@@ -52,22 +55,27 @@ class CobranzaSSJ extends Component {
   };
 
   handleChange = (value, state) => {
-    let mes = value.value;
-    let month = value.label;
-    this.props.eCobradores(mes);
-    this.props.eOficina(mes);
-    this.props.eTarjetaSsj(mes);
-    this.props.eConvenios(mes);
-    this.props.ePolicia(mes);
-    this.props.eBanco(mes);
+    this.setState({ [state]: value.value });
+  };
+
+  buscar = () => {
+    const { mes, ano } = this.state;
+    let month = mes;
+
+    this.props.eCobradores(mes, ano);
+    this.props.eOficina(mes, ano);
+    this.props.eTarjetaSsj(mes, ano);
+    this.props.eConvenios(mes, ano);
+    this.props.eBanco(mes, ano);
+    this.props.ePolicia(mes, ano);
 
     setTimeout(() => {
       const {
         eoficina,
         ecobradores,
         etarjetaw,
-        epolicia,
         econvenio,
+        epolicia,
         ebanco
       } = this.props;
 
@@ -75,11 +83,13 @@ class CobranzaSSJ extends Component {
         eoficina: eoficina,
         ecobradores: ecobradores,
         etarjetaw: etarjetaw,
-        econvenio: econvenio,
         epolicia: epolicia,
         ebanco: ebanco,
+        econvenio: econvenio,
         month: month
       });
+
+      console.log(this.state);
     }, 300);
   };
 
@@ -103,7 +113,9 @@ class CobranzaSSJ extends Component {
       etarjetaw,
       epolicia,
       econvenio,
-      ebanco
+      ebanco,
+      mes,
+      ano
     } = this.state;
 
     let acobrar =
@@ -151,216 +163,241 @@ class CobranzaSSJ extends Component {
 
     let efectividadt = (cobrado * 100) / acobrar;
 
-    
-
     let flag = 1;
     return (
       <div className="container ">
         <hr className="mt-4 mb-4" />
-        <div className="mb-4">
-          <MesSelect
-            options={meses}
-            placeholder={"Eliga un Mes"}
-            onChange={value => this.handleChange(value, "mes")}
-          />
+        <h1 className="mb-4 ">
+          Efectividad San Salvador Seleccione el Periodo
+        </h1>
+
+        <div className="mb-4 d-flex justify-content-beetwen">
+          <div className="col-md-4">
+            <MesSelect
+              options={meses}
+              placeholder={"Eliga un Mes"}
+              onChange={value => this.handleChange(value, "mes")}
+            />
+          </div>
+          <div className="col-md-4">
+            <AnoSelect
+              options={anos}
+              placeholder={"Eliga el Año"}
+              onChange={value => this.handleChange(value, "ano")}
+            />
+          </div>
+          <div className="col-md-4">
+            <Link
+              className="btn btn-block btn-primary"
+              onClick={this.buscar}
+              to="#"
+            >
+              Buscar
+            </Link>
+          </div>
         </div>
         <hr className="mt-4 mb-4" />
-        <div id="ssj" className="ssj">
-          <h1 className="mb-4 text-center">
-            Efectividad de Cobranza San Salvador
-          </h1>
 
-          <hr />
-          <Ecobradores
-            flag={flag}
-            ecobradores={ecobradores}
-            total={total}
-            totalfichas={totalfichas}
-            totalcobrado={totalcobrado}
-            totalfichascob={totalfichascob}
-            efecparcial={efecparcial}
-            efectividad={efectividad}
-            efectividad3={efectividad3}
-          />
+        {ecobradores ? (
+          <div>
+            <div id="ssj" className="ssj">
+              <h1 className="mb-4 text-center">
+                Efectividad de Cobranza San Salvador Periodo: {mes}/{ano}
+              </h1>
 
-          <hr />
+              <hr />
+              <Ecobradores
+                flag={flag}
+                ecobradores={ecobradores}
+                total={total}
+                totalfichas={totalfichas}
+                totalcobrado={totalcobrado}
+                totalfichascob={totalfichascob}
+                efecparcial={efecparcial}
+                efectividad={efectividad}
+                efectividad3={efectividad3}
+              />
 
-          <Eoficina
-            flag={flag}
-            eoficina={eoficina}
-            total={total}
-            totalfichas={totalfichas}
-            totalcobrado={totalcobrado}
-            totalfichascob={totalfichascob}
-            efecparcial={efecparcial}
-            efectividad={efectividad}
-          />
+              <hr />
 
-          <hr />
+              <Eoficina
+                flag={flag}
+                eoficina={eoficina}
+                total={total}
+                totalfichas={totalfichas}
+                totalcobrado={totalcobrado}
+                totalfichascob={totalfichascob}
+                efecparcial={efecparcial}
+                efectividad={efectividad}
+              />
 
-          <Ebanco
-            flag={flag}
-            ebanco={ebanco}
-            etarjeta={etarjetaw}
-            total={total}
-            totalfichas={totalfichas}
-            totalcobrado={totalcobrado}
-            totalfichascob={totalfichascob}
-            efecparcial={efecparcial}
-            efectividad2={efectividad2}
-            total1indexfichascob={total1indexfichascob}
-          />
-          <hr />
+              <hr />
 
-          <Epolicia
-            epolicia={epolicia}
-            econvenio={econvenio}
-            flag={flag}
-            efectividad2a={efectividad2a}
-            efecparcial={efecparcial}
-          />
+              <Ebanco
+                flag={flag}
+                ebanco={ebanco}
+                etarjeta={etarjetaw}
+                total={total}
+                totalfichas={totalfichas}
+                totalcobrado={totalcobrado}
+                totalfichascob={totalfichascob}
+                efecparcial={efecparcial}
+                efectividad2={efectividad2}
+                total1indexfichascob={total1indexfichascob}
+              />
+              <hr />
 
-          <div className="container mb-4">
-            <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
-              <div className="col-4">
-                {" "}
-                <strong>TOTAL GENERAL</strong>
+              <Epolicia
+                epolicia={epolicia}
+                econvenio={econvenio}
+                flag={flag}
+                efectividad2a={efectividad2a}
+                efecparcial={efecparcial}
+              />
+
+              <div className="container mb-4">
+                <div className="d-flex justify-content-between text-center border  border-dark mt-4 mb-4 ">
+                  <div className="col-4">
+                    {" "}
+                    <strong>TOTAL GENERAL</strong>
+                  </div>
+
+                  <div className="col-2">
+                    <strong>
+                      ${" "}
+                      {totalSsjaCob(ecobradores, [
+                        3,
+                        4,
+                        5,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        14,
+                        17,
+                        18,
+                        19
+                      ]) +
+                        total(etarjetaw) +
+                        total1indexacob(eoficina, 0)}{" "}
+                    </strong>
+                  </div>
+                  <div className="col-1">
+                    <strong>
+                      {totalfichasacobssj(ecobradores, [
+                        3,
+                        4,
+                        5,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        14,
+                        17,
+                        18,
+                        19
+                      ]) +
+                        totalfichascob(etarjetaw) +
+                        total1indexfichas(eoficina, 0) +
+                        total1indexfichascob(econvenio, 3) +
+                        total1indexfichascob(epolicia, 3)}
+                    </strong>
+                  </div>
+                  <div className="col-2">
+                    <strong>
+                      ${" "}
+                      {totalSsjCob(ecobradores, [
+                        3,
+                        4,
+                        5,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        14,
+                        17,
+                        18,
+                        19
+                      ]) +
+                        totalcobrado(etarjetaw) +
+                        total1indexcobrado(eoficina, 0) +
+                        total1indexcobrado(econvenio, 3) +
+                        total1indexcobrado(epolicia, 3)}{" "}
+                    </strong>
+                  </div>
+                  <div className="col-1">
+                    <strong>
+                      {" "}
+                      {totalfichasacobssj(ecobradores, [
+                        3,
+                        4,
+                        5,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        14,
+                        17,
+                        18,
+                        19
+                      ]) +
+                        totalfichascob(etarjetaw) +
+                        total1indexfichascob(eoficina, 0) +
+                        total1indexfichascob(econvenio, 3) +
+                        total1indexfichascob(epolicia, 3)}
+                    </strong>
+                  </div>
+                  <div className="col-1">
+                    <strong>
+                      ${" "}
+                      {totalSsjAdelantado(ecobradores, [
+                        3,
+                        4,
+                        5,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        14,
+                        17,
+                        18,
+                        19
+                      ]) + totaladelantadounindex(eoficina, 0)}
+                    </strong>
+                  </div>
+                  <div className="col-1">
+                    <strong>{efectividadt.toFixed(2)}%</strong>
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <div className="col-2">
-                <strong>
-                  ${" "}
-                  {totalSsjaCob(ecobradores, [
-                    3,
-                    4,
-                    5,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    14,
-                    17,
-                    18,
-                    19
-                  ]) +
-                    total(etarjetaw) +
-                    total1indexacob(eoficina, 0)}{" "}
-                </strong>
-              </div>
-              <div className="col-1">
-                <strong>
-                  {totalfichasacobssj(ecobradores, [
-                    3,
-                    4,
-                    5,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    14,
-                    17,
-                    18,
-                    19
-                  ]) +
-                    totalfichascob(etarjetaw) +
-                    total1indexfichas(eoficina, 0) +
-                    total1indexfichascob(econvenio, 3) +
-                    total1indexfichascob(epolicia, 3)}
-                </strong>
-              </div>
-              <div className="col-2">
-                <strong>
-                  ${" "}
-                  {totalSsjCob(ecobradores, [
-                    3,
-                    4,
-                    5,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    14,
-                    17,
-                    18,
-                    19
-                  ]) +
-                    totalcobrado(etarjetaw) +
-                    total1indexcobrado(eoficina, 0) +
-                    total1indexcobrado(econvenio, 3) +
-                    total1indexcobrado(epolicia, 3)}{" "}
-                </strong>
-              </div>
-              <div className="col-1">
-                <strong>
-                  {" "}
-                  {totalfichasacobssj(ecobradores, [
-                    3,
-                    4,
-                    5,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    14,
-                    17,
-                    18,
-                    19
-                  ]) +
-                    totalfichascob(etarjetaw) +
-                    total1indexfichascob(eoficina, 0) +
-                    total1indexfichascob(econvenio, 3) +
-                    total1indexfichascob(epolicia, 3)}
-                </strong>
-              </div>
-              <div className="col-1">
-                <strong>
-                  ${" "}
-                  {totalSsjAdelantado(ecobradores, [
-                    3,
-                    4,
-                    5,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    14,
-                    17,
-                    18,
-                    19
-                  ]) + totaladelantadounindex(eoficina, 0)}
-                </strong>
-              </div>
-              <div className="col-1">
-                <strong>{efectividadt.toFixed(2)}%</strong>
+            <div className="jumbotron">
+              <div className="mt-4 p-4 border">
+                <h3 className="text-center mb-4 font-weight-bold">Opciones</h3>
+                <div className="d-flex justify-content-center">
+                  <Link
+                    to="#"
+                    className="btn btn-info col-md-3 mr-1"
+                    onClick={this.imprimir}
+                  >
+                    Imprimir Solicitud
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="jumbotron">
-          <div className="mt-4 p-4 border">
-            <h3 className="text-center mb-4 font-weight-bold">Opciones</h3>
-            <div className="d-flex justify-content-center">
-              <Link
-                to="#"
-                className="btn btn-info col-md-3 mr-1"
-                onClick={this.imprimir}
-              >
-                Imprimir Solicitud
-              </Link>
-            </div>
-          </div>
-        </div>
+        ) :  null}
       </div>
     );
   }

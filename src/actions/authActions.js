@@ -66,7 +66,11 @@ export const register = ({
   });
 
   axios
-    .post("http://190.231.32.232:5002/api/sgi/operador/postoperador", body, config)
+    .post(
+      "http://190.231.32.232:5002/api/sgi/operador/postoperador",
+      body,
+      config
+    )
     .then(
       res =>
         dispatch({
