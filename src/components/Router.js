@@ -27,6 +27,7 @@ import { Provider } from "react-redux";
 import Werchow from "./cobranza/Werchow";
 import Mutual from "./cobranza/Mutual";
 import GestionPoli from "./campañas/policia/GestionPoli";
+import CajaSepelio from "./sepelio/caja/CajaSepelio";
 
 const token = sessionStorage.getItem("token");
 
@@ -109,6 +110,12 @@ export default class Router extends Component {
               {/* COBRANZA */}
               <Route exact path={"/cobranza/werchow/"} component={Werchow} />
               <Route exact path={"/cobranza/mutual/"} component={Mutual} />
+              {/* SEPELIO */}
+              <Route
+                exact
+                path={"/sepelio/nuevacaja/"}
+                component={CajaSepelio}
+              />
             </Switch>
           ) : (
             <Switch>

@@ -149,6 +149,79 @@ class Navbar extends Component {
                     </Link>
                   </div>
                 </li>
+
+                <li className="nav-item dropdown ">
+                  <Link
+                    to="#"
+                    role="button"
+                    data-toggle="dropdown"
+                    className="nav-link dropdown-toggle"
+                  >
+                    Sepelio
+                  </Link>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-submenu">
+                      <Link
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        className="  dropdown-toggle dropdown-item text-dark"
+                      >
+                        Caja
+                      </Link>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link
+                            to="/sepelio/nuevacaja"
+                            className="dropdown-item text-dark"
+                          >
+                            Ingresar Caja
+                          </Link>
+                        </li>
+                        <hr />
+                        <li>
+                          <Link
+                            to="/mora/mutual"
+                            className="dropdown-item text-dark"
+                          >
+                            Ver Caja
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li className="dropdown-submenu">
+                      <Link
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        className="  dropdown-toggle dropdown-item text-dark"
+                      >
+                        Cobranza
+                      </Link>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link
+                            to="/cobranza/werchow"
+                            className="dropdown-item text-dark"
+                          >
+                            Cobranza Werchow
+                          </Link>
+                        </li>
+                        <hr />
+                        <li>
+                          <Link
+                            to="/cobranza/mutual"
+                            className="dropdown-item text-dark"
+                          >
+                            Cobranza Mutual
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
                 <li className="nav-item dropdown">
                   <Link
                     to=""

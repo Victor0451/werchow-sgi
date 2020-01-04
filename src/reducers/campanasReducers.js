@@ -16,6 +16,7 @@ import {
   CAMPANA_OPERADOR_NOTI,
   CAMPANA_OPERADOR_HIST,
   POLICIA,
+  AUX,
   BUSCAR_GESTION_CASO
 } from "../actions/types";
 
@@ -50,6 +51,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         poli: action.payload
+      };
+    case AUX:
+      return {
+        ...state,
+        aux: action.payload
       };
     case ESTADO_CAMP:
       return {

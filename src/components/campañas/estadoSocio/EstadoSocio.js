@@ -19,6 +19,10 @@ import PoliCC from "./estados/poliCC";
 import PoliPer from "./estados/poliPer";
 import PoliPal from "./estados/poliPalpala";
 import PoliSP from "./estados/poliSP";
+import AuxCC from "./estados/auxCC";
+import AuxPer from "./estados/auxPer";
+import AuxPal from "./estados/auxPalpala";
+import AuxSP from "./estados/auxSP";
 
 import toastr from "../../../utils/toastr";
 
@@ -30,6 +34,7 @@ import {
   ReinW,
   BlanW,
   PoliW,
+  AuxW,
   verificarEstadoCamp,
   crearCampAT
 } from "../../../actions/campanasActions";
@@ -63,7 +68,12 @@ class EstadoSocio extends Component {
     PoliSanPedro: [],
     PoliCasaCentralAT: [],
     PoliCasaCentralGG: [],
-    PoliCasaCentralMG: []
+    PoliCasaCentralMG: [],
+    AuxCasaCentralGG: [],
+    AuxCasaCentralMG: [],
+    AuxPalpala: [],
+    AuxPerico: [],
+    AuxSanPedro: []
   };
 
   atDelMes = () => {
@@ -316,6 +326,56 @@ class EstadoSocio extends Component {
     }
   };
 
+  auxDelMes = () => {
+    let newDate = new Date();
+    let date = newDate.getDate();
+
+    if (date) {
+      this.props.AuxW();
+
+      setTimeout(() => {
+        const { aux } = this.props;
+        console.log(this.props);
+        if (aux) {
+          let auxiliar = aux[0];
+
+          let AuxPerico = auxiliar.filter(aux => {
+            return aux.SUCURSAL === "R";
+          });
+
+          let AuxPalpala = auxiliar.filter(aux => {
+            return aux.SUCURSAL === "L";
+          });
+
+          let AuxSanPedro = auxiliar.filter(aux => {
+            return aux.SUCURSAL === "P";
+          });
+
+          let AuxCasaCentral = auxiliar.filter(aux => {
+            return aux.SUCURSAL === "W";
+          });
+
+          let AuxCCmitad = Math.floor(AuxCasaCentral.length / 2);
+
+          let AuxCasaCentralGG = AuxCasaCentral.slice(0, AuxCCmitad);
+
+          let AuxCasaCentralMG = AuxCasaCentral.slice(
+            AuxCCmitad,
+            AuxCasaCentral.length
+          );
+
+          this.setState({
+            AuxCasaCentralGG: AuxCasaCentralGG,
+            AuxCasaCentralMG: AuxCasaCentralMG,
+            AuxPalpala: AuxPalpala,
+            AuxPerico: AuxPerico,
+            AuxSanPedro: AuxSanPedro
+          });
+        }
+      }, 1000);
+    }
+  };
+
   crearCampana = (array, idcamp) => {
     let tmp = new Date(Date.now());
     let fecha = tmp.toISOString().split("T")[0];
@@ -380,7 +440,12 @@ class EstadoSocio extends Component {
       PoliCasaCentralGG,
       PoliPalpala,
       PoliPerico,
-      PoliSanPedro
+      PoliSanPedro,
+      AuxCasaCentralGG,
+      AuxCasaCentralMG,
+      AuxPalpala,
+      AuxPerico,
+      AuxSanPedro
     } = this.state;
     let flag = 1;
     return (
@@ -481,6 +546,25 @@ class EstadoSocio extends Component {
                   PoliPalpala.length +
                   PoliPerico.length +
                   PoliSanPedro.length}
+              </span>
+            </a>
+
+            <a
+              className="nav-item nav-link"
+              id="nav-aux-tab"
+              data-toggle="tab"
+              href="#nav-aux"
+              role="tab"
+              aria-controls="nav-aux"
+              aria-selected="false"
+            >
+              Auxiliar {""}
+              <span className="badge badge-pill badge-dark text-white">
+                {AuxCasaCentralMG.length +
+                  AuxCasaCentralGG.length +
+                  AuxPalpala.length +
+                  AuxPerico.length +
+                  AuxSanPedro.length}
               </span>
             </a>
           </div>
@@ -743,6 +827,57 @@ class EstadoSocio extends Component {
               flag={flag}
             />
           </div>
+
+          <div
+            className="tab-pane fade"
+            id="nav-aux"
+            role="tabpanel"
+            aria-labelledby="nav-aux-tab"
+          >
+            <div className="jumbotron row mt-4">
+              <div className="col-md-6">
+                <h2>Buscar Cartera para campaña auxiliar</h2>
+              </div>
+              <div className="col-md-6">
+                <button
+                  className="btn btn-secondary btn-block"
+                  onClick={this.auxDelMes}
+                >
+                  Buscar
+                </button>
+              </div>
+            </div>
+
+            <AuxCC
+              AuxCasaCentralGG={AuxCasaCentralGG}
+              AuxCasaCentralMG={AuxCasaCentralMG}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+
+            <hr />
+
+            <AuxPal
+              AuxPalpala={AuxPalpala}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+
+            <hr />
+
+            <AuxPer
+              AuxPerico={AuxPerico}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+
+            <hr />
+            <AuxSP
+              AuxSanPedro={AuxSanPedro}
+              crearCampana={this.crearCampana}
+              flag={flag}
+            />
+          </div>
         </div>
       </div>
     );
@@ -755,6 +890,7 @@ const mapStateToProps = state => ({
   rein: state.campanas.rein,
   blan: state.campanas.blan,
   poli: state.campanas.poli,
+  aux: state.campanas.aux,
   estado: state.campanas.estado
 });
 
@@ -764,6 +900,7 @@ export default connect(mapStateToProps, {
   ReinW,
   BlanW,
   PoliW,
+  AuxW,
   verificarEstadoCamp,
   crearCampAT
 })(EstadoSocio);

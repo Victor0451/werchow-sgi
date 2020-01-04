@@ -77,7 +77,7 @@ class GestionRecordatorio extends Component {
     let mes;
     return (
       <div className="container">
-        <h1 className="mt-4 mb-4"> Gestion Campaña de Recordatorios {mes}</h1>
+        <h1 className="mt-4 mb-4"> Gestion Campaña Auxiliar {mes}</h1>
 
         <nav>
           <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -204,16 +204,13 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    campanaOperadorRecordatorio,
-    gestionCaso,
-    updateAccion,
-    campanaOperadorTrabRecordatorio,
-    cerrarCaso,
-    getGestionCaso,
-    getRecuperacion,
-    getDeuda
-  }
-)(GestionRecordatorio);
+export default connect(mapStateToProps, {
+  campanaOperadorRecordatorio,
+  gestionCaso,
+  updateAccion,
+  campanaOperadorTrabRecordatorio,
+  cerrarCaso,
+  getGestionCaso,
+  getRecuperacion,
+  getDeuda
+})(GestionRecordatorio);

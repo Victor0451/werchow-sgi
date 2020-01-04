@@ -19,6 +19,7 @@ export const BLANQUEO = "BLANQUEO";
 export const REC = "REC";
 export const REIN = "REIN";
 export const POLICIA = "POLICIA";
+export const AUX = "AUX";
 export const BUSCAR_CASO = "BUSCAR_CASO";
 export const BUSCAR_GESTION_CASO = "BUSCAR_GESTION_CASO";
 export const CREAR_CAMP_AT = "CREAR_CAMP_AT";

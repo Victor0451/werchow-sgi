@@ -1,6 +1,7 @@
 import {
   AT,
   POLICIA,
+  AUX,
   CREAR_CAMP_AT,
   ESTADO_CAMP,
   CAMPANA_OPERADOR,
@@ -69,6 +70,16 @@ export const PoliW = () => async dispatch => {
   );
   dispatch({
     type: POLICIA,
+    payload: respuesta.data
+  });
+};
+
+export const AuxW = () => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/AuxW`
+  );
+  dispatch({
+    type: AUX,
     payload: respuesta.data
   });
 };
