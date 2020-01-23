@@ -70,3 +70,23 @@ export const ETARJETA_R = "ETARJETA_R";
 export const EPOLICIA = "EPOLICIA";
 export const ECONVENIOS = "ECONVENIOS";
 export const EBANCO = "EBANCO";
+
+// SEPELIO
+export const NUEVA_CAJA = "NUEVA_CAJA";
+export const NUEVO_INGRESO = "NUEVO_INGRESO";
+export const LISTADO_CAJAS = "LISTADO_CAJAS";
+export const CAJA = "CAJA";
+export const GASTO = "GASTO";
+export const NUEVO_GASTO = "NUEVO_GASTO";
+export const UPDATE_GASTO = "UPDATE_GASTO";
+export const UPDATE_TOTALES = "UPDATE_TOTALES";
+export const UPDATE_CIERRE_CAJA = "UPDATE_CIERRE_CAJA";
+export const LISTADO_GASTOS = "LISTADO_GASTOS";
+export const LISTADO_INGRESOS = "LISTADO_INGRESOS";
+export const ELIMINAR_GASTO = "ELIMINAR_GASTO";
+export const ELIMINAR_CAJA = "ELIMINAR_CAJA";
+export const ELIMINAR_INGRESO = "ELIMINAR_INGRESO";
+
+// VENTAS
+export const CONSULTA_VENTAS = "CONSULTA_VENTAS";
+export const CONSULTA_VENTASM = "CONSULTA_VENTASM";

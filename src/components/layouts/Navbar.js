@@ -181,15 +181,27 @@ class Navbar extends Component {
                         <hr />
                         <li>
                           <Link
-                            to="/mora/mutual"
+                            to="/sepelio/listadocajas"
                             className="dropdown-item text-dark"
                           >
-                            Ver Caja
+                            Listado Cajas Sepelio
                           </Link>
                         </li>
                       </ul>
                     </li>
+                  </ul>
+                </li>
 
+                <li className="nav-item dropdown ">
+                  <Link
+                    to="#"
+                    role="button"
+                    data-toggle="dropdown"
+                    className="nav-link dropdown-toggle"
+                  >
+                    Ventas
+                  </Link>
+                  <ul className="dropdown-menu">
                     <li className="dropdown-submenu">
                       <Link
                         to="#"
@@ -197,25 +209,25 @@ class Navbar extends Component {
                         data-toggle="dropdown"
                         className="  dropdown-toggle dropdown-item text-dark"
                       >
-                        Cobranza
+                        Consultas
                       </Link>
                       <ul className="dropdown-menu">
                         <li>
                           <Link
-                            to="/cobranza/werchow"
+                            to="/ventas/consultaventas"
                             className="dropdown-item text-dark"
                           >
-                            Cobranza Werchow
+                            Ventas por periodo
                           </Link>
                         </li>
                         <hr />
                         <li>
-                          <Link
-                            to="/cobranza/mutual"
+                          {/* <Link
+                            to="/sepelio/listadocajas"
                             className="dropdown-item text-dark"
                           >
-                            Cobranza Mutual
-                          </Link>
+                            Listado Cajas Sepelio
+                          </Link> */}
                         </li>
                       </ul>
                     </li>
@@ -331,6 +343,47 @@ class Navbar extends Component {
                       Ingresar Noticia
                     </Link>
                   </div>
+                </li>
+                <li className="nav-item dropdown ">
+                  <Link
+                    to="#"
+                    role="button"
+                    data-toggle="dropdown"
+                    className="nav-link dropdown-toggle"
+                  >
+                    Ventas
+                  </Link>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-submenu">
+                      <Link
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        className="  dropdown-toggle dropdown-item text-dark"
+                      >
+                        Consultas
+                      </Link>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link
+                            to="/ventas/consultaventas"
+                            className="dropdown-item text-dark"
+                          >
+                            Ventas por periodo
+                          </Link>
+                        </li>
+                        <hr />
+                        <li>
+                          {/* <Link
+                            to="/sepelio/listadocajas"
+                            className="dropdown-item text-dark"
+                          >
+                            Listado Cajas Sepelio
+                          </Link> */}
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             ) : null}

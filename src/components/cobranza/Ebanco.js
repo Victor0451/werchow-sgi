@@ -59,66 +59,120 @@ export default class Mbanco extends Component {
             </div>
 
             <div>
-              {!etarjeta[0] ? null : (
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">**</div>
-                  <div className="col-3">CREDICASH</div>
-                  <div className="col-2">$ {etarjeta[0].total}</div>
-                  <div className="col-1">{etarjeta[0].fichas}</div>
-                  <div className="col-2">$ {etarjeta[0].cobrado}</div>
-                  <div className="col-1">{etarjeta[0].fichascob}</div>
-                  <div className="col-1">$ {etarjeta[0].adelantado}</div>
-                  <div className="col-1"> {efecparcial(etarjeta, 0)}% </div>
+              {etarjeta[0].grupo === 3400 ? (
+                <div>
+                  <div className="d-flex justify-content-between border-bottom text-center">
+                    <div className="col-1">**</div>
+                    <div className="col-3">CREDICASH</div>
+                    <div className="col-2">$ {etarjeta[0].total}</div>
+                    <div className="col-1">{etarjeta[0].fichas}</div>
+                    <div className="col-2">$ {etarjeta[0].cobrado}</div>
+                    <div className="col-1">{etarjeta[0].fichascob}</div>
+                    <div className="col-1">$ {etarjeta[0].adelantado}</div>
+                    <div className="col-1"> {efecparcial(etarjeta, 0)}% </div>
+                  </div>
+                  {!etarjeta[1] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">CREDIMAS</div>
+                      <div className="col-2">$ {etarjeta[1].total}</div>
+                      <div className="col-1">{etarjeta[1].fichas}</div>
+                      <div className="col-2">$ {etarjeta[1].cobrado}</div>
+                      <div className="col-1">{etarjeta[1].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[1].adelantado}</div>
+                      <div className="col-1"> {efecparcial(etarjeta, 1)}% </div>
+                    </div>
+                  )}
+                  {!etarjeta[2] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">NARANJA</div>
+                      <div className="col-2">$ {etarjeta[2].total}</div>
+                      <div className="col-1">{etarjeta[2].fichas}</div>
+                      <div className="col-2">$ {etarjeta[2].cobrado}</div>
+                      <div className="col-1">{etarjeta[2].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[2].adelantado}</div>
+                      <div className="col-1">{efecparcial(etarjeta, 2)}%</div>
+                    </div>
+                  )}
+                  {!etarjeta[3] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">SU-CREDITO</div>
+                      <div className="col-2">$ {etarjeta[3].total}</div>
+                      <div className="col-1">{etarjeta[3].fichas}</div>
+                      <div className="col-2">$ {etarjeta[3].cobrado}</div>
+                      <div className="col-1">{etarjeta[3].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[3].adelantado}</div>
+                      <div className="col-1"> {efecparcial(etarjeta, 3)}% </div>
+                    </div>
+                  )}
+                  {!etarjeta[4] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">VISA</div>
+                      <div className="col-2">$ {etarjeta[4].total}</div>
+                      <div className="col-1">{etarjeta[4].fichas}</div>
+                      <div className="col-2">$ {etarjeta[4].cobrado}</div>
+                      <div className="col-1">{etarjeta[4].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[4].adelantado}</div>
+                      <div className="col-1"> {efecparcial(etarjeta, 4)}% </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  {!etarjeta[0] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">CREDIMAS</div>
+                      <div className="col-2">$ {etarjeta[0].total}</div>
+                      <div className="col-1">{etarjeta[0].fichas}</div>
+                      <div className="col-2">$ {etarjeta[0].cobrado}</div>
+                      <div className="col-1">{etarjeta[0].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[0].adelantado}</div>
+                      <div className="col-1"> {efecparcial(etarjeta, 0)}% </div>
+                    </div>
+                  )}
+                  {!etarjeta[1] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">NARANJA</div>
+                      <div className="col-2">$ {etarjeta[1].total}</div>
+                      <div className="col-1">{etarjeta[1].fichas}</div>
+                      <div className="col-2">$ {etarjeta[1].cobrado}</div>
+                      <div className="col-1">{etarjeta[1].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[1].adelantado}</div>
+                      <div className="col-1">{efecparcial(etarjeta, 1)}%</div>
+                    </div>
+                  )}
+                  {!etarjeta[2] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">SU-CREDITO</div>
+                      <div className="col-2">$ {etarjeta[2].total}</div>
+                      <div className="col-1">{etarjeta[2].fichas}</div>
+                      <div className="col-2">$ {etarjeta[2].cobrado}</div>
+                      <div className="col-1">{etarjeta[2].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[2].adelantado}</div>
+                      <div className="col-1"> {efecparcial(etarjeta, 2)}% </div>
+                    </div>
+                  )}
+                  {!etarjeta[3] ? null : (
+                    <div className="d-flex justify-content-between border-bottom text-center">
+                      <div className="col-1">**</div>
+                      <div className="col-3">VISA</div>
+                      <div className="col-2">$ {etarjeta[3].total}</div>
+                      <div className="col-1">{etarjeta[3].fichas}</div>
+                      <div className="col-2">$ {etarjeta[3].cobrado}</div>
+                      <div className="col-1">{etarjeta[3].fichascob}</div>
+                      <div className="col-1">$ {etarjeta[3].adelantado}</div>
+                      <div className="col-1"> {efecparcial(etarjeta, 3)}% </div>
+                    </div>
+                  )}
                 </div>
               )}
-              {!etarjeta[1] ? null : (
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">**</div>
-                  <div className="col-3">CREDIMAS</div>
-                  <div className="col-2">$ {etarjeta[1].total}</div>
-                  <div className="col-1">{etarjeta[1].fichas}</div>
-                  <div className="col-2">$ {etarjeta[1].cobrado}</div>
-                  <div className="col-1">{etarjeta[1].fichascob}</div>
-                  <div className="col-1">$ {etarjeta[1].adelantado}</div>
-                  <div className="col-1"> {efecparcial(etarjeta, 1)}% </div>
-                </div>
-              )}
-              {!etarjeta[2] ? null : (
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">**</div>
-                  <div className="col-3">NARANJA</div>
-                  <div className="col-2">$ {etarjeta[2].total}</div>
-                  <div className="col-1">{etarjeta[2].fichas}</div>
-                  <div className="col-2">$ {etarjeta[2].cobrado}</div>
-                  <div className="col-1">{etarjeta[2].fichascob}</div>
-                  <div className="col-1">$ {etarjeta[2].adelantado}</div>
-                  <div className="col-1">{efecparcial(etarjeta, 2)}%</div>
-                </div>
-              )}
-              {!etarjeta[3] ? null : (
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">**</div>
-                  <div className="col-3">SU-CREDITO</div>
-                  <div className="col-2">$ {etarjeta[3].total}</div>
-                  <div className="col-1">{etarjeta[3].fichas}</div>
-                  <div className="col-2">$ {etarjeta[3].cobrado}</div>
-                  <div className="col-1">{etarjeta[3].fichascob}</div>
-                  <div className="col-1">$ {etarjeta[3].adelantado}</div>
-                  <div className="col-1"> {efecparcial(etarjeta, 3)}% </div>
-                </div>
-              )}
-              {!etarjeta[4] ? null : (
-                <div className="d-flex justify-content-between border-bottom text-center">
-                  <div className="col-1">**</div>
-                  <div className="col-3">VISA</div>
-                  <div className="col-2">$ {etarjeta[4].total}</div>
-                  <div className="col-1">{etarjeta[4].fichas}</div>
-                  <div className="col-2">$ {etarjeta[4].cobrado}</div>
-                  <div className="col-1">{etarjeta[4].fichascob}</div>
-                  <div className="col-1">$ {etarjeta[4].adelantado}</div>
-                  <div className="col-1"> {efecparcial(etarjeta, 4)}% </div>
-                </div>
-              )}
+
               {flag === 3 && ebanco[0] ? (
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">**</div>

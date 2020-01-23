@@ -21,13 +21,21 @@ import GestionBlanM from "./campañas/blanqueo/GestionBlanM";
 import NuevaNoticia from "./noticias/NuevaNoticia";
 import Mora from "./mora/werchow/Mora";
 import Moram from "./mora/mutual/Mora";
-
-import store from "../store";
-import { Provider } from "react-redux";
 import Werchow from "./cobranza/Werchow";
 import Mutual from "./cobranza/Mutual";
 import GestionPoli from "./campañas/policia/GestionPoli";
-import CajaSepelio from "./sepelio/caja/CajaSepelio";
+import CajaSepelio from "./sepelio/caja/NuevaCajaSepelio";
+import CajaGastos from "./sepelio/caja/CajaGastos";
+import CajaIngresos from "./sepelio/caja/CajaIngresos";
+import EditarGasto from "./sepelio/caja/EditarGasto";
+import ListadoCajasSepelio from "./sepelio/caja/ListadoCajasSepelio";
+import VerGasto from "./sepelio/caja/VerGasto";
+import NotFound from "./NotFound";
+
+import store from "../store";
+import { Provider } from "react-redux";
+import ImprimirCaja from "./sepelio/caja/ImprimirCaja";
+import ConsultaVentas from "./ventas/ConsultaVentas";
 
 const token = sessionStorage.getItem("token");
 
@@ -116,6 +124,44 @@ export default class Router extends Component {
                 path={"/sepelio/nuevacaja/"}
                 component={CajaSepelio}
               />
+              <Route
+                exact
+                path={"/sepelio/gastoscaja/:id"}
+                component={CajaGastos}
+              />
+              <Route
+                exact
+                path={"/sepelio/ingresoscaja/:id"}
+                component={CajaIngresos}
+              />
+              <Route
+                exact
+                path={"/sepelio/editargasto/:id"}
+                component={EditarGasto}
+              />
+              <Route
+                exact
+                path={"/sepelio/listadocajas"}
+                component={ListadoCajasSepelio}
+              />
+              <Route
+                exact
+                path={"/sepelio/vergasto/:id"}
+                component={VerGasto}
+              />{" "}
+              <Route
+                exact
+                path={"/sepelio/imprimircaja/:id"}
+                component={ImprimirCaja}
+              />
+              {/* VENTAS */}
+              <Route
+                exact
+                path={"/ventas/consultaventas"}
+                component={ConsultaVentas}
+              />
+              {/* PAGE NOT FOUND*/}
+              <Route component={NotFound} />
             </Switch>
           ) : (
             <Switch>

@@ -124,7 +124,7 @@ export default class Moficina extends Component {
               <div>
                 <div className="d-flex justify-content-between border-bottom text-center">
                   <div className="col-1">{eoficina[3].zona}</div>
-                  <div className="col-3">PERICO</div>
+                  <div className="col-3">SAN PEDRO</div>
                   <div className="col-2">$ {eoficina[3].total}</div>
                   <div className="col-1">{eoficina[3].fichas}</div>
                   <div className="col-2">$ {eoficina[3].cobrado}</div>

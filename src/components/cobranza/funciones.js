@@ -570,8 +570,8 @@ export const efectividad = (array1, index1, index2) => {
   }
 
   for (let i = 0; i < array1.length; i++) {
-    cobrado1 += array1[index1].cobrado;
-    cobrado2 += array1[index2].cobrado;
+    cobrado1 += array1[index1].cobrado + array1[index1].adelantado;
+    cobrado2 += array1[index2].cobrado + array1[index2].adelantado;
   }
 
   let total = total1 + total2;
@@ -617,7 +617,7 @@ export const efecparcial = (array1, index) => {
   }
 
   for (let i = 0; i < array1.length; i++) {
-    cobrado += array1[index].cobrado;
+    cobrado += array1[index].cobrado + array1[index].adelantado;
   }
 
   let efectividad = (cobrado * 100) / total;
@@ -681,18 +681,31 @@ export const efectividadSsj = (array1, index) => {
   for (let i = 0; i < array1.length; i++) {
     cobrado =
       array1[index[0]].cobrado +
+      array1[index[0]].adelantado +
       array1[index[1]].cobrado +
+      array1[index[1]].adelantado +
       array1[index[2]].cobrado +
+      array1[index[2]].adelantado +
       array1[index[3]].cobrado +
+      array1[index[3]].adelantado +
       array1[index[4]].cobrado +
+      array1[index[4]].adelantado +
       array1[index[5]].cobrado +
+      array1[index[5]].adelantado +
       array1[index[6]].cobrado +
+      array1[index[6]].adelantado +
       array1[index[7]].cobrado +
+      array1[index[7]].adelantado +
       array1[index[8]].cobrado +
+      array1[index[8]].adelantado +
       array1[index[9]].cobrado +
+      array1[index[9]].adelantado +
       array1[index[10]].cobrado +
+      array1[index[10]].adelantado +
       array1[index[11]].cobrado +
-      array1[index[12]].cobrado;
+      array1[index[11]].adelantado +
+      array1[index[12]].cobrado +
+      array1[index[12]].adelantado;
   }
 
   let efectividad = (cobrado * 100) / total;
@@ -726,12 +739,19 @@ export const efectividadSsjM = (array1, index) => {
   for (let i = 0; i < array1.length; i++) {
     cobrado =
       array1[index[0]].cobrado +
+      array1[index[0]].adelantado +
       array1[index[1]].cobrado +
+      array1[index[1]].adelantado +
       array1[index[2]].cobrado +
+      array1[index[2]].adelantado +
       array1[index[3]].cobrado +
+      array1[index[3]].adelantado +
       array1[index[4]].cobrado +
+      array1[index[4]].adelantado +
       array1[index[5]].cobrado +
-      array1[index[6]].cobrado;
+      array1[index[5]].adelantado +
+      array1[index[6]].cobrado +
+      array1[index[6]].adelantado;
   }
 
   let efectividad = (cobrado * 100) / total;

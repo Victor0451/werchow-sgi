@@ -6,6 +6,8 @@ import estadisticaReducers from "./estadisticaReducers";
 import noticiaReducers from "./noticiaReducers";
 import moraReducers from "./moraReducers";
 import efectividadReducers from "./efectividadReducers";
+import sepelioReducers from "./sepelioReducers";
+import ventasReducers from "./ventasReducers";
 
 export default combineReducers({
   auth: authReducers,
@@ -15,5 +17,7 @@ export default combineReducers({
   estadistica: estadisticaReducers,
   noticia: noticiaReducers,
   mora: moraReducers,
-  efectividad: efectividadReducers
+  efectividad: efectividadReducers,
+  sepelio: sepelioReducers,
+  ventas: ventasReducers
 });
