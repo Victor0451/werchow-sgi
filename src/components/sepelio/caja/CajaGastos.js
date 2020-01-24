@@ -9,7 +9,8 @@ import {
   porciva,
   prov,
   tipofac,
-  mediopag
+  mediopag,
+  operadoressep
 } from "../../layouts/Arrays/arrays";
 
 import {
@@ -27,6 +28,7 @@ import MedioPagoSelect from "react-select";
 import ConceptoSelect from "react-select";
 import IvaSelect from "react-select";
 import TipoFacturaSelect from "react-select";
+import OperadorSelect from "react-select";
 
 import { connect } from "react-redux";
 import ListadoGastosCajas from "./ListadoGastosCajas";
@@ -41,7 +43,7 @@ class CajaGastos extends Component {
   retggciasRef = React.createRef();
   percIVARef = React.createRef();
   totalRef = React.createRef();
-  opTramiteRef = React.createRef();
+
   detalleRef = React.createRef();
 
   state = {
@@ -51,6 +53,7 @@ class CajaGastos extends Component {
     mediopago: "",
     concepto: "",
     porciva: "",
+    operadortramite: {},
     cajasep: {}
   };
 
@@ -72,6 +75,10 @@ class CajaGastos extends Component {
     this.setState({ [state]: value.label });
   };
 
+  handleChangeOp = (value, state) => {
+    this.setState({ [state]: value.value });
+  };
+
   nuevoGastos = () => {
     const idcaja = this.props.match.params.id;
     const { user } = this.props.auth;
@@ -82,7 +89,8 @@ class CajaGastos extends Component {
       tipofactura,
       mediopago,
       concepto,
-      porciva
+      porciva,
+      operadortramite
     } = this.state;
 
     const gasto = {
@@ -97,7 +105,7 @@ class CajaGastos extends Component {
       nfactura: this.nFacturaRef.current.value,
       ptoventa: this.ptoVentaRef.current.value,
       operadorgestion: user.usuario,
-      operadortramite: this.opTramiteRef.current.value,
+      operadortramite: operadortramite,
       montoiva: this.montoIVARef.current.value,
       retiibb: this.retIIBBRef.current.value,
       retggcias: this.retggciasRef.current.value,
@@ -170,7 +178,7 @@ class CajaGastos extends Component {
     const { user } = this.props.auth;
     const { cajasep } = this.state;
     const { listgastos } = this.props;
-
+    console.log(this.state);
     return (
       <div>
         <div className="form-style-8 mt-4 mb-4">
@@ -393,7 +401,7 @@ class CajaGastos extends Component {
               <div className="form-group col-md-4">
                 <p className="has-dynamic-label">
                   <input
-                    type="text"
+                    type="number"
                     className=""
                     ref={this.montoIVARef}
                     placeholder="Monto IVA"
@@ -406,7 +414,7 @@ class CajaGastos extends Component {
               <div className="form-group col-md-4">
                 <p className="has-dynamic-label">
                   <input
-                    type="text"
+                    type="number"
                     className=""
                     ref={this.retIIBBRef}
                     placeholder="Ret. IIBB"
@@ -419,7 +427,7 @@ class CajaGastos extends Component {
               <div className="form-group col-md-4">
                 <p className="has-dynamic-label">
                   <input
-                    type="text"
+                    type="number"
                     className=""
                     ref={this.retggciasRef}
                     placeholder="Ret. Gcias"
@@ -432,7 +440,7 @@ class CajaGastos extends Component {
               <div className="form-group col-md-4">
                 <p className="has-dynamic-label">
                   <input
-                    type="text"
+                    type="number"
                     className=""
                     ref={this.percIVARef}
                     placeholder="Perc. IVA"
@@ -445,7 +453,7 @@ class CajaGastos extends Component {
               <div className="form-group col-md-4">
                 <p className="has-dynamic-label">
                   <input
-                    type="text"
+                    type="number"
                     className=""
                     ref={this.totalRef}
                     placeholder="Total"
@@ -455,19 +463,17 @@ class CajaGastos extends Component {
                 </p>
               </div>
 
-              <div className="mt-4 form-group col-md-3">
-                <p className="has-dynamic-label">
-                  <input
-                    type="text"
-                    className=""
-                    ref={this.opTramiteRef}
-                    placeholder="Operador del Tramite"
-                  />
-                  <label>Operador del Tramite</label>
-                </p>
+              <div className="form-group col-md-4 mt-4">
+                <OperadorSelect
+                  options={operadoressep}
+                  placeholder={"Operador del Tramite"}
+                  onChange={value =>
+                    this.handleChangeOp(value, "operadortramite")
+                  }
+                />
               </div>
 
-              <div className="mt-4 form-group col-md-9">
+              <div className="mt-4 form-group col-md-8">
                 <p className="has-dynamic-label">
                   <textarea
                     rows="3"

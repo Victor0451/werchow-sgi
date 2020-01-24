@@ -47,12 +47,24 @@ class ImprimirCaja extends Component {
   render() {
     const { cajasep, listing, listgasto } = this.state;
     if (!cajasep) return <h1>CARGANDO ...</h1>;
+    let tmp = new Date(Date.now());
+    let fecha = moment(tmp)
+      .tz("America/Argentina/Buenos_Aires")
+      .format("DD/MM/YYYY HH:mm:ss");
     return (
       <div>
         <div className="form-style-8" id="listado">
-          <h2 className="mt-4 mb-4 ">
-            Comprobante de Cierre N: {cajasep.idcaja}
+          <h2 className=" mb-4   ">
+            <div className="row d-flex ml-4">
+              <div className="col-md-8">
+                <u>Comprobante de Cierre N°</u> : {cajasep.idcaja}
+              </div>
+              <div className="col-md-4 ">
+                <u>Fecha</u> : {fecha}
+              </div>
+            </div>
           </h2>
+
           <hr />
           <h2 className="mt-4 mb-4">Resumen de Caja</h2>
           <div className="jumbotron mt-4 mb-4 d-flex justify-content-center">
@@ -61,12 +73,12 @@ class ImprimirCaja extends Component {
                 <h5>
                   <strong>
                     <u>Fecha</u>:{" "}
-                    {moment.utc(cajasep.fecha).format("YYYY-MM-DD")}{" "}
+                    {moment.utc(cajasep.fecha).format("DD/MM/YYYY")}{" "}
                   </strong>
                 </h5>
               </div>
 
-              <div className="col-md-6 mt-2 mb-2">
+              <div className="col-md-6 mt-2 mb-2 border alert-success">
                 <h5>
                   <strong>
                     <u>Monto Habilitado</u>: {cajasep.monto}{" "}
@@ -82,7 +94,7 @@ class ImprimirCaja extends Component {
                 </h5>
               </div>
 
-              <div className="col-md-6 mt-2 mb-2">
+              <div className="col-md-6 mt-2 mb-2 border alert-danger">
                 <h5>
                   <strong>
                     <u>Gastos</u>: {cajasep.gastos}{" "}
@@ -98,7 +110,7 @@ class ImprimirCaja extends Component {
                 </h5>
               </div>
 
-              <div className="col-md-6 mt-2 mb-2">
+              <div className="col-md-6 mt-2 mb-2 border alert-info">
                 <h5>
                   <strong>
                     <u>Saldo a Favor</u>: {cajasep.totalcaja}{" "}
@@ -112,7 +124,7 @@ class ImprimirCaja extends Component {
 
           <h2 className="mt-4">Movimientos de Caja</h2>
 
-          <table className="table table-hover border mt-4">
+          <table className="table table-hover border border-dark  mt-4">
             <thead className="thead-dark ">
               <tr className=" border ">
                 <th scope="col">#</th>
@@ -127,41 +139,75 @@ class ImprimirCaja extends Component {
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td className="border border-dark ">{cajasep.idcaja}</td>
+                <td className="border border-dark ">
+                  {moment.utc(cajasep.fecha).format("YYYY-MM-DD")}
+                </td>
+                <td className="border border-dark ">{cajasep.concepto}</td>
+                <td className="border border-dark ">{cajasep.monto}</td>
+                <td className="border border-dark "> 0 </td>
+                <td className="border border-dark "> {cajasep.tipofactura}</td>
+                <td className="border border-dark "> {cajasep.nfactura} </td>
+                <td className="border border-dark "> {cajasep.detalle} </td>
+                <td className="border border-dark ">{cajasep.operador}</td>
+              </tr>
               {Object.values(listing).map(row => (
                 <tr>
-                  <td className="border">{row.idingreso}</td>
-                  <td className="border">
+                  <td className="border border-dark ">{row.idingreso}</td>
+                  <td className="border border-dark ">
                     {moment.utc(row.fecha).format("YYYY-MM-DD")}
                   </td>
-                  <td className="border">{row.concepto}</td>
-                  <td className="border">{row.monto}</td>
-                  <td className="border"> 0 </td>
-                  <td className="border"> {row.tipofactura}</td>
-                  <td className="border"> {row.nfactura} </td>
-                  <td className="border"> {row.detalle} </td>
-                  <td className="border">{row.operador}</td>
+                  <td className="border border-dark ">{row.concepto}</td>
+                  <td className="border border-dark ">{row.monto}</td>
+                  <td className="border border-dark "> 0 </td>
+                  <td className="border border-dark "> {row.tipofactura}</td>
+                  <td className="border border-dark "> {row.nfactura} </td>
+                  <td className="border border-dark "> {row.detalle} </td>
+                  <td className="border border-dark ">{row.operador}</td>
                 </tr>
               ))}
 
               {Object.values(listgasto).map(row => (
                 <tr>
-                  <td className="border">{row.idgastos}</td>
-                  <td className="border">
+                  <td className="border border-dark ">{row.idgastos}</td>
+                  <td className="border border-dark ">
                     {moment.utc(row.fecha).format("YYYY-MM-DD")}
                   </td>
-                  <td className="border">{row.concepto}</td>
-                  <td className="border"> 0 </td>
-                  <td className="border">{row.total}</td>
-                  <td className="border">{row.tipofactura}</td>
-                  <td className="border">
+                  <td className="border border-dark ">{row.concepto}</td>
+                  <td className="border border-dark "> 0 </td>
+                  <td className="border border-dark ">{row.total}</td>
+                  <td className="border border-dark ">{row.tipofactura}</td>
+                  <td className="border border-dark ">
                     {row.ptoventa}-{row.nfactura}
                   </td>
-                  <td className="border"> {row.detalle} </td>
-                  <td className="border">{row.operadortramite}</td>
+                  <td className="border border-dark "> {row.detalle} </td>
+                  <td className="border border-dark ">{row.operadortramite}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <div className="container  ">
+            <div className="row text-center">
+              <div className="col-md-6 border border-dark  alert-secondary">
+                <strong>TOTAL</strong>
+              </div>
+              <div className="col-md-1 border border-dark  alert-success">
+                {cajasep.monto}
+              </div>
+              <div className="col-md-1 border border-dark  alert-danger">
+                {cajasep.gastos}
+              </div>
+            </div>
+            <div className="row text-center">
+              <div className="col-md-6 border border-dark  alert-secondary ">
+                A FAVOR
+              </div>
+              <div className="col-md-2 border border-dark  alert-primary">
+                {cajasep.totalcaja}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="jumbotron form-style-8" id="opciones">

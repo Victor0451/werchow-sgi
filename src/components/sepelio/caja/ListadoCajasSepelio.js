@@ -112,13 +112,13 @@ class ListadoCajaSepelio extends React.Component {
                   filterAll: true
                 },
                 {
-                  Header: "Detalle",
-                  id: "tipo",
-                  accessor: d => d.tipo,
+                  Header: "Concepto",
+                  id: "concepto",
+                  accessor: d => d.concepto,
                   width: "200",
                   filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, {
-                      keys: ["tipo"]
+                      keys: ["concepto"]
                     }),
                   filterAll: true
                 },
@@ -168,63 +168,81 @@ class ListadoCajaSepelio extends React.Component {
                   width: "250",
                   Cell: row => (
                     <div className="d-flex justify-content-between">
-                      <div>
-                        <Link
-                          to={`/sepelio/ingresoscaja/${row.original.idcaja}`}
-                          className="btn btn-success"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Habilitar Ingresos"
-                        >
-                          <i class="fas fa-arrow-alt-circle-down"></i>
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          to={`/sepelio/gastoscaja/${row.original.idcaja}`}
-                          className="btn btn-warning"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Ingresar Gastos"
-                        >
-                          <i class="fas fa-arrow-alt-circle-up"></i>
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          to={"#"}
-                          className="btn btn-primary"
-                          onClick={() => this.cerrarCaja(row)}
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Cerrar Caja"
-                        >
-                          <i class="fas fa-archive"></i>
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          className="btn btn-secondary"
-                          to={`/sepelio/imprimircaja/${row.original.idcaja}`}
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Imprimir Caja"
-                        >
-                          <i class="fas fa-print"></i>
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          to={"#"}
-                          className="btn btn-danger"
-                          onClick={() => this.eliminarCaja(row)}
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Eliminar Caja"
-                        >
-                          <i className="fas fa-trash-alt"></i>
-                        </Link>
-                      </div>
+                      {row.original.estado === 1 ? (
+                        <div className="d-flex justify-content-between">
+                          <div>
+                            <Link
+                              to={`/sepelio/ingresoscaja/${row.original.idcaja}`}
+                              className="btn btn-success"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Habilitar Ingresos"
+                            >
+                              <i class="fas fa-arrow-alt-circle-down"></i>
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              to={`/sepelio/gastoscaja/${row.original.idcaja}`}
+                              className="btn btn-warning"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Ingresar Gastos"
+                            >
+                              <i class="fas fa-arrow-alt-circle-up"></i>
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              to={"#"}
+                              className="btn btn-primary"
+                              onClick={() => this.cerrarCaja(row)}
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Cerrar Caja"
+                            >
+                              <i class="fas fa-archive"></i>
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              className="btn btn-secondary"
+                              to={`/sepelio/imprimircaja/${row.original.idcaja}`}
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Imprimir Caja"
+                            >
+                              <i class="fas fa-print"></i>
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              to={"#"}
+                              className="btn btn-danger"
+                              onClick={() => this.eliminarCaja(row)}
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Eliminar Caja"
+                            >
+                              <i className="fas fa-trash-alt"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      ) : row.original.estado === 0 ? (
+                        <div className="d-flex justify-content-between">
+                          <div>
+                            <Link
+                              className="btn btn-secondary"
+                              to={`/sepelio/imprimircaja/${row.original.idcaja}`}
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Imprimir Caja"
+                            >
+                              <i class="fas fa-print"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      ) : null}
                     </div>
                   )
                 }

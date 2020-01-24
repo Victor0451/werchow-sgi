@@ -83,7 +83,7 @@ class NuevaCajaSepelio extends Component {
             <div className="form-group col-md-6">
               <p className="has-dynamic-label">
                 <input
-                  type="text"
+                  type="number"
                   className=""
                   name="monto"
                   ref={this.montoRef}

@@ -306,10 +306,10 @@ class CajaIngresos extends Component {
                 </p>
               </div>
 
-              <div className="form-group col-md-3 mt-4">
+              <div className="form-group col-md-6 ">
                 <p className="has-dynamic-label">
                   <input
-                    type="text"
+                    type="number"
                     className=""
                     ref={this.totalRef}
                     placeholder="Monto"

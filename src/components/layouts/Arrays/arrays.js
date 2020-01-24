@@ -410,3 +410,14 @@ export const mediopag = [
   { value: 3, label: "Banco" },
   { value: 4, label: "Tarjeta" }
 ];
+
+export const operadoressep = [
+  { value: "pbandur", label: "Pablo Bandur" },
+  { value: "juro", label: "Jorge Uro" },
+  { value: "muro", label: "Marcelo Uro" },
+  { value: "mquiroz", label: "Marcelo Quiroz" },
+  { value: "agareca", label: "Abel Gareca" },
+  { value: "jzamorano", label: "Jose Zamorano" },
+  { value: "dmesori", label: "Domingo Mesori" },
+  { value: "cvalda", label: "Carlos Valda" }
+];

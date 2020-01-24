@@ -35,23 +35,8 @@ class ConsultaVentas extends Component {
 
       this.props.consultaVentas(desde, hasta);
       this.props.consultaVentasM(desde, hasta);
-
-      //document.getElementById("opciones").hidden = false;
     }
   };
-
-  // imprimir = () => {
-  //   let contenido = document.getElementById("listado").innerHTML;
-  //   let contenidoOrg = document.body.innerHTML;
-
-  //   document.body.innerHTML = contenido;
-
-  //   window.print();
-
-  //   document.body.innerHTML = contenidoOrg;
-
-  //   window.location.reload(true);
-  // };
 
   render() {
     const { listadoventas, listadoventasm } = this.props;
@@ -105,21 +90,6 @@ class ConsultaVentas extends Component {
             hasta={hasta}
           />
         </div>
-
-        {/* <div className="jumbotron form-style-8" id="opciones" hidden>
-          <div className="mt-4 p-4 border">
-            <h3 className="text-center mb-4 font-weight-bold">Opciones</h3>
-            <div className="d-flex justify-content-center">
-              <Link
-                to="#"
-                className="btn btn-info col-md-3 mr-1"
-                onClick={this.imprimir}
-              >
-                Imprimir Listado
-              </Link>
-            </div>
-          </div>
-        </div> */}
       </div>
     );
   }
