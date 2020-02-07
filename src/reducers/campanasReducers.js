@@ -17,7 +17,12 @@ import {
   CAMPANA_OPERADOR_HIST,
   POLICIA,
   AUX,
-  BUSCAR_GESTION_CASO
+  BUSCAR_GESTION_CASO,
+  BUSCAR_CAMPANAS,
+  BUSCAR_CAMPANAS_REC,
+  BUSCAR_CAMPANAS_REIN,
+  BUSCAR_CAMPANAS_BLAN,
+  BUSCAR_CAMPANAS_AUX
 } from "../actions/types";
 
 const initialState = {
@@ -114,6 +119,34 @@ export default function(state = initialState, action) {
       return {
         ...state,
         busgestcaso: action.payload
+      };
+
+    case BUSCAR_CAMPANAS:
+      return {
+        ...state,
+        listcamp: action.payload
+      };
+
+    case BUSCAR_CAMPANAS_REC:
+      return {
+        ...state,
+        listcamprec: action.payload
+      };
+
+    case BUSCAR_CAMPANAS_REIN:
+      return {
+        ...state,
+        listcamprein: action.payload
+      };
+    case BUSCAR_CAMPANAS_BLAN:
+      return {
+        ...state,
+        listcampblan: action.payload
+      };
+    case BUSCAR_CAMPANAS_AUX:
+      return {
+        ...state,
+        listcampaux: action.payload
       };
 
     case GET_DEUDA:

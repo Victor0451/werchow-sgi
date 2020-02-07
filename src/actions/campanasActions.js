@@ -18,11 +18,17 @@ import {
   REIN,
   BLANQUEO,
   CAMPANA_OPERADOR_NOTI,
-  CAMPANA_OPERADOR_HIST
+  CAMPANA_OPERADOR_HIST,
+  BUSCAR_CAMPANAS,
+  BUSCAR_CAMPANAS_REC,
+  BUSCAR_CAMPANAS_REIN,
+  BUSCAR_CAMPANAS_BLAN,
+  BUSCAR_CAMPANAS_AUX,
+  CERRAR_CAMPAÑAS
 } from "./types";
 
 import axios from "axios";
-//import toastr from "../utils/toastr";
+import toastr from "../utils/toastr";
 
 export const atW = () => async dispatch => {
   const respuesta = await axios.get(
@@ -385,4 +391,98 @@ export const getDeuda = id => async dispatch => {
     type: GET_DEUDA,
     payload: respuesta.data
   });
+};
+
+export const consultaCamp = (desde, hasta) => async dispatch => {
+  await axios
+    .get(`http://190.231.32.232:5002/api/sgi/campanas/consultacamp`, {
+      params: {
+        desde: desde,
+        hasta: hasta
+      }
+    })
+    .then(res =>
+      dispatch({
+        type: BUSCAR_CAMPANAS,
+        payload: res.data
+      })
+    );
+};
+
+export const consultaCampRec = (desde, hasta) => async dispatch => {
+  await axios
+    .get(`http://190.231.32.232:5002/api/sgi/campanas/consultacamprec`, {
+      params: {
+        desde: desde,
+        hasta: hasta
+      }
+    })
+    .then(res =>
+      dispatch({
+        type: BUSCAR_CAMPANAS_REC,
+        payload: res.data
+      })
+    );
+};
+export const consultaCampRein = (desde, hasta) => async dispatch => {
+  await axios
+    .get(`http://190.231.32.232:5002/api/sgi/campanas/consultacamprein`, {
+      params: {
+        desde: desde,
+        hasta: hasta
+      }
+    })
+    .then(res =>
+      dispatch({
+        type: BUSCAR_CAMPANAS_REIN,
+        payload: res.data
+      })
+    );
+};
+export const consultaCampBlan = (desde, hasta) => async dispatch => {
+  await axios
+    .get(`http://190.231.32.232:5002/api/sgi/campanas/consultacampblan`, {
+      params: {
+        desde: desde,
+        hasta: hasta
+      }
+    })
+    .then(res =>
+      dispatch({
+        type: BUSCAR_CAMPANAS_BLAN,
+        payload: res.data
+      })
+    );
+};
+
+export const consultaCampAux = (desde, hasta) => async dispatch => {
+  await axios
+    .get(`http://190.231.32.232:5002/api/sgi/campanas/consultacampaux`, {
+      params: {
+        desde: desde,
+        hasta: hasta
+      }
+    })
+    .then(res =>
+      dispatch({
+        type: BUSCAR_CAMPANAS_AUX,
+        payload: res.data
+      })
+    );
+};
+
+export const cerrarCamp = array => async dispatch => {
+  await axios
+    .put(`http://190.231.32.232:5002/api/sgi/campanas/cerrarcamps`, array)
+    .then(
+      res =>
+        dispatch({
+          type: CERRAR_CAMPAÑAS,
+          payload: res.data
+        }),
+      toastr.success("Campaña Cerrada", "ATENCION")
+    )
+    .catch(err => {
+      toastr.error(`Se producion un error ${err}`, "ATENCION");
+    });
 };

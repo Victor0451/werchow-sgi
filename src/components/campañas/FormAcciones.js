@@ -55,6 +55,10 @@ class FormAcciones extends Component {
     this.props.updateAccion(id);
 
     console.log(datos);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
   render() {
@@ -476,12 +480,9 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    getGestionCaso,
-    gestionCaso,
-    updateAccion,
-    cerrarCaso
-  }
-)(FormAcciones);
+export default connect(mapStateToProps, {
+  getGestionCaso,
+  gestionCaso,
+  updateAccion,
+  cerrarCaso
+})(FormAcciones);

@@ -126,9 +126,9 @@ class Table4 extends React.Component {
     let id = datos.idcaso;
     this.props.updateAccion(id);
 
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 100);
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
   deuda = array => {
@@ -352,12 +352,9 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    getGestionCaso,
-    gestionCaso,
-    updateAccion,
-    cerrarCaso
-  }
-)(Table4);
+export default connect(mapStateToProps, {
+  getGestionCaso,
+  gestionCaso,
+  updateAccion,
+  cerrarCaso
+})(Table4);

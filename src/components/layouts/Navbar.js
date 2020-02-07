@@ -99,36 +99,80 @@ class Navbar extends Component {
                   </ul>
                 </li>
 
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown ">
                   <Link
-                    to=""
-                    className="nav-link dropdown-toggle"
+                    to="#"
                     role="button"
                     data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                    className="nav-link dropdown-toggle"
                   >
-                    Estado Socio{" "}
+                    Campañas
                   </Link>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <Link
-                      to="/estadosocioW"
-                      className="dropdown-item text-dark"
-                    >
-                      Werchow
-                    </Link>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-submenu">
+                      <Link
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        className="  dropdown-toggle dropdown-item text-dark"
+                      >
+                        Asignar Campañas
+                      </Link>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link
+                            to="/estadosocioW"
+                            className="dropdown-item text-dark"
+                          >
+                            Werchow
+                          </Link>
+                        </li>
+                        <hr />
+                        <li>
+                          <Link
+                            to="/estadosocioM"
+                            className="dropdown-item text-dark"
+                          >
+                            Mutual
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+
                     <hr />
-                    <Link
-                      to="/estadosocioM"
-                      className="dropdown-item text-dark"
-                    >
-                      Mutual
-                    </Link>
-                  </div>
+
+                    <li className="dropdown-submenu">
+                      <Link
+                        to="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        className="  dropdown-toggle dropdown-item text-dark"
+                      >
+                        Opciones
+                      </Link>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link
+                            to="/campanas/cerrar"
+                            className="dropdown-item text-dark"
+                          >
+                            Cerrar Campañas
+                          </Link>
+                        </li>
+                        <hr />
+                        {/* <li>
+                          <Link
+                            to="/sepelio/listadocajas"
+                            className="dropdown-item text-dark"
+                          >
+                            Listado Cajas Sepelio
+                          </Link>
+                        </li> */}
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
+
                 <li className="nav-item dropdown">
                   <Link
                     to=""

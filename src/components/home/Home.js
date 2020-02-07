@@ -7,6 +7,7 @@ import Noticias from "../noticias/Noticias";
 import Gestiones from "./Gestiones";
 import Campcaso from "./Campcaso";
 
+
 class Home extends Component {
   state = {
     contrato: "",
@@ -61,7 +62,7 @@ class Home extends Component {
   render() {
     const { buscaso, busgestcaso } = this.state;
     const { user } = this.props.auth;
-    console.log(buscaso);
+    
 
     return (
       <div className="">

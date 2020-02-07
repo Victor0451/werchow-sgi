@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import moment from "moment-timezone";
+
 export default class Gestiones extends Component {
   render() {
     const { busgestcaso } = this.props;
@@ -57,9 +59,9 @@ export default class Gestiones extends Component {
                   ? "SOCIO FALLECIDO"
                   : null}
               </td>
-              <td>{gestion.fechaaccion}</td>
+              <td>{moment(gestion.fechaaccion).format("DD/MM/YYYY")}</td>
               <td>{gestion.nuevaaccion}</td>
-              <td>{gestion.fechanuevaaccion}</td>
+              <td>{moment(gestion.fechanuevaaccion).format("DD/MM/YYYY")}</td>
               <td>{gestion.operador}</td>
               {/* <td>
                         {titular.ESTADO === 1
