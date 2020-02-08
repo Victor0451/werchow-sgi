@@ -37,6 +37,8 @@ import { Provider } from "react-redux";
 import ImprimirCaja from "./sepelio/caja/ImprimirCaja";
 import ConsultaVentas from "./ventas/ConsultaVentas";
 import CerrarCampañas from "./campañas/CerrarCampañas";
+import Resultados from "./campañas/Resultados";
+import CerrarCampañasM from "./campañas/CerrarCampañasM";
 
 const token = sessionStorage.getItem("token");
 
@@ -116,6 +118,16 @@ export default class Router extends Component {
                 exact
                 path={"/campanas/cerrar"}
                 component={CerrarCampañas}
+              />
+              <Route
+                exact
+                path={"/campanas/cerrarm"}
+                component={CerrarCampañasM}
+              />
+              <Route
+                exact
+                path={"/campanas/resultados"}
+                component={Resultados}
               />
               <Route exact path={"/noticia"} component={NuevaNoticia} />
               {/* MORA */}

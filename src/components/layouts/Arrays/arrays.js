@@ -421,3 +421,11 @@ export const operadoressep = [
   { value: "dmesori", label: "Domingo Mesori" },
   { value: "cvalda", label: "Carlos Valda" }
 ];
+
+export const operadorescamp = [
+  { value: "mgalian", label: "Maria Galian" },
+  { value: "ggimenez", label: "Gisela Gimenez" },
+  { value: "mcarrizo", label: "Marisa Carrizo" },
+  { value: "vgorosito", label: "Vanesa Gorosito" },
+  { value: "sjuarez", label: "Silvia Juarez" }
+];

@@ -156,18 +156,27 @@ class Navbar extends Component {
                             to="/campanas/cerrar"
                             className="dropdown-item text-dark"
                           >
-                            Cerrar Campañas
+                            Cerrar Campañas Werchow
                           </Link>
                         </li>
                         <hr />
-                        {/* <li>
+                        <li>
                           <Link
-                            to="/sepelio/listadocajas"
+                            to="/campanas/cerrarm"
                             className="dropdown-item text-dark"
                           >
-                            Listado Cajas Sepelio
+                            Cerrar Campañas Mutual
                           </Link>
-                        </li> */}
+                        </li>
+                        <hr />
+                        <li>
+                          <Link
+                            to="/campanas/resultados"
+                            className="dropdown-item text-dark"
+                          >
+                            Resultados Campañas Activas
+                          </Link>
+                        </li>
                       </ul>
                     </li>
                   </ul>
