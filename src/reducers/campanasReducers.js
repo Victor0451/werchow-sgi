@@ -6,6 +6,7 @@ import {
   UPDATE_ACCION,
   CAMPANA_OPERADOR_TRAB,
   CERRAR_CASO,
+  CERRAR_GESTION,
   GET_GESTION_CASO,
   GET_RECUPERACION,
   GET_DEUDA,
@@ -165,6 +166,16 @@ export default function(state = initialState, action) {
         )
       };
     case CERRAR_CASO:
+      return {
+        ...state,
+        campanas: state.campanas.map(campana =>
+          campana.CONTRATO === action.payload.id
+            ? (campana = action.payload)
+            : campana
+        )
+      };
+
+    case CERRAR_GESTION:
       return {
         ...state,
         campanas: state.campanas.map(campana =>

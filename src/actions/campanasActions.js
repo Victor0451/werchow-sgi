@@ -24,7 +24,8 @@ import {
   BUSCAR_CAMPANAS_REIN,
   BUSCAR_CAMPANAS_BLAN,
   BUSCAR_CAMPANAS_AUX,
-  CERRAR_CAMPAÑAS
+  CERRAR_CAMPAÑAS,
+  CERRAR_GESTION
 } from "./types";
 
 import axios from "axios";
@@ -146,6 +147,36 @@ export const verificarEstadoCamp = contrato => async dispatch => {
 export const campanaOperador = operador => async dispatch => {
   const respuesta = await axios.get(
     `http://190.231.32.232:5002/api/sgi/campanas/campanaoperador/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
+export const volverALlamar = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/volverallamar/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
+export const credixa = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/credixa/${operador}`
+  );
+  dispatch({
+    type: CAMPANA_OPERADOR,
+    payload: respuesta.data
+  });
+};
+
+export const compromisoPago = operador => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/campanas/compromisopago/${operador}`
   );
   dispatch({
     type: CAMPANA_OPERADOR,
@@ -360,6 +391,16 @@ export const cerrarCaso = id => async dispatch => {
   );
   dispatch({
     type: CERRAR_CASO,
+    payload: respuesta.data
+  });
+};
+
+export const cerrarGestion = id => async dispatch => {
+  const respuesta = await axios.put(
+    `http://190.231.32.232:5002/api/sgi/campanas/cerrargestion/${id}`
+  );
+  dispatch({
+    type: CERRAR_GESTION,
     payload: respuesta.data
   });
 };

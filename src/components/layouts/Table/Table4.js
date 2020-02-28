@@ -2,6 +2,7 @@ import React from "react";
 import matchSorter from "match-sorter";
 import { Link } from "react-router-dom";
 import FormAcciones from "../../campañas/FormAcciones";
+import moment from "moment";
 
 // Import React Table
 import ReactTable from "react-table";
@@ -11,8 +12,10 @@ import {
   gestionCaso,
   updateAccion,
   cerrarCaso,
-  getGestionCaso
+  getGestionCaso,
+  cerrarGestion
 } from "../../../actions/campanasActions";
+
 class Table4 extends React.Component {
   fechaaccionRef = React.createRef();
   fechaaccionnuevaRef = React.createRef();
@@ -55,8 +58,8 @@ class Table4 extends React.Component {
     console.log(datos);
 
     if (datos.accion >= 1 && datos.accion <= 6) {
-      datos.nuevaaccion = "VERIFICAR LOS DATOS Y LLAMAR DE NUEVO";
-      datos.fechanuevaaccion = fecha;
+      datos.nuevaaccion = this.nuevaaccionRef.current.value;
+      datos.fechanuevaaccion = this.fechaaccionnuevaRef.current.value;
     }
     if (datos.accion === 7) {
       datos.nuevaaccion = this.state.nuevaaccion;
@@ -142,12 +145,13 @@ class Table4 extends React.Component {
 
   selcaso = index => {
     const { data } = this.props;
-    const caso = data[index];
+    const caso = data[index.index];
     this.setState({
       caso: caso
     });
 
     let id = caso.idcaso;
+    let idgestion = index.original.idgestion;
 
     this.props.getGestionCaso(id);
 
@@ -159,11 +163,17 @@ class Table4 extends React.Component {
         gestion: getcaso[0]
       });
     }, 100);
+
+    setTimeout(() => {
+      this.props.cerrarGestion(idgestion);
+    }, 100);
   };
 
   render() {
     const { data, handleChange, accion } = this.props;
     const { caso, gestion } = this.state;
+    let tmp = new Date();
+    let fechahoy = moment(tmp).format("DD/MM/YYYY");
 
     return (
       <div className="container">
@@ -207,44 +217,45 @@ class Table4 extends React.Component {
                     matchSorter(rows, filter.value, { keys: ["dni"] }),
                   filterAll: true
                 },
-                {
-                  Header: "Calle",
-                  id: "calle",
-                  accessor: d => d.calle,
-                  filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["calle"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "N°",
-                  id: "nro_calle",
-                  accessor: d => d.nro_calle,
-                  filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["nro_calle"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "Barrio",
-                  id: "barrio",
-                  accessor: d => d.barrio,
-                  filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["barrio"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "Localidad",
-                  id: "localidad",
-                  accessor: d => d.localidad,
-                  filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["localidad"] }),
-                  filterAll: true
-                },
+
                 {
                   Header: "Cuota",
                   id: "cuota",
                   accessor: d => d.cuota,
                   filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["cuota"] }),
+                  filterAll: true
+                },
+                ,
+                {
+                  getProps: (state, rowInfo) => {
+                    if (rowInfo && rowInfo.row) {
+                      return {
+                        style: {
+                          background:
+                            rowInfo.row.fechanuevaaccion < fechahoy
+                              ? "red"
+                              : rowInfo.row.fechanuevaaccion > fechahoy
+                              ? "green"
+                              : rowInfo.row.fechanuevaaccion === fechahoy
+                              ? "yellow"
+                              : null
+                        }
+                      };
+                    } else {
+                      return {};
+                    }
+                  },
+
+                  Header: "Fecha de Accion",
+                  id: "fechanuevaaccion",
+                  accessor: d =>
+                    moment(d.fechanuevaaccion).format("DD/MM/YYYY"),
+
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, {
+                      keys: ["fechanuevaaccion"]
+                    }),
                   filterAll: true
                 },
                 {
@@ -273,7 +284,7 @@ class Table4 extends React.Component {
                         className="btn btn-primary"
                         data-toggle="modal"
                         data-target=".bd-example-modal-lg2"
-                        onClick={() => this.selcaso(row.index)}
+                        onClick={() => this.selcaso(row)}
                       >
                         Acciones
                       </Link>
@@ -356,5 +367,6 @@ export default connect(mapStateToProps, {
   getGestionCaso,
   gestionCaso,
   updateAccion,
-  cerrarCaso
+  cerrarCaso,
+  cerrarGestion
 })(Table4);

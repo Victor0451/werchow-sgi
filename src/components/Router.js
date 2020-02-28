@@ -39,6 +39,9 @@ import ConsultaVentas from "./ventas/ConsultaVentas";
 import CerrarCampañas from "./campañas/CerrarCampañas";
 import Resultados from "./campañas/Resultados";
 import CerrarCampañasM from "./campañas/CerrarCampañasM";
+import VolverALlamar from "./campañas/padron/VolverALlamar";
+import Credixa from "./campañas/padron/Credixa";
+import CompromisoPago from "./campañas/padron/CompromisoPago";
 
 const token = sessionStorage.getItem("token");
 
@@ -129,6 +132,18 @@ export default class Router extends Component {
                 path={"/campanas/resultados"}
                 component={Resultados}
               />
+              <Route
+                exact
+                path={"/campanas/volverallamar"}
+                component={VolverALlamar}
+              />
+              <Route exact path={"/campanas/credixa"} component={Credixa} />
+              <Route
+                exact
+                path={"/campanas/compromisopago"}
+                component={CompromisoPago}
+              />
+              {/* NOTICIAS */}
               <Route exact path={"/noticia"} component={NuevaNoticia} />
               {/* MORA */}
               <Route exact path={"/mora/werchow"} component={Mora} />

@@ -64,7 +64,7 @@ class FormAcciones extends Component {
   render() {
     let tmp = new Date(Date.now());
     let fecha = moment(tmp).format("YYYY-MM-DD HH:mm:ss");
-    let fecha1 = moment(tmp).format("YYYY-MM-DD HH:mm:ss");
+    let fecha1 = moment(tmp).format("YYYY-MM-DD");
 
     const {
       gestion,
@@ -328,12 +328,7 @@ class FormAcciones extends Component {
             </div>
           </div>
 
-          {accion === 1 ||
-          accion === 2 ||
-          accion === 3 ||
-          accion === 4 ||
-          accion === 5 ||
-          accion === 6 ? (
+          {accion > 0 && accion < 4 ? (
             <div className="jumbotron">
               <h3>
                 <u>Nueva Accion</u>
@@ -344,7 +339,7 @@ class FormAcciones extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    defaultValue="VERIFICAR DATOS Y LLAMAR DE NUEVO"
+                    defaultValue="LLAMAR DE NUEVO"
                     ref={nuevaaccionRef}
                     readOnly
                   />
@@ -353,11 +348,37 @@ class FormAcciones extends Component {
               <div className="form-group col-md-12">
                 <label>Fecha de Accion</label>
                 <input
-                  type="text"
+                  type="date"
                   className="form-control"
-                  defaultValue={fecha1}
                   ref={fechaaccionnuevaRef}
-                  readOnly
+                  defaultValue={fecha1}
+                />
+              </div>
+            </div>
+          ) : accion > 3 && accion < 7 ? (
+            <div className="jumbotron">
+              <h3>
+                <u>Nueva Accion</u>
+              </h3>
+              <label className="form-group col-md-12 mt-4">
+                <strong>
+                  <label>Nueva Accion</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    defaultValue="VERIFICAR DATOS EN CREDIXA Y LLAMAR DE NUEVO"
+                    ref={nuevaaccionRef}
+                    readOnly
+                  />
+                </strong>
+              </label>
+              <div className="form-group col-md-12">
+                <label>Fecha de Accion</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  ref={fechaaccionnuevaRef}
+                  defaultValue={fecha1}
                 />
               </div>
             </div>
