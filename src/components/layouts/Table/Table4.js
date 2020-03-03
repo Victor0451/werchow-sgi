@@ -226,7 +226,7 @@ class Table4 extends React.Component {
                     matchSorter(rows, filter.value, { keys: ["cuota"] }),
                   filterAll: true
                 },
-                ,
+
                 {
                   getProps: (state, rowInfo) => {
                     if (rowInfo && rowInfo.row) {

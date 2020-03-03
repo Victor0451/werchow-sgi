@@ -126,13 +126,13 @@ class CobranzaPerico extends Component {
       total1indexacob(eoficina, 2) +
       totaladelantadodosindex(ecobradores, 0, 13) +
       totaladelantadounindex(eoficina, 1) +
-      total1indexacob(econvenio, 1) +
+      //   total1indexacob(econvenio, 1) +
       total1indexacob(epolicia, 1);
     let cobrado =
       total2indexcobrado(ecobradores, 0, 13) +
       totalcobrado(etarjetar) +
       total1indexcobrado(eoficina, 2) +
-      total1indexcobrado(econvenio, 1) +
+      //  total1indexcobrado(econvenio, 1) +
       total1indexcobrado(epolicia, 1);
 
     let efectividadt = (cobrado * 100) / acobrar;

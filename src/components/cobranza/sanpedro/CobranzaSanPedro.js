@@ -129,14 +129,14 @@ class CobranzaSanPedro extends Component {
       totaladelantadodosindex(ecobradores, 6, 15) +
       totaladelantadounindex(ecobradores, 16) +
       totaladelantadounindex(eoficina, 2) +
-      total1indexacob(econvenio, 2) +
+   //   total1indexacob(econvenio, 2) +
       total1indexacob(epolicia, 2);
     let cobrado =
       total2indexcobrado(ecobradores, 6, 15) +
       total1indexcobrado(ecobradores, 16) +
       totalcobrado(etarjetap) +
       total1indexcobrado(eoficina, 2) +
-      total1indexcobrado(econvenio, 2) +
+     // total1indexcobrado(econvenio, 2) +
       total1indexcobrado(epolicia, 2);
     let efectividadt = (cobrado * 100) / acobrar;
     let flag = 60;

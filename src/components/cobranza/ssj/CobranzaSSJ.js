@@ -137,7 +137,6 @@ class CobranzaSSJ extends Component {
       totalacob(etarjetaw) +
       total1indexacob(eoficina, 0) +
       total1indexacob(epolicia, 3) +
-      total1indexacob(econvenio, 3) +
       totalSsjAdelantado(ecobradores, [
         3,
         4,
@@ -154,12 +153,30 @@ class CobranzaSSJ extends Component {
         19
       ]) +
       totaladelantadounindex(eoficina, 0);
+    //total1indexacob(econvenio, 3);
+
     let cobrado =
       totalSsjCob(ecobradores, [3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 17, 18, 19]) +
       totalcobrado(etarjetaw) +
       total1indexcobrado(eoficina, 0) +
       total1indexcobrado(epolicia, 3) +
-      total1indexcobrado(econvenio, 3);
+      // total1indexcobrado(econvenio, 3) +
+      totalSsjAdelantado(ecobradores, [
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        17,
+        18,
+        19
+      ]) +
+      totaladelantadounindex(eoficina, 0);
 
     let efectividadt = (cobrado * 100) / acobrar;
 
@@ -397,7 +414,7 @@ class CobranzaSSJ extends Component {
               </div>
             </div>
           </div>
-        ) :  null}
+        ) : null}
       </div>
     );
   }

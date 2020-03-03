@@ -125,7 +125,7 @@ class CobranzaPalpala extends Component {
       totalacob(etarjetal) +
       total1indexacob(eoficina, 1) +
       total1indexacob(epolicia, 0) +
-      total1indexacob(econvenio, 0) +
+      //   total1indexacob(econvenio, 0) +
       total1indexacob(ebanco, 0) +
       totaladelantadodosindex(ecobradores, 1, 2) +
       totaladelantadounindex(eoficina, 1);
@@ -134,7 +134,7 @@ class CobranzaPalpala extends Component {
       totalcobrado(etarjetal) +
       total1indexcobrado(eoficina, 1) +
       total1indexcobrado(epolicia, 0) +
-      total1indexcobrado(econvenio, 0) +
+      //   total1indexcobrado(econvenio, 0) +
       total1indexcobrado(ebanco, 0);
 
     let efectividadt = (cobrado * 100) / acobrar;
