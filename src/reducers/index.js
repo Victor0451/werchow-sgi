@@ -8,6 +8,7 @@ import moraReducers from "./moraReducers";
 import efectividadReducers from "./efectividadReducers";
 import sepelioReducers from "./sepelioReducers";
 import ventasReducers from "./ventasReducers";
+import prestamosReducers from "./prestamosReducers";
 
 export default combineReducers({
   auth: authReducers,
@@ -19,5 +20,6 @@ export default combineReducers({
   mora: moraReducers,
   efectividad: efectividadReducers,
   sepelio: sepelioReducers,
-  ventas: ventasReducers
+  ventas: ventasReducers,
+  prestamos: prestamosReducers
 });

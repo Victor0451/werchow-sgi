@@ -47,9 +47,9 @@ export default class Campcaso extends Component {
           ? `El socio ${buscaso.contrato} pertenece a la campaña de BLANQUEO WERCHOW de SILVIA JUAREZ`
           : buscaso.idcampana === 21
           ? `El socio ${buscaso.contrato} pertenece a la campaña de RECUPERACION WERCHOW de ALEJANDRA TEJERINA`
-          :buscaso.idcampana === 22
+          : buscaso.idcampana === 22
           ? `El socio ${buscaso.contrato} pertenece a la campaña de AUXILIAR WERCHOW de MARIA GALIAN`
-         : buscaso.idcampana === 23
+          : buscaso.idcampana === 23
           ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de GISELA GIMENEZ`
           : buscaso.idcampana === 24
           ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS MUTUAL de MARISA CARRIZO`
@@ -113,6 +113,14 @@ export default class Campcaso extends Component {
           ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de VANESA GOROSITO`
           : buscaso.idcampana === 55
           ? `El socio ${buscaso.contrato} pertenece a la campaña de POLICIAS WERCHOW de SILVIA JUAREZ`
+          : buscaso.idcampana === 56
+          ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de CAJA (PBANDUR)`
+          : buscaso.idcampana === 57
+          ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de SOPORTE 1`
+          : buscaso.idcampana === 58
+          ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de SOPORTE 2`
+          : buscaso.idcampana === 27
+          ? `El socio ${buscaso.contrato} pertenece a la campaña de ATRASADOS WERCHOW de CAJA (CVALDA)`
           : null}
       </div>
     );

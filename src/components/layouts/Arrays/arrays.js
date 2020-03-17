@@ -8,7 +8,7 @@ export const acciones = [
   { value: 7, label: "COMPROMISO DE PAGO" },
   { value: 8, label: "NO PAGA" },
   { value: 9, label: "CUOTA AL DIA" },
-  { value: 10, label: "NOTIFICAR (PASAR A ALEJANDRA)" },
+  { value: 10, label: "NOTIFICAR" },
   { value: 13, label: "CARTERA ROJA" },
   { value: 14, label: "SOCIO FALLECIDO" },
   { value: 15, label: "RECORDATORIO DE PAGO" },
@@ -428,4 +428,39 @@ export const operadorescamp = [
   { value: "mcarrizo", label: "Marisa Carrizo" },
   { value: "vgorosito", label: "Vanesa Gorosito" },
   { value: "sjuarez", label: "Silvia Juarez" }
+];
+
+export const capitalaprest = [
+  { value: "1000", label: "1000" },
+  { value: "1500", label: "1500" },
+  { value: "2000", label: "2000" },
+  { value: "2500", label: "2500" },
+  { value: "3000", label: "3000" },
+  { value: "4000", label: "4000" },
+  { value: "5000", label: "5000" },
+  { value: "6000", label: "6000" },
+  { value: "8000", label: "8000" },
+  { value: "10000", label: "10000" },
+  { value: "12000", label: "12000" },
+  { value: "15000", label: "15000" },
+  { value: "20000", label: "20000" }
+];
+
+export const cuotasprest = [
+  { value: "3", label: "3" },
+  { value: "6", label: "6" },
+  { value: "10", label: "10" },
+  { value: "12", label: "12" }
+];
+
+export const renovaprest = [
+  { value: "SI", label: "SI" },
+  { value: "NO", label: "NO" }
+];
+
+export const estadopres = [
+  { value: "PENDIENTE", label: "PENDIENTE" },
+  { value: "APROBADO", label: "APROBADO" },
+  { value: "CANCELADO", label: "CANCELADO" },
+  { value: "RECHAZADO", label: "RECHAZADO" }
 ];

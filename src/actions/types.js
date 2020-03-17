@@ -77,6 +77,42 @@ export const ETARJETA_R = "ETARJETA_R";
 export const EPOLICIA = "EPOLICIA";
 export const ECONVENIOS = "ECONVENIOS";
 export const EBANCO = "EBANCO";
+export const RESPALCOB = "RESPALCOB";
+export const RESPERCOB = "RESPERCOB";
+export const RESSPCOB = "RESSPCOB";
+export const RESSSJCOB = "RESSSJCOB";
+export const RESPALCOBM = "RESPALCOBM";
+export const RESPERCOBM = "RESPERCOBM";
+export const RESSPCOBM = "RESSPCOBM";
+export const RESSSJCOBM = "RESSSJCOBM";
+export const RESPALOFI = "RESPALOFI";
+export const RESPEROFI = "RESPEROFI";
+export const RESSPOFI = "RESSPOFI";
+export const RESSSJOFI = "RESSSJOFI";
+export const RESPALOFIM = "RESPALOFIM";
+export const RESPEROFIM = "RESPEROFIM";
+export const RESSPOFIM = "RESSPOFIM";
+export const RESSSJOFIM = "RESSSJOFIM";
+export const RESPALTAR = "RESPALTAR";
+export const RESPERTAR = "RESPERTAR";
+export const RESSPTAR = "RESSPTAR";
+export const RESSSJTAR = "RESSSJTAR";
+export const RESPALTARM = "RESPALTARM";
+export const RESPERTARM = "RESPERTARM";
+export const RESSPTARM = "RESSPTARM";
+export const RESSSJTARM = "RESSSJTARM";
+export const RESPALBAN = "RESPALBAN";
+export const RESPERBAN = "RESPERBAN";
+export const RESSPBAN = "RESSPBAN";
+export const RESSSJBAN = "RESSSJBAN";
+export const RESPALPOL = "RESPALPOL";
+export const RESPERPOL = "RESPERPOL";
+export const RESSPPOL = "RESSPPOL";
+export const RESSSJPOL = "RESSSJPOL";
+export const RESPALCONV = "RESPALCONV";
+export const RESPERCONV = "RESPERCONV";
+export const RESSPCONV = "RESSPCONV";
+export const RESSSJCONV = "RESSSJCONV";
 
 // SEPELIO
 export const NUEVA_CAJA = "NUEVA_CAJA";
@@ -97,3 +133,11 @@ export const ELIMINAR_INGRESO = "ELIMINAR_INGRESO";
 // VENTAS
 export const CONSULTA_VENTAS = "CONSULTA_VENTAS";
 export const CONSULTA_VENTASM = "CONSULTA_VENTASM";
+
+// PRESTAMOS
+export const CONSULTAR_FICHA = "CONSULTAR_FICHA";
+export const ALTA_PRESTAMO = "ALTA_PRESTAMO";
+export const LISTADO_PRESTAMOS = "LISTADO_PRESTAMOS";
+export const PRESTAMOR_POR_OP = "PRESTAMOR_POR_OP";
+export const PRESTAMOR_POR_ESTADO = "PRESTAMOR_POR_ESTADO";
+export const APROBAR_PRESTAMOS = "APROBAR_PRESTAMOS";

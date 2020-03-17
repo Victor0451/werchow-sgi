@@ -142,7 +142,7 @@ class CobranzaPalpala extends Component {
     let flag = 3;
 
     return (
-      <div className="containes ">
+      <div className="container ">
         <hr className="mt-4 mb-4" />
         <h1 className="mb-4 ">Efectividad Palpala Seleccione el Periodo</h1>
         <div className="mb-4 d-flex justify-content-beetwen">

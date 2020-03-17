@@ -5,7 +5,19 @@ import {
   ETARJETA_L,
   ETARJETA_R,
   ETARJETA_P,
-  EPOLICIA
+  EPOLICIA,
+  RESPALCOBM,
+  RESPERCOBM,
+  RESSPCOBM,
+  RESSSJCOBM,
+  RESPALTARM,
+  RESPERTARM,
+  RESSPTARM,
+  RESSSJTARM,
+  RESPALOFIM,
+  RESPEROFIM,
+  RESSPOFIM,
+  RESSSJOFIM
 } from "../actions/types";
 
 import axios from "axios";
@@ -118,6 +130,198 @@ export const ePolicia = (mes, ano) => async dispatch => {
   );
   dispatch({
     type: EPOLICIA,
+    payload: respuesta.data
+  });
+};
+
+export const resPalCobM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/respalcob`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESPALCOBM,
+    payload: respuesta.data
+  });
+};
+
+export const resPerCobM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/respercob`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESPERCOBM,
+    payload: respuesta.data
+  });
+};
+
+export const resSpCobM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/resspcob`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESSPCOBM,
+    payload: respuesta.data
+  });
+};
+
+export const resSsjCobM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/resssjcob`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESSSJCOBM,
+    payload: respuesta.data
+  });
+};
+
+export const resPalOfiM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/respalofi`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESPALOFIM,
+    payload: respuesta.data
+  });
+};
+
+export const resPerOfiM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/resperofi`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESPEROFIM,
+    payload: respuesta.data
+  });
+};
+
+export const resSpOfiM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/resspofi`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESSPOFIM,
+    payload: respuesta.data
+  });
+};
+
+export const resSsjOfiM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/resssjofi`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESSSJOFIM,
+    payload: respuesta.data
+  });
+};
+
+export const resPalTarM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/respaltar`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESPALTARM,
+    payload: respuesta.data
+  });
+};
+
+export const resPerTarM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/respertar`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESPERTARM,
+    payload: respuesta.data
+  });
+};
+
+export const resSpTarM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/ressptar`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESSPTARM,
+    payload: respuesta.data
+  });
+};
+
+export const resSsjTarM = (mes, ano) => async dispatch => {
+  const respuesta = await axios.get(
+    `http://190.231.32.232:5002/api/sgi/efectividadm/resssjtar`,
+    {
+      params: {
+        mes: mes,
+        ano: ano
+      }
+    }
+  );
+  dispatch({
+    type: RESSSJTARM,
     payload: respuesta.data
   });
 };

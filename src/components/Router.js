@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import Navbar from "./layouts/Navbar";
+import Navbar from "./layouts/Navbar/Navbar";
 import EstadoSocio from "./campañas/estadoSocio/EstadoSocio";
 import CampanaCaso from "./campañas/CampanaCaso";
 import GestionAt from "./campañas/atrasados/GestionAt";
@@ -31,9 +31,6 @@ import EditarGasto from "./sepelio/caja/EditarGasto";
 import ListadoCajasSepelio from "./sepelio/caja/ListadoCajasSepelio";
 import VerGasto from "./sepelio/caja/VerGasto";
 import NotFound from "./NotFound";
-
-import store from "../store";
-import { Provider } from "react-redux";
 import ImprimirCaja from "./sepelio/caja/ImprimirCaja";
 import ConsultaVentas from "./ventas/ConsultaVentas";
 import CerrarCampañas from "./campañas/CerrarCampañas";
@@ -42,6 +39,17 @@ import CerrarCampañasM from "./campañas/CerrarCampañasM";
 import VolverALlamar from "./campañas/padron/VolverALlamar";
 import Credixa from "./campañas/padron/Credixa";
 import CompromisoPago from "./campañas/padron/CompromisoPago";
+import Resumen from "./cobranza/Resumen";
+import AltaPrestamos from "./prestamos/AltaPrestamos";
+import ListadoPrestamos from "./prestamos/ListadoPrestamos";
+import InformePrestamos from "./prestamos/InformePrestamos";
+import AprobacionPrestamo from "./prestamos/AprobacionPrestamo";
+import ImprimirCaratula from "./prestamos/ImprimirCaratula";
+
+import store from "../store";
+import { Provider } from "react-redux";
+import CaratulaPrestamos from "./prestamos/CaratulaPrestamos";
+
 
 const token = sessionStorage.getItem("token");
 
@@ -151,6 +159,7 @@ export default class Router extends Component {
               {/* COBRANZA */}
               <Route exact path={"/cobranza/werchow/"} component={Werchow} />
               <Route exact path={"/cobranza/mutual/"} component={Mutual} />
+              <Route exact path={"/cobranza/resumen/"} component={Resumen} />
               {/* SEPELIO */}
               <Route
                 exact
@@ -193,6 +202,38 @@ export default class Router extends Component {
                 path={"/ventas/consultaventas"}
                 component={ConsultaVentas}
               />
+              {/* PRESTAMOS */}
+              <Route
+                exact
+                path={"/prestamos/nuevo"}
+                component={AltaPrestamos}
+              />
+              <Route
+                exact
+                path={"/prestamos/Listado"}
+                component={ListadoPrestamos}
+              />
+              <Route
+                exact
+                path={"/prestamos/informes"}
+                component={InformePrestamos}
+              />
+              <Route
+                exact
+                path={"/prestamos/aprobar"}
+                component={AprobacionPrestamo}
+              />
+              <Route
+                exact
+                path={"/prestamos/imprimir"}
+                component={ImprimirCaratula}
+              />
+              <Route
+                exact
+                path={"/prestamos/caratula/:id"}
+                component={CaratulaPrestamos}
+              />
+              
               {/* PAGE NOT FOUND*/}
               <Route component={NotFound} />
             </Switch>
